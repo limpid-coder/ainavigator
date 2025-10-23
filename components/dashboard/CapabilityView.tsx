@@ -75,7 +75,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
             <p key={index} className="text-sm">
               <span className="text-gray-400">{entry.name}:</span>
               <span className={`ml-2 font-medium ${
-                entry.dataKey === 'current' ? 'text-blue-400' : 'text-gray-300'
+                entry.dataKey === 'current' ? 'text-teal-400' : 'text-gray-300'
               }`}>
                 {entry.value.toFixed(2)}
               </span>
@@ -88,41 +88,75 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="glass rounded-xl p-6">
-        <h2 className="text-2xl font-bold mb-2">Capability Diamond</h2>
-        <p className="text-gray-400">
-          Organizational AI maturity assessment across 8 key dimensions
-        </p>
-      </div>
+    <div className="space-y-8">
+      {/* Premium Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="glass-premium rounded-2xl p-8 relative overflow-hidden"
+      >
+        {/* Ambient background glow */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl -z-10" />
+
+        <div className="flex items-center gap-4 relative z-10">
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+            className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 glow-sm"
+          >
+            <Radar className="w-8 h-8 text-purple-300" />
+          </motion.div>
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight mb-1">
+              Capability Diamond
+            </h2>
+            <p className="text-gray-400 text-base">
+              AI maturity assessment across 8 key dimensions
+            </p>
+          </div>
+        </div>
+      </motion.div>
 
       {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Radar Chart */}
-        <div className="lg:col-span-2 glass rounded-xl p-6">
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="text-lg font-semibold">
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Premium Radar Chart */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 30 }}
+          className="lg:col-span-2 glass-premium rounded-2xl p-8"
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex-1">
+              <h3 className="text-xl font-bold tracking-tight flex items-center gap-3 mb-2">
+                <div className="w-1 h-6 bg-gradient-to-b from-purple-400 to-indigo-400 rounded-full" />
                 {viewMode === 'dimensions' ? 'Capability Dimensions' : 'Construct Analysis'}
               </h3>
-              <p className="text-sm text-gray-400 mt-1">
-                {viewMode === 'dimensions' 
+              <p className="text-sm text-gray-400">
+                {viewMode === 'dimensions'
                   ? 'Click on a dimension to drill down'
                   : `Analyzing: ${selectedDimensionData?.name}`
                 }
               </p>
             </div>
             {viewMode === 'constructs' && (
-              <button
+              <motion.button
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   setViewMode('dimensions')
                   setSelectedDimension(null)
                 }}
-                className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-medium transition-colors"
+                className="px-5 py-2.5 glass-hover rounded-xl text-sm font-semibold transition-all border border-white/10 flex items-center gap-2"
               >
+                <ChevronRight className="w-4 h-4 rotate-180" />
                 Back to Overview
-              </button>
+              </motion.button>
             )}
           </div>
 
@@ -155,16 +189,16 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                 <Radar 
                   name="Current" 
                   dataKey="current" 
-                  stroke="#3B82F6" 
-                  fill="#3B82F6" 
+                  stroke="#0D7C7F" 
+                  fill="#0D7C7F" 
                   fillOpacity={0.3}
                   strokeWidth={2}
                 />
                 <Radar 
                   name="Benchmark" 
                   dataKey="benchmark" 
-                  stroke="#10B981" 
-                  fill="#10B981" 
+                  stroke="#14B8A6" 
+                  fill="#14B8A6" 
                   fillOpacity={0.1}
                   strokeWidth={2}
                   strokeDasharray="5 5"
@@ -174,7 +208,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                     <Radar 
                       name="Min" 
                       dataKey="min" 
-                      stroke="#EF4444" 
+                      stroke="#FF6B35" 
                       fill="none" 
                       strokeWidth={1}
                       strokeDasharray="3 3"
@@ -183,7 +217,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                     <Radar 
                       name="Max" 
                       dataKey="max" 
-                      stroke="#10B981" 
+                      stroke="#14B8A6" 
                       fill="none" 
                       strokeWidth={1}
                       strokeDasharray="3 3"
@@ -209,7 +243,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                   setViewMode('constructs')
                 }
               }}
-              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none focus:border-teal-500"
             >
               <option value="">Select a dimension to analyze</option>
               {dimensions.map(dim => (
@@ -221,13 +255,20 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
           </div>
         </div>
 
-        {/* Details Panel */}
+        {/* Premium Details Panel */}
         <div className="space-y-6">
           {/* Strengths */}
-          <div className="glass rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <TrendingUp className="w-5 h-5 text-green-400" />
-              <h3 className="font-semibold">Strengths</h3>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 30 }}
+            className="glass-premium rounded-2xl p-6"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-teal-500/20 to-emerald-400/20">
+                <TrendingUp className="w-5 h-5 text-teal-300" />
+              </div>
+              <h3 className="font-bold text-lg tracking-tight">Strengths</h3>
             </div>
             <div className="space-y-3">
               {strongestDimensions.map((dim, idx) => (
@@ -243,7 +284,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                     <span className="text-sm text-gray-400">{idx + 1}.</span>
                     <span className="text-sm">{dim.name}</span>
                   </div>
-                  <span className="text-sm font-medium text-green-400">
+                  <span className="text-sm font-medium text-teal-400">
                     {dim.averageScore.toFixed(1)}
                   </span>
                 </div>
@@ -251,11 +292,18 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
             </div>
           </div>
 
-          {/* Weaknesses */}
-          <div className="glass rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <TrendingDown className="w-5 h-5 text-red-400" />
-              <h3 className="font-semibold">Areas for Improvement</h3>
+          {/* Areas for Improvement */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.25, type: "spring", stiffness: 300, damping: 30 }}
+            className="glass-premium rounded-2xl p-6"
+          >
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-400/20">
+                <TrendingDown className="w-5 h-5 text-orange-300" />
+              </div>
+              <h3 className="font-bold text-lg tracking-tight">Areas for Improvement</h3>
             </div>
             <div className="space-y-3">
               {weakestDimensions.map((dim, idx) => (
@@ -271,25 +319,37 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                     <span className="text-sm text-gray-400">{idx + 1}.</span>
                     <span className="text-sm">{dim.name}</span>
                   </div>
-                  <span className="text-sm font-medium text-red-400">
+                  <span className="text-sm font-medium text-orange-400">
                     {dim.averageScore.toFixed(1)}
                   </span>
                 </div>
               ))}
             </div>
-            
-            <button className="w-full mt-4 px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg font-medium text-white hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2">
+
+
+            <motion.button
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full mt-6 btn-primary flex items-center justify-center gap-2"
+            >
               <Lightbulb className="w-5 h-5" />
               Get Recommendations
               <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Info Box */}
-          <div className="glass rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-3">
-              <Info className="w-5 h-5 text-blue-400" />
-              <h4 className="font-medium">Understanding Scores</h4>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+            className="glass-premium rounded-2xl p-6"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-400/20">
+                <Info className="w-5 h-5 text-cyan-300" />
+              </div>
+              <h4 className="font-bold tracking-tight">Understanding Scores</h4>
             </div>
             <div className="space-y-2 text-sm text-gray-400">
               <p>• 1-2: Initial/Ad-hoc</p>
@@ -315,9 +375,9 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
           <p className="text-sm text-gray-400 mb-1">vs Benchmark</p>
           <p className="text-2xl font-bold">
             {dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length >= 3.5 ? (
-              <span className="text-green-400">+{((dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length) - 3.5).toFixed(1)}</span>
+              <span className="text-teal-400">+{((dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length) - 3.5).toFixed(1)}</span>
             ) : (
-              <span className="text-red-400">{((dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length) - 3.5).toFixed(1)}</span>
+              <span className="text-orange-400">{((dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length) - 3.5).toFixed(1)}</span>
             )}
           </p>
         </div>
@@ -332,7 +392,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
         
         <div className="glass rounded-xl p-6">
           <p className="text-sm text-gray-400 mb-1">Critical Gaps</p>
-          <p className="text-2xl font-bold text-red-400">
+          <p className="text-2xl font-bold text-orange-400">
             {dimensions.filter(d => d.averageScore < 2.5).length}
           </p>
         </div>

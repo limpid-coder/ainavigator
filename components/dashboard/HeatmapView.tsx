@@ -21,58 +21,107 @@ interface HeatmapViewProps {
   filters: FilterState
 }
 
-// Individual heatmap cell component
+// Premium heatmap cell component with Apple-level polish
 const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
   const intensity = cellData?.value || 0
   const hasData = cellData?.count > 0
-  
+  const color = getHeatmapColor(intensity)
+
   return (
     <motion.div
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ 
-        delay: Math.random() * 0.2,
-        duration: 0.3,
+      initial={{ scale: 0, opacity: 0, rotateX: -90 }}
+      animate={{ scale: 1, opacity: 1, rotateX: 0 }}
+      transition={{
+        delay: Math.random() * 0.15,
+        duration: 0.5,
         type: "spring",
-        stiffness: 200
+        stiffness: 300,
+        damping: 25
       }}
-      whileHover={hasData ? { scale: 1.08, zIndex: 10 } : {}}
-      whileTap={hasData ? { scale: 0.95 } : {}}
+      whileHover={hasData ? {
+        scale: 1.12,
+        zIndex: 10,
+        rotateZ: -2,
+        transition: { type: "spring", stiffness: 400, damping: 20 }
+      } : {}}
+      whileTap={hasData ? { scale: 0.92 } : {}}
       onClick={hasData ? onClick : undefined}
       className={`
-        relative aspect-square rounded-lg transition-all duration-200
+        relative aspect-square rounded-xl transition-all duration-300
         ${hasData ? 'cursor-pointer' : 'cursor-default'}
-        ${isSelected ? 'ring-2 ring-white shadow-lg' : ''}
+        ${isSelected ? 'ring-2 ring-white/80 ring-offset-2 ring-offset-black' : ''}
       `}
       style={{
-        background: hasData 
-          ? `linear-gradient(135deg, ${getHeatmapColor(intensity)} 0%, ${getHeatmapColor(intensity)}cc 100%)`
-          : 'rgba(255, 255, 255, 0.02)',
-        opacity: hasData ? 1 : 0.3,
-        boxShadow: hasData && intensity > 0 
-          ? `0 2px 8px ${getHeatmapColor(intensity)}22`
-          : 'none'
+        background: hasData
+          ? `linear-gradient(135deg,
+              ${color} 0%,
+              ${color}f0 40%,
+              ${color}cc 100%)`
+          : 'linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%)',
+        opacity: hasData ? 1 : 0.25,
+        boxShadow: hasData && intensity > 0
+          ? `
+            0 4px 12px ${color}30,
+            0 8px 24px ${color}20,
+            inset 0 1px 0 rgba(255,255,255,0.2),
+            inset 0 -1px 0 rgba(0,0,0,0.2)
+          `
+          : '0 2px 4px rgba(0,0,0,0.1)'
       }}
     >
+      {/* Shimmer effect */}
+      {hasData && (
+        <motion.div
+          className="absolute inset-0 rounded-xl overflow-hidden"
+          initial={{ x: '-100%' }}
+          animate={{ x: '200%' }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            delay: Math.random() * 2,
+            ease: "linear"
+          }}
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)'
+          }}
+        />
+      )}
+
       {hasData ? (
         <>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <div className="text-white font-semibold text-lg">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+              className="text-white font-bold text-lg tracking-tight drop-shadow-lg"
+            >
               {cellData.count}
-            </div>
-            <div className="text-white/70 text-xs">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-white/80 text-xs font-medium tracking-wide"
+            >
               {cellData.value.toFixed(1)}
-            </div>
+            </motion.div>
           </div>
           {cellData.count > 20 && (
-            <div className="absolute top-1 right-1">
-              <div className="w-2 h-2 bg-white/50 rounded-full animate-pulse" />
+            <div className="absolute top-2 right-2 z-10">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
+                transition={{ repeat: Infinity, duration: 2 }}
+                className="w-2 h-2 bg-white rounded-full shadow-lg"
+              />
             </div>
           )}
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
         </>
       ) : (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-white/20 text-xs">—</div>
+          <div className="text-white/15 text-xs font-medium">—</div>
         </div>
       )}
     </motion.div>
@@ -110,41 +159,75 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      {/* Header Card */}
-      <motion.div 
+    <div className="space-y-8">
+      {/* Premium Header Card */}
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="glass-premium rounded-xl p-6"
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="glass-premium rounded-2xl p-8 relative overflow-hidden"
       >
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold mb-2 flex items-center gap-3">
-              <Grid3x3 className="w-7 h-7 text-purple-400" />
-              Culture Heatmap Analysis
-            </h2>
-            <p className="text-gray-400">
-              Organizational sentiment across 25 key dimensions
-            </p>
-          </div>
-          <div className="text-right">
-            <div className="text-3xl font-bold text-white">
-              {averageSentiment.toFixed(1)}
+        {/* Ambient background glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10" />
+
+        <div className="flex items-start justify-between relative z-10">
+          <div className="flex-1">
+            <div className="flex items-center gap-4 mb-3">
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
+                className="p-3 rounded-xl bg-gradient-to-br from-teal-500/20 to-cyan-400/20 glow-sm"
+              >
+                <Grid3x3 className="w-8 h-8 text-teal-300" />
+              </motion.div>
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight mb-1">
+                  Culture Heatmap
+                </h2>
+                <p className="text-gray-400 text-base">
+                  Organizational sentiment across 25 key dimensions
+                </p>
+              </div>
             </div>
-            <div className="text-sm text-gray-400">Average Score</div>
           </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25, delay: 0.2 }}
+            className="text-right"
+          >
+            <div className="px-6 py-4 rounded-xl glass bg-gradient-to-br from-teal-500/10 to-transparent">
+              <div className="text-4xl font-bold text-gradient-fast mb-1">
+                {averageSentiment.toFixed(1)}
+              </div>
+              <div className="text-xs text-gray-400 uppercase tracking-widest">
+                Average Score
+              </div>
+            </div>
+          </motion.div>
         </div>
       </motion.div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
-        {/* Heatmap Visualization */}
-        <motion.div 
+      <div className="grid lg:grid-cols-3 gap-8">
+        {/* Premium Heatmap Visualization */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
-          className="lg:col-span-2 glass-premium rounded-xl p-6"
+          transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 30 }}
+          className="lg:col-span-2 glass-premium rounded-2xl p-8"
         >
-          <h3 className="text-lg font-semibold mb-6">Sentiment Matrix</h3>
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-bold tracking-tight flex items-center gap-3">
+              <div className="w-1 h-6 bg-gradient-to-b from-teal-400 to-cyan-400 rounded-full" />
+              Sentiment Matrix
+            </h3>
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <Activity className="w-4 h-4" />
+              <span>Live Data</span>
+            </div>
+          </div>
           
           <div className="relative">
             {/* Y-axis labels */}
@@ -191,7 +274,7 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
               {/* Legend */}
               <div className="mt-6 flex items-center justify-between glass rounded-lg p-3">
                 <span className="text-xs text-gray-400 flex items-center gap-2">
-                  <TrendingDown className="w-4 h-4 text-red-400" />
+                  <TrendingDown className="w-4 h-4 text-orange-400" />
                   Resistance
                 </span>
                 <div className="flex gap-1">
@@ -205,7 +288,7 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
                 </div>
                 <span className="text-xs text-gray-400 flex items-center gap-2">
                   Readiness
-                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <TrendingUp className="w-4 h-4 text-teal-400" />
                 </span>
               </div>
             </div>
@@ -279,21 +362,21 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
             className="glass-premium rounded-xl p-6"
           >
             <h4 className="font-semibold mb-4 flex items-center gap-2">
-              <Activity className="w-5 h-5 text-blue-400" />
+              <Activity className="w-5 h-5 text-teal-400" />
               Quick Stats
             </h4>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-400">High Risk</span>
-                <span className="text-lg font-bold text-red-400">{stats.highRisk}</span>
+                <span className="text-lg font-bold text-orange-400">{stats.highRisk}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-400">Neutral</span>
-                <span className="text-lg font-bold text-yellow-400">{stats.neutral}</span>
+                <span className="text-lg font-bold text-purple-400">{stats.neutral}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-sm text-gray-400">Ready</span>
-                <span className="text-lg font-bold text-green-400">{stats.ready}</span>
+                <span className="text-lg font-bold text-teal-400">{stats.ready}</span>
               </div>
             </div>
           </motion.div>

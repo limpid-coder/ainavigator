@@ -21,7 +21,7 @@ import Link from 'next/link'
 // Smooth animated background
 const AnimatedBackground = () => (
   <div className="fixed inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-purple-950/20" />
+    <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-teal-950/20 to-purple-950/20" />
     <div className="absolute inset-0 data-grid opacity-[0.02]" />
     
     {/* Subtle gradient animation */}
@@ -29,10 +29,10 @@ const AnimatedBackground = () => (
       className="absolute inset-0"
       animate={{
         background: [
-          'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
+          'radial-gradient(circle at 20% 50%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
+          'radial-gradient(circle at 80% 50%, rgba(78, 74, 175, 0.05) 0%, transparent 50%)',
+          'radial-gradient(circle at 50% 80%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
+          'radial-gradient(circle at 20% 50%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
         ]
       }}
       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -57,7 +57,7 @@ const FeatureCard = ({ feature, index }: any) => (
       <div className="flex-1">
         <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
         <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-        <div className="mt-3 flex items-center gap-2 text-xs text-blue-400">
+        <div className="mt-3 flex items-center gap-2 text-xs text-teal-400">
           <CheckCircle className="w-3 h-3" />
           <span>{feature.metric}</span>
         </div>
@@ -117,28 +117,28 @@ export default function Home() {
       icon: <BarChart3 className="w-6 h-6 text-white" />,
       title: 'Culture Heatmap',
       description: 'Visualize organizational sentiment across 25 key dimensions with interactive insights',
-      gradient: 'from-blue-500/20 to-cyan-500/20',
+      gradient: 'from-teal-500/20 to-cyan-400/20',
       metric: '25-zone matrix'
     },
     {
       icon: <Target className="w-6 h-6 text-white" />,
       title: 'Capability Diamond',
       description: 'Assess AI readiness across 8 capability dimensions with drill-down analytics',
-      gradient: 'from-purple-500/20 to-pink-500/20',
+      gradient: 'from-purple-500/20 to-indigo-500/20',
       metric: '32 constructs'
     },
     {
       icon: <Lightbulb className="w-6 h-6 text-white" />,
       title: 'Smart Interventions',
       description: 'Get AI-powered recommendations tailored to your organization\'s specific gaps',
-      gradient: 'from-amber-500/20 to-orange-500/20',
+      gradient: 'from-orange-500/20 to-amber-500/20',
       metric: 'Real-time insights'
     },
     {
       icon: <TrendingUp className="w-6 h-6 text-white" />,
       title: 'ROI Predictions',
       description: 'Understand the potential impact of interventions with directional value estimates',
-      gradient: 'from-green-500/20 to-emerald-500/20',
+      gradient: 'from-teal-400/20 to-emerald-400/20',
       metric: 'Data-driven'
     }
   ]
@@ -163,7 +163,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Brain className="w-7 h-7 text-blue-400" />
+              <Brain className="w-7 h-7 text-teal-400" />
               <span className="font-semibold text-lg">AI Navigator</span>
             </div>
             <nav className="hidden md:flex items-center gap-6">
@@ -189,7 +189,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm mb-8"
             >
-              <Sparkles className="w-4 h-4 text-blue-400" />
+              <Sparkles className="w-4 h-4 text-orange-400" />
               <span>AI-Powered Analytics Platform</span>
             </motion.div>
 
@@ -351,7 +351,7 @@ export default function Home() {
                 <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full gradient-primary text-white glow-sm">
                   {item.icon}
                 </div>
-                <div className="text-sm text-blue-400 font-mono mb-2">STEP {item.step}</div>
+                <div className="text-sm text-teal-400 font-mono mb-2">STEP {item.step}</div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-gray-400">{item.desc}</p>
               </motion.div>
@@ -391,7 +391,7 @@ export default function Home() {
             onClick={() => setIsVideoPlaying(!isVideoPlaying)}
           >
             {!isVideoPlaying ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-950/50 to-purple-950/50">
+              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-950/50 to-purple-950/50">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   className="w-20 h-20 rounded-full bg-white/10 backdrop-blur flex items-center justify-center"
@@ -445,7 +445,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
-              <Brain className="w-6 h-6 text-blue-400" />
+              <Brain className="w-6 h-6 text-teal-400" />
               <span className="font-semibold">AI Navigator</span>
             </div>
             <div className="text-gray-500 text-sm">

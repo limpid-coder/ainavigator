@@ -154,7 +154,7 @@ export default function UploadPage() {
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <Brain className="w-6 h-6 text-blue-400" />
+              <Brain className="w-6 h-6 text-teal-400" />
               <span className="font-semibold text-white">AI Navigator</span>
             </Link>
             <Link href="/">
@@ -174,7 +174,7 @@ export default function UploadPage() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl font-bold text-center mb-4">
-            <span className="text-gradient bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-gradient bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
               Upload Your Data
             </span>
           </h1>
@@ -187,7 +187,7 @@ export default function UploadPage() {
             {...getRootProps()}
             className={`glass rounded-xl p-12 border-2 border-dashed transition-all cursor-pointer ${
               isDragActive 
-                ? 'border-blue-500 bg-blue-500/10' 
+                ? 'border-teal-500 bg-teal-500/10' 
                 : 'border-white/20 hover:border-white/40'
             }`}
           >
@@ -199,13 +199,13 @@ export default function UploadPage() {
                   rotate: isDragActive ? 180 : 0
                 }}
                 transition={{ duration: 0.3 }}
-                className="inline-flex p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 mb-4"
+                className="inline-flex p-4 rounded-full bg-gradient-to-br from-teal-500/20 to-cyan-500/20 mb-4"
               >
-                <FileUp className="w-12 h-12 text-blue-400" />
+                <FileUp className="w-12 h-12 text-teal-400" />
               </motion.div>
               
               {isDragActive ? (
-                <p className="text-xl text-blue-400 font-semibold mb-2">
+                <p className="text-xl text-teal-400 font-semibold mb-2">
                   Drop your files here
                 </p>
               ) : (
@@ -247,10 +247,10 @@ export default function UploadPage() {
                       <div className="flex items-center gap-4">
                         <div className={`p-2 rounded-lg ${
                           file.status === 'success' 
-                            ? 'bg-green-500/20 text-green-400'
+                            ? 'bg-teal-500/20 text-teal-400'
                             : file.status === 'error'
-                            ? 'bg-red-500/20 text-red-400'
-                            : 'bg-blue-500/20 text-blue-400'
+                            ? 'bg-orange-500/20 text-orange-400'
+                            : 'bg-teal-500/20 text-teal-400'
                         }`}>
                           {file.status === 'processing' ? (
                             <Loader2 className="w-5 h-5 animate-spin" />
@@ -282,12 +282,12 @@ export default function UploadPage() {
                       
                       <div className="flex items-center gap-2">
                         {file.status === 'success' && (
-                          <Check className="w-5 h-5 text-green-400" />
+                          <Check className="w-5 h-5 text-teal-400" />
                         )}
                         {file.status === 'error' && (
                           <div className="flex items-center gap-2">
-                            <AlertCircle className="w-5 h-5 text-red-400" />
-                            <span className="text-sm text-red-400">{file.error}</span>
+                            <AlertCircle className="w-5 h-5 text-orange-400" />
+                            <span className="text-sm text-orange-400">{file.error}</span>
                           </div>
                         )}
                         <button
@@ -312,14 +312,14 @@ export default function UploadPage() {
               className="mt-8 grid md:grid-cols-2 gap-4"
             >
               <div className={`glass rounded-lg p-4 border ${
-                hasSentimentData ? 'border-green-500/50' : 'border-white/10'
+                hasSentimentData ? 'border-teal-500/50' : 'border-white/10'
               }`}>
                 <div className="flex items-center gap-3">
                   <div className={`p-2 rounded-lg ${
-                    hasSentimentData ? 'bg-green-500/20' : 'bg-white/5'
+                    hasSentimentData ? 'bg-teal-500/20' : 'bg-white/5'
                   }`}>
                     <Database className={`w-5 h-5 ${
-                      hasSentimentData ? 'text-green-400' : 'text-gray-400'
+                      hasSentimentData ? 'text-teal-400' : 'text-gray-400'
                     }`} />
                   </div>
                   <div>
@@ -332,14 +332,14 @@ export default function UploadPage() {
               </div>
               
               <div className={`glass rounded-lg p-4 border ${
-                hasCapabilityData ? 'border-green-500/50' : 'border-white/10'
+                hasCapabilityData ? 'border-teal-500/50' : 'border-white/10'
               }`}>
                 <div className="flex items-center gap-3">
                   <div className={`p-2 rounded-lg ${
-                    hasCapabilityData ? 'bg-green-500/20' : 'bg-white/5'
+                    hasCapabilityData ? 'bg-teal-500/20' : 'bg-white/5'
                   }`}>
                     <Database className={`w-5 h-5 ${
-                      hasCapabilityData ? 'text-green-400' : 'text-gray-400'
+                      hasCapabilityData ? 'text-teal-400' : 'text-gray-400'
                     }`} />
                   </div>
                   <div>
@@ -363,7 +363,7 @@ export default function UploadPage() {
                 whileTap={{ scale: 0.95 }}
                 onClick={handleProceed}
                 disabled={isProcessing}
-                className="group px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg font-semibold text-white shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="group px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg font-semibold text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span className="flex items-center gap-2">
                   {isProcessing ? (
@@ -392,11 +392,11 @@ export default function UploadPage() {
           <div className="mt-12 text-center">
             <p className="text-sm text-gray-400">
               Need help? Check our{' '}
-              <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
+              <a href="#" className="text-teal-400 hover:text-teal-300 transition-colors">
                 data format guide
               </a>
               {' '}or{' '}
-              <Link href="/demo" className="text-blue-400 hover:text-blue-300 transition-colors">
+              <Link href="/demo" className="text-teal-400 hover:text-teal-300 transition-colors">
                 use demo data
               </Link>
               {' '}to explore the platform

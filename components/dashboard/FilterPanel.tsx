@@ -59,7 +59,7 @@ const FilterSelect = ({
                     setIsOpen(false)
                   }}
                   className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                    value === 'all' ? 'bg-blue-500/20 text-blue-400' : 'text-gray-400'
+                    value === 'all' ? 'bg-teal-500/20 text-teal-400' : 'text-gray-400'
                   }`}
                 >
                   All {label}s
@@ -72,7 +72,7 @@ const FilterSelect = ({
                       setIsOpen(false)
                     }}
                     className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                      value === option ? 'bg-blue-500/20 text-blue-400' : 'text-white'
+                      value === option ? 'bg-teal-500/20 text-teal-400' : 'text-white'
                     }`}
                   >
                     {option}
@@ -136,8 +136,8 @@ export default function FilterPanel({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20">
-            <Filter className="w-5 h-5 text-blue-400 neon-glow" />
+          <div className="p-2 rounded-lg bg-gradient-to-br from-teal-500/20 to-purple-500/20">
+            <Filter className="w-5 h-5 text-teal-400 neon-glow" />
           </div>
           <div>
             <h3 className="text-lg font-semibold">Data Filters</h3>
@@ -170,9 +170,9 @@ export default function FilterPanel({
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-500/10 border border-blue-500/30">
-              <Cpu className="w-4 h-4 text-blue-400 animate-pulse" />
-              <span className="text-xs text-blue-400">Applying filters...</span>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-teal-500/10 border border-teal-500/30">
+              <Cpu className="w-4 h-4 text-teal-400 animate-pulse" />
+              <span className="text-xs text-teal-400">Applying filters...</span>
             </div>
           </motion.div>
         )}
@@ -248,10 +248,10 @@ export default function FilterPanel({
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.05 }}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-sm"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-500/20 to-purple-500/20 border border-teal-500/30 text-sm"
                 >
                   <span className="text-gray-400 capitalize">{key}:</span>
-                  <span className="font-medium text-blue-400">{value}</span>
+                  <span className="font-medium text-teal-400">{value}</span>
                   <button
                     onClick={() => handleFilterChange(key as keyof FilterState, undefined)}
                     className="ml-1 hover:text-white transition-colors"
@@ -276,7 +276,7 @@ export default function FilterPanel({
             <div className="text-xs text-gray-500 mt-1">Sentiment</div>
           </div>
           <div className="glass rounded-lg p-3 text-center">
-            <div className="text-2xl font-bold text-blue-400">
+            <div className="text-2xl font-bold text-teal-400">
               {capabilityData.length}
             </div>
             <div className="text-xs text-gray-500 mt-1">Capability</div>

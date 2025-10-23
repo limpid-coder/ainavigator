@@ -65,7 +65,7 @@ export default function DemoPage() {
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <Brain className="w-6 h-6 text-blue-400" />
+              <Brain className="w-6 h-6 text-teal-400" />
               <span className="font-semibold text-white">AI Navigator</span>
             </Link>
             <Link href="/">
@@ -85,7 +85,7 @@ export default function DemoPage() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl font-bold text-center mb-4">
-            <span className="text-gradient bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="text-gradient bg-gradient-to-r from-purple-400 to-orange-400 bg-clip-text text-transparent">
               Demo Datasets
             </span>
           </h1>
@@ -104,7 +104,7 @@ export default function DemoPage() {
                 transition={{ duration: 0.3 }}
                 className={`glass rounded-xl p-6 cursor-pointer transition-all ${
                   selectedDataset === dataset.id 
-                    ? 'ring-2 ring-blue-500 bg-blue-500/10' 
+                    ? 'ring-2 ring-teal-500 bg-teal-500/10' 
                     : 'hover:bg-white/5'
                 }`}
                 onClick={() => setSelectedDataset(dataset.id)}
@@ -112,10 +112,10 @@ export default function DemoPage() {
                 <div className="flex items-start justify-between mb-4">
                   <div className={`p-3 rounded-lg bg-gradient-to-br ${
                     dataset.id === 'tech-company' 
-                      ? 'from-blue-500/20 to-cyan-500/20 text-cyan-400'
+                      ? 'from-teal-500/20 to-cyan-500/20 text-cyan-400'
                       : dataset.id === 'financial-services'
-                      ? 'from-green-500/20 to-emerald-500/20 text-emerald-400'
-                      : 'from-orange-500/20 to-red-500/20 text-orange-400'
+                      ? 'from-purple-500/20 to-indigo-500/20 text-purple-400'
+                      : 'from-orange-500/20 to-amber-500/20 text-orange-400'
                   }`}>
                     {iconMap[dataset.id as keyof typeof iconMap]}
                   </div>
@@ -123,7 +123,7 @@ export default function DemoPage() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="p-1 rounded-full bg-blue-500"
+                      className="p-1 rounded-full bg-teal-500"
                     >
                       <Check className="w-4 h-4 text-white" />
                     </motion.div>
@@ -153,7 +153,7 @@ export default function DemoPage() {
                   <ul className="space-y-1">
                     {dataset.highlights.slice(0, 2).map((highlight, idx) => (
                       <li key={idx} className="text-xs text-gray-400 flex items-start gap-1">
-                        <span className="text-blue-400 mt-0.5">•</span>
+                        <span className="text-teal-400 mt-0.5">•</span>
                         {highlight}
                       </li>
                     ))}
@@ -172,7 +172,7 @@ export default function DemoPage() {
               disabled={!selectedDataset || isLoading}
               className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
                 selectedDataset && !isLoading
-                  ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40'
+                  ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40'
                   : 'bg-white/5 text-gray-500 cursor-not-allowed'
               }`}
             >
@@ -214,7 +214,7 @@ export default function DemoPage() {
             className="mt-16 glass rounded-xl p-6 max-w-2xl mx-auto"
           >
             <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Brain className="w-5 h-5 text-blue-400" />
+              <Brain className="w-5 h-5 text-teal-400" />
               About Demo Datasets
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
