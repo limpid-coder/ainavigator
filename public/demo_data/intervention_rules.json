@@ -1,0 +1,17 @@
+[
+  {
+    "threshold": 60,
+    "applies_to": "construct",
+    "intervention": "Targeted Training"
+  },
+  {
+    "threshold": 55,
+    "applies_to": "construct",
+    "intervention": "Data Quality Uplift"
+  },
+  {
+    "threshold": 65,
+    "applies_to": "dimension",
+    "intervention": "Leadership Alignment"
+  }
+]

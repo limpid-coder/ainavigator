@@ -1,0 +1,26 @@
+area_id,area_name,sentiment_score,benchmark_type
+1,Sentiment Area 1,84,synthetic
+2,Sentiment Area 2,80,synthetic
+3,Sentiment Area 3,68,synthetic
+4,Sentiment Area 4,54,synthetic
+5,Sentiment Area 5,84,synthetic
+6,Sentiment Area 6,40,synthetic
+7,Sentiment Area 7,64,synthetic
+8,Sentiment Area 8,46,synthetic
+9,Sentiment Area 9,48,synthetic
+10,Sentiment Area 10,63,synthetic
+11,Sentiment Area 11,40,synthetic
+12,Sentiment Area 12,83,synthetic
+13,Sentiment Area 13,47,synthetic
+14,Sentiment Area 14,63,synthetic
+15,Sentiment Area 15,50,synthetic
+16,Sentiment Area 16,56,synthetic
+17,Sentiment Area 17,47,synthetic
+18,Sentiment Area 18,74,synthetic
+19,Sentiment Area 19,74,synthetic
+20,Sentiment Area 20,72,synthetic
+21,Sentiment Area 21,44,synthetic
+22,Sentiment Area 22,81,synthetic
+23,Sentiment Area 23,78,synthetic
+24,Sentiment Area 24,80,synthetic
+25,Sentiment Area 25,67,synthetic
