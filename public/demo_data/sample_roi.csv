@@ -1,0 +1,33 @@
+dimension,construct,gain_low,gain_high
+Strategy and Vision,Strategy and Vision Construct 1,6,10
+Strategy and Vision,Strategy and Vision Construct 2,7,14
+Strategy and Vision,Strategy and Vision Construct 3,9,16
+Strategy and Vision,Strategy and Vision Construct 4,5,13
+Data,Data Construct 1,8,16
+Data,Data Construct 2,5,11
+Data,Data Construct 3,8,15
+Data,Data Construct 4,5,9
+Technology,Technology Construct 1,9,17
+Technology,Technology Construct 2,8,16
+Technology,Technology Construct 3,7,11
+Technology,Technology Construct 4,5,13
+Talent and Skills,Talent and Skills Construct 1,5,11
+Talent and Skills,Talent and Skills Construct 2,8,15
+Talent and Skills,Talent and Skills Construct 3,7,11
+Talent and Skills,Talent and Skills Construct 4,7,14
+Organisation and Processes,Organisation and Processes Construct 1,9,17
+Organisation and Processes,Organisation and Processes Construct 2,7,15
+Organisation and Processes,Organisation and Processes Construct 3,7,11
+Organisation and Processes,Organisation and Processes Construct 4,7,13
+Innovation,Innovation Construct 1,6,11
+Innovation,Innovation Construct 2,9,13
+Innovation,Innovation Construct 3,5,10
+Innovation,Innovation Construct 4,8,13
+Adaptation & Adoption,Adaptation & Adoption Construct 1,5,11
+Adaptation & Adoption,Adaptation & Adoption Construct 2,9,14
+Adaptation & Adoption,Adaptation & Adoption Construct 3,8,13
+Adaptation & Adoption,Adaptation & Adoption Construct 4,9,15
+Ethics and Responsibility,Ethics and Responsibility Construct 1,7,12
+Ethics and Responsibility,Ethics and Responsibility Construct 2,8,13
+Ethics and Responsibility,Ethics and Responsibility Construct 3,7,12
+Ethics and Responsibility,Ethics and Responsibility Construct 4,5,9

@@ -1,0 +1,239 @@
+{
+  "benchmark_name": "Synthetic OECD Benchmark",
+  "benchmark_type": "synthetic",
+  "created_at": "2025-10-24",
+  "data": [
+    {
+      "dimension": "Strategy and Vision",
+      "constructs": [
+        {
+          "construct": "Strategy and Vision Construct 1",
+          "benchmark_mean": 66.2,
+          "benchmark_min": 37.2,
+          "benchmark_max": 95.3
+        },
+        {
+          "construct": "Strategy and Vision Construct 2",
+          "benchmark_mean": 77.0,
+          "benchmark_min": 55.0,
+          "benchmark_max": 98.9
+        },
+        {
+          "construct": "Strategy and Vision Construct 3",
+          "benchmark_mean": 59.7,
+          "benchmark_min": 46.6,
+          "benchmark_max": 72.8
+        },
+        {
+          "construct": "Strategy and Vision Construct 4",
+          "benchmark_mean": 56.7,
+          "benchmark_min": 29.4,
+          "benchmark_max": 84.1
+        }
+      ]
+    },
+    {
+      "dimension": "Data",
+      "constructs": [
+        {
+          "construct": "Data Construct 1",
+          "benchmark_mean": 73.0,
+          "benchmark_min": 48.9,
+          "benchmark_max": 97.2
+        },
+        {
+          "construct": "Data Construct 2",
+          "benchmark_mean": 55.6,
+          "benchmark_min": 26.2,
+          "benchmark_max": 85.0
+        },
+        {
+          "construct": "Data Construct 3",
+          "benchmark_mean": 80.0,
+          "benchmark_min": 65.7,
+          "benchmark_max": 94.2
+        },
+        {
+          "construct": "Data Construct 4",
+          "benchmark_mean": 60.5,
+          "benchmark_min": 46.8,
+          "benchmark_max": 74.1
+        }
+      ]
+    },
+    {
+      "dimension": "Technology",
+      "constructs": [
+        {
+          "construct": "Technology Construct 1",
+          "benchmark_mean": 64.1,
+          "benchmark_min": 43.6,
+          "benchmark_max": 84.6
+        },
+        {
+          "construct": "Technology Construct 2",
+          "benchmark_mean": 68.0,
+          "benchmark_min": 52.1,
+          "benchmark_max": 83.8
+        },
+        {
+          "construct": "Technology Construct 3",
+          "benchmark_mean": 73.4,
+          "benchmark_min": 60.6,
+          "benchmark_max": 86.1
+        },
+        {
+          "construct": "Technology Construct 4",
+          "benchmark_mean": 63.8,
+          "benchmark_min": 46.4,
+          "benchmark_max": 81.1
+        }
+      ]
+    },
+    {
+      "dimension": "Talent and Skills",
+      "constructs": [
+        {
+          "construct": "Talent and Skills Construct 1",
+          "benchmark_mean": 68.7,
+          "benchmark_min": 43.0,
+          "benchmark_max": 94.4
+        },
+        {
+          "construct": "Talent and Skills Construct 2",
+          "benchmark_mean": 61.0,
+          "benchmark_min": 40.7,
+          "benchmark_max": 81.3
+        },
+        {
+          "construct": "Talent and Skills Construct 3",
+          "benchmark_mean": 72.8,
+          "benchmark_min": 61.8,
+          "benchmark_max": 83.7
+        },
+        {
+          "construct": "Talent and Skills Construct 4",
+          "benchmark_mean": 73.2,
+          "benchmark_min": 59.8,
+          "benchmark_max": 86.6
+        }
+      ]
+    },
+    {
+      "dimension": "Organisation and Processes",
+      "constructs": [
+        {
+          "construct": "Organisation and Processes Construct 1",
+          "benchmark_mean": 57.0,
+          "benchmark_min": 28.0,
+          "benchmark_max": 85.9
+        },
+        {
+          "construct": "Organisation and Processes Construct 2",
+          "benchmark_mean": 84.0,
+          "benchmark_min": 57.8,
+          "benchmark_max": 100.0
+        },
+        {
+          "construct": "Organisation and Processes Construct 3",
+          "benchmark_mean": 64.1,
+          "benchmark_min": 52.2,
+          "benchmark_max": 76.1
+        },
+        {
+          "construct": "Organisation and Processes Construct 4",
+          "benchmark_mean": 75.5,
+          "benchmark_min": 56.7,
+          "benchmark_max": 94.3
+        }
+      ]
+    },
+    {
+      "dimension": "Innovation",
+      "constructs": [
+        {
+          "construct": "Innovation Construct 1",
+          "benchmark_mean": 58.7,
+          "benchmark_min": 38.8,
+          "benchmark_max": 78.6
+        },
+        {
+          "construct": "Innovation Construct 2",
+          "benchmark_mean": 56.0,
+          "benchmark_min": 27.8,
+          "benchmark_max": 84.2
+        },
+        {
+          "construct": "Innovation Construct 3",
+          "benchmark_mean": 62.8,
+          "benchmark_min": 39.5,
+          "benchmark_max": 86.0
+        },
+        {
+          "construct": "Innovation Construct 4",
+          "benchmark_mean": 64.4,
+          "benchmark_min": 43.9,
+          "benchmark_max": 84.8
+        }
+      ]
+    },
+    {
+      "dimension": "Adaptation & Adoption",
+      "constructs": [
+        {
+          "construct": "Adaptation & Adoption Construct 1",
+          "benchmark_mean": 71.4,
+          "benchmark_min": 57.7,
+          "benchmark_max": 85.1
+        },
+        {
+          "construct": "Adaptation & Adoption Construct 2",
+          "benchmark_mean": 84.1,
+          "benchmark_min": 58.6,
+          "benchmark_max": 100.0
+        },
+        {
+          "construct": "Adaptation & Adoption Construct 3",
+          "benchmark_mean": 83.2,
+          "benchmark_min": 55.3,
+          "benchmark_max": 100.0
+        },
+        {
+          "construct": "Adaptation & Adoption Construct 4",
+          "benchmark_mean": 72.9,
+          "benchmark_min": 44.5,
+          "benchmark_max": 100.0
+        }
+      ]
+    },
+    {
+      "dimension": "Ethics and Responsibility",
+      "constructs": [
+        {
+          "construct": "Ethics and Responsibility Construct 1",
+          "benchmark_mean": 57.7,
+          "benchmark_min": 43.7,
+          "benchmark_max": 71.6
+        },
+        {
+          "construct": "Ethics and Responsibility Construct 2",
+          "benchmark_mean": 56.4,
+          "benchmark_min": 39.9,
+          "benchmark_max": 72.9
+        },
+        {
+          "construct": "Ethics and Responsibility Construct 3",
+          "benchmark_mean": 66.7,
+          "benchmark_min": 51.2,
+          "benchmark_max": 82.1
+        },
+        {
+          "construct": "Ethics and Responsibility Construct 4",
+          "benchmark_mean": 79.9,
+          "benchmark_min": 62.7,
+          "benchmark_max": 97.0
+        }
+      ]
+    }
+  ]
+}

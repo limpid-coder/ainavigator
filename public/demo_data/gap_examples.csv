@@ -1,0 +1,33 @@
+dimension,construct,benchmark_mean,actual_score,gap
+Strategy and Vision,Strategy and Vision Construct 1,66.2,71.94502623859769,5.7
+Strategy and Vision,Strategy and Vision Construct 2,77.0,69.38822599481568,-7.6
+Strategy and Vision,Strategy and Vision Construct 3,59.7,55.410719198567826,-4.3
+Strategy and Vision,Strategy and Vision Construct 4,56.7,65.47223085195907,8.8
+Data,Data Construct 1,73.0,76.42410272791543,3.4
+Data,Data Construct 2,55.6,35.84240907945922,-19.8
+Data,Data Construct 3,80.0,83.85583311202315,3.9
+Data,Data Construct 4,60.5,67.91165086896258,7.4
+Technology,Technology Construct 1,64.1,57.39934886589508,-6.7
+Technology,Technology Construct 2,68.0,73.41748852465679,5.4
+Technology,Technology Construct 3,73.4,88.37855293856578,15.0
+Technology,Technology Construct 4,63.8,66.97099152051553,3.2
+Talent and Skills,Talent and Skills Construct 1,68.7,63.69506963813655,-5.0
+Talent and Skills,Talent and Skills Construct 2,61.0,56.82030816373934,-4.2
+Talent and Skills,Talent and Skills Construct 3,72.8,72.9042711981324,0.1
+Talent and Skills,Talent and Skills Construct 4,73.2,76.22215673578474,3.0
+Organisation and Processes,Organisation and Processes Construct 1,57.0,57.50259679786546,0.5
+Organisation and Processes,Organisation and Processes Construct 2,84.0,88.01277092276938,4.0
+Organisation and Processes,Organisation and Processes Construct 3,64.1,62.92443685663701,-1.2
+Organisation and Processes,Organisation and Processes Construct 4,75.5,76.94498378992176,1.4
+Innovation,Innovation Construct 1,58.7,66.41848465862748,7.7
+Innovation,Innovation Construct 2,56.0,47.481350777095955,-8.5
+Innovation,Innovation Construct 3,62.8,63.66969439701908,0.9
+Innovation,Innovation Construct 4,64.4,65.24610917622209,0.8
+Adaptation & Adoption,Adaptation & Adoption Construct 1,71.4,78.76533372570458,7.4
+Adaptation & Adoption,Adaptation & Adoption Construct 2,84.1,82.2862203556051,-1.8
+Adaptation & Adoption,Adaptation & Adoption Construct 3,83.2,88.42438648839808,5.2
+Adaptation & Adoption,Adaptation & Adoption Construct 4,72.9,81.7214997237017,8.8
+Ethics and Responsibility,Ethics and Responsibility Construct 1,57.7,42.901576502686154,-14.8
+Ethics and Responsibility,Ethics and Responsibility Construct 2,56.4,65.74904994760426,9.3
+Ethics and Responsibility,Ethics and Responsibility Construct 3,66.7,58.8169456229945,-7.9
+Ethics and Responsibility,Ethics and Responsibility Construct 4,79.9,71.14847672745222,-8.8
