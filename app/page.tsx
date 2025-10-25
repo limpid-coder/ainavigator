@@ -1,456 +1,114 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Brain,
-  ChevronRight,
-  FileUp,
-  Database,
-  Sparkles,
-  ArrowRight,
-  Play,
-  CheckCircle,
-  BarChart3,
-  Target,
-  Lightbulb,
-  TrendingUp
-} from 'lucide-react'
 import Link from 'next/link'
-
-// Smooth animated background
-const AnimatedBackground = () => (
-  <div className="fixed inset-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-teal-950/20 to-purple-950/20" />
-    <div className="absolute inset-0 data-grid opacity-[0.02]" />
-    
-    {/* Subtle gradient animation */}
-    <motion.div
-      className="absolute inset-0"
-      animate={{
-        background: [
-          'radial-gradient(circle at 20% 50%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 80% 50%, rgba(78, 74, 175, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 50% 80%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
-          'radial-gradient(circle at 20% 50%, rgba(13, 124, 127, 0.05) 0%, transparent 50%)',
-        ]
-      }}
-      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-    />
-  </div>
-)
-
-// Feature card component
-const FeatureCard = ({ feature, index }: any) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ delay: index * 0.1, duration: 0.5 }}
-    whileHover={{ y: -4 }}
-    className="card-interactive group"
-  >
-    <div className="flex items-start gap-4">
-      <div className={`p-3 rounded-lg bg-gradient-to-br ${feature.gradient} glow-sm group-hover:glow-md transition-all`}>
-        {feature.icon}
-      </div>
-      <div className="flex-1">
-        <h3 className="font-semibold text-lg mb-2">{feature.title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-        <div className="mt-3 flex items-center gap-2 text-xs text-teal-400">
-          <CheckCircle className="w-3 h-3" />
-          <span>{feature.metric}</span>
-        </div>
-      </div>
-    </div>
-  </motion.div>
-)
-
-// Stats counter animation
-const AnimatedStat = ({ value, suffix, label, delay }: any) => {
-  const [count, setCount] = useState(0)
-  const numValue = parseInt(value)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      let start = 0
-      const duration = 2000
-      const increment = numValue / (duration / 16)
-      
-      const counter = setInterval(() => {
-        start += increment
-        if (start >= numValue) {
-          setCount(numValue)
-          clearInterval(counter)
-        } else {
-          setCount(Math.floor(start))
-        }
-      }, 16)
-
-      return () => clearInterval(counter)
-    }, delay)
-
-    return () => clearTimeout(timer)
-  }, [numValue, delay])
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ delay: delay / 1000, duration: 0.5 }}
-      className="text-center"
-    >
-      <div className="text-3xl font-bold text-white">
-        {count}{suffix}
-      </div>
-      <div className="text-sm text-gray-500 mt-1">{label}</div>
-    </motion.div>
-  )
-}
+import { ArrowRight, Sparkles } from 'lucide-react'
 
 export default function Home() {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
-
-  const features = [
-    {
-      icon: <BarChart3 className="w-6 h-6 text-white" />,
-      title: 'Culture Heatmap',
-      description: 'Visualize organizational sentiment across 25 key dimensions with interactive insights',
-      gradient: 'from-teal-500/20 to-cyan-400/20',
-      metric: '25-zone matrix'
-    },
-    {
-      icon: <Target className="w-6 h-6 text-white" />,
-      title: 'Capability Diamond',
-      description: 'Assess AI readiness across 8 capability dimensions with drill-down analytics',
-      gradient: 'from-purple-500/20 to-indigo-500/20',
-      metric: '32 constructs'
-    },
-    {
-      icon: <Lightbulb className="w-6 h-6 text-white" />,
-      title: 'Smart Interventions',
-      description: 'Get AI-powered recommendations tailored to your organization\'s specific gaps',
-      gradient: 'from-orange-500/20 to-amber-500/20',
-      metric: 'Real-time insights'
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6 text-white" />,
-      title: 'ROI Predictions',
-      description: 'Understand the potential impact of interventions with directional value estimates',
-      gradient: 'from-teal-400/20 to-emerald-400/20',
-      metric: 'Data-driven'
-    }
-  ]
-
-  const stats = [
-    { value: '67', suffix: '%', label: 'AI initiatives fail' },
-    { value: '500', suffix: '+', label: 'Organizations analyzed' },
-    { value: '3', suffix: 'min', label: 'Time to insights' },
-    { value: '94', suffix: '%', label: 'Accuracy rate' }
-  ]
-
   return (
-    <div className="min-h-screen bg-black relative">
-      <AnimatedBackground />
-      
-      {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="relative z-10 border-b border-white/5"
-      >
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-black text-white">
+      {/* Navigation */}
+      <nav className="border-b border-white/10">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Brain className="w-7 h-7 text-teal-400" />
+              <div className="w-8 h-8 rounded-lg bg-teal-500" />
               <span className="font-semibold text-lg">AI Navigator</span>
             </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#features" className="text-sm text-gray-400 hover:text-white transition-colors">Features</a>
-              <a href="#how-it-works" className="text-sm text-gray-400 hover:text-white transition-colors">How it Works</a>
-              <a href="#demo" className="text-sm text-gray-400 hover:text-white transition-colors">Demo</a>
-              <Link href="/upload" className="btn-primary text-sm">
+            <div className="flex items-center gap-6">
+              <Link href="/demo" className="text-sm text-gray-400 hover:text-white">
+                Demo
+              </Link>
+              <Link href="/upload" className="px-4 py-2 bg-teal-500 text-white rounded-lg text-sm font-medium hover:bg-teal-600">
                 Get Started
               </Link>
-            </nav>
+            </div>
           </div>
         </div>
-      </motion.header>
+      </nav>
 
-      {/* Hero Section */}
-      <section className="relative z-10 pt-20 pb-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm mb-8"
-            >
-              <Sparkles className="w-4 h-4 text-orange-400" />
-              <span>AI-Powered Analytics Platform</span>
-            </motion.div>
+      {/* Hero */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+              <Sparkles className="w-4 h-4 text-teal-400" />
+              <span className="text-sm">AI Readiness Platform</span>
+            </div>
 
-            {/* Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-5xl md:text-7xl font-bold mb-6"
-            >
-              <span className="text-gradient">Transform Your</span>
-              <br />
-              <span className="text-white">AI Readiness</span>
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-xl text-gray-400 mb-10 leading-relaxed"
-            >
-              Assess, understand, and accelerate your organization's AI adoption
-              <br className="hidden md:block" />
-              with data-driven insights and actionable recommendations
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Link href="/demo" className="group">
-                <button className="btn-primary flex items-center gap-2 w-full sm:w-auto">
-                  <Play className="w-4 h-4" />
-                  Watch Demo
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </Link>
-              <Link href="/upload">
-                <button className="btn-secondary flex items-center gap-2 w-full sm:w-auto">
-                  <FileUp className="w-4 h-4" />
-                  Start Assessment
-                </button>
-              </Link>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-500"
-            >
-              <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                Enterprise Ready
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              Transform Your
+              <span className="block bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
+                AI Journey
               </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                SOC 2 Compliant
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckCircle className="w-4 h-4 text-green-400" />
-                GDPR Ready
-              </span>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </h1>
 
-      {/* Stats Section */}
-      <section className="relative z-10 py-16 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <AnimatedStat
-                key={index}
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-                delay={index * 200}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="relative z-10 py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-4"
-            >
-              <span className="text-gradient">Powerful Features</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-gray-400 text-lg"
-            >
-              Everything you need to understand and improve AI readiness
-            </motion.p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* How it Works Section */}
-      <section id="how-it-works" className="relative z-10 py-24 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-4"
-            >
-              <span className="text-gradient">Simple Process</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-gray-400 text-lg"
-            >
-              Get insights in minutes, not months
-            </motion.p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              { step: '01', title: 'Upload Data', desc: 'Import your assessment data via CSV', icon: <Database className="w-6 h-6" /> },
-              { step: '02', title: 'Analyze Insights', desc: 'Explore interactive visualizations', icon: <BarChart3 className="w-6 h-6" /> },
-              { step: '03', title: 'Take Action', desc: 'Get targeted recommendations', icon: <Sparkles className="w-6 h-6" /> }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="text-center"
-              >
-                <div className="mb-4 inline-flex items-center justify-center w-16 h-16 rounded-full gradient-primary text-white glow-sm">
-                  {item.icon}
-                </div>
-                <div className="text-sm text-teal-400 font-mono mb-2">STEP {item.step}</div>
-                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Demo Video Section */}
-      <section id="demo" className="relative z-10 py-24 border-t border-white/5">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl font-bold mb-4"
-            >
-              <span className="text-gradient">See it in Action</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-gray-400 text-lg"
-            >
-              Watch a 2-minute overview of AI Navigator
-            </motion.p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative aspect-video rounded-xl overflow-hidden glass-premium group cursor-pointer"
-            onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-          >
-            {!isVideoPlaying ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-teal-950/50 to-purple-950/50">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="w-20 h-20 rounded-full bg-white/10 backdrop-blur flex items-center justify-center"
-                >
-                  <Play className="w-8 h-8 text-white ml-1" />
-                </motion.div>
-              </div>
-            ) : (
-              <div className="absolute inset-0 bg-black flex items-center justify-center">
-                <p className="text-gray-400">Demo video would play here</p>
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative z-10 py-24 border-t border-white/5">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-premium rounded-2xl p-12"
-          >
-            <h2 className="text-4xl font-bold mb-4">
-              Ready to Transform Your AI Journey?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              Join leading organizations using data-driven insights for AI success
+            <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
+              Assess organizational readiness. Identify capability gaps.
+              Accelerate AI adoption with data-driven insights.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/upload">
-                <button className="btn-primary flex items-center gap-2">
-                  Get Started Now
-                  <ChevronRight className="w-4 h-4" />
-                </button>
+              <Link href="/demo" className="px-6 py-3 bg-teal-500 text-white rounded-lg font-medium hover:bg-teal-600 inline-flex items-center justify-center gap-2">
+                Explore Demo
+                <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link href="/demo">
-                <button className="btn-secondary">
-                  Explore Demo Data
-                </button>
+              <Link href="/upload" className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-lg font-medium hover:bg-white/10 inline-flex items-center justify-center">
+                Upload Your Data
               </Link>
             </div>
-          </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 border-t border-white/10">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Core Capabilities</h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                title: 'Sentiment Analysis',
+                description: 'Understand organizational readiness across 25 key dimensions',
+                metric: '67% of AI initiatives fail due to resistance'
+              },
+              {
+                title: 'Capability Assessment',
+                description: 'Measure maturity across 8 critical capability dimensions',
+                metric: '8 dimensions, 32 constructs analyzed'
+              },
+              {
+                title: 'Smart Recommendations',
+                description: 'Get targeted interventions based on your specific gaps',
+                metric: 'Actionable insights in 3 minutes'
+              }
+            ].map((feature) => (
+              <div
+                key={feature.title}
+                className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
+              >
+                <h3 className="text-lg font-semibold mb-3">{feature.title}</h3>
+                <p className="text-sm text-gray-400 mb-4">{feature.description}</p>
+                <p className="text-xs text-teal-400 font-medium">{feature.metric}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/5 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="py-8 border-t border-white/10 mt-20">
+        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
-              <Brain className="w-6 h-6 text-teal-400" />
-              <span className="font-semibold">AI Navigator</span>
+              <div className="w-6 h-6 rounded bg-teal-500" />
+              <span className="text-sm text-gray-400">AI Navigator</span>
             </div>
-            <div className="text-gray-500 text-sm">
+            <p className="text-sm text-gray-500">
               © 2025 AI Navigator. All rights reserved.
-            </div>
+            </p>
           </div>
         </div>
       </footer>

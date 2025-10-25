@@ -15,11 +15,40 @@ import {
 import { Info, ChevronRight, Lightbulb, TrendingDown, TrendingUp } from 'lucide-react'
 import { CapabilityResponse, FilterState } from '@/lib/types'
 import { calculateCapabilityDimensions, calculateConstructDetails } from '@/lib/utils/calculations'
-import { CAPABILITY_DIMENSIONS, CONSTRUCT_LABELS } from '@/lib/constants'
+import { CONSTRUCT_LABELS } from '@/lib/constants'
 
 interface CapabilityViewProps {
   data: Partial<CapabilityResponse>[]
   filters: FilterState
+}
+
+const CustomTooltip = ({ active, payload }: {
+  active?: boolean;
+  payload?: Array<{
+    payload: { dimension: string };
+    name: string;
+    dataKey: string;
+    value: number;
+  }>;
+}) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-gray-900 p-3 rounded-lg shadow-xl border border-white/10">
+        <p className="font-medium text-white mb-2">{payload[0].payload.dimension}</p>
+        {payload.map((entry, index: number) => (
+          <p key={index} className="text-sm">
+            <span className="text-gray-400">{entry.name}:</span>
+            <span className={`ml-2 font-medium ${
+              entry.dataKey === 'current' ? 'text-teal-400' : 'text-gray-300'
+            }`}>
+              {entry.value.toFixed(2)}
+            </span>
+          </p>
+        ))}
+      </div>
+    )
+  }
+  return null
 }
 
 export default function CapabilityView({ data, filters }: CapabilityViewProps) {
@@ -65,27 +94,6 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
   const strongestDimensions = [...dimensions]
     .sort((a, b) => b.averageScore - a.averageScore)
     .slice(0, 3)
-
-  const CustomTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="bg-gray-900 p-3 rounded-lg shadow-xl border border-white/10">
-          <p className="font-medium text-white mb-2">{payload[0].payload.dimension}</p>
-          {payload.map((entry: any, index: number) => (
-            <p key={index} className="text-sm">
-              <span className="text-gray-400">{entry.name}:</span>
-              <span className={`ml-2 font-medium ${
-                entry.dataKey === 'current' ? 'text-teal-400' : 'text-gray-300'
-              }`}>
-                {entry.value.toFixed(2)}
-              </span>
-            </p>
-          ))}
-        </div>
-      )
-    }
-    return null
-  }
 
   return (
     <div className="space-y-8">
@@ -172,7 +180,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                   dataKey="dimension" 
                   tick={{ fill: '#9CA3AF', fontSize: 12 }}
                   className="cursor-pointer"
-                  onClick={(e: any) => {
+                  onClick={(e: { value?: string }) => {
                     if (viewMode === 'dimensions' && e && e.value) {
                       const dim = dimensions.find(d => d.name === e.value)
                       if (dim) {
@@ -253,7 +261,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
               ))}
             </select>
           </div>
-        </div>
+        </motion.div>
 
         {/* Premium Details Panel */}
         <div className="space-y-6">
@@ -290,7 +298,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Areas for Improvement */}
           <motion.div
@@ -357,7 +365,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
               <p>• 3-4: Established</p>
               <p>• 4-5: Advanced/Leading</p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

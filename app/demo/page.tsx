@@ -12,9 +12,14 @@ import {
   Home,
   ArrowRight,
   Check,
-  Loader2
+  Loader2,
+  Activity,
+  Shield,
+  Database,
 } from 'lucide-react'
 import Link from 'next/link'
+import GradualBlur from '@/components/ui/gradual-blur'
+import Header from '@/components/shared/Header'
 import { 
   generateDemoSentimentData, 
   generateDemoCapabilityData,
@@ -46,191 +51,222 @@ export default function DemoPage() {
     
     sessionStorage.setItem('aiNavigatorSession', JSON.stringify(sessionData))
     
-    // Simulate loading delay for better UX
+    // Smooth transition to dashboard
     setTimeout(() => {
       router.push('/dashboard')
-    }, 1500)
+    }, 800)
   }
 
   const iconMap = {
-    'tech-company': <Building2 className="w-8 h-8" />,
-    'financial-services': <TrendingUp className="w-8 h-8" />,
-    'manufacturing': <Globe className="w-8 h-8" />
+    'tech-company': <Activity className="w-5 h-5" />,
+    'financial-services': <TrendingUp className="w-5 h-5" />,
+    'manufacturing': <Globe className="w-5 h-5" />
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
+    <div className="min-h-screen bg-black">
+      {/* Background */}
+      <div className="fixed inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-transparent" />
+      
       {/* Header */}
-      <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <Brain className="w-6 h-6 text-teal-400" />
-              <span className="font-semibold text-white">AI Navigator</span>
-            </Link>
-            <Link href="/">
-              <button className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                <Home className="w-5 h-5" />
-              </button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Header />
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-6 py-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold text-center mb-4">
-            <span className="text-gradient bg-gradient-to-r from-purple-400 to-orange-400 bg-clip-text text-transparent">
-              Demo Datasets
-            </span>
-          </h1>
-          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-            Explore AI Navigator with pre-configured datasets representing different industries and organizational contexts
-          </p>
+          {/* Title Section */}
+          <div className="text-center mb-16">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl md:text-6xl font-bold mb-6 tracking-tight"
+            >
+              <span className="text-white">Select Demo</span>
+              <span className="block text-3xl md:text-4xl mt-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Industry Dataset
+              </span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-gray-400 max-w-2xl mx-auto"
+            >
+              Explore AI Navigator with pre-built datasets representing real organizational patterns
+            </motion.p>
+          </div>
 
-          {/* Dataset Cards */}
+          {/* Dataset Grid */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {DEMO_DATASETS.map((dataset) => (
+            {DEMO_DATASETS.map((dataset, index) => (
               <motion.div
                 key={dataset.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className={`glass rounded-xl p-6 cursor-pointer transition-all ${
-                  selectedDataset === dataset.id 
-                    ? 'ring-2 ring-teal-500 bg-teal-500/10' 
-                    : 'hover:bg-white/5'
-                }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + index * 0.05 }}
                 onClick={() => setSelectedDataset(dataset.id)}
+                className={`
+                  relative p-8 rounded-2xl cursor-pointer transition-all group
+                  ${selectedDataset === dataset.id 
+                    ? 'bg-gradient-to-b from-blue-500/10 to-transparent border-blue-500/30' 
+                    : 'bg-white/[0.02] hover:bg-white/[0.04] border-white/5 hover:border-white/10'}
+                  border backdrop-blur-sm
+                `}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-lg bg-gradient-to-br ${
-                    dataset.id === 'tech-company' 
-                      ? 'from-teal-500/20 to-cyan-500/20 text-cyan-400'
-                      : dataset.id === 'financial-services'
-                      ? 'from-purple-500/20 to-indigo-500/20 text-purple-400'
-                      : 'from-orange-500/20 to-amber-500/20 text-orange-400'
-                  }`}>
+                {/* Icon */}
+                <div className="flex items-start justify-between mb-6">
+                  <div className={`
+                    p-3 rounded-xl transition-colors
+                    ${selectedDataset === dataset.id 
+                      ? 'bg-blue-500/20 text-blue-400' 
+                      : 'bg-white/5 text-gray-400 group-hover:bg-white/10 group-hover:text-white'}
+                  `}>
                     {iconMap[dataset.id as keyof typeof iconMap]}
                   </div>
                   {selectedDataset === dataset.id && (
                     <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      className="p-1 rounded-full bg-teal-500"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center"
                     >
                       <Check className="w-4 h-4 text-white" />
                     </motion.div>
                   )}
                 </div>
 
-                <h3 className="text-xl font-semibold mb-2">{dataset.name}</h3>
-                <p className="text-gray-400 text-sm mb-4">{dataset.description}</p>
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-white mb-3">{dataset.name}</h3>
+                <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+                  {dataset.description}
+                </p>
 
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Users className="w-4 h-4 text-gray-500" />
-                    <span className="text-gray-300">
-                      {dataset.sentimentResponses} sentiment responses
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Users className="w-4 h-4 text-gray-500" />
-                    <span className="text-gray-300">
-                      {dataset.capabilityResponses} capability responses
+                {/* Stats */}
+                <div className="space-y-2 pb-6 border-b border-white/5">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-500">Responses</span>
+                    <span className="font-medium text-gray-300">
+                      {dataset.sentimentResponses + dataset.capabilityResponses}
                     </span>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/10">
-                  <p className="text-xs text-gray-500 mb-2">Key insights:</p>
-                  <ul className="space-y-1">
-                    {dataset.highlights.slice(0, 2).map((highlight, idx) => (
-                      <li key={idx} className="text-xs text-gray-400 flex items-start gap-1">
-                        <span className="text-teal-400 mt-0.5">•</span>
-                        {highlight}
-                      </li>
-                    ))}
-                  </ul>
+                {/* Key Insights */}
+                <div className="mt-6 space-y-2">
+                  <p className="text-xs uppercase tracking-wider text-gray-500 mb-3">Key Focus Areas</p>
+                  {dataset.highlights.slice(0, 2).map((highlight, idx) => (
+                    <div key={idx} className="flex items-start gap-2">
+                      <div className="w-1 h-1 rounded-full bg-gray-500 mt-1.5 flex-shrink-0" />
+                      <p className="text-xs text-gray-400 leading-relaxed">{highlight}</p>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
           </div>
 
           {/* Action Section */}
-          <div className="text-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => selectedDataset && handleLoadDemo(selectedDataset)}
-              disabled={!selectedDataset || isLoading}
-              className={`inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
-                selectedDataset && !isLoading
-                  ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40'
-                  : 'bg-white/5 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Loading Demo...
-                </>
-              ) : (
-                <>
-                  Load Selected Dataset
-                  <ArrowRight className="w-5 h-5" />
-                </>
-              )}
-            </motion.button>
-            
-            <div className="mt-8 flex items-center justify-center gap-4">
-              <div className="h-px bg-white/10 w-24" />
-              <span className="text-gray-500 text-sm">or</span>
-              <div className="h-px bg-white/10 w-24" />
-            </div>
-            
-            <Link href="/upload">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-8 px-6 py-3 bg-white/5 backdrop-blur-lg border border-white/10 rounded-lg font-medium text-white hover:bg-white/10 transition-all duration-300"
-              >
-                Upload Your Own Data
-              </motion.button>
-            </Link>
-          </div>
-
-          {/* Info Box */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-16 glass rounded-xl p-6 max-w-2xl mx-auto"
+            transition={{ delay: 0.4 }}
+            className="text-center"
           >
-            <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-              <Brain className="w-5 h-5 text-teal-400" />
-              About Demo Datasets
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              These demo datasets are synthetically generated to represent realistic organizational 
-              scenarios. Each dataset includes varied sentiment levels across different departments 
-              and regions, along with capability assessments that reflect common organizational 
-              patterns and challenges in AI adoption.
-            </p>
-            <p className="text-gray-400 text-sm leading-relaxed mt-3">
-              The data demonstrates how AI Navigator can identify readiness gaps, surface key 
-              concerns, and recommend targeted interventions based on your organization&apos;s 
-              unique profile.
-            </p>
+            <button
+              onClick={() => selectedDataset && handleLoadDemo(selectedDataset)}
+              disabled={!selectedDataset || isLoading}
+              className={`
+                px-8 py-4 rounded-xl font-medium transition-all
+                ${!selectedDataset 
+                  ? 'bg-white/5 text-gray-500 cursor-not-allowed' 
+                  : isLoading
+                  ? 'bg-blue-600/50 text-white/75'
+                  : 'bg-blue-600 hover:bg-blue-500 text-white transform hover:scale-105'}
+              `}
+            >
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Loading Dataset
+                </span>
+              ) : (
+                <span className="flex items-center gap-2">
+                  Continue with Dataset
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              )}
+            </button>
+            
+            <div className="mt-12">
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <div className="h-px bg-white/5 w-24" />
+                <span className="text-sm text-gray-500">or</span>
+                <div className="h-px bg-white/5 w-24" />
+              </div>
+              
+              <Link href="/upload">
+                <button className="px-6 py-3 bg-white/5 backdrop-blur-md border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-all">
+                  Upload Your Own Data
+                </button>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Info Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-20 max-w-4xl mx-auto"
+          >
+            <div className="relative p-8 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10">
+              <div className="grid md:grid-cols-3 gap-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Database className="w-5 h-5 text-blue-400" />
+                    <h4 className="font-semibold text-white">Synthetic Data</h4>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    AI-generated patterns that mirror real organizational behavior
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Shield className="w-5 h-5 text-green-400" />
+                    <h4 className="font-semibold text-white">Privacy Safe</h4>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    No real organizational or personal information included
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <Activity className="w-5 h-5 text-purple-400" />
+                    <h4 className="font-semibold text-white">Full Features</h4>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed">
+                    Experience all analytics capabilities with realistic data
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Bottom gradient blur */}
+      <GradualBlur 
+        position="bottom" 
+        height="8rem" 
+        strength={2} 
+        divCount={6}
+        curve="ease-out"
+        opacity={0.8}
+      />
     </div>
   )
 }

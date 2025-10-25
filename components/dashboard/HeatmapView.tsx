@@ -14,7 +14,7 @@ import {
 } from 'lucide-react'
 import { SentimentResponse, FilterState } from '@/lib/types'
 import { calculateSentimentHeatmap, getHeatmapColor } from '@/lib/utils/calculations'
-import { SENTIMENT_LEVELS, SENTIMENT_REASONS, HEATMAP_DESCRIPTIONS } from '@/lib/constants'
+import { SENTIMENT_LEVELS, SENTIMENT_REASONS } from '@/lib/constants'
 
 interface HeatmapViewProps {
   data: Partial<SentimentResponse>[]
@@ -22,9 +22,13 @@ interface HeatmapViewProps {
 }
 
 // Premium heatmap cell component with Apple-level polish
-const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
+const HeatmapCell = ({ cellData, isSelected, onClick }: {
+  cellData: { value: number; count: number } | null;
+  isSelected: boolean;
+  onClick: () => void;
+}) => {
   const intensity = cellData?.value || 0
-  const hasData = cellData?.count > 0
+  const hasData = cellData ? cellData.count > 0 : false
   const color = getHeatmapColor(intensity)
 
   return (
@@ -32,7 +36,7 @@ const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
       initial={{ scale: 0, opacity: 0, rotateX: -90 }}
       animate={{ scale: 1, opacity: 1, rotateX: 0 }}
       transition={{
-        delay: Math.random() * 0.15,
+        delay: 0.02,
         duration: 0.5,
         type: "spring",
         stiffness: 300,
@@ -78,7 +82,7 @@ const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
           transition={{
             repeat: Infinity,
             duration: 3,
-            delay: Math.random() * 2,
+            delay: 0.3,
             ease: "linear"
           }}
           style={{
@@ -96,7 +100,7 @@ const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
               transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
               className="text-white font-bold text-lg tracking-tight drop-shadow-lg"
             >
-              {cellData.count}
+              {cellData?.count || 0}
             </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -104,10 +108,10 @@ const HeatmapCell = ({ cellData, cellId, isSelected, onClick }: any) => {
               transition={{ delay: 0.3 }}
               className="text-white/80 text-xs font-medium tracking-wide"
             >
-              {cellData.value.toFixed(1)}
+              {cellData?.value?.toFixed(1) || '0.0'}
             </motion.div>
           </div>
-          {cellData.count > 20 && (
+          {cellData && cellData.count > 20 && (
             <div className="absolute top-2 right-2 z-10">
               <motion.div
                 animate={{ scale: [1, 1.2, 1], opacity: [0.6, 1, 0.6] }}
@@ -261,7 +265,6 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
                     return (
                       <HeatmapCell
                         key={cellId}
-                        cellId={cellId}
                         cellData={cellData}
                         isSelected={selectedCell === cellId}
                         onClick={() => setSelectedCell(cellId)}
