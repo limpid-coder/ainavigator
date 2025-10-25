@@ -859,7 +859,7 @@ export default function Home() {
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 rounded bg-red-500 opacity-50" />
-                      <span className={`text-[12px] ${subTextColor}`}>Resistance (<40%)</span>
+                      <span className={`text-[12px] ${subTextColor}`}>Resistance (&lt;40%)</span>
                     </div>
                   </div>
                 </div>

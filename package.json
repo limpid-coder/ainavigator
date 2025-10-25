@@ -16,7 +16,6 @@
     "test:e2e": "playwright test",
     "test:coverage": "jest --coverage",
     "analyze": "next build && next-bundle-analyzer",
-    "prepare": "husky install",
     "import-demo-data": "tsx scripts/import-demo-data.ts"
   },
   "dependencies": {
