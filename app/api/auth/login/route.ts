@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Query demo_users table
+    // Query demo_users table with company data
     const { data, error } = await supabase
       .from('demo_users')
       .select(`
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         )
       `)
       .eq('email', email)
-      .eq('password_hash', password) // Simple demo auth - use bcrypt in production
+      .eq('password_hash', password) // Simple demo auth - password stored as plain text for demo
       .single()
 
     if (error || !data) {
@@ -49,12 +49,17 @@ export async function POST(request: NextRequest) {
         fullName: user.full_name,
         role: user.role,
       },
-      company: user.companies,
+      company: {
+        id: user.companies.id,
+        name: user.companies.name,
+        displayName: user.companies.display_name,
+        logo_url: user.companies.logo_url
+      },
       isAuthenticated: true,
       loginTime: new Date().toISOString(),
     }
 
-    // Return session data - client will store in sessionStorage/localStorage
+    // Return session data
     return NextResponse.json({
       success: true,
       session: sessionData,

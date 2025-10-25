@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Brain, Loader2, Mail, Lock, AlertCircle } from 'lucide-react'
-import Header from '@/components/shared/Header'
 import GradualBlur from '@/components/ui/gradual-blur'
 
 export default function LoginPage() {
@@ -55,9 +54,6 @@ export default function LoginPage() {
     <div className="min-h-screen bg-black">
       {/* Background */}
       <div className="fixed inset-0 bg-gradient-to-b from-blue-950/5 via-transparent to-transparent" />
-      
-      {/* Header */}
-      <Header />
 
       {/* Main Content */}
       <div className="relative max-w-7xl mx-auto px-6 py-20">

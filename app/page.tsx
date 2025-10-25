@@ -104,13 +104,13 @@ export default function Home() {
   const [email, setEmail] = useState("")
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [activeTab, setActiveTab] = useState('sentiment')
+  const [isMounted, setIsMounted] = useState(false)
   const [accessCode, setAccessCode] = useState("")
   const [showCompanyLogin, setShowCompanyLogin] = useState(false)
   const [companyData, setCompanyData] = useState<any>(null)
   const [isValidating, setIsValidating] = useState(false)
   const [codeError, setCodeError] = useState("")
-  const [activeTab, setActiveTab] = useState('sentiment')
-  const [isMounted, setIsMounted] = useState(false)
   
   // Calculate time until Web Summit - Nov 12, 2025 CET
   const calculateTimeLeft = () => {
@@ -216,229 +216,83 @@ export default function Home() {
                   ? 'bg-gradient-to-b from-white/[0.03] to-transparent' 
                   : 'bg-gradient-to-b from-white/50 to-transparent'
               } pointer-events-none`} />
-              
-              <div className="relative flex items-center justify-between">
+            
+            <div className="relative flex items-center justify-between">
                 <Link href="/" className="flex items-center gap-3 group">
                   <div className={`p-2 rounded-2xl ${isDarkMode ? 'bg-white/[0.06]' : 'bg-black/[0.03]'} transition-all duration-300 group-hover:scale-105`}>
                     <Brain className="w-6 h-6 text-[#5380b3]" strokeWidth={2} />
             </div>
                   <span className={`font-semibold text-[17px] tracking-tight ${textColor}`}>AI Navigator</span>
               </Link>
-                
+              
                 <div className="hidden md:flex items-center gap-1">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
+                {navItems.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
                       className={`text-[14px] font-medium px-5 py-2.5 rounded-2xl transition-all duration-300 ${
-                        isDarkMode
+                      isDarkMode
                           ? 'text-white/70 hover:text-white hover:bg-white/[0.06]'
                           : 'text-gray-600 hover:text-gray-900 hover:bg-black/[0.03]'
-                      }`}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                  
+                    }`}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+                
                   <div className={`mx-3 w-px h-6 ${isDarkMode ? 'bg-white/10' : 'bg-gray-200'}`} />
                   
-                  <button
-                    onClick={() => setShowCompanyLogin(true)}
-                    className={`flex items-center gap-2.5 px-5 py-2.5 rounded-2xl text-[14px] font-semibold transition-all duration-300 ${
-                      isDarkMode 
-                        ? "bg-white/[0.08] text-white hover:bg-white/[0.12] border border-white/[0.08]"
-                        : "bg-black/[0.04] text-gray-900 hover:bg-black/[0.08] border border-gray-200"
-                    }`}
-                  >
-                    <Building2 size={16} strokeWidth={2} />
-                    <span>Company</span>
-                  </button>
-                  
-                  <button
-                    onClick={() => setIsDarkMode(!isDarkMode)}
+                  <Link href="/login">
+                <button
+                      className={`flex items-center gap-2.5 px-5 py-2.5 rounded-2xl text-[14px] font-semibold transition-all duration-300 ${
+                    isDarkMode 
+                          ? "bg-white/[0.08] text-white hover:bg-white/[0.12] border border-white/[0.08]"
+                          : "bg-black/[0.04] text-gray-900 hover:bg-black/[0.08] border border-gray-200"
+                  }`}
+                >
+                      <Building2 size={16} strokeWidth={2} />
+                      <span>Sign In</span>
+                </button>
+                  </Link>
+                
+                <button
+                  onClick={() => setIsDarkMode(!isDarkMode)}
                     className={`p-2.5 rounded-2xl transition-all duration-300 ${
-                      isDarkMode 
+                    isDarkMode 
                         ? "bg-white/[0.06] hover:bg-white/[0.10] text-white" 
                         : "bg-black/[0.03] hover:bg-black/[0.06] text-gray-900"
-                    }`}
-                  >
+                  }`}
+                >
                     {isDarkMode ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
-                  </button>
-                </div>
+                </button>
             </div>
           </div>
         </div>
+                      </div>
       </nav>
 
-        {/* Company Login Modal */}
-        {showCompanyLogin && (
-          <div className={`fixed inset-0 z-[60] flex items-center justify-center p-6 ${
-            isDarkMode ? 'bg-black/60' : 'bg-white/80'
-          } backdrop-blur-2xl animate-in fade-in duration-300`}>
-            <div className={`relative w-full max-w-md ${
-              isDarkMode 
-                ? 'bg-black/40 border-white/[0.06] shadow-2xl'
-                : 'bg-white/90 border-gray-200 shadow-xl'
-            } backdrop-blur-xl border rounded-[32px] p-10 animate-in zoom-in-95 duration-300`}>
-              <div className={`absolute inset-0 rounded-[32px] pointer-events-none ${
-                isDarkMode 
-                  ? 'bg-gradient-to-b from-white/[0.03] to-transparent' 
-                  : 'bg-gradient-to-b from-white/50 to-transparent'
-              }`} />
-              
-              {!companyData ? (
-                <>
-                  <button
-                    onClick={() => {
-                      setShowCompanyLogin(false)
-                      setCodeError("")
-                      setAccessCode("")
-                    }}
-                    className={`absolute top-6 right-6 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      isDarkMode 
-                        ? 'bg-white/[0.06] hover:bg-white/[0.10] text-white/60'
-                        : 'bg-black/[0.03] hover:bg-black/[0.06] text-gray-500'
-                    }`}
-                  >
-                    <X size={18} strokeWidth={2} />
-                  </button>
-                  
-                  <div className="relative">
-                    <div className="text-center mb-10">
-                      <div className={`w-16 h-16 mx-auto mb-5 rounded-[24px] flex items-center justify-center ${
-                        isDarkMode
-                          ? 'bg-white/[0.06] border border-white/[0.08]'
-                          : 'bg-black/[0.03] border border-gray-200'
-                      }`}>
-                        <Building2 className="w-8 h-8 text-[#5380b3]" strokeWidth={1.5} />
-                      </div>
-                      <h3 className={`text-[24px] font-semibold tracking-tight ${textColor}`}>Company Access</h3>
-                      <p className={`text-[14px] mt-2 ${subTextColor}`}>Enter your organization code</p>
-                    </div>
-
-                    <form onSubmit={handleAccessCode}>
-                      <div className="space-y-5">
-                        <div>
-                          <label className={`text-[11px] uppercase tracking-wider mb-3 block font-semibold ${subTextColor}`}>
-                            Access Code
-                          </label>
-                          <Input
-                            type="text"
-                            value={accessCode}
-                            onChange={(e) => {
-                              setAccessCode(e.target.value.toUpperCase())
-                              setCodeError("")
-                            }}
-                            placeholder="XXXX-2024"
-                            className={`font-mono text-center text-[18px] tracking-[0.2em] h-14 ${
-                              codeError ? "border-red-500/50 focus:ring-red-500/30" : ""
-                            }`}
-                            disabled={isValidating}
-                            isDark={isDarkMode}
-                          />
-                          {codeError && (
-                            <p className="text-[13px] text-red-500 mt-3 text-center font-medium animate-in slide-in-from-top-1">
-                              {codeError}
-                            </p>
-                          )}
+        {/* Hero Section - Compact & Refined */}
+        <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden">
+          {/* Lightweight Animated Gradient Background */}
+          <div className="absolute inset-0 opacity-30 pointer-events-none">
+            <div 
+              className="absolute inset-0 bg-gradient-to-br from-[#5380b3] via-[#a74f8b] to-[#e0874e]"
+              style={{
+                animation: 'gradientShift 20s ease-in-out infinite',
+                backgroundSize: '200% 200%'
+              }}
+            />
+            <div className="absolute inset-0 bg-black/50" />
                         </div>
 
-                        <Button
-                          type="submit"
-                          disabled={!accessCode || isValidating}
-                          className="w-full h-14 text-[16px] font-semibold rounded-[24px]"
-                          isDark={isDarkMode}
-                          variant="primary"
-                        >
-                          {isValidating ? (
-                            <span className="flex items-center gap-3">
-                              <div className="w-5 h-5 border-2 border-current/30 border-t-current rounded-full animate-spin" />
-                              Validating...
-                            </span>
-                          ) : (
-                            "Access Dashboard"
-                          )}
-                        </Button>
-                      </div>
-                    </form>
-
-                    <div className={`mt-8 pt-8 ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
-                      <p className={`text-[11px] text-center font-medium mb-4 uppercase tracking-wider ${subTextColor}`}>
-                        Demo Codes
-                      </p>
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {Object.keys(COMPANY_ACCESS_CODES).map(code => (
-                          <button
-                            key={code}
-                            onClick={() => setAccessCode(code)}
-                            className={`text-[12px] px-4 py-2 rounded-full transition-all duration-300 font-medium ${
-                              isDarkMode
-                                ? 'bg-white/[0.04] hover:bg-white/[0.08] text-white/60 hover:text-white'
-                                : 'bg-black/[0.02] hover:bg-black/[0.04] text-gray-600 hover:text-gray-900'
-                            }`}
-                          >
-                            {code}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <div className="relative text-center">
-                  <div className={`w-24 h-24 mx-auto mb-8 rounded-full flex items-center justify-center ${
-                    isDarkMode
-                      ? 'bg-green-500/10 border border-green-500/20'
-                      : 'bg-green-500/10 border border-green-500/30'
-                  }`}>
-                    <Check className="w-12 h-12 text-green-500" strokeWidth={2} />
-                  </div>
-                  
-                  <h3 className={`text-[28px] font-light mb-3 tracking-tight ${textColor}`}>
-                    Welcome Back
-                  </h3>
-                  <p className={`text-[18px] font-medium mb-2 ${textColor}`}>
-                    {companyData.contact}
-                  </p>
-                  <p className={`text-[14px] mb-8 ${subTextColor}`}>
-                    {companyData.role} · {companyData.name}
-                  </p>
-                  
-                  <div className={`p-6 rounded-[24px] mb-8 ${
-                    isDarkMode
-                      ? 'bg-white/[0.03] border border-white/[0.06]'
-                      : 'bg-black/[0.02] border border-gray-200'
-                  }`}>
-                    <p className={`text-[11px] mb-3 uppercase tracking-wider font-semibold ${subTextColor}`}>
-                      AI Readiness Score
-                    </p>
-                    <div className="text-[48px] font-light tracking-tight text-[#5380b3]">
-                      {companyData.readiness}%
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#5380b3] animate-pulse" />
-                    <p className={`text-[14px] ${subTextColor}`}>
-                      Redirecting to dashboard...
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Hero Section - Compact & Refined */}
-        <section className="min-h-screen flex items-center justify-center px-6 pt-24">
-          <div className="w-full max-w-xl">
+          <div className="w-full max-w-xl relative z-10">
             <div className={`relative ${
-              isDarkMode 
+                              isDarkMode
                 ? 'bg-black/20 border-white/[0.06]' 
                 : 'bg-white/50 border-gray-200'
             } backdrop-blur-xl border rounded-[32px] p-10 shadow-2xl`}>
               <div className={`absolute inset-0 rounded-[32px] pointer-events-none ${
-                isDarkMode 
+                    isDarkMode
                   ? 'bg-gradient-to-b from-white/[0.02] to-transparent' 
                   : 'bg-gradient-to-b from-white/30 to-transparent'
               }`} />
@@ -456,7 +310,7 @@ export default function Home() {
                         <span className={`text-[11px] font-semibold uppercase tracking-wider ${subTextColor}`}>
                           AI Readiness
                         </span>
-            </div>
+                      </div>
 
                       <h1 className={`text-[42px] font-light ${textColor} mb-4 tracking-[-0.02em] leading-[1.05]`}>
                         Transform Your<br />
@@ -512,7 +366,7 @@ export default function Home() {
                                 <span className={`text-[10px] ${subTextColor} font-medium`}>
                                   {item.label}
                                 </span>
-                              </div>
+                            </div>
                               {idx < 3 && <span className={`${subTextColor} opacity-20`}>:</span>}
                             </React.Fragment>
                           ))}
@@ -610,7 +464,7 @@ export default function Home() {
                 
                 return (
                   <div key={item.title} className={`group relative p-10 rounded-[32px] ${
-                    isDarkMode
+              isDarkMode
                       ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
                       : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
                   } transition-all duration-300 hover:scale-[1.01]`}>
@@ -645,13 +499,13 @@ export default function Home() {
                             <li key={point} className={`text-[13px] ${subTextColor} flex items-start gap-3`}>
                               <div className={`w-1 h-1 rounded-full mt-1.5 flex-shrink-0 ${
                                 item.color === 'red' ? 'bg-red-500' : 'bg-orange-500'
-                              }`} />
+            }`} />
                               {point}
                             </li>
                           ))}
                         </ul>
-                      </div>
-                    </div>
+          </div>
+        </div>
                   </div>
                 )
               })}
@@ -672,8 +526,8 @@ export default function Home() {
           </div>
 
             <div className="grid md:grid-cols-3 gap-4">
-              {[
-                {
+            {[
+              {
                   icon: Target,
                   title: 'Sentiment',
                   description: '25 key dimensions of organizational readiness',
@@ -686,19 +540,19 @@ export default function Home() {
                   description: 'Maturity across 8 critical areas',
                   metric: '32',
                   metricLabel: 'constructs'
-                },
-                {
+              },
+              {
                   icon: Zap,
                   title: 'Action Plans',
                   description: 'Targeted interventions for gaps',
                   metric: '<3',
                   metricLabel: 'minutes'
-                }
+              }
               ].map((feature) => {
                 const Icon = feature.icon
                 return (
                   <div key={feature.title} className={`group p-6 rounded-[24px] ${
-                    isDarkMode
+                      isDarkMode
                       ? 'bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.06]'
                       : 'bg-gray-50 hover:bg-white border border-gray-200'
                   } transition-all duration-300`}>
@@ -867,7 +721,7 @@ export default function Home() {
             ) : (
               /* Capability Diamond */
               <div className={`rounded-[32px] overflow-hidden ${
-                isDarkMode
+                    isDarkMode
                   ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
                   : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
               } p-10`}>
@@ -1013,82 +867,17 @@ export default function Home() {
                                 style={{ width: `${dim.score}%` }}
                               />
                             </div>
-                          </div>
+                  </div>
                           <span className={`text-[14px] font-light ${textColor} w-10 text-right`}>
                             {dim.score}%
                           </span>
               </div>
             ))}
-                    </div>
+          </div>
                   </div>
                 </div>
               </div>
             )}
-          </div>
-        </section>
-
-        {/* Process - Minimal Timeline */}
-        <section id="how-it-works" className="py-20 px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
-                Process
-              </p>
-              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
-                From Data to Insights in Minutes
-              </h2>
-            </div>
-
-            <div className="space-y-6">
-              {[
-                {
-                  step: '01',
-                  title: 'Upload',
-                  description: 'CSV, Excel, or JSON format',
-                  icon: FileText,
-                  time: '30 seconds'
-                },
-                {
-                  step: '02',
-                  title: 'Analysis',
-                  description: 'AI processes patterns instantly',
-                  icon: Cpu,
-                  time: '2 minutes'
-                },
-                {
-                  step: '03',
-                  title: 'Insights',
-                  description: 'Interactive dashboard ready',
-                  icon: TrendingUp,
-                  time: '30 seconds'
-                }
-              ].map((item, idx) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.step} className={`flex items-center gap-6 p-6 rounded-[24px] ${
-                    isDarkMode
-                      ? 'bg-white/[0.02] border border-white/[0.06]'
-                      : 'bg-gray-50 border border-gray-200'
-                  }`}>
-                    <div className="text-[32px] font-light bg-gradient-to-r from-[#5380b3] to-[#a74f8b] bg-clip-text text-transparent">
-                      {item.step}
-                    </div>
-                    
-                    <Icon className={`w-8 h-8 ${subTextColor}`} strokeWidth={1.5} />
-                    
-                    <div className="flex-1">
-                      <h3 className={`text-[18px] font-semibold ${textColor}`}>{item.title}</h3>
-                      <p className={`${subTextColor} text-[13px]`}>{item.description}</p>
-                    </div>
-                    
-                    <div className="text-right">
-                      <div className={`text-[16px] font-light ${textColor}`}>{item.time}</div>
-                      <div className={`text-[10px] uppercase tracking-wider ${subTextColor}`}>Duration</div>
-                    </div>
-                  </div>
-                )
-              })}
-          </div>
         </div>
       </section>
 
@@ -1102,8 +891,8 @@ export default function Home() {
               <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
                 Enterprise-Grade Protection
               </h2>
-            </div>
-
+              </div>
+              
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 { icon: Shield, title: 'SOC2', detail: 'Type II' },
@@ -1147,12 +936,12 @@ export default function Home() {
                 <Button variant="primary" isDark={isDarkMode}>
                   Try Demo
                 </Button>
-              </Link>
+                </Link>
               <Link href="/upload">
                 <Button variant="secondary" isDark={isDarkMode}>
                   Upload Data
                 </Button>
-              </Link>
+                </Link>
             </div>
           </div>
         </section>
@@ -1164,7 +953,7 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <Brain className="w-4 h-4 text-[#5380b3]" strokeWidth={2} />
                 <span className={`text-[13px] ${subTextColor}`}>© 2025 AI Navigator</span>
-              </div>
+            </div>
               
               <div className="flex gap-5">
                 {['Demo', 'Features', 'Security'].map((item) => (
