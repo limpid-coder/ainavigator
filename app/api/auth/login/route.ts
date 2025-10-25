@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Query demo_users table
-    const { data: user, error } = await supabase
+    const { data, error } = await supabase
       .from('demo_users')
       .select(`
         id,
@@ -32,12 +32,14 @@ export async function POST(request: NextRequest) {
       .eq('password_hash', password) // Simple demo auth - use bcrypt in production
       .single()
 
-    if (error || !user) {
+    if (error || !data) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
         { status: 401 }
       )
     }
+
+    const user = data as any
 
     // Create session data
     const sessionData = {

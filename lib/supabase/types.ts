@@ -10,6 +10,58 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      demo_users: {
+        Row: {
+          id: string
+          email: string
+          password_hash: string
+          full_name: string
+          role: string
+          company_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          email: string
+          password_hash: string
+          full_name: string
+          role: string
+          company_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          email?: string
+          password_hash?: string
+          full_name?: string
+          role?: string
+          company_id?: string
+          created_at?: string
+        }
+      }
+      companies: {
+        Row: {
+          id: string
+          name: string
+          display_name: string
+          logo_url: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          display_name: string
+          logo_url?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          display_name?: string
+          logo_url?: string | null
+          created_at?: string
+        }
+      }
       sentiment_responses: {
         Row: {
           id: string

@@ -2,9 +2,8 @@
 
 import React from "react"
 import { useState, useEffect } from "react"
-import { Sun, Moon, Brain, ArrowRight, Sparkles, Shield, Check, X, Building2, ChevronRight, BarChart3, Target, Zap, Clock, AlertTriangle, TrendingUp, Users, Layers, FileText, Lock, Globe, Database, Award, Hexagon, Activity } from "lucide-react"
+import { Sun, Moon, Brain, ArrowRight, Sparkles, Shield, Check, X, Building2, ChevronRight, BarChart3, Target, Zap, Clock, AlertTriangle, TrendingUp, Users, Layers, FileText, Lock, Globe, Database, Award, Hexagon, Activity, ArrowUpRight, Cpu } from "lucide-react"
 import Link from 'next/link'
-import { Component as TurbulentFlow } from '@/components/turbulent-flow'
 
 // Company demo data schema
 const COMPANY_ACCESS_CODES = {
@@ -130,13 +129,15 @@ export default function Home() {
     return { days: 0, hours: 0, minutes: 0, seconds: 0 }
   }
   
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
-  // Countdown timer - only run on client
+  // Set mounted state
   useEffect(() => {
     setIsMounted(true)
-    setTimeLeft(calculateTimeLeft())
-    
+  }, [])
+
+  // Countdown timer
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft())
     }, 1000)
@@ -186,11 +187,20 @@ export default function Home() {
   const navItems = [
     { name: 'Features', href: '#features' },
     { name: 'How it Works', href: '#how-it-works' },
-    { name: 'Login', href: '/login' },
+    { name: 'Demo', href: '/demo' },
   ]
 
   return (
     <main className={`relative min-h-screen ${bgColor} w-full transition-all duration-500`}>
+      {/* Subtle gradient overlay */}
+      <div className="fixed inset-0 z-0">
+        <div className={`absolute inset-0 ${
+          isDarkMode 
+            ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent'
+            : 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black/[0.02] via-transparent to-transparent'
+        }`} />
+      </div>
+
       {/* Content Layer */}
       <div className="relative z-10">
         {/* Navigation Bar - iOS Style */}
@@ -255,7 +265,7 @@ export default function Home() {
                     {isDarkMode ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
                   </button>
                 </div>
-              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -419,22 +429,14 @@ export default function Home() {
           </div>
         )}
 
-        {/* Hero Section - Refined */}
-        <section className="relative min-h-screen flex items-center justify-center px-6 pt-32 overflow-hidden">
-          {/* Turbulent Flow Background - Hero Only */}
-          <div className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
-            <div className="absolute inset-0 bg-black/40" />
-            <TurbulentFlow>
-              <div />
-            </TurbulentFlow>
-          </div>
-          
-          <div className="w-full max-w-xl relative z-10">
+        {/* Hero Section - Compact & Refined */}
+        <section className="min-h-screen flex items-center justify-center px-6 pt-24">
+          <div className="w-full max-w-xl">
             <div className={`relative ${
               isDarkMode 
                 ? 'bg-black/20 border-white/[0.06]' 
                 : 'bg-white/50 border-gray-200'
-            } backdrop-blur-xl border rounded-[32px] p-12 shadow-2xl`}>
+            } backdrop-blur-xl border rounded-[32px] p-10 shadow-2xl`}>
               <div className={`absolute inset-0 rounded-[32px] pointer-events-none ${
                 isDarkMode 
                   ? 'bg-gradient-to-b from-white/[0.02] to-transparent' 
@@ -444,30 +446,30 @@ export default function Home() {
               <div className="relative z-10">
                 {!isSubmitted ? (
                   <>
-                    <div className="text-center mb-10">
-                      <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 ${
+                    <div className="text-center mb-8">
+                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 ${
                         isDarkMode
                           ? 'bg-white/[0.04] border border-white/[0.06]'
                           : 'bg-black/[0.02] border border-gray-200'
                       }`}>
-                        <Sparkles className="w-4 h-4 text-[#5380b3]" strokeWidth={2} />
-                        <span className={`text-[12px] font-semibold uppercase tracking-wider ${subTextColor}`}>
-                          AI Readiness Platform
+                        <Sparkles className="w-3.5 h-3.5 text-[#5380b3]" strokeWidth={2} />
+                        <span className={`text-[11px] font-semibold uppercase tracking-wider ${subTextColor}`}>
+                          AI Readiness
                         </span>
             </div>
 
-                      <h1 className={`text-[48px] font-light ${textColor} mb-6 tracking-[-0.02em] leading-[1.05]`}>
+                      <h1 className={`text-[42px] font-light ${textColor} mb-4 tracking-[-0.02em] leading-[1.05]`}>
                         Transform Your<br />
                         <span className="font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
                 AI Journey
               </span>
             </h1>
-                      <p className={`${subTextColor} text-[16px] leading-relaxed max-w-md mx-auto`}>
-                        Join leading enterprises using data-driven insights to navigate their AI transformation
+                      <p className={`${subTextColor} text-[15px] leading-relaxed max-w-sm mx-auto`}>
+                        Data-driven insights to navigate enterprise AI transformation
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="mb-8">
+                    <form onSubmit={handleSubmit} className="mb-6">
                       <div className="flex gap-3">
                         <Input
                           type="email"
@@ -489,78 +491,71 @@ export default function Home() {
                     </form>
 
                     <div className="text-center">
-                      <p className={`text-[13px] font-semibold mb-4 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
+                      <p className={`text-[12px] font-semibold mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
                         Web Summit 2025 · Lisbon
                       </p>
                       {!isMounted ? (
-                        <div className="h-[60px] flex items-center justify-center">
-                          <div className={`text-[24px] font-light ${textColor}`}>
-                            Loading...
-                          </div>
-                        </div>
+                        <div className="h-[50px]" />
                       ) : (
-                        <div className="flex items-center justify-center gap-5">
+                        <div className="flex items-center justify-center gap-4 text-[13px]">
                           {[
-                            { value: timeLeft.days, label: 'Days' },
-                            { value: String(timeLeft.hours).padStart(2, '0'), label: 'Hours' },
-                            { value: String(timeLeft.minutes).padStart(2, '0'), label: 'Mins' },
-                            { value: String(timeLeft.seconds).padStart(2, '0'), label: 'Secs' },
+                            { value: timeLeft.days, label: 'D' },
+                            { value: String(timeLeft.hours).padStart(2, '0'), label: 'H' },
+                            { value: String(timeLeft.minutes).padStart(2, '0'), label: 'M' },
+                            { value: String(timeLeft.seconds).padStart(2, '0'), label: 'S' },
                           ].map((item, idx) => (
                             <React.Fragment key={item.label}>
-                              <div className="text-center">
-                                <div className={`text-[32px] font-light ${textColor} tabular-nums`}>
+                              <div className="flex items-baseline gap-1">
+                                <span className={`text-[24px] font-light ${textColor} tabular-nums`}>
                                   {item.value}
-                                </div>
-                                <div className={`text-[11px] ${subTextColor} uppercase tracking-wider font-medium mt-1`}>
+                                </span>
+                                <span className={`text-[10px] ${subTextColor} font-medium`}>
                                   {item.label}
-                                </div>
+                                </span>
                               </div>
-                              {idx < 3 && <div className={`${subTextColor} opacity-30`}>:</div>}
+                              {idx < 3 && <span className={`${subTextColor} opacity-20`}>:</span>}
                             </React.Fragment>
                           ))}
                         </div>
                       )}
                     </div>
 
-                    <div className={`mt-10 pt-10 text-center ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
-                      <div className="flex gap-3 justify-center mb-4">
-                        <Link href="/login">
-                          <button className={`text-[13px] font-medium px-5 py-2.5 rounded-2xl transition-all duration-300 ${
+                    <div className={`mt-8 pt-8 text-center ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
+                      <div className="flex gap-3 justify-center">
+                        <Link href="/demo">
+                          <button className={`text-[12px] font-medium px-4 py-2 rounded-2xl transition-all duration-300 ${
                             isDarkMode
                               ? 'bg-white/[0.04] hover:bg-white/[0.08] text-white/70 hover:text-white'
                               : 'bg-black/[0.02] hover:bg-black/[0.04] text-gray-600 hover:text-gray-900'
                           }`}>
-                Sign In
+                            Demo
                           </button>
               </Link>
                         <Link href="/upload">
-                          <button className={`text-[13px] font-medium px-5 py-2.5 rounded-2xl transition-all duration-300 ${
+                          <button className={`text-[12px] font-medium px-4 py-2 rounded-2xl transition-all duration-300 ${
                             isDarkMode
                               ? 'bg-white/[0.04] hover:bg-white/[0.08] text-white/70 hover:text-white'
                               : 'bg-black/[0.02] hover:bg-black/[0.04] text-gray-600 hover:text-gray-900'
                           }`}>
-                            Upload Data
+                            Upload
                           </button>
               </Link>
                       </div>
-                      <p className={`text-[11px] font-medium uppercase tracking-wider ${subTextColor}`}>
-                        Enterprise-ready · SOC2 · GDPR
-                      </p>
                     </div>
                   </>
                 ) : (
-                  <div className="text-center py-8">
-                    <div className={`w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center ${
+                  <div className="text-center py-6">
+                    <div className={`w-16 h-16 mx-auto mb-5 rounded-full flex items-center justify-center ${
                       isDarkMode
                         ? 'bg-green-500/10 border border-green-500/20'
                         : 'bg-green-500/10 border border-green-500/30'
                     }`}>
-                      <Check className="w-10 h-10 text-green-500" strokeWidth={2} />
+                      <Check className="w-8 h-8 text-green-500" strokeWidth={2} />
                     </div>
-                    <h3 className={`text-[28px] font-light ${textColor} mb-3`}>
+                    <h3 className={`text-[24px] font-light ${textColor} mb-2`}>
                       You're on the list!
                     </h3>
-                    <p className={`${subTextColor} text-[15px]`}>
+                    <p className={`${subTextColor} text-[14px]`}>
                       We'll notify you when we launch.
                     </p>
                   </div>
@@ -570,72 +565,93 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Problem Section - Refined */}
-        <section className="py-32 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className={`text-[13px] font-semibold uppercase tracking-wider mb-4 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`}>
+        {/* Problem Section - Two Column Wide Layout */}
+        <section className="py-24 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="mb-12">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`}>
                 The Challenge
               </p>
-              <h2 className={`text-[42px] font-light ${textColor} mb-4 tracking-tight`}>
-                Why AI Transformations Fail
+              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
+                67% of AI initiatives fail
               </h2>
-              <p className={`${subTextColor} text-[16px] max-w-2xl mx-auto`}>
-                67% of AI initiatives fail to deliver expected value
-              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-8">
               {[
                 {
                   icon: Users,
                   title: 'Human Resistance',
-                  description: 'Organizations underestimate emotional barriers, creating invisible roadblocks to adoption.',
+                  stat: '73%',
+                  statLabel: 'cite culture as barrier',
+                  description: 'Teams resist change without understanding the "why" behind transformation.',
                   points: [
-                    'Teams resist without understanding',
-                    'Leadership lacks sentiment visibility',
-                    'No data-driven change management'
+                    'Fear of job displacement blocks adoption',
+                    'Leadership lacks visibility into team sentiment',
+                    'No framework for managing emotional barriers'
                   ],
                   color: 'red'
                 },
                 {
                   icon: Layers,
                   title: 'Capability Gaps',
-                  description: 'Critical gaps in data, talent, and infrastructure remain hidden until it\'s too late.',
+                  stat: '89%',
+                  statLabel: 'lack AI expertise',
+                  description: 'Organizations invest blindly without knowing their true readiness level.',
                   points: [
-                    'No systematic assessment',
-                    'Blind spots in key dimensions',
-                    'Investment without priorities'
+                    'Hidden gaps in data infrastructure',
+                    'Talent shortages across critical roles',
+                    'Misaligned technology investments'
                   ],
                   color: 'orange'
                 }
               ].map((item) => {
                 const Icon = item.icon
-                const colorClasses = item.color === 'red' 
-                  ? 'text-red-500 bg-red-500/10 border-red-500/20'
-                  : 'text-orange-500 bg-orange-500/10 border-orange-500/20'
                 
                 return (
-                  <div key={item.title} className={`p-8 rounded-[28px] ${
+                  <div key={item.title} className={`group relative p-10 rounded-[32px] ${
                     isDarkMode
-                      ? 'bg-white/[0.02] border border-white/[0.06]'
-                      : 'bg-gray-50 border border-gray-200'
+                      ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
+                      : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
                   } transition-all duration-300 hover:scale-[1.01]`}>
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${colorClasses}`}>
-                      <Icon className="w-7 h-7" strokeWidth={1.5} />
+                    <div className="flex items-start gap-6">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${
+                        item.color === 'red'
+                          ? 'bg-red-500/10 border border-red-500/20'
+                          : 'bg-orange-500/10 border border-orange-500/20'
+                      }`}>
+                        <Icon className={`w-7 h-7 ${item.color === 'red' ? 'text-red-500' : 'text-orange-500'}`} strokeWidth={1.5} />
+                      </div>
+                      
+                      <div className="flex-1">
+                        <div className="flex items-baseline justify-between mb-4">
+                          <h3 className={`text-[22px] font-semibold ${textColor}`}>{item.title}</h3>
+                          <div className="text-right">
+                            <div className={`text-[28px] font-light ${item.color === 'red' ? 'text-red-500' : 'text-orange-500'}`}>
+                              {item.stat}
+                            </div>
+                            <div className={`text-[10px] uppercase tracking-wider ${subTextColor}`}>
+                              {item.statLabel}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <p className={`${subTextColor} text-[14px] mb-6 leading-relaxed`}>
+                          {item.description}
+                        </p>
+                        
+                        <ul className="space-y-3">
+                          {item.points.map(point => (
+                            <li key={point} className={`text-[13px] ${subTextColor} flex items-start gap-3`}>
+                              <div className={`w-1 h-1 rounded-full mt-1.5 flex-shrink-0 ${
+                                item.color === 'red' ? 'bg-red-500' : 'bg-orange-500'
+                              }`} />
+                              {point}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                    <h3 className={`text-[20px] font-semibold mb-3 ${textColor}`}>{item.title}</h3>
-                    <p className={`${subTextColor} text-[14px] mb-5 leading-relaxed`}>{item.description}</p>
-                    <ul className="space-y-2.5">
-                      {item.points.map(point => (
-                        <li key={point} className={`text-[13px] ${subTextColor} flex items-start gap-2`}>
-                          <div className={`w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 ${
-                            item.color === 'red' ? 'bg-red-500' : 'bg-orange-500'
-                          }`} />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 )
               })}
@@ -643,59 +659,58 @@ export default function Home() {
         </div>
       </section>
 
-        {/* Features Section - Refined */}
-        <section id="features" className="py-32 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className={`text-[13px] font-semibold uppercase tracking-wider mb-4 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
-                Core Capabilities
+        {/* Features Section - Compact Cards */}
+        <section id="features" className="py-20 px-6 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+          <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
+                Capabilities
               </p>
-              <h2 className={`text-[42px] font-light ${textColor} mb-4 tracking-tight`}>
-                Enterprise AI Assessment
+              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
+                Complete AI Assessment Platform
               </h2>
           </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                {
                   icon: Target,
-                title: 'Sentiment Analysis',
-                description: 'Understand organizational readiness across 25 key dimensions',
-                  metric: '25 dimensions analyzed'
-              },
-              {
+                  title: 'Sentiment',
+                  description: '25 key dimensions of organizational readiness',
+                  metric: '25',
+                  metricLabel: 'dimensions'
+                },
+                {
                   icon: Hexagon,
-                title: 'Capability Assessment',
-                  description: 'Measure maturity across 8 critical dimensions and 32 constructs',
-                  metric: '32 capability constructs'
-              },
-              {
+                  title: 'Capability',
+                  description: 'Maturity across 8 critical areas',
+                  metric: '32',
+                  metricLabel: 'constructs'
+                },
+                {
                   icon: Zap,
-                title: 'Smart Recommendations',
-                description: 'Get targeted interventions based on your specific gaps',
-                  metric: 'Real-time insights'
+                  title: 'Action Plans',
+                  description: 'Targeted interventions for gaps',
+                  metric: '<3',
+                  metricLabel: 'minutes'
                 }
               ].map((feature) => {
                 const Icon = feature.icon
                 return (
-                  <div key={feature.title} className={`group p-8 rounded-[28px] ${
+                  <div key={feature.title} className={`group p-6 rounded-[24px] ${
                     isDarkMode
                       ? 'bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.06]'
                       : 'bg-gray-50 hover:bg-white border border-gray-200'
                   } transition-all duration-300`}>
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 ${
-                      isDarkMode
-                        ? 'bg-[#5380b3]/10 border border-[#5380b3]/20'
-                        : 'bg-[#5380b3]/10 border border-[#5380b3]/30'
-                    }`}>
-                      <Icon className="w-6 h-6 text-[#5380b3]" strokeWidth={1.5} />
-                    </div>
+                    <Icon className="w-8 h-8 text-[#5380b3] mb-4" strokeWidth={1.5} />
                     
-                    <h3 className={`text-[18px] font-semibold mb-3 ${textColor}`}>{feature.title}</h3>
-                    <p className={`${subTextColor} mb-4 text-[14px] leading-relaxed`}>{feature.description}</p>
-                    <p className={`text-[12px] font-semibold text-[#5380b3] uppercase tracking-wider`}>
-                      {feature.metric}
-                    </p>
+                    <h3 className={`text-[18px] font-semibold mb-2 ${textColor}`}>{feature.title}</h3>
+                    <p className={`${subTextColor} mb-4 text-[13px] leading-relaxed`}>{feature.description}</p>
+                    
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-[24px] font-light text-[#5380b3]">{feature.metric}</span>
+                      <span className={`text-[11px] uppercase tracking-wider ${subTextColor}`}>{feature.metricLabel}</span>
+                    </div>
                   </div>
                 )
               })}
@@ -703,14 +718,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Complete Picture Section - Enhanced */}
-        <section className="py-32 px-6 overflow-hidden">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-20">
-              <p className={`text-[13px] font-semibold uppercase tracking-wider mb-4 ${isDarkMode ? 'text-[#a74f8b]' : 'text-[#a74f8b]'}`}>
+        {/* Complete Picture Section - Enhanced Visualizations */}
+        <section className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#a74f8b]' : 'text-[#a74f8b]'}`}>
                 Dual Framework
               </p>
-              <h2 className={`text-[42px] font-light ${textColor} mb-4 tracking-tight`}>
+              <h2 className={`text-[42px] font-light ${textColor} mb-3 tracking-tight`}>
                 See the Complete Picture
               </h2>
               <p className={`${subTextColor} text-[16px] max-w-2xl mx-auto`}>
@@ -718,8 +733,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Tab Switcher - iOS Style */}
-            <div className="flex justify-center mb-16">
+            {/* Tab Switcher */}
+            <div className="flex justify-center mb-12">
               <div className={`inline-flex p-1 rounded-[24px] ${
                 isDarkMode
                   ? 'bg-white/[0.04] border border-white/[0.06]'
@@ -727,7 +742,7 @@ export default function Home() {
               }`}>
                 <button
                   onClick={() => setActiveTab('sentiment')}
-                  className={`px-8 py-3 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
+                  className={`px-6 py-2.5 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
                     activeTab === 'sentiment'
                       ? isDarkMode 
                         ? 'bg-white text-black shadow-lg' 
@@ -739,7 +754,7 @@ export default function Home() {
                 </button>
                 <button
                   onClick={() => setActiveTab('capability')}
-                  className={`px-8 py-3 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
+                  className={`px-6 py-2.5 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
                     activeTab === 'capability'
                       ? isDarkMode 
                         ? 'bg-white text-black shadow-lg' 
@@ -752,279 +767,360 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Visualization Area */}
-            <div className={`relative rounded-[32px] overflow-hidden ${
-              isDarkMode
-                ? 'bg-gradient-to-b from-white/[0.02] to-transparent border border-white/[0.06]'
-                : 'bg-gradient-to-b from-gray-50 to-white border border-gray-200'
-            }`}>
-              <div className="p-12">
-                {activeTab === 'sentiment' ? (
-                  <div className="space-y-8">
-                    <div>
-                      <h3 className={`text-[24px] font-semibold mb-3 ${textColor}`}>
-                        25-Zone Sentiment Heatmap
-                      </h3>
-                      <p className={`${subTextColor} text-[14px] max-w-2xl`}>
-                        Visualize emotional readiness across your organization
-                      </p>
-                    </div>
-                    
-                    {/* Heatmap Grid */}
-                    <div className="relative mx-auto max-w-3xl">
-                      <div className="grid grid-cols-5 gap-3">
-                        {[
-                          'bg-green-500 opacity-60', 'bg-yellow-500 opacity-40', 'bg-red-500 opacity-40', 'bg-yellow-500 opacity-60', 'bg-red-500 opacity-40',
-                          'bg-yellow-500 opacity-40', 'bg-green-500 opacity-60', 'bg-yellow-500 opacity-60', 'bg-red-500 opacity-40', 'bg-yellow-500 opacity-40',
-                          'bg-red-500 opacity-40', 'bg-yellow-500 opacity-40', 'bg-green-500 opacity-60', 'bg-yellow-500 opacity-60', 'bg-red-500 opacity-40',
-                          'bg-yellow-500 opacity-60', 'bg-red-500 opacity-40', 'bg-yellow-500 opacity-40', 'bg-green-500 opacity-60', 'bg-yellow-500 opacity-40',
-                          'bg-red-500 opacity-40', 'bg-yellow-500 opacity-60', 'bg-green-500 opacity-60', 'bg-yellow-500 opacity-40', 'bg-red-500 opacity-40'
-                        ].map((classes, i) => (
-                          <div
-                            key={i}
-                            className={`aspect-square rounded-2xl ${classes} transition-all duration-500 hover:scale-105 hover:opacity-100`}
-                          />
-                        ))}
-                      </div>
-                      
-                      {/* Legend */}
-                      <div className="flex justify-center gap-8 mt-10">
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 rounded bg-red-500 opacity-60" />
-                          <span className={`text-[12px] ${subTextColor}`}>Resistance</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 rounded bg-yellow-500 opacity-60" />
-                          <span className={`text-[12px] ${subTextColor}`}>Neutral</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 rounded bg-green-500 opacity-60" />
-                          <span className={`text-[12px] ${subTextColor}`}>Support</span>
-                        </div>
-                      </div>
-                    </div>
+            {activeTab === 'sentiment' ? (
+              /* Sentiment Heatmap */
+              <div className={`rounded-[32px] overflow-hidden ${
+                isDarkMode
+                  ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
+                  : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+              } p-10`}>
+                <div className="max-w-5xl mx-auto">
+                  <div className="mb-8">
+                    <h3 className={`text-[20px] font-semibold mb-2 ${textColor}`}>
+                      Sentiment Analysis Heatmap
+                    </h3>
+                    <p className={`${subTextColor} text-[14px]`}>
+                      25 zones mapping sentiment levels against organizational reasons
+                    </p>
                   </div>
-                ) : (
-                  <div className="space-y-8">
-                    <div>
-                      <h3 className={`text-[24px] font-semibold mb-3 ${textColor}`}>
-                        8-Dimensional Capability Diamond
-                      </h3>
-                      <p className={`${subTextColor} text-[14px] max-w-2xl`}>
-                        Assess organizational maturity across critical dimensions
-                      </p>
-                    </div>
-                    
-                    {/* Diamond Visualization */}
-                    <div className="relative mx-auto w-80 h-80">
-                      <svg viewBox="0 0 320 320" className="w-full h-full">
-                        {/* Grid circles */}
-                        {[80, 120, 160, 200, 240].map((r) => (
-                          <circle
-                            key={r}
-                            cx="160"
-                            cy="160"
-                            r={r/2}
-                            fill="none"
-                            stroke={isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)'}
-                            strokeWidth="1"
-                          />
-                        ))}
-                        
-                        {/* Axes */}
-                        {Array.from({length: 8}).map((_, i) => {
-                          const angle = (i * 45 - 90) * (Math.PI / 180)
-                          const x = 160 + 120 * Math.cos(angle)
-                          const y = 160 + 120 * Math.sin(angle)
-                          return (
-                            <line
-                              key={i}
-                              x1="160"
-                              y1="160"
-                              x2={x}
-                              y2={y}
-                              stroke={isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}
-                              strokeWidth="1"
-                            />
-                          )
-                        })}
-                        
-                        {/* Filled area */}
-                        <polygon
-                          points={Array.from({length: 8}).map((_, i) => {
-                            const angle = (i * 45 - 90) * (Math.PI / 180)
-                            const radius = 60 + Math.random() * 40
-                            const x = 160 + radius * Math.cos(angle)
-                            const y = 160 + radius * Math.sin(angle)
-                            return `${x},${y}`
-                          }).join(' ')}
-                          fill="url(#gradient)"
-                          fillOpacity="0.3"
-                          stroke="url(#gradient)"
-                          strokeWidth="2"
-                        />
-                        
-                        <defs>
-                          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#5380b3" />
-                            <stop offset="50%" stopColor="#7a6ca8" />
-                            <stop offset="100%" stopColor="#a74f8b" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                      
-                      {/* Labels */}
-                      {['Strategy', 'Data', 'Technology', 'Talent', 'Process', 'Innovation', 'Adoption', 'Ethics'].map((label, i) => {
-                        const angle = (i * 45 - 90) * (Math.PI / 180)
-                        const x = 50 + 140 * Math.cos(angle)
-                        const y = 50 + 140 * Math.sin(angle)
-                        return (
-                          <div
-                            key={label}
-                            className={`absolute text-[12px] font-medium ${subTextColor}`}
-                            style={{
-                              left: `${x}%`,
-                              top: `${y}%`,
-                              transform: 'translate(-50%, -50%)'
-                            }}
-                          >
-                            {label}
-                          </div>
-                        )
-                      })}
-                    </div>
-                    
-                    {/* Maturity Scale */}
-                    <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
-                      {['Nascent', 'Developing', 'Advanced', 'Leading'].map((level, i) => (
-                        <div key={level} className="text-center">
-                          <div className={`text-[24px] font-light ${textColor} mb-1`}>
-                            {25 * (i + 1)}%
-                          </div>
-                          <div className={`text-[11px] uppercase tracking-wider ${subTextColor}`}>{level}</div>
+                  
+                  {/* Heatmap Grid with Labels */}
+                  <div className="flex gap-6">
+                    {/* Y-axis labels */}
+                    <div className="flex flex-col justify-around py-8">
+                      {['Excited', 'Supportive', 'Neutral', 'Concerned', 'Resistant'].map(label => (
+                        <div key={label} className={`text-[11px] ${subTextColor} text-right pr-2`}>
+                          {label}
                         </div>
                       ))}
                     </div>
+                    
+                    {/* Main Grid */}
+                    <div className="flex-1">
+                      <div className="grid grid-cols-5 gap-2 mb-3">
+                        {/* Sample data with realistic patterns */}
+                        {[
+                          [90, 75, 45, 30, 15], // Excited row
+                          [80, 85, 60, 40, 25], // Supportive row
+                          [50, 55, 50, 45, 40], // Neutral row
+                          [30, 35, 40, 60, 70], // Concerned row
+                          [10, 20, 30, 75, 85], // Resistant row
+                        ].map((row, rowIdx) => (
+                          row.map((value, colIdx) => {
+                            const opacity = value / 100
+                            const bgColor = value > 70 ? 'bg-green-500' 
+                              : value > 40 ? 'bg-yellow-500' 
+                              : 'bg-red-500'
+                            
+                            return (
+                              <div
+                                key={`${rowIdx}-${colIdx}`}
+                                className={`aspect-square rounded-lg ${bgColor} transition-all duration-300 hover:scale-105 cursor-pointer flex items-center justify-center group relative`}
+                                style={{ opacity: 0.3 + opacity * 0.7 }}
+                              >
+                                <span className={`text-[10px] font-bold ${
+                                  isDarkMode ? 'text-white' : 'text-black'
+                                } opacity-0 group-hover:opacity-100 transition-opacity`}>
+                                  {value}%
+                                </span>
+                                
+                                {/* Tooltip on hover */}
+                                <div className={`absolute -top-12 left-1/2 transform -translate-x-1/2 px-3 py-1.5 rounded-lg ${
+                                  isDarkMode ? 'bg-black' : 'bg-gray-900'
+                                } text-white text-[11px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10`}>
+                                  {value}% readiness
+                                </div>
+                              </div>
+                            )
+                          })
+                        ))}
+                      </div>
+                      
+                      {/* X-axis labels */}
+                      <div className="grid grid-cols-5 gap-2 mt-2">
+                        {['Technology', 'Leadership', 'Culture', 'Resources', 'Skills'].map(label => (
+                          <div key={label} className={`text-[11px] ${subTextColor} text-center`}>
+                            {label}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                )}
+                  
+                  {/* Legend */}
+                  <div className="flex items-center justify-center gap-8 mt-10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded bg-green-500 opacity-80" />
+                      <span className={`text-[12px] ${subTextColor}`}>Strong Support (70%+)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded bg-yellow-500 opacity-60" />
+                      <span className={`text-[12px] ${subTextColor}`}>Moderate (40-70%)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 rounded bg-red-500 opacity-50" />
+                      <span className={`text-[12px] ${subTextColor}`}>Resistance (<40%)</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              /* Capability Diamond */
+              <div className={`rounded-[32px] overflow-hidden ${
+                isDarkMode
+                  ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
+                  : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+              } p-10`}>
+                <div className="max-w-5xl mx-auto">
+                  <div className="mb-8">
+                    <h3 className={`text-[20px] font-semibold mb-2 ${textColor}`}>
+                      Capability Maturity Assessment
+                    </h3>
+                    <p className={`${subTextColor} text-[14px]`}>
+                      8 critical dimensions of AI readiness
+                    </p>
+                  </div>
+                  
+                  <div className="grid lg:grid-cols-2 gap-10 items-center">
+                    {/* Radar Chart */}
+                    <div className="relative">
+                      <div className="relative w-full aspect-square max-w-md mx-auto">
+                        {/* Background circles */}
+                        {[20, 40, 60, 80, 100].map((percentage) => (
+                          <div
+                            key={percentage}
+                            className={`absolute inset-0 border rounded-full ${
+                              isDarkMode ? 'border-white/[0.05]' : 'border-gray-200'
+                            }`}
+                            style={{
+                              width: `${percentage}%`,
+                              height: `${percentage}%`,
+                              top: `${(100 - percentage) / 2}%`,
+                              left: `${(100 - percentage) / 2}%`,
+                            }}
+                          />
+                        ))}
+                        
+                        {/* Dimension labels with scores */}
+                        {[
+                          { name: 'Strategy', score: 72, angle: -90 },
+                          { name: 'Data', score: 85, angle: -45 },
+                          { name: 'Technology', score: 68, angle: 0 },
+                          { name: 'Talent', score: 45, angle: 45 },
+                          { name: 'Process', score: 78, angle: 90 },
+                          { name: 'Innovation', score: 62, angle: 135 },
+                          { name: 'Adoption', score: 58, angle: 180 },
+                          { name: 'Ethics', score: 82, angle: 225 },
+                        ].map((dim) => {
+                          const radian = (dim.angle * Math.PI) / 180
+                          const x = 50 + 45 * Math.cos(radian)
+                          const y = 50 + 45 * Math.sin(radian)
+                          
+                          return (
+                            <div
+                              key={dim.name}
+                              className="absolute flex flex-col items-center"
+                              style={{
+                                left: `${x}%`,
+                                top: `${y}%`,
+                                transform: 'translate(-50%, -50%)',
+                              }}
+                            >
+                              <span className={`text-[12px] font-medium ${textColor}`}>
+                                {dim.name}
+                              </span>
+                              <span className={`text-[18px] font-light ${
+                                dim.score >= 70 ? 'text-green-500' 
+                                : dim.score >= 50 ? 'text-yellow-500' 
+                                : 'text-red-500'
+                              }`}>
+                                {dim.score}
+                              </span>
+                            </div>
+                          )
+                        })}
+                        
+                        {/* Filled polygon shape */}
+                        <svg className="absolute inset-0 w-full h-full">
+                          <polygon
+                            points={[
+                              { score: 72, angle: -90 },
+                              { score: 85, angle: -45 },
+                              { score: 68, angle: 0 },
+                              { score: 45, angle: 45 },
+                              { score: 78, angle: 90 },
+                              { score: 62, angle: 135 },
+                              { score: 58, angle: 180 },
+                              { score: 82, angle: 225 },
+                            ].map(({ score, angle }) => {
+                              const radian = (angle * Math.PI) / 180
+                              const radius = (score / 100) * 40
+                              const x = 50 + radius * Math.cos(radian)
+                              const y = 50 + radius * Math.sin(radian)
+                              return `${x}%,${y}%`
+                            }).join(' ')}
+                            fill="url(#capabilityGradient)"
+                            fillOpacity="0.2"
+                            stroke="url(#capabilityGradient)"
+                            strokeWidth="2"
+                          />
+                          <defs>
+                            <linearGradient id="capabilityGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                              <stop offset="0%" stopColor="#5380b3" />
+                              <stop offset="50%" stopColor="#7a6ca8" />
+                              <stop offset="100%" stopColor="#a74f8b" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
+                    </div>
+                    
+                    {/* Dimension Details */}
+                    <div className="space-y-3">
+                      {[
+                        { name: 'Strategy & Vision', score: 72, status: 'Good' },
+                        { name: 'Data Infrastructure', score: 85, status: 'Excellent' },
+                        { name: 'Technology Stack', score: 68, status: 'Moderate' },
+                        { name: 'Talent & Skills', score: 45, status: 'Needs Focus' },
+                        { name: 'Process & Operations', score: 78, status: 'Good' },
+                        { name: 'Innovation Culture', score: 62, status: 'Moderate' },
+                        { name: 'Adoption & Change', score: 58, status: 'Moderate' },
+                        { name: 'Ethics & Governance', score: 82, status: 'Excellent' },
+                      ].map((dim) => (
+                        <div key={dim.name} className="flex items-center gap-3">
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between mb-1">
+                              <span className={`text-[13px] font-medium ${textColor}`}>
+                                {dim.name}
+                              </span>
+                              <span className={`text-[11px] ${
+                                dim.score >= 70 ? 'text-green-500' 
+                                : dim.score >= 50 ? 'text-yellow-500' 
+                                : 'text-red-500'
+                              }`}>
+                                {dim.status}
+                              </span>
+                            </div>
+                            <div className={`h-1.5 rounded-full overflow-hidden ${
+                              isDarkMode ? 'bg-white/[0.05]' : 'bg-gray-200'
+                            }`}>
+                              <div 
+                                className={`h-full rounded-full transition-all duration-1000 ${
+                                  dim.score >= 70 ? 'bg-green-500' 
+                                  : dim.score >= 50 ? 'bg-yellow-500' 
+                                  : 'bg-red-500'
+                                }`}
+                                style={{ width: `${dim.score}%` }}
+                              />
+                            </div>
+                          </div>
+                          <span className={`text-[14px] font-light ${textColor} w-10 text-right`}>
+                            {dim.score}%
+                          </span>
+              </div>
+            ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
-        {/* How it Works - Refined */}
-        <section id="how-it-works" className="py-32 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className={`text-[13px] font-semibold uppercase tracking-wider mb-4 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
+        {/* Process - Minimal Timeline */}
+        <section id="how-it-works" className="py-20 px-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
                 Process
               </p>
-              <h2 className={`text-[42px] font-light ${textColor} mb-4 tracking-tight`}>
-                Three Simple Steps
+              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
+                From Data to Insights in Minutes
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="space-y-6">
               {[
                 {
                   step: '01',
-                  title: 'Upload Data',
-                  description: 'Securely upload survey responses in any format',
-                  details: ['CSV, Excel, JSON', 'Bank-grade encryption', 'GDPR compliant'],
-                  icon: FileText
+                  title: 'Upload',
+                  description: 'CSV, Excel, or JSON format',
+                  icon: FileText,
+                  time: '30 seconds'
                 },
                 {
                   step: '02',
-                  title: 'AI Analysis',
-                  description: 'Our models analyze patterns across all dimensions',
-                  details: ['25 sentiment areas', '8 capability dimensions', 'Real-time processing'],
-                  icon: Activity
+                  title: 'Analysis',
+                  description: 'AI processes patterns instantly',
+                  icon: Cpu,
+                  time: '2 minutes'
                 },
                 {
                   step: '03',
-                  title: 'Get Insights',
-                  description: 'Receive dashboard with actionable recommendations',
-                  details: ['Interactive visuals', 'Export reports', 'Action plans'],
-                  icon: TrendingUp
+                  title: 'Insights',
+                  description: 'Interactive dashboard ready',
+                  icon: TrendingUp,
+                  time: '30 seconds'
                 }
               ].map((item, idx) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.step} className="relative">
-                    {idx < 2 && (
-                      <div className={`hidden md:block absolute top-16 -right-4 transform translate-x-full ${subTextColor}`}>
-                        <ChevronRight size={20} strokeWidth={1} />
-                      </div>
-                    )}
-                    
-                    <div className={`p-8 rounded-[28px] h-full ${
-                      isDarkMode
-                        ? 'bg-white/[0.02] border border-white/[0.06]'
-                        : 'bg-gray-50 border border-gray-200'
-                    }`}>
-                      <div className="flex items-center gap-4 mb-6">
-                        <div className={`text-[40px] font-light bg-gradient-to-r from-[#5380b3] to-[#a74f8b] bg-clip-text text-transparent`}>
-                          {item.step}
-                        </div>
-                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                          isDarkMode
-                            ? 'bg-white/[0.04] border border-white/[0.06]'
-                            : 'bg-black/[0.02] border border-gray-200'
-                        }`}>
-                          <Icon className={`w-6 h-6 ${subTextColor}`} strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      
-                      <h3 className={`text-[18px] font-semibold mb-3 ${textColor}`}>{item.title}</h3>
-                      <p className={`${subTextColor} mb-5 text-[14px]`}>{item.description}</p>
-                      
-                      <ul className="space-y-2">
-                        {item.details.map((detail) => (
-                          <li key={detail} className={`text-[12px] ${subTextColor} flex items-center gap-2`}>
-                            <Check className="w-3 h-3 text-[#5380b3]" strokeWidth={2.5} />
-                            {detail}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Security Section - Refined */}
-        <section className="py-32 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <p className={`text-[13px] font-semibold uppercase tracking-wider mb-4 text-green-500`}>
-                Security First
-              </p>
-              <h2 className={`text-[42px] font-light ${textColor} mb-4 tracking-tight`}>
-                Enterprise-Grade Protection
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-4 gap-6">
-              {[
-                { icon: Shield, title: 'SOC2 Type II', detail: 'Certified' },
-                { icon: Lock, title: 'AES-256', detail: 'Encryption' },
-                { icon: Globe, title: 'GDPR', detail: 'Compliant' },
-                { icon: Database, title: 'Data Residency', detail: 'Control' }
-              ].map((item) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.title} className={`p-6 rounded-[24px] text-center ${
+                  <div key={item.step} className={`flex items-center gap-6 p-6 rounded-[24px] ${
                     isDarkMode
                       ? 'bg-white/[0.02] border border-white/[0.06]'
                       : 'bg-gray-50 border border-gray-200'
                   }`}>
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-green-500" strokeWidth={1.5} />
+                    <div className="text-[32px] font-light bg-gradient-to-r from-[#5380b3] to-[#a74f8b] bg-clip-text text-transparent">
+                      {item.step}
                     </div>
-                    <h3 className={`text-[15px] font-semibold mb-1 ${textColor}`}>{item.title}</h3>
-                    <p className={`text-[12px] ${subTextColor}`}>{item.detail}</p>
+                    
+                    <Icon className={`w-8 h-8 ${subTextColor}`} strokeWidth={1.5} />
+                    
+                    <div className="flex-1">
+                      <h3 className={`text-[18px] font-semibold ${textColor}`}>{item.title}</h3>
+                      <p className={`${subTextColor} text-[13px]`}>{item.description}</p>
+                    </div>
+                    
+                    <div className="text-right">
+                      <div className={`text-[16px] font-light ${textColor}`}>{item.time}</div>
+                      <div className={`text-[10px] uppercase tracking-wider ${subTextColor}`}>Duration</div>
+                    </div>
+                  </div>
+                )
+              })}
+          </div>
+        </div>
+      </section>
+
+        {/* Security - Compact Grid */}
+        <section className="py-20 px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-10">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 text-green-500`}>
+                Security
+              </p>
+              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
+                Enterprise-Grade Protection
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { icon: Shield, title: 'SOC2', detail: 'Type II' },
+                { icon: Lock, title: 'AES-256', detail: 'Encryption' },
+                { icon: Globe, title: 'GDPR', detail: 'Compliant' },
+                { icon: Database, title: 'Residency', detail: 'Control' }
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className={`p-5 rounded-[20px] text-center ${
+                    isDarkMode
+                      ? 'bg-white/[0.02] border border-white/[0.06]'
+                      : 'bg-gray-50 border border-gray-200'
+                  }`}>
+                    <Icon className="w-6 h-6 mx-auto mb-3 text-green-500" strokeWidth={1.5} />
+                    <h3 className={`text-[14px] font-semibold ${textColor}`}>{item.title}</h3>
+                    <p className={`text-[11px] ${subTextColor}`}>{item.detail}</p>
                   </div>
                 )
               })}
@@ -1032,25 +1128,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA */}
+        {/* Final CTA - Centered & Clean */}
         <section className="py-32 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className={`text-[48px] font-light ${textColor} mb-6 tracking-tight`}>
-              Ready to Transform Your
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className={`text-[48px] font-light ${textColor} mb-4 tracking-tight`}>
+              Ready to start your
               <span className="block text-[52px] font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
-                AI Journey?
+                transformation?
               </span>
             </h2>
             
-            <p className={`${subTextColor} text-[18px] mb-10 max-w-2xl mx-auto`}>
-              Join the waitlist for early access at Web Summit 2025
+            <p className={`${subTextColor} text-[16px] mb-8 max-w-xl mx-auto`}>
+              Get early access at Web Summit 2025
             </p>
             
-            <div className="flex gap-4 justify-center">
-              <Link href="/login">
+            <div className="flex gap-3 justify-center">
+              <Link href="/demo">
                 <Button variant="primary" isDark={isDarkMode}>
-                  Sign In
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  Try Demo
                 </Button>
               </Link>
               <Link href="/upload">
@@ -1058,22 +1153,22 @@ export default function Home() {
                   Upload Data
                 </Button>
               </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-        <footer className={`py-16 ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
+        {/* Footer - Minimal */}
+        <footer className={`py-12 ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <Brain className="w-5 h-5 text-[#5380b3]" strokeWidth={2} />
-                <span className={`text-[14px] ${subTextColor}`}>AI Navigator © 2025</span>
+              <div className="flex items-center gap-2">
+                <Brain className="w-4 h-4 text-[#5380b3]" strokeWidth={2} />
+                <span className={`text-[13px] ${subTextColor}`}>© 2025 AI Navigator</span>
               </div>
               
-              <div className="flex gap-6">
+              <div className="flex gap-5">
                 {['Demo', 'Features', 'Security'].map((item) => (
-                  <a key={item} href="#" className={`text-[13px] ${subTextColor} hover:${textColor} transition-colors`}>
+                  <a key={item} href="#" className={`text-[12px] ${subTextColor} hover:${textColor} transition-colors`}>
                     {item}
                   </a>
                 ))}

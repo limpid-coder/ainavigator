@@ -2,11 +2,15 @@ import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-export const Component = ({ children }) => {
-  const mountRef = useRef(null);
-  const sceneRef = useRef(null);
-  const rendererRef = useRef(null);
-  const materialRef = useRef(null);
+interface ComponentProps {
+  children: React.ReactNode;
+}
+
+export const Component = ({ children }: ComponentProps) => {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const materialRef = useRef<THREE.ShaderMaterial | null>(null);
   const timeRef = useRef(0);
 
   useEffect(() => {
@@ -322,7 +326,7 @@ export const Component = ({ children }) => {
     let mouseX = 0;
     let mouseY = 0;
     
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent) => {
       mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       
