@@ -15,7 +15,8 @@ import {
   Grid3x3,
   ChevronRight,
   Sparkles,
-  Info
+  Info,
+  LogOut
 } from 'lucide-react'
 import Link from 'next/link'
 import { SentimentResponse, CapabilityResponse, FilterState } from '@/lib/types'
@@ -24,6 +25,7 @@ import HeatmapView from '@/components/dashboard/HeatmapView'
 import CapabilityView from '@/components/dashboard/CapabilityView'
 import FilterPanel from '@/components/dashboard/FilterPanel'
 import StatsCards from '@/components/dashboard/StatsCards'
+import { useAuth } from '@/lib/hooks/useAuth'
 
 // Loading skeleton component
 const DashboardSkeleton = () => (
@@ -67,6 +69,7 @@ const QuickAction = ({ icon, title, description, onClick, delay }: any) => (
 )
 
 export default function DashboardPage() {
+  const { session, company, isAuthenticated, isLoading: authLoading, logout, requireAuth } = useAuth()
   const [activeView, setActiveView] = useState<'sentiment' | 'capability'>('sentiment')
   const [sentimentData, setSentimentData] = useState<Partial<SentimentResponse>[]>([])
   const [capabilityData, setCapabilityData] = useState<Partial<CapabilityResponse>[]>([])
@@ -76,25 +79,55 @@ export default function DashboardPage() {
   const [dataStatus, setDataStatus] = useState<'loading' | 'ready' | 'error'>('loading')
 
   useEffect(() => {
-    // Load data from session storage with smooth transition
+    requireAuth()
+  }, [authLoading, isAuthenticated])
+
+  useEffect(() => {
+    // Fetch data from Supabase via API
     const loadData = async () => {
+      if (!company?.id) return
+
       setDataStatus('loading')
-      await new Promise(resolve => setTimeout(resolve, 1000)) // Smooth loading experience
       
-      const sessionDataStr = sessionStorage.getItem('aiNavigatorSession')
-      if (sessionDataStr) {
-        const sessionData = JSON.parse(sessionDataStr)
-        setSentimentData(sessionData.sentimentData || [])
-        setCapabilityData(sessionData.capabilityData || [])
+      try {
+        const response = await fetch('/api/data/respondents', {
+          headers: {
+            'x-company-id': company.id,
+          },
+        })
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch data')
+        }
+
+        const result = await response.json()
+        
+        // Transform data to match expected format
+        const transformedSentiment: Partial<SentimentResponse>[] = result.data.map((item: any) => ({
+          id: item.id,
+          responseId: item.responseId,
+          region: item.region,
+          department: item.department,
+          role: item.role,
+          ageGroup: item.ageGroup,
+          sentimentLevel: 3, // Will calculate properly later
+          sentimentReason: 'general',
+          timestamp: item.timestamp,
+        }))
+
+        setSentimentData(transformedSentiment)
+        setCapabilityData([]) // Empty for now until we add capability data
         setDataStatus('ready')
-      } else {
+      } catch (error) {
+        console.error('Error loading data:', error)
         setDataStatus('error')
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
     
     loadData()
-  }, [])
+  }, [company?.id])
 
   const readinessScore = calculateReadinessScore(
     sentimentData as SentimentResponse[], 
@@ -162,10 +195,18 @@ export default function DashboardPage() {
                 <Brain className="w-6 h-6 text-blue-400" />
                 <span className="font-semibold">AI Navigator</span>
               </Link>
-              <div className="hidden md:flex items-center gap-2 text-xs text-gray-500">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span>Live Dashboard</span>
-              </div>
+              {company && (
+                <div className="hidden md:flex items-center gap-4">
+                  <div className="h-6 w-px bg-white/10" />
+                  <div>
+                    <p className="text-sm font-medium text-white">{company.display_name}</p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                      <span>Live Dashboard</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
             
             <div className="flex items-center gap-2">
@@ -184,24 +225,17 @@ export default function DashboardPage() {
                 whileTap={{ scale: 0.95 }}
                 className="p-2.5 rounded-lg glass hover:glass-hover"
               >
-                <Settings className="w-5 h-5" />
+                <Download className="w-5 h-5" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-2.5 rounded-lg glass hover:glass-hover"
+                onClick={logout}
+                className="p-2.5 rounded-lg glass hover:glass-hover text-red-400 hover:bg-red-500/10"
+                title="Logout"
               >
-                <Download className="w-5 h-5" />
+                <LogOut className="w-5 h-5" />
               </motion.button>
-              <Link href="/">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-2.5 rounded-lg glass hover:glass-hover"
-                >
-                  <Home className="w-5 h-5" />
-                </motion.button>
-              </Link>
             </div>
           </div>
         </div>

@@ -16,7 +16,8 @@
     "test:e2e": "playwright test",
     "test:coverage": "jest --coverage",
     "analyze": "next build && next-bundle-analyzer",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "import-demo-data": "tsx scripts/import-demo-data.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -29,12 +30,12 @@
     "@supabase/supabase-js": "^2.76.1",
     "@tanstack/react-query": "^5.90.5",
     "@tanstack/react-query-devtools": "^5.90.2",
-    "@types/three": "^0.180.0",
     "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.24",
+    "gsap": "^3.13.0",
     "html2canvas": "^1.4.1",
     "immer": "^10.2.0",
     "jspdf": "^3.0.3",
@@ -48,6 +49,7 @@
     "react-hook-form": "^7.65.0",
     "recharts": "^3.3.0",
     "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7",
     "three": "^0.180.0",
     "zod": "^4.1.12",
     "zustand": "^5.0.8"
@@ -58,10 +60,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
+    "csv-parse": "^5.6.0",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.18",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
