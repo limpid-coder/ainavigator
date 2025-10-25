@@ -1,0 +1,152 @@
+[
+  {
+    "area_id": 1,
+    "area_name": "Sentiment Area 1",
+    "sentiment_score": 84,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 2,
+    "area_name": "Sentiment Area 2",
+    "sentiment_score": 80,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 3,
+    "area_name": "Sentiment Area 3",
+    "sentiment_score": 68,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 4,
+    "area_name": "Sentiment Area 4",
+    "sentiment_score": 54,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 5,
+    "area_name": "Sentiment Area 5",
+    "sentiment_score": 84,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 6,
+    "area_name": "Sentiment Area 6",
+    "sentiment_score": 40,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 7,
+    "area_name": "Sentiment Area 7",
+    "sentiment_score": 64,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 8,
+    "area_name": "Sentiment Area 8",
+    "sentiment_score": 46,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 9,
+    "area_name": "Sentiment Area 9",
+    "sentiment_score": 48,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 10,
+    "area_name": "Sentiment Area 10",
+    "sentiment_score": 63,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 11,
+    "area_name": "Sentiment Area 11",
+    "sentiment_score": 40,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 12,
+    "area_name": "Sentiment Area 12",
+    "sentiment_score": 83,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 13,
+    "area_name": "Sentiment Area 13",
+    "sentiment_score": 47,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 14,
+    "area_name": "Sentiment Area 14",
+    "sentiment_score": 63,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 15,
+    "area_name": "Sentiment Area 15",
+    "sentiment_score": 50,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 16,
+    "area_name": "Sentiment Area 16",
+    "sentiment_score": 56,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 17,
+    "area_name": "Sentiment Area 17",
+    "sentiment_score": 47,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 18,
+    "area_name": "Sentiment Area 18",
+    "sentiment_score": 74,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 19,
+    "area_name": "Sentiment Area 19",
+    "sentiment_score": 74,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 20,
+    "area_name": "Sentiment Area 20",
+    "sentiment_score": 72,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 21,
+    "area_name": "Sentiment Area 21",
+    "sentiment_score": 44,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 22,
+    "area_name": "Sentiment Area 22",
+    "sentiment_score": 81,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 23,
+    "area_name": "Sentiment Area 23",
+    "sentiment_score": 78,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 24,
+    "area_name": "Sentiment Area 24",
+    "sentiment_score": 80,
+    "benchmark_type": "synthetic"
+  },
+  {
+    "area_id": 25,
+    "area_name": "Sentiment Area 25",
+    "sentiment_score": 67,
+    "benchmark_type": "synthetic"
+  }
+]

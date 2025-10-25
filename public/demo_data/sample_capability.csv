@@ -1,0 +1,33 @@
+dimension,construct,benchmark_mean,benchmark_min,benchmark_max
+Strategy and Vision,Strategy and Vision Construct 1,66.2,37.2,95.3
+Strategy and Vision,Strategy and Vision Construct 2,77.0,55.0,98.9
+Strategy and Vision,Strategy and Vision Construct 3,59.7,46.6,72.8
+Strategy and Vision,Strategy and Vision Construct 4,56.7,29.4,84.1
+Data,Data Construct 1,73.0,48.9,97.2
+Data,Data Construct 2,55.6,26.2,85.0
+Data,Data Construct 3,80.0,65.7,94.2
+Data,Data Construct 4,60.5,46.8,74.1
+Technology,Technology Construct 1,64.1,43.6,84.6
+Technology,Technology Construct 2,68.0,52.1,83.8
+Technology,Technology Construct 3,73.4,60.6,86.1
+Technology,Technology Construct 4,63.8,46.4,81.1
+Talent and Skills,Talent and Skills Construct 1,68.7,43.0,94.4
+Talent and Skills,Talent and Skills Construct 2,61.0,40.7,81.3
+Talent and Skills,Talent and Skills Construct 3,72.8,61.8,83.7
+Talent and Skills,Talent and Skills Construct 4,73.2,59.8,86.6
+Organisation and Processes,Organisation and Processes Construct 1,57.0,28.0,85.9
+Organisation and Processes,Organisation and Processes Construct 2,84.0,57.8,100.0
+Organisation and Processes,Organisation and Processes Construct 3,64.1,52.2,76.1
+Organisation and Processes,Organisation and Processes Construct 4,75.5,56.7,94.3
+Innovation,Innovation Construct 1,58.7,38.8,78.6
+Innovation,Innovation Construct 2,56.0,27.8,84.2
+Innovation,Innovation Construct 3,62.8,39.5,86.0
+Innovation,Innovation Construct 4,64.4,43.9,84.8
+Adaptation & Adoption,Adaptation & Adoption Construct 1,71.4,57.7,85.1
+Adaptation & Adoption,Adaptation & Adoption Construct 2,84.1,58.6,100.0
+Adaptation & Adoption,Adaptation & Adoption Construct 3,83.2,55.3,100.0
+Adaptation & Adoption,Adaptation & Adoption Construct 4,72.9,44.5,100.0
+Ethics and Responsibility,Ethics and Responsibility Construct 1,57.7,43.7,71.6
+Ethics and Responsibility,Ethics and Responsibility Construct 2,56.4,39.9,72.9
+Ethics and Responsibility,Ethics and Responsibility Construct 3,66.7,51.2,82.1
+Ethics and Responsibility,Ethics and Responsibility Construct 4,79.9,62.7,97.0
