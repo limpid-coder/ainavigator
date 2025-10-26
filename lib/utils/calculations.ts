@@ -32,13 +32,21 @@ export function calculateSentimentHeatmap(
   const filtered = filterResponses(responses, filters)
   const heatmapData: HeatmapCell[] = []
   
-  // Create 5x5 grid
+  // Create 5x5 grid - map sentiment_1 through sentiment_25 to grid cells
+  let sentimentIndex = 1
+  
   for (let level = 1; level <= 5; level++) {
     for (let reasonIdx = 0; reasonIdx < 5; reasonIdx++) {
-      const cellResponses = filtered.filter(r => 
-        r.sentimentLevel === level && 
-        r.sentimentReason === `R${reasonIdx + 1}`
-      )
+      const sentimentKey = `sentiment_${sentimentIndex}` as keyof SentimentResponse
+      
+      // Calculate average score for this sentiment dimension across all respondents
+      const scoresForThisSentiment = filtered
+        .map(r => r[sentimentKey])
+        .filter((score): score is number => typeof score === 'number' && !isNaN(score))
+      
+      const avgScore = scoresForThisSentiment.length > 0
+        ? scoresForThisSentiment.reduce((sum, score) => sum + score, 0) / scoresForThisSentiment.length
+        : 0
       
       const areaId = `L${level}_R${reasonIdx + 1}`
       const description = HEATMAP_DESCRIPTIONS[areaId as keyof typeof HEATMAP_DESCRIPTIONS]
@@ -46,15 +54,17 @@ export function calculateSentimentHeatmap(
       heatmapData.push({
         x: reasonIdx,
         y: level - 1,
-        value: cellResponses.length > 0 
-          ? cellResponses.reduce((sum, r) => sum + r.sentimentLevel, 0) / cellResponses.length
-          : 0,
-        count: cellResponses.length,
-        label: description?.label || `${level}-${reasonIdx + 1}`,
+        value: avgScore,
+        count: scoresForThisSentiment.length,
+        label: description?.label || `Sentiment ${sentimentIndex}`,
         description: description?.description || '',
         color: SENTIMENT_COLORS[level as keyof typeof SENTIMENT_COLORS]
       })
+      
+      sentimentIndex++
+      if (sentimentIndex > 25) break
     }
+    if (sentimentIndex > 25) break
   }
   
   return heatmapData

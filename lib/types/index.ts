@@ -3,14 +3,40 @@
 export interface SentimentResponse {
   id: string
   responseId: string
-  sentimentLevel: 1 | 2 | 3 | 4 | 5 // 1=Resistant, 5=Ready
-  sentimentReason: string // One of 5 reason categories
+  sentimentLevel?: 1 | 2 | 3 | 4 | 5 // 1=Resistant, 5=Ready (deprecated)
+  sentimentReason?: string // One of 5 reason categories (deprecated)
   region: string
   department: string
   role: string
   ageGroup?: string
   businessUnit?: string
   timestamp: Date
+  // 25 sentiment scores from CSV (sentiment_1 through sentiment_25)
+  sentiment_1?: number
+  sentiment_2?: number
+  sentiment_3?: number
+  sentiment_4?: number
+  sentiment_5?: number
+  sentiment_6?: number
+  sentiment_7?: number
+  sentiment_8?: number
+  sentiment_9?: number
+  sentiment_10?: number
+  sentiment_11?: number
+  sentiment_12?: number
+  sentiment_13?: number
+  sentiment_14?: number
+  sentiment_15?: number
+  sentiment_16?: number
+  sentiment_17?: number
+  sentiment_18?: number
+  sentiment_19?: number
+  sentiment_20?: number
+  sentiment_21?: number
+  sentiment_22?: number
+  sentiment_23?: number
+  sentiment_24?: number
+  sentiment_25?: number
 }
 
 export interface CapabilityResponse {

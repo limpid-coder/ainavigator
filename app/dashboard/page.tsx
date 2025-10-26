@@ -102,7 +102,7 @@ export default function DashboardPage() {
 
         const result = await response.json()
         
-        // Transform data to match expected format
+        // Transform data: Include all sentiment scores from CSV
         const transformedSentiment: Partial<SentimentResponse>[] = result.data.map((item: any) => ({
           id: item.id,
           responseId: item.responseId,
@@ -110,9 +110,9 @@ export default function DashboardPage() {
           department: item.department,
           role: item.role,
           ageGroup: item.ageGroup,
-          sentimentLevel: 3, // Will calculate properly later
-          sentimentReason: 'general',
           timestamp: item.timestamp,
+          // Include all 25 sentiment scores
+          ...item.sentimentScores
         }))
 
         setSentimentData(transformedSentiment)
