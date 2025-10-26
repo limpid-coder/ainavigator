@@ -155,7 +155,7 @@ export function calculateReadinessScore(
   capabilityResponses: CapabilityResponse[]
 ): number {
   const sentimentAvg = sentimentResponses.length > 0
-    ? sentimentResponses.reduce((sum, r) => sum + r.sentimentLevel, 0) / sentimentResponses.length
+    ? sentimentResponses.reduce((sum, r) => sum + (r.sentimentLevel ?? 0), 0) / sentimentResponses.length
     : 0
     
   const capabilityDims = calculateCapabilityDimensions(capabilityResponses)
