@@ -4,6 +4,13 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Sun, Moon, Brain, ArrowRight, Sparkles, Shield, Check, X, Building2, ChevronRight, BarChart3, Target, Zap, Clock, AlertTriangle, TrendingUp, Users, Layers, FileText, Lock, Globe, Database, Award, Hexagon, Activity, ArrowUpRight, Cpu } from "lucide-react"
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
+// Dynamically import HeroWave for better performance
+const HeroWave = dynamic(() => import('@/components/ui/dynamic-wave-canvas-background'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-[#5380b3]/5 to-[#a74f8b]/5" />
+})
 
 // Company demo data schema
 const COMPANY_ACCESS_CODES = {
@@ -180,7 +187,7 @@ export default function Home() {
     }
   }
 
-  const bgColor = isDarkMode ? "bg-black" : "bg-white"
+  const bgColor = isDarkMode ? "bg-gradient-to-b from-black to-gray-950" : "bg-gradient-to-b from-gray-50 to-white"
   const textColor = isDarkMode ? "text-white" : "text-gray-900"
   const subTextColor = isDarkMode ? "text-white/60" : "text-gray-500"
 
@@ -191,9 +198,18 @@ export default function Home() {
   ]
 
   return (
-    <main className={`relative min-h-screen ${bgColor} w-full transition-all duration-500`}>
+    <main className={`relative min-h-screen ${bgColor} w-full transition-all duration-500 overflow-hidden`}>
+      {/* Dynamic Wave Background - Performance optimized */}
+      {isDarkMode && isMounted && (
+        <div className="fixed inset-0 z-0">
+          <div className="absolute inset-0 opacity-[0.15]">
+            <HeroWave />
+          </div>
+        </div>
+      )}
+      
       {/* Subtle gradient overlay */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-[1] pointer-events-none">
         <div className={`absolute inset-0 ${
           isDarkMode 
             ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent'
@@ -201,16 +217,59 @@ export default function Home() {
         }`} />
       </div>
 
+      {/* Optimized CSS animations */}
+      <style jsx global>{`
+        @keyframes floatingCard {
+          0%, 100% { 
+            transform: translateY(0px) scale(1);
+          }
+          50% { 
+            transform: translateY(-8px) scale(1.005);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        .animate-shimmer {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+          background-size: 1000px 100%;
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
+      
       {/* Content Layer */}
       <div className="relative z-10">
-        {/* Navigation Bar - iOS Style */}
-        <nav className="fixed top-0 left-0 right-0 z-50 px-6 pt-6">
+        {/* Navigation Bar - iOS Style with Glass Morphism */}
+        <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 pt-4 md:pt-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <div className="max-w-7xl mx-auto">
             <div className={`relative ${
               isDarkMode 
                 ? 'bg-black/40 border-white/[0.06] shadow-2xl' 
                 : 'bg-white/70 border-gray-200 shadow-lg'
-            } backdrop-blur-xl border rounded-[28px] px-6 py-3`}>
+            } backdrop-blur-2xl border rounded-[24px] md:rounded-[28px] px-4 md:px-6 py-2.5 md:py-3 transition-all duration-300`}>
               <div className={`absolute inset-0 rounded-[28px] ${
                 isDarkMode 
                   ? 'bg-gradient-to-b from-white/[0.03] to-transparent' 
@@ -218,11 +277,13 @@ export default function Home() {
               } pointer-events-none`} />
             
             <div className="relative flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-3 group">
-                  <div className={`p-2 rounded-2xl ${isDarkMode ? 'bg-white/[0.06]' : 'bg-black/[0.03]'} transition-all duration-300 group-hover:scale-105`}>
-                    <Brain className="w-6 h-6 text-[#5380b3]" strokeWidth={2} />
-            </div>
-                  <span className={`font-semibold text-[17px] tracking-tight ${textColor}`}>AI Navigator</span>
+                <Link href="/" className="flex items-center gap-2 md:gap-3 group">
+                  <img 
+                    src="/LeadingwithAI-removebg-preview.png" 
+                    alt="AI Navigator" 
+                    className="w-8 h-8 md:w-10 md:h-10 object-contain transition-all duration-300 group-hover:scale-105"
+                  />
+                  <span className={`font-semibold text-[15px] md:text-[17px] tracking-tight ${textColor}`}>AI Navigator</span>
               </Link>
               
                 <div className="hidden md:flex items-center gap-1">
@@ -273,24 +334,24 @@ export default function Home() {
 
         {/* Hero Section - Compact & Refined */}
         <section className="relative min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden">
-          {/* Lightweight Animated Gradient Background */}
-          <div className="absolute inset-0 opacity-30 pointer-events-none">
-            <div 
-              className="absolute inset-0 bg-gradient-to-br from-[#5380b3] via-[#a74f8b] to-[#e0874e]"
-              style={{
-                animation: 'gradientShift 20s ease-in-out infinite',
-                backgroundSize: '200% 200%'
-              }}
-            />
-            <div className="absolute inset-0 bg-black/50" />
-                        </div>
+          {/* Optimized gradient orbs with better performance */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-[#5380b3]/10 rounded-full blur-3xl animate-pulse will-change-transform" />
+            <div className="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-[#a74f8b]/10 rounded-full blur-3xl animate-pulse will-change-transform" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-72 h-48 md:h-72 bg-[#e0874e]/5 rounded-full blur-3xl animate-pulse will-change-transform" style={{ animationDelay: '2s' }} />
+          </div>
 
-          <div className="w-full max-w-xl relative z-10">
-            <div className={`relative ${
+          <div className="w-full max-w-xl relative z-10 px-4 md:px-0">
+            {/* Refined floating card with better performance */}
+            <div 
+              className={`relative ${
                               isDarkMode
                 ? 'bg-black/20 border-white/[0.06]' 
-                : 'bg-white/50 border-gray-200'
-            } backdrop-blur-xl border rounded-[32px] p-10 shadow-2xl`}>
+                : 'bg-white/60 border-gray-200'
+            } backdrop-blur-2xl border rounded-[24px] md:rounded-[32px] p-6 md:p-10 shadow-2xl transform transition-all duration-500 hover:scale-[1.01] will-change-transform`}
+              style={{
+                animation: isMounted ? 'floatingCard 8s cubic-bezier(0.4, 0, 0.6, 1) infinite' : 'none'
+              }}>
               <div className={`absolute inset-0 rounded-[32px] pointer-events-none ${
                     isDarkMode
                   ? 'bg-gradient-to-b from-white/[0.02] to-transparent' 
@@ -301,30 +362,27 @@ export default function Home() {
                 {!isSubmitted ? (
                   <>
                     <div className="text-center mb-8">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6 ${
-                        isDarkMode
-                          ? 'bg-white/[0.04] border border-white/[0.06]'
-                          : 'bg-black/[0.02] border border-gray-200'
-                      }`}>
-                        <Sparkles className="w-3.5 h-3.5 text-[#5380b3]" strokeWidth={2} />
-                        <span className={`text-[11px] font-semibold uppercase tracking-wider ${subTextColor}`}>
-                          AI Readiness
-                        </span>
+                      <div className="mb-4 md:mb-6 flex justify-center">
+                        <img 
+                          src="/Leadingwith.AI clean.png" 
+                          alt="Leading.ai" 
+                          className="h-12 md:h-16 w-auto object-contain"
+                        />
                       </div>
 
-                      <h1 className={`text-[42px] font-light ${textColor} mb-4 tracking-[-0.02em] leading-[1.05]`}>
+                      <h1 className={`text-[32px] md:text-[42px] font-light ${textColor} mb-4 tracking-[-0.02em] leading-[1.1] animate-fade-in-up`}>
                         Transform Your<br />
                         <span className="font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
                 AI Journey
               </span>
             </h1>
-                      <p className={`${subTextColor} text-[15px] leading-relaxed max-w-sm mx-auto`}>
+                      <p className={`${subTextColor} text-[14px] md:text-[15px] leading-relaxed max-w-sm mx-auto opacity-0 animate-fade-in-up`} style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
                         Data-driven insights to navigate enterprise AI transformation
                       </p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="mb-6">
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         <Input
                           type="email"
                           placeholder="your@company.com"
@@ -338,6 +396,7 @@ export default function Home() {
                           type="submit"
                           isDark={isDarkMode}
                           variant="primary"
+                          className="w-full sm:w-auto"
                         >
                           Join Waitlist
                         </Button>
@@ -419,10 +478,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Problem Section - Two Column Wide Layout */}
-        <section className="py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-12">
+        {/* Problem Section - Two Column Wide Layout with Parallax */}
+        <section className="py-24 px-6 relative">
+          {/* Optimized background accent */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute left-0 top-1/2 w-48 md:w-72 h-48 md:h-72 bg-red-500/5 rounded-full blur-3xl" />
+            <div className="absolute right-0 bottom-1/2 w-48 md:w-72 h-48 md:h-72 bg-orange-500/5 rounded-full blur-3xl" />
+          </div>
+          <div className="max-w-7xl mx-auto relative">
+            <div className="mb-12 animate-fade-in-up">
               <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`}>
                 The Challenge
               </p>
@@ -431,7 +495,7 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
               {[
                 {
                   icon: Users,
@@ -463,11 +527,11 @@ export default function Home() {
                 const Icon = item.icon
                 
                 return (
-                  <div key={item.title} className={`group relative p-10 rounded-[32px] ${
+                  <div key={item.title} className={`group relative p-6 md:p-10 rounded-[24px] md:rounded-[32px] ${
               isDarkMode
                       ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
                       : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
-                  } transition-all duration-300 hover:scale-[1.01]`}>
+                  } transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl will-change-transform`}>
                     <div className="flex items-start gap-6">
                       <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${
                         item.color === 'red'
@@ -513,8 +577,19 @@ export default function Home() {
         </div>
       </section>
 
-        {/* Features Section - Compact Cards */}
-        <section id="features" className="py-20 px-6 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+        {/* Features Section - Compact Cards with 3D Effect */}
+        <section id="features" className="py-20 px-6 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent relative">
+          {/* Refined floating particles effect */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {isDarkMode && isMounted && (
+              <>
+                <div className="absolute top-20 left-10 w-2 h-2 bg-[#5380b3]/50 rounded-full animate-pulse" />
+                <div className="absolute top-40 right-20 w-3 h-3 bg-[#a74f8b]/50 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
+                <div className="absolute bottom-20 left-1/4 w-2 h-2 bg-[#e0874e]/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute bottom-40 right-1/3 w-3 h-3 bg-[#5380b3]/50 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
+              </>
+            )}
+          </div>
           <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
               <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
@@ -525,7 +600,7 @@ export default function Home() {
               </h2>
           </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-3 gap-3 md:gap-4">
             {[
               {
                   icon: Target,
@@ -551,11 +626,11 @@ export default function Home() {
               ].map((feature) => {
                 const Icon = feature.icon
                 return (
-                  <div key={feature.title} className={`group p-6 rounded-[24px] ${
+                  <div key={feature.title} className={`group p-5 md:p-6 rounded-[20px] md:rounded-[24px] ${
                       isDarkMode
                       ? 'bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.06]'
                       : 'bg-gray-50 hover:bg-white border border-gray-200'
-                  } transition-all duration-300`}>
+                  } transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-xl will-change-transform`}>
                     <Icon className="w-8 h-8 text-[#5380b3] mb-4" strokeWidth={1.5} />
                     
                     <h3 className={`text-[18px] font-semibold mb-2 ${textColor}`}>{feature.title}</h3>
@@ -572,10 +647,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Complete Picture Section - Enhanced Visualizations */}
-        <section className="py-32 px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+        {/* Complete Picture Section - Enhanced Visualizations with Interactive Elements */}
+        <section className="py-32 px-6 relative">
+          {/* Animated background gradient */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div 
+              className="absolute inset-0 opacity-5"
+              style={{
+                background: `radial-gradient(circle at 50% 50%, #5380b3 0%, transparent 50%)`,
+                animation: 'pulse 4s ease-in-out infinite'
+              }}
+            />
+          </div>
+          <div className="max-w-7xl mx-auto relative">
+            <div className="text-center mb-16 animate-fade-in-up">
               <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#a74f8b]' : 'text-[#a74f8b]'}`}>
                 Dual Framework
               </p>
@@ -587,16 +672,16 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Tab Switcher */}
-            <div className="flex justify-center mb-12">
-              <div className={`inline-flex p-1 rounded-[24px] ${
+            {/* Tab Switcher - Responsive */}
+            <div className="flex justify-center mb-8 md:mb-12">
+              <div className={`inline-flex p-1 rounded-[20px] md:rounded-[24px] ${
                 isDarkMode
                   ? 'bg-white/[0.04] border border-white/[0.06]'
                   : 'bg-gray-100 border border-gray-200'
-              }`}>
+              } transition-all duration-300`}>
                 <button
                   onClick={() => setActiveTab('sentiment')}
-                  className={`px-6 py-2.5 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
+                  className={`px-4 md:px-6 py-2 md:py-2.5 rounded-[16px] md:rounded-[20px] text-[13px] md:text-[14px] font-semibold transition-all duration-300 ${
                     activeTab === 'sentiment'
                       ? isDarkMode 
                         ? 'bg-white text-black shadow-lg' 
@@ -604,11 +689,11 @@ export default function Home() {
                       : subTextColor
                   }`}
                 >
-                  Sentiment Heatmap
+                  <span className="hidden sm:inline">Sentiment </span>Heatmap
                 </button>
                 <button
                   onClick={() => setActiveTab('capability')}
-                  className={`px-6 py-2.5 rounded-[20px] text-[14px] font-semibold transition-all duration-300 ${
+                  className={`px-4 md:px-6 py-2 md:py-2.5 rounded-[16px] md:rounded-[20px] text-[13px] md:text-[14px] font-semibold transition-all duration-300 ${
                     activeTab === 'capability'
                       ? isDarkMode 
                         ? 'bg-white text-black shadow-lg' 
@@ -616,18 +701,18 @@ export default function Home() {
                       : subTextColor
                   }`}
                 >
-                  Capability Diamond
+                  <span className="hidden sm:inline">Capability </span>Diamond
                 </button>
               </div>
             </div>
 
             {activeTab === 'sentiment' ? (
               /* Sentiment Heatmap */
-              <div className={`rounded-[32px] overflow-hidden ${
+              <div className={`rounded-[24px] md:rounded-[32px] overflow-hidden ${
                 isDarkMode
                   ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
                   : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
-              } p-10`}>
+              } p-6 md:p-10`}>
                 <div className="max-w-5xl mx-auto">
                   <div className="mb-8">
                     <h3 className={`text-[20px] font-semibold mb-2 ${textColor}`}>
@@ -669,8 +754,11 @@ export default function Home() {
                             return (
                               <div
                                 key={`${rowIdx}-${colIdx}`}
-                                className={`aspect-square rounded-lg ${bgColor} transition-all duration-300 hover:scale-105 cursor-pointer flex items-center justify-center group relative`}
-                                style={{ opacity: 0.3 + opacity * 0.7 }}
+                                className={`aspect-square rounded-lg ${bgColor} transition-all duration-300 hover:scale-105 hover:z-10 cursor-pointer flex items-center justify-center group relative transform hover:rotate-1`}
+                                style={{ 
+                                  opacity: 0.3 + opacity * 0.7,
+                                  boxShadow: value > 70 ? '0 0 15px rgba(34, 197, 94, 0.2)' : value > 40 ? '0 0 15px rgba(234, 179, 8, 0.2)' : '0 0 15px rgba(239, 68, 68, 0.2)'
+                                }}
                               >
                                 <span className={`text-[10px] font-bold ${
                                   isDarkMode ? 'text-white' : 'text-black'
@@ -720,11 +808,11 @@ export default function Home() {
               </div>
             ) : (
               /* Capability Diamond */
-              <div className={`rounded-[32px] overflow-hidden ${
+              <div className={`rounded-[24px] md:rounded-[32px] overflow-hidden ${
                     isDarkMode
                   ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
                   : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
-              } p-10`}>
+              } p-6 md:p-10`}>
                 <div className="max-w-5xl mx-auto">
                   <div className="mb-8">
                     <h3 className={`text-[20px] font-semibold mb-2 ${textColor}`}>
@@ -735,7 +823,7 @@ export default function Home() {
                     </p>
                   </div>
                   
-                  <div className="grid lg:grid-cols-2 gap-10 items-center">
+                  <div className="grid lg:grid-cols-2 gap-6 md:gap-10 items-center">
                     {/* Radar Chart */}
                     <div className="relative">
                       <div className="relative w-full aspect-square max-w-md mx-auto">
@@ -881,8 +969,8 @@ export default function Home() {
         </div>
       </section>
 
-        {/* Security - Compact Grid */}
-        <section className="py-20 px-6">
+        {/* Security - Compact Grid with Hover Effects */}
+        <section className="py-20 px-6 relative">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-10">
               <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 text-green-500`}>
@@ -893,7 +981,7 @@ export default function Home() {
               </h2>
               </div>
               
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
               {[
                 { icon: Shield, title: 'SOC2', detail: 'Type II' },
                 { icon: Lock, title: 'AES-256', detail: 'Encryption' },
@@ -902,12 +990,12 @@ export default function Home() {
               ].map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className={`p-5 rounded-[20px] text-center ${
+                  <div key={item.title} className={`p-4 md:p-5 rounded-[16px] md:rounded-[20px] text-center transition-all duration-300 hover:scale-[1.03] hover:-translate-y-0.5 cursor-pointer group ${
                     isDarkMode
-                      ? 'bg-white/[0.02] border border-white/[0.06]'
-                      : 'bg-gray-50 border border-gray-200'
-                  }`}>
-                    <Icon className="w-6 h-6 mx-auto mb-3 text-green-500" strokeWidth={1.5} />
+                      ? 'bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.04] hover:border-green-500/20'
+                      : 'bg-gray-50 border border-gray-200 hover:bg-white hover:border-green-500/20'
+                  } hover:shadow-lg will-change-transform`}>
+                    <Icon className="w-6 h-6 mx-auto mb-3 text-green-500 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
                     <h3 className={`text-[14px] font-semibold ${textColor}`}>{item.title}</h3>
                     <p className={`text-[11px] ${subTextColor}`}>{item.detail}</p>
                   </div>
@@ -917,12 +1005,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Final CTA - Centered & Clean */}
-        <section className="py-32 px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className={`text-[48px] font-light ${textColor} mb-4 tracking-tight`}>
+        {/* Final CTA - Centered & Clean with Glow Effect */}
+        <section className="py-32 px-6 relative">
+          {/* Glow background effect */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-[#5380b3]/10 via-[#7a6ca8]/10 to-[#a74f8b]/10 rounded-full blur-3xl animate-pulse" />
+          </div>
+          <div className="max-w-3xl mx-auto text-center relative z-10">
+            <h2 className={`text-[48px] font-light ${textColor} mb-4 tracking-tight animate-fade-in-up`}>
               Ready to start your
-              <span className="block text-[52px] font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
+              <span className="block text-[52px] font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent animate-pulse">
                 transformation?
               </span>
             </h2>
@@ -931,14 +1023,22 @@ export default function Home() {
               Get early access at Web Summit 2025
             </p>
             
-            <div className="flex gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link href="/demo">
-                <Button variant="primary" isDark={isDarkMode}>
+                <Button 
+                  variant="primary" 
+                  isDark={isDarkMode}
+                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl min-w-[140px]"
+                >
                   Try Demo
                 </Button>
                 </Link>
               <Link href="/upload">
-                <Button variant="secondary" isDark={isDarkMode}>
+                <Button 
+                  variant="secondary" 
+                  isDark={isDarkMode}
+                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] min-w-[140px]"
+                >
                   Upload Data
                 </Button>
                 </Link>
@@ -946,20 +1046,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer - Minimal */}
-        <footer className={`py-12 ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="flex justify-between items-center">
+        {/* Footer - Minimal and Refined */}
+        <footer className={`py-8 md:py-12 ${isDarkMode ? 'border-t border-white/[0.06]' : 'border-t border-gray-200'}`}>
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
-                <Brain className="w-4 h-4 text-[#5380b3]" strokeWidth={2} />
-                <span className={`text-[13px] ${subTextColor}`}>© 2025 AI Navigator</span>
+                <img 
+                  src="/LeadingwithAI-removebg-preview.png" 
+                  alt="AI Navigator" 
+                  className="w-5 h-5 object-contain"
+                />
+                <span className={`text-[12px] md:text-[13px] ${subTextColor}`}>© 2025 AI Navigator</span>
             </div>
               
-              <div className="flex gap-5">
-                {['Demo', 'Features', 'Security'].map((item) => (
-                  <a key={item} href="#" className={`text-[12px] ${subTextColor} hover:${textColor} transition-colors`}>
-                    {item}
-                  </a>
+              <div className="flex gap-4 md:gap-5">
+                {[
+                  { label: 'Demo', href: '/demo' },
+                  { label: 'Features', href: '#features' },
+                  { label: 'Security', href: '#security' }
+                ].map((item) => (
+                  <Link key={item.label} href={item.href} className={`text-[11px] md:text-[12px] ${subTextColor} hover:${textColor} transition-colors`}>
+                    {item.label}
+                  </Link>
                 ))}
               </div>
           </div>

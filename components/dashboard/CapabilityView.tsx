@@ -96,51 +96,32 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
     .slice(0, 3)
 
   return (
-    <div className="space-y-8">
-      {/* Premium Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="glass-premium rounded-2xl p-8 relative overflow-hidden"
-      >
-        {/* Ambient background glow */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl -z-10" />
+    <div className="space-y-4">
+      {/* Header */}
+      <div className="glass-dark rounded-xl p-3 relative overflow-hidden">
 
         <div className="flex items-center gap-4 relative z-10">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20, delay: 0.1 }}
-            className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 glow-sm"
-          >
-            <Radar className="w-8 h-8 text-purple-300" />
-          </motion.div>
+          <div className="p-2 rounded-lg bg-purple-500/20">
+            <Radar className="w-5 h-5 text-purple-300" />
+          </div>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-1">
+            <h2 className="text-lg font-bold tracking-tight">
               Capability Diamond
             </h2>
-            <p className="text-gray-400 text-base">
+            <p className="text-gray-400 text-xs">
               AI maturity assessment across 8 key dimensions
             </p>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Content Grid */}
-      <div className="grid lg:grid-cols-3 gap-8">
-        {/* Premium Radar Chart */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.15, type: "spring", stiffness: 300, damping: 30 }}
-          className="lg:col-span-2 glass-premium rounded-2xl p-8"
-        >
-          <div className="flex items-center justify-between mb-8">
+      <div className="grid lg:grid-cols-3 gap-3">
+        {/* Radar Chart */}
+        <div className="lg:col-span-2 glass-dark rounded-xl p-3">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex-1">
-              <h3 className="text-xl font-bold tracking-tight flex items-center gap-3 mb-2">
-                <div className="w-1 h-6 bg-gradient-to-b from-purple-400 to-indigo-400 rounded-full" />
+              <h3 className="text-md font-bold tracking-tight mb-1">
                 {viewMode === 'dimensions' ? 'Capability Dimensions' : 'Construct Analysis'}
               </h3>
               <p className="text-sm text-gray-400">
@@ -169,7 +150,7 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
           </div>
 
           {/* Radar Chart */}
-          <div className="h-96">
+          <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData}>
                 <PolarGrid 
@@ -261,22 +242,15 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
               ))}
             </select>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Premium Details Panel */}
-        <div className="space-y-6">
+        {/* Details Panel */}
+        <div className="space-y-3">
           {/* Strengths */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 300, damping: 30 }}
-            className="glass-premium rounded-2xl p-6"
-          >
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-teal-500/20 to-emerald-400/20">
-                <TrendingUp className="w-5 h-5 text-teal-300" />
-              </div>
-              <h3 className="font-bold text-lg tracking-tight">Strengths</h3>
+          <div className="glass-dark rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingUp className="w-4 h-4 text-teal-300" />
+              <h3 className="font-semibold text-sm">Strengths</h3>
             </div>
             <div className="space-y-3">
               {strongestDimensions.map((dim, idx) => (
@@ -298,20 +272,13 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Areas for Improvement */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.25, type: "spring", stiffness: 300, damping: 30 }}
-            className="glass-premium rounded-2xl p-6"
-          >
-            <div className="flex items-center gap-3 mb-5">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-400/20">
-                <TrendingDown className="w-5 h-5 text-orange-300" />
-              </div>
-              <h3 className="font-bold text-lg tracking-tight">Areas for Improvement</h3>
+          <div className="glass-dark rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-2">
+              <TrendingDown className="w-4 h-4 text-orange-300" />
+              <h3 className="font-semibold text-sm">Areas for Improvement</h3>
             </div>
             <div className="space-y-3">
               {weakestDimensions.map((dim, idx) => (
@@ -335,29 +302,20 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
             </div>
 
 
-            <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full mt-6 btn-primary flex items-center justify-center gap-2"
+            <button
+              className="w-full mt-6 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/30 text-purple-300 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <Lightbulb className="w-5 h-5" />
               Get Recommendations
               <ChevronRight className="w-4 h-4" />
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
 
           {/* Info Box */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 300, damping: 30 }}
-            className="glass-premium rounded-2xl p-6"
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-400/20">
-                <Info className="w-5 h-5 text-cyan-300" />
-              </div>
-              <h4 className="font-bold tracking-tight">Understanding Scores</h4>
+          <div className="glass-dark rounded-lg p-3">
+            <div className="flex items-center gap-2 mb-2">
+              <Info className="w-4 h-4 text-cyan-300" />
+              <h4 className="font-semibold text-sm">Score Guide</h4>
             </div>
             <div className="space-y-2 text-sm text-gray-400">
               <p>• 1-2: Initial/Ad-hoc</p>
@@ -365,22 +323,22 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
               <p>• 3-4: Established</p>
               <p>• 4-5: Advanced/Leading</p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="glass rounded-xl p-6">
-          <p className="text-sm text-gray-400 mb-1">Overall Maturity</p>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="glass-dark rounded-lg p-3">
+          <p className="text-xs text-gray-400">Overall Maturity</p>
           <p className="text-2xl font-bold">
             {(dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length).toFixed(1)}
             <span className="text-lg text-gray-500">/5</span>
           </p>
         </div>
         
-        <div className="glass rounded-xl p-6">
-          <p className="text-sm text-gray-400 mb-1">vs Benchmark</p>
+        <div className="glass-dark rounded-lg p-3">
+          <p className="text-xs text-gray-400">vs Benchmark</p>
           <p className="text-2xl font-bold">
             {dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length >= 3.5 ? (
               <span className="text-teal-400">+{((dimensions.reduce((sum, d) => sum + d.averageScore, 0) / dimensions.length) - 3.5).toFixed(1)}</span>
@@ -390,16 +348,16 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
           </p>
         </div>
         
-        <div className="glass rounded-xl p-6">
-          <p className="text-sm text-gray-400 mb-1">Dimensions Above 3.5</p>
+        <div className="glass-dark rounded-lg p-3">
+          <p className="text-xs text-gray-400">Dimensions Above 3.5</p>
           <p className="text-2xl font-bold">
             {dimensions.filter(d => d.averageScore >= 3.5).length}
             <span className="text-lg text-gray-500">/8</span>
           </p>
         </div>
         
-        <div className="glass rounded-xl p-6">
-          <p className="text-sm text-gray-400 mb-1">Critical Gaps</p>
+        <div className="glass-dark rounded-lg p-3">
+          <p className="text-xs text-gray-400">Critical Gaps</p>
           <p className="text-2xl font-bold text-orange-400">
             {dimensions.filter(d => d.averageScore < 2.5).length}
           </p>

@@ -35,7 +35,11 @@ export default function Header() {
         
         <div className="relative flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <Brain className="w-7 h-7 text-teal-400" />
+            <img 
+              src="/LeadingwithAI-removebg-preview.png" 
+              alt="AI Navigator" 
+              className="w-9 h-9 object-contain"
+            />
             <span className="font-semibold text-lg tracking-tight">AI Navigator</span>
           </Link>
           

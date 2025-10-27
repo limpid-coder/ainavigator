@@ -25,6 +25,7 @@ export function filterResponses<T extends Record<string, any>>(
 }
 
 // Calculate sentiment heatmap data
+// Groups respondents into 5x5 grid based on overall sentiment level and primary concern
 export function calculateSentimentHeatmap(
   responses: SentimentResponse[],
   filters: FilterState = {}
@@ -32,39 +33,66 @@ export function calculateSentimentHeatmap(
   const filtered = filterResponses(responses, filters)
   const heatmapData: HeatmapCell[] = []
   
-  // Create 5x5 grid - map sentiment_1 through sentiment_25 to grid cells
-  let sentimentIndex = 1
-  
-  for (let level = 1; level <= 5; level++) {
+  // Create 5x5 grid - categorize each respondent into ONE cell
+  for (let level = 5; level >= 1; level--) {
     for (let reasonIdx = 0; reasonIdx < 5; reasonIdx++) {
-      const sentimentKey = `sentiment_${sentimentIndex}` as keyof SentimentResponse
+      // Get sentiment scores for this reason category (5 questions per reason)
+      // Reason 1 (col 0): sentiment_1, 6, 11, 16, 21
+      // Reason 2 (col 1): sentiment_2, 7, 12, 17, 22
+      // etc.
+      const sentimentIndices = [
+        reasonIdx + 1,        // Level 1
+        reasonIdx + 6,        // Level 2  
+        reasonIdx + 11,       // Level 3
+        reasonIdx + 16,       // Level 4
+        reasonIdx + 21        // Level 5
+      ]
       
-      // Calculate average score for this sentiment dimension across all respondents
-      const scoresForThisSentiment = filtered
-        .map(r => r[sentimentKey])
-        .filter((score): score is number => typeof score === 'number' && !isNaN(score))
+      // Find respondents whose scores for this reason category match this level
+      const respondentsInCell = filtered.filter(r => {
+        // Get all scores for this reason category
+        const reasonScores = sentimentIndices
+          .map(idx => r[`sentiment_${idx}` as keyof SentimentResponse] as number)
+          .filter(score => typeof score === 'number' && !isNaN(score))
+        
+        if (reasonScores.length === 0) return false
+        
+        // Calculate average score for this reason
+        const avgReasonScore = reasonScores.reduce((sum, s) => sum + s, 0) / reasonScores.length
+        
+        // Check if this average falls in the level range
+        // Level 5: 4.5-5.0, Level 4: 3.5-4.5, Level 3: 2.5-3.5, Level 2: 1.5-2.5, Level 1: 1.0-1.5
+        const levelMin = level === 1 ? 1.0 : (level - 1) + 0.5
+        const levelMax = level === 5 ? 5.0 : level + 0.5
+        
+        return avgReasonScore >= levelMin && avgReasonScore < levelMax
+      })
       
-      const avgScore = scoresForThisSentiment.length > 0
-        ? scoresForThisSentiment.reduce((sum, score) => sum + score, 0) / scoresForThisSentiment.length
+      // Calculate average score for respondents in this cell
+      const cellScores = respondentsInCell.flatMap(r => 
+        sentimentIndices
+          .map(idx => r[`sentiment_${idx}` as keyof SentimentResponse] as number)
+          .filter(score => typeof score === 'number' && !isNaN(score))
+      )
+      
+      const avgScore = cellScores.length > 0
+        ? cellScores.reduce((sum, s) => sum + s, 0) / cellScores.length
         : 0
       
+      const row = 5 - level
       const areaId = `L${level}_R${reasonIdx + 1}`
       const description = HEATMAP_DESCRIPTIONS[areaId as keyof typeof HEATMAP_DESCRIPTIONS]
       
       heatmapData.push({
         x: reasonIdx,
-        y: level - 1,
+        y: row,
         value: avgScore,
-        count: scoresForThisSentiment.length,
-        label: description?.label || `Sentiment ${sentimentIndex}`,
+        count: respondentsInCell.length,
+        label: description?.label || `Level ${level}, Reason ${reasonIdx + 1}`,
         description: description?.description || '',
-        color: SENTIMENT_COLORS[level as keyof typeof SENTIMENT_COLORS]
+        color: getHeatmapColor(avgScore)
       })
-      
-      sentimentIndex++
-      if (sentimentIndex > 25) break
     }
-    if (sentimentIndex > 25) break
   }
   
   return heatmapData
@@ -139,14 +167,14 @@ export function calculateConstructDetails(
   return constructs
 }
 
-// Get color for heatmap cell based on value
+// Get color for heatmap cell based on value - matching reference design
 export function getHeatmapColor(value: number): string {
-  if (value === 0) return '#1F2937' // gray-800 for no data
-  if (value < 2) return '#DC2626' // red-600
-  if (value < 3) return '#F97316' // orange-500
-  if (value < 4) return '#FCD34D' // amber-300
-  if (value < 4.5) return '#84CC16' // lime-500
-  return '#10B981' // emerald-500
+  if (value === 0) return '#6B7280' // gray-500 for no data
+  if (value < 2.0) return '#B91C1C' // dark red - very negative (<2)
+  if (value < 2.5) return '#EA580C' // orange-red - negative (2-2.5)
+  if (value < 3.0) return '#FCD34D' // yellow - neutral (2.5-3)
+  if (value < 3.5) return '#A3E635' // light green - positive (3-3.5)
+  return '#15803D' // dark green - very positive (>3.5)
 }
 
 // Calculate overall readiness score

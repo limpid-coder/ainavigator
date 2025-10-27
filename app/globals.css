@@ -110,6 +110,10 @@
 
 @layer utilities {
   /* Glass Morphism Utilities */
+  .glass {
+    @apply bg-black/20 backdrop-blur-md border border-white/[0.05];
+  }
+  
   .glass-dark {
     @apply bg-black/40 backdrop-blur-xl border border-white/[0.05];
   }
@@ -124,6 +128,65 @@
 
   .glass-light-heavy {
     @apply bg-white/80 backdrop-blur-[100px] border border-gray-900/[0.08];
+  }
+  
+  .glass-hover:hover {
+    @apply bg-white/[0.03] border-white/[0.08];
+  }
+  
+  /* Premium Glass */
+  .glass-premium {
+    @apply bg-black/30 backdrop-blur-2xl border border-white/[0.08];
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    @apply px-4 py-2 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/30 text-teal-300 rounded-lg font-medium transition-colors;
+  }
+  
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-500/20 hover:bg-gray-500/30 border border-gray-400/30 text-gray-300 rounded-lg font-medium transition-colors;
+  }
+  
+  /* Scrollbar thin */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  /* Text Gradient Fast */
+  .text-gradient-fast {
+    @apply bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+  
+  /* Gradients */
+  .gradient-primary {
+    @apply bg-gradient-to-r from-teal-500 to-cyan-500;
+  }
+  
+  .gradient-secondary {
+    @apply bg-gradient-to-r from-purple-500 to-indigo-500;
+  }
+  
+  /* Glow Effects */
+  .glow-sm {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.2);
+  }
+  
+  /* Card Interactive */
+  .card-interactive {
+    @apply glass-dark rounded-xl p-5 hover:bg-white/[0.03] cursor-pointer transition-all;
+  }
+  
+  /* Skeleton */
+  .skeleton {
+    @apply bg-white/10 animate-pulse;
+  }
+  
+  /* Data Grid Background */
+  .data-grid {
+    background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   /* Text Gradients */
@@ -215,8 +278,8 @@
 
   /* Enhanced Scrollbar */
   ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
@@ -225,14 +288,14 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-white/20 hover:bg-white/30;
+    @apply bg-white/10 hover:bg-white/20;
     border-radius: 10px;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     background-clip: padding-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-white/40;
+    @apply bg-white/30;
   }
 
   /* Focus States */

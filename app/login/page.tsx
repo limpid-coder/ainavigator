@@ -66,9 +66,11 @@ export default function LoginPage() {
             {/* Title */}
             <div className="text-center mb-12">
               <div className="flex justify-center mb-6">
-                <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20">
-                  <Brain className="w-12 h-12 text-blue-400" />
-                </div>
+                <img 
+                  src="/LeadingwithAI-removebg-preview.png" 
+                  alt="AI Navigator" 
+                  className="w-20 h-20 object-contain"
+                />
               </div>
               <h1 className="text-4xl font-bold mb-3 text-white">
                 Summit Demo Login
