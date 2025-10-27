@@ -20,6 +20,7 @@ import { CONSTRUCT_LABELS } from '@/lib/constants'
 interface CapabilityViewProps {
   data: Partial<CapabilityResponse>[]
   filters: FilterState
+  onShowInterventions?: (areas: string[], dimensions: string[]) => void
 }
 
 const CustomTooltip = ({ active, payload }: {
@@ -51,7 +52,7 @@ const CustomTooltip = ({ active, payload }: {
   return null
 }
 
-export default function CapabilityView({ data, filters }: CapabilityViewProps) {
+export default function CapabilityView({ data, filters, onShowInterventions }: CapabilityViewProps) {
   const [selectedDimension, setSelectedDimension] = useState<string | null>(null)
   const [viewMode, setViewMode] = useState<'dimensions' | 'constructs'>('dimensions')
 
@@ -303,6 +304,10 @@ export default function CapabilityView({ data, filters }: CapabilityViewProps) {
 
 
             <button
+              onClick={() => {
+                const weakDimIds = weakestDimensions.map(d => d.dimensionId)
+                onShowInterventions?.([], weakDimIds)
+              }}
               className="w-full mt-6 px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/30 text-purple-300 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
             >
               <Lightbulb className="w-5 h-5" />

@@ -19,6 +19,7 @@ import { SENTIMENT_LEVELS, SENTIMENT_REASONS } from '@/lib/constants'
 interface HeatmapViewProps {
   data: Partial<SentimentResponse>[]
   filters: FilterState
+  onShowInterventions?: (areas: string[], dimensions: string[]) => void
 }
 
 // Premium heatmap cell component with Apple-level polish
@@ -92,7 +93,7 @@ const HeatmapCell = ({ cellData, isSelected, onClick }: {
   )
 }
 
-export default function HeatmapView({ data, filters }: HeatmapViewProps) {
+export default function HeatmapView({ data, filters, onShowInterventions }: HeatmapViewProps) {
   const [selectedCell, setSelectedCell] = useState<string | null>(null)
   
   const heatmapData = useMemo(() => 
@@ -270,7 +271,10 @@ export default function HeatmapView({ data, filters }: HeatmapViewProps) {
                     </div>
                   </div>
 
-                  <button className="btn-primary w-full mt-6 flex items-center justify-center gap-2">
+                  <button 
+                    onClick={() => onShowInterventions?.(selectedCell ? [selectedCell] : [], [])}
+                    className="btn-primary w-full mt-6 flex items-center justify-center gap-2"
+                  >
                     <Lightbulb className="w-4 h-4" />
                     View Interventions
                   </button>

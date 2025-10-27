@@ -20,8 +20,11 @@ import HeatmapView from '@/components/dashboard/HeatmapView'
 import CapabilityView from '@/components/dashboard/CapabilityView'
 import FilterPanel from '@/components/dashboard/FilterPanel'
 import StatsCards from '@/components/dashboard/StatsCards'
-import HeroWave from '@/components/ui/dynamic-wave-canvas-background'
+import InterventionModal from '@/components/dashboard/InterventionModal'
+import ROIModal from '@/components/dashboard/ROIModal'
+import AISummaryPanel from '@/components/dashboard/AISummaryPanel'
 import { useAuth } from '@/lib/hooks/useAuth'
+import { generatePDF } from '@/lib/utils/pdfExport'
 
 // Loading skeleton component
 const DashboardSkeleton = () => (
@@ -51,6 +54,11 @@ export default function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [showFilters, setShowFilters] = useState(false)
   const [dataStatus, setDataStatus] = useState<'loading' | 'ready' | 'error'>('loading')
+  const [showInterventions, setShowInterventions] = useState(false)
+  const [showROI, setShowROI] = useState(false)
+  const [selectedIntervention, setSelectedIntervention] = useState<string | null>(null)
+  const [targetAreas, setTargetAreas] = useState<string[]>([])
+  const [targetDimensions, setTargetDimensions] = useState<string[]>([])
 
   useEffect(() => {
     requireAuth()
@@ -144,6 +152,34 @@ export default function DashboardPage() {
     capabilityAverage: '3.2'
   }
 
+  const handleShowInterventions = (areas: string[] = [], dimensions: string[] = []) => {
+    setTargetAreas(areas)
+    setTargetDimensions(dimensions)
+    setShowInterventions(true)
+  }
+
+  const handleSelectIntervention = (interventionId: string) => {
+    setSelectedIntervention(interventionId)
+    setShowInterventions(false)
+    setShowROI(true)
+  }
+
+  const handleExportPDF = async () => {
+    try {
+      await generatePDF({
+        companyName: company?.display_name || 'Demo Organization',
+        sentimentData: sentimentData as SentimentResponse[],
+        capabilityData: capabilityData as CapabilityResponse[],
+        selectedFlow: activeView,
+        selectedIntervention: selectedIntervention || undefined,
+        filters
+      })
+    } catch (error) {
+      console.error('PDF export failed:', error)
+      alert('Failed to generate PDF. Please try again.')
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-black overflow-hidden">
@@ -188,10 +224,8 @@ export default function DashboardPage() {
 
   return (
     <div className="fixed inset-0 bg-black overflow-hidden">
-      {/* Dynamic Wave Background - behind everything */}
-      <div className="absolute inset-0 opacity-30 z-0">
-        <HeroWave />
-      </div>
+      {/* Subtle gradient background - performance optimized */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900 z-0" />
       
       {/* Header */}
       <header className="relative border-b border-white/5 backdrop-blur-xl z-40 bg-black/20">
@@ -234,7 +268,9 @@ export default function DashboardPage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={handleExportPDF}
                 className="p-2.5 rounded-lg glass hover:glass-hover"
+                title="Export PDF Report"
               >
                 <Download className="w-5 h-5" />
               </motion.button>
@@ -284,6 +320,16 @@ export default function DashboardPage() {
             >
               <StatsCards stats={stats} />
             </motion.div>
+
+            {/* AI Summary Panel */}
+            {(sentimentData.length > 0 || capabilityData.length > 0) && (
+              <AISummaryPanel
+                sentimentData={sentimentData}
+                capabilityData={capabilityData}
+                activeView={activeView}
+                filters={filters}
+              />
+            )}
 
             {/* View Tabs */}
             <div className="flex items-center justify-between mb-3">
@@ -346,11 +392,13 @@ export default function DashboardPage() {
                   <HeatmapView 
                     data={sentimentData} 
                     filters={filters}
+                    onShowInterventions={handleShowInterventions}
                   />
                 ) : (
                   <CapabilityView 
                     data={capabilityData} 
                     filters={filters}
+                    onShowInterventions={handleShowInterventions}
                   />
                 )}
               </motion.div>
@@ -359,6 +407,22 @@ export default function DashboardPage() {
           </div>
         </main>
       </div>
+
+      {/* Modals */}
+      <InterventionModal
+        isOpen={showInterventions}
+        onClose={() => setShowInterventions(false)}
+        targetAreas={targetAreas}
+        targetDimensions={targetDimensions}
+        onSelectIntervention={handleSelectIntervention}
+      />
+
+      <ROIModal
+        isOpen={showROI}
+        onClose={() => setShowROI(false)}
+        interventionId={selectedIntervention}
+        onExportPDF={handleExportPDF}
+      />
     </div>
   )
 }

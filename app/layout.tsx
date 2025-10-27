@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 
@@ -27,11 +27,12 @@ export const metadata: Metadata = {
     title: "AI Navigator | Enterprise AI Readiness Platform",
     description: "Transform your AI journey with data-driven insights",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#f5f1ed" },
     { media: "(prefers-color-scheme: dark)", color: "#000000" }

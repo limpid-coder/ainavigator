@@ -4,13 +4,6 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Sun, Moon, Brain, ArrowRight, Sparkles, Shield, Check, X, Building2, ChevronRight, BarChart3, Target, Zap, Clock, AlertTriangle, TrendingUp, Users, Layers, FileText, Lock, Globe, Database, Award, Hexagon, Activity, ArrowUpRight, Cpu } from "lucide-react"
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-
-// Dynamically import HeroWave for better performance
-const HeroWave = dynamic(() => import('@/components/ui/dynamic-wave-canvas-background'), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-gradient-to-br from-[#5380b3]/5 to-[#a74f8b]/5" />
-})
 
 // Company demo data schema
 const COMPANY_ACCESS_CODES = {
@@ -199,21 +192,21 @@ export default function Home() {
 
   return (
     <main className={`relative min-h-screen ${bgColor} w-full transition-all duration-500 overflow-hidden`}>
-      {/* Dynamic Wave Background - Performance optimized */}
-      {isDarkMode && isMounted && (
-        <div className="fixed inset-0 z-0">
-          <div className="absolute inset-0 opacity-[0.15]">
-            <HeroWave />
-          </div>
-        </div>
-      )}
+      {/* Optimized static gradient background - much better performance */}
+      <div className="fixed inset-0 z-0">
+        <div className={`absolute inset-0 ${
+          isDarkMode 
+            ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900'
+            : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'
+        }`} />
+      </div>
       
-      {/* Subtle gradient overlay */}
+      {/* Subtle radial overlay */}
       <div className="fixed inset-0 z-[1] pointer-events-none">
         <div className={`absolute inset-0 ${
           isDarkMode 
-            ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/[0.02] via-transparent to-transparent'
-            : 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-black/[0.02] via-transparent to-transparent'
+            ? 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-900/10 via-transparent to-transparent'
+            : 'bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-100/20 via-transparent to-transparent'
         }`} />
       </div>
 
