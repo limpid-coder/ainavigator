@@ -21,7 +21,13 @@ export default function OpenEndedSummary({
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    generateSummary()
+    // Only generate if we have responses
+    if (openEndedResponses && openEndedResponses.length > 0) {
+      generateSummary()
+    } else {
+      setIsGenerating(false)
+      setError('No open-ended responses available to analyze')
+    }
   }, [])
 
   const generateSummary = async () => {
@@ -39,12 +45,17 @@ export default function OpenEndedSummary({
         })
       })
 
-      if (!response.ok) throw new Error('Failed to generate summary')
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.message || 'Failed to generate summary')
+      }
 
       const result = await response.json()
       setSummary(result.data)
     } catch (err: any) {
-      setError(err.message)
+      // Better error messaging
+      const errorMessage = err.message || 'Failed to generate summary'
+      setError(errorMessage)
       console.error('Summary generation failed:', err)
     } finally {
       setIsGenerating(false)
@@ -53,35 +64,67 @@ export default function OpenEndedSummary({
 
   if (isGenerating) {
     return (
-      <div className="flex flex-col items-center justify-center py-20">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-          className="mb-6"
-        >
-          <Sparkles className="w-12 h-12 text-blue-400" />
-        </motion.div>
+      <div className="h-full flex flex-col items-center justify-center">
+        <div className="relative mb-6">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center animate-pulse">
+            <Sparkles className="w-8 h-8 text-white" />
+          </div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 animate-ping opacity-20" />
+        </div>
         <h3 className="text-xl font-semibold mb-2">Analyzing Open-Ended Responses...</h3>
-        <p className="text-gray-400 text-center max-w-md">
-          Our AI is synthesizing insights from {openEndedResponses.length} employee responses
+        <p className="text-gray-400 text-center max-w-md text-sm">
+          Our AI is synthesizing insights from {openEndedResponses?.length || 0} employee responses
         </p>
+        <div className="mt-6 flex items-center gap-2">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 bg-teal-400 rounded-full"
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 1, 0.5]
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.2
+              }}
+            />
+          ))}
+        </div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="glass-dark rounded-xl p-8 text-center">
-        <AlertCircle className="w-12 h-12 text-red-400 mx-auto mb-4" />
-        <h3 className="text-xl font-semibold mb-2">Analysis Failed</h3>
-        <p className="text-gray-400 mb-6">{error}</p>
-        <div className="flex gap-3 justify-center">
-          <button onClick={generateSummary} className="btn-primary">
-            Retry Analysis
-          </button>
-          <button onClick={onBack} className="btn-secondary">
-            Back to Overview
-          </button>
+      <div className="h-full flex flex-col items-center justify-center p-6">
+        <div className="max-w-md w-full bg-gradient-to-br from-orange-500/10 to-transparent rounded-xl border border-orange-500/20 p-8 text-center">
+          <div className="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center mx-auto mb-4">
+            <AlertCircle className="w-8 h-8 text-orange-400" />
+          </div>
+          <h3 className="text-xl font-bold text-white mb-2">Analysis Unavailable</h3>
+          <p className="text-sm text-gray-400 mb-6">
+            {error === 'No open-ended responses available to analyze' 
+              ? 'This feature requires open-ended survey responses. The current dataset does not include qualitative feedback.'
+              : 'The AI analysis service is currently unavailable. This feature will be enabled when the backend API is configured.'}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            {error !== 'No open-ended responses available to analyze' && (
+              <button 
+                onClick={generateSummary} 
+                className="px-4 py-2 rounded-lg bg-teal-500/20 hover:bg-teal-500/30 border border-teal-400/30 text-teal-300 text-sm font-semibold transition-all"
+              >
+                Retry Analysis
+              </button>
+            )}
+            <button 
+              onClick={onBack} 
+              className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white text-sm font-semibold transition-all"
+            >
+              Back to Capability View
+            </button>
+          </div>
         </div>
       </div>
     )

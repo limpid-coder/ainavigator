@@ -1,8 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { TrendingUp, TrendingDown, Users, Target, Sparkles, ArrowRight, AlertCircle, CheckCircle } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { TrendingUp, TrendingDown, Users, Target, Sparkles, ArrowRight, AlertCircle, CheckCircle, Zap, Brain, BarChart } from 'lucide-react'
 import { useMemo } from 'react'
+import { MotionWrapper, staggerContainer, fadeInUp } from '@/components/ui/motion-wrapper'
+import { Card } from '@/components/ui/Card'
 
 interface OverviewDashboardProps {
   companyName: string
@@ -70,49 +72,112 @@ export default function OverviewDashboard({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="text-center"
       >
-        <div className="flex items-center justify-center gap-3 mb-4">
-          <Sparkles className="w-8 h-8 text-teal-400" />
-          <h1 className="text-4xl font-bold">Welcome back, {userName}!</h1>
-        </div>
-        <p className="text-xl text-gray-300 mb-2">
-          Your AI Readiness Assessment for <span className="text-teal-400 font-semibold">{companyName}</span> is ready
-        </p>
-        <p className="text-gray-400">
-          Based on insights from <span className="font-semibold">{metrics.respondentCount} employees</span> across your organization
-        </p>
+        <motion.div 
+          className="flex items-center justify-center gap-3 mb-4"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <motion.div
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <Sparkles className="w-8 h-8 text-teal-400" />
+          </motion.div>
+          <motion.h1 
+            className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+            initial={{ backgroundPosition: "0% 50%" }}
+            animate={{ backgroundPosition: "100% 50%" }}
+            transition={{ duration: 3, repeat: Infinity, repeatType: "reverse" }}
+          >
+            Welcome back, {userName}!
+          </motion.h1>
+        </motion.div>
+        <motion.p 
+          className="text-xl text-gray-300 mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          Your AI Readiness Assessment for <span className="text-teal-400 font-semibold animate-pulse">{companyName}</span> is ready
+        </motion.p>
+        <motion.p 
+          className="text-gray-400"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Based on insights from <motion.span 
+            className="font-semibold text-white"
+            initial={{ scale: 1 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >{metrics.respondentCount} employees</motion.span> across your organization
+        </motion.p>
       </motion.div>
 
       {/* Key Metrics Cards */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
         className="grid md:grid-cols-3 gap-6"
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
       >
         {/* Overall Readiness */}
-        <div className="glass-dark rounded-2xl p-8 border border-teal-500/20">
+        <motion.div 
+          className="glass-dark rounded-2xl p-8 border border-teal-500/20 hover:border-teal-400/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(20,184,166,0.2)] cursor-pointer group"
+          variants={fadeInUp}
+          whileHover={{ scale: 1.02, y: -4 }}
+          transition={{ type: "spring", stiffness: 300 }}>
           <div className="flex items-center gap-3 mb-4">
-            <Target className="w-6 h-6 text-teal-400" />
-            <h3 className="text-sm font-medium text-gray-400">Overall AI Readiness</h3>
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Target className="w-6 h-6 text-teal-400 group-hover:text-teal-300 transition-colors" />
+            </motion.div>
+            <h3 className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">Overall AI Readiness</h3>
           </div>
-          <div className={`text-5xl font-bold mb-2 ${getReadinessColor(metrics.readinessScore)}`}>
+          <motion.div 
+            className={`text-5xl font-bold mb-2 ${getReadinessColor(metrics.readinessScore)}`}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", delay: 0.3 }}
+          >
             {metrics.readinessScore}%
-          </div>
+          </motion.div>
           <p className="text-sm text-gray-400">
             {getReadinessMessage(metrics.readinessScore)}
           </p>
-        </div>
+        </motion.div>
 
         {/* Sentiment Average */}
-        <div className="glass-dark rounded-2xl p-8 border border-purple-500/20">
+        <motion.div 
+          className="glass-dark rounded-2xl p-8 border border-purple-500/20 hover:border-purple-400/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(167,79,139,0.2)] cursor-pointer group"
+          variants={fadeInUp}
+          whileHover={{ scale: 1.02, y: -4 }}
+          transition={{ type: "spring", stiffness: 300 }}>
           <div className="flex items-center gap-3 mb-4">
-            <Users className="w-6 h-6 text-purple-400" />
-            <h3 className="text-sm font-medium text-gray-400">Employee Sentiment</h3>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Users className="w-6 h-6 text-purple-400 group-hover:text-purple-300 transition-colors" />
+            </motion.div>
+            <h3 className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">Employee Sentiment</h3>
           </div>
           <div className="flex items-baseline gap-2 mb-2">
-            <div className="text-5xl font-bold text-purple-400">{metrics.sentimentAvg}</div>
+            <motion.div 
+              className="text-5xl font-bold text-purple-400"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", delay: 0.4 }}
+            >
+              {metrics.sentimentAvg}
+            </motion.div>
             <div className="text-xl text-gray-500">/5.0</div>
           </div>
           <p className="text-sm text-gray-400">
@@ -120,16 +185,32 @@ export default function OverviewDashboard({
              parseFloat(metrics.sentimentAvg) >= 2.5 ? 'Mixed feelings about AI transformation' :
              'Notable concerns about AI integration'}
           </p>
-        </div>
+        </motion.div>
 
         {/* Capability Maturity */}
-        <div className="glass-dark rounded-2xl p-8 border border-blue-500/20">
+        <motion.div 
+          className="glass-dark rounded-2xl p-8 border border-blue-500/20 hover:border-blue-400/30 transition-all duration-300 hover:shadow-[0_0_30px_rgba(83,128,179,0.2)] cursor-pointer group"
+          variants={fadeInUp}
+          whileHover={{ scale: 1.02, y: -4 }}
+          transition={{ type: "spring", stiffness: 300 }}>
           <div className="flex items-center gap-3 mb-4">
-            <TrendingUp className="w-6 h-6 text-blue-400" />
-            <h3 className="text-sm font-medium text-gray-400">Capability Maturity</h3>
+            <motion.div
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <TrendingUp className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+            </motion.div>
+            <h3 className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors">Capability Maturity</h3>
           </div>
           <div className="flex items-baseline gap-2 mb-2">
-            <div className="text-5xl font-bold text-blue-400">{metrics.capabilityAvg}</div>
+            <motion.div 
+              className="text-5xl font-bold text-blue-400"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", delay: 0.5 }}
+            >
+              {metrics.capabilityAvg}
+            </motion.div>
             <div className="text-xl text-gray-500">/7.0</div>
           </div>
           <p className="text-sm text-gray-400">
@@ -137,7 +218,7 @@ export default function OverviewDashboard({
              parseFloat(metrics.capabilityAvg) >= 4.0 ? 'Solid foundation for growth' :
              'Building blocks in place'}
           </p>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* AI-Generated Insights */}

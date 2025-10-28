@@ -1,45 +1,132 @@
 'use client'
 
-import { HTMLAttributes, forwardRef } from 'react'
+import { HTMLAttributes, forwardRef, useState } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
+import { motion, HTMLMotionProps, AnimatePresence } from 'framer-motion'
 
 const cardVariants = cva(
-  'card rounded-xl transition-all duration-200',
+  'relative overflow-hidden rounded-2xl transition-all duration-300',
   {
     variants: {
       variant: {
-        default: 'bg-surface border border-border',
-        elevated: 'card-elevated',
-        interactive: 'card-interactive cursor-pointer',
-        glass: 'glass'
+        default: 'bg-black/20 backdrop-blur-xl border border-white/[0.08]',
+        elevated: 'bg-black/30 backdrop-blur-2xl border border-white/[0.1] shadow-2xl',
+        interactive: 'bg-black/20 backdrop-blur-xl border border-white/[0.08] cursor-pointer hover:bg-white/[0.02] hover:border-white/[0.12] hover:shadow-2xl hover:-translate-y-0.5',
+        glass: 'bg-white/[0.03] backdrop-blur-2xl border border-white/[0.08]',
+        gradient: 'bg-gradient-to-br from-white/[0.08] to-transparent backdrop-blur-xl border border-white/[0.12]'
       },
       size: {
         sm: 'p-4',
         md: 'p-6',
         lg: 'p-8',
         xl: 'p-10'
+      },
+      glow: {
+        none: '',
+        subtle: 'shadow-[0_0_30px_rgba(83,128,179,0.15)]',
+        medium: 'shadow-[0_0_50px_rgba(83,128,179,0.25)]',
+        strong: 'shadow-[0_0_80px_rgba(83,128,179,0.35)]'
       }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'md'
+      size: 'md',
+      glow: 'none'
     }
   }
 )
 
+type MotionDivProps = HTMLMotionProps<"div"> & HTMLAttributes<HTMLDivElement>
+
 export interface CardProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
+  extends MotionDivProps,
+    VariantProps<typeof cardVariants> {
+  hover?: boolean
+  delay?: number
+}
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, glow, hover = false, delay = 0, children, ...props }, ref) => {
+    const [isHovered, setIsHovered] = useState(false)
+    const MotionDiv = motion.div
+
     return (
-      <div
+      <MotionDiv
         ref={ref}
-        className={cn(cardVariants({ variant, size, className }))}
+        className={cn(cardVariants({ variant, size, glow, className }))}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ 
+          duration: 0.5, 
+          delay,
+          ease: [0.16, 1, 0.3, 1]
+        }}
+        whileHover={hover ? { scale: 1.02, y: -4 } : {}}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
         {...props}
-      />
+      >
+        {/* Animated gradient border on hover */}
+        <AnimatePresence>
+          {hover && isHovered && (
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                background: 'linear-gradient(90deg, #5380b3, #a74f8b, #e0874e, #5380b3)',
+                backgroundSize: '300% 100%',
+                padding: '1px',
+                WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                WebkitMaskComposite: 'xor',
+                maskComposite: 'exclude'
+              }}
+            >
+              <motion.div
+                animate={{ backgroundPosition: ['0%', '100%'] }}
+                transition={{
+                  duration: 3,
+                  ease: 'linear',
+                  repeat: Infinity
+                }}
+                className="absolute inset-0 rounded-2xl"
+                style={{
+                  background: 'inherit',
+                  backgroundSize: 'inherit'
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Subtle shimmer effect */}
+        {variant === 'gradient' && (
+          <motion.div
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{
+              background: 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%)',
+              backgroundSize: '200% 100%',
+            }}
+            animate={{
+              backgroundPosition: ['-200% 0%', '200% 0%'],
+            }}
+            transition={{
+              duration: 3,
+              ease: 'linear',
+              repeat: Infinity,
+              repeatDelay: 2
+            }}
+          />
+        )}
+
+        {/* Content */}
+        <div className="relative z-10">
+          {children}
+        </div>
+      </MotionDiv>
     )
   }
 )
@@ -47,13 +134,15 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
 Card.displayName = 'Card'
 
 export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn('mb-4', className)}
+        className={cn('mb-6', className)}
         {...props}
-      />
+      >
+        {children}
+      </div>
     )
   }
 )
@@ -61,13 +150,15 @@ export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
 CardHeader.displayName = 'CardHeader'
 
 export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
         className={cn('', className)}
         {...props}
-      />
+      >
+        {children}
+      </div>
     )
   }
 )
@@ -75,13 +166,15 @@ export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElem
 CardContent.displayName = 'CardContent'
 
 export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn('mt-4 pt-4 border-t border-border', className)}
+        className={cn('mt-6 pt-6 border-t border-white/[0.08]', className)}
         {...props}
-      />
+      >
+        {children}
+      </div>
     )
   }
 )
