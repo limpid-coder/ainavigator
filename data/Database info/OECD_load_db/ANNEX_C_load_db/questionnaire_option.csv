@@ -1,0 +1,148 @@
+OptionID,QuestionID,OptionText
+O324d68,Q1,How important are AI applications to your enterprise’s core business processes?
+O0af403,Q1,Critically important
+O46bc5b,Q1,One among a number of important considerations
+O7d2dcd,Q1,Of minor importance
+O2a2557,Q2,In approximately which year was your enterprise incorporated?
+O0d1e64,Q2,1950 or earlier
+Oc26f83,Q2,1950-1960
+O23bb8a,Q2,1960-1970
+O05eba6,Q2,1970-1980
+O0fd535,Q2,1980-1990
+Oc6894a,Q2,1990-2000
+Obf9b01,Q2,2000-2010
+O3cfb0c,Q2,2010-2020
+O1d4634,Q2,After 2020
+O258c82,Q3,"In the past 12 months, has your enterprise collected or otherwise acquired data from any of the following sources?"
+O8e390b,Q3,Data collected internally from processes and staff
+O7d18ab,Q3,Data collected from customers or suppliers
+O920c88,Q3,"Data from private data providers, such as organisations dedicated to producing and selling data"
+Oc49f0a,Q3,Data from a partner enterprise
+Oee95e3,Q3,Data from a research institute
+Oc9a5b5,Q3,Data from the public sector
+O7b8e27,Q4,"Does your enterprise use a data management solution, such as a data lake?"
+O39909e,Q4,Yes
+Ofca2bf,Q4,No
+O9935ec,Q4,We are unfamiliar with these concepts
+O9e8028,Q5,Do any of the following positions exist in your enterprise structure?
+O6adf8c,Q5,Yes
+O479bef,Q5,No
+Oada881,Q5,Statistician / Data engineer
+O5a4666,Q5,Machine learning engineer / AI developer
+O6af2d6,Q5,Data scientist
+O54fcf2,Q5,AI project manager
+Oa640c0,Q5,Data protection officer
+O73a999,Q5,AI risk manager / AI ethics officer / Digital trust and safety officer or equivalent
+Obdead9,Q5,Other position/title with responsibilities for AI
+Oa9e69a,Q5,Chief information officer / Chief digital officer or equivalent
+Oce769e,Q5,Chief AI officer
+Ob3777d,Q5,Chief analytics officer / Chief data officer / Head of data science or equivalent
+O026075,Q6,"In the past 12 months, have any of the following conditions limited the use of cloud computing in your enterprise?"
+O2a8556,Q6,Yes
+Of9f2f2,Q6,No
+Oe8134f,Q6,High cost of retooling systems
+Oe21c47,Q6,Concerns about corporate compliance
+O4a484d,Q6,Concerns about customisation of applications
+O352e71,Q6,Concerns about network stability
+O21d090,Q6,Lack of availability of cloud computing services
+O57f637,Q6,Do not see the advantages of cloud computing
+O2a3702,Q6,Lack of support from top management
+Oc112bc,Q6,Lack of IT skills
+O2c2205,Q6,The enterprise uses cloud computing without difficulty
+O4c0181,Q7,"In the past 12 months, has your enterprise implemented any of the following practices to develop artificial intelligence?"
+O921e33,Q7,Yes
+O8c58a1,Q7,No
+O2c5294,Q7,Training employees
+O17eba2,Q7,Hiring new staff
+O526b93,Q7,R&D on artificial intelligence to use by the enterprise
+O14e70c,Q7,"Purchase of off-the-shelf software or hardware, or through business advisory services such as"
+Obf0495,Q7,consultancy
+O2a42d8,Q7,Use of customised systems built by third parties
+Obc6ce9,Q7,Created a senior management role or a team with responsibilities for artificial intelligence
+O8dc75d,Q7,Partnership with a national or international enterprise with capacities in artificial intelligence
+Ofbd842,Q8,"In the past 12 months, has your enterprise used any of the following services provided by the public sector to support the adoption of artificial intelligence?"
+O4fb0c4,Q8,Yes
+O0a675f,Q8,No
+Oeb938e,Q8,Services that provide access to information or advice
+O415a4c,Q8,Training services
+O8d3ed5,Q8,"Services that promote access to finance, such as subsidies or credit guarantees"
+O35b9e4,Q9,"In the past 12 months, has your enterprise established collaborations to develop artificial intelligence ..."
+Obdff50,Q9,Yes
+Odfd2b5,Q9,No
+Oddf6c4,Q9,"With university faculty members, PhD or postdoctoral students?"
+O06e309,Q9,With undergraduate students?
+Obef3c5,Q9,With researchers in public research organisations?
+O740505,Q9,With other partners?
+O8d69c4,Q10,"In the past 12 months, have any of the following obstacles limited your enterprise in implementing artificial intelligence applications?"
+Ocfd770,Q10,Yes
+O686b3f,Q10,No
+O651195,Q10,Difficulties estimating the returns on investment in AI applications
+O6d3661,Q10,"Concerns related to data privacy, data protection or data security"
+Obbb53a,Q10,Scarcity of cloud computing solutions that guarantee data security and regulatory compliance
+O554e39,Q10,Lack of clarity about the legal consequences in case of damage caused by the use of AI
+Oc6aeb7,Q10,Lack of vendors of AI systems offering solutions tailored to your enterprise’s needs
+O9016b3,Q10,Lack of external finance for investment to support AI adoption
+O2f851f,Q10,Reluctance of staff to adopt AI
+Ode2a91,Q10,Difficulties to retrain or upskill staff
+O932112,Q11,"In the past 12 months, has your enterprise recruited graduates in artificial intelligence, machine learning or related fields?"
+Of5e1b3,Q11,"Yes, we were able to hire for our vacancies"
+Od28e53,Q11,"No, we could not hire appropriate candidates"
+Oc2111a,Q11,"No, because we did not have specific vacancies"
+O8c4741,Q12,"In the past 12 months, has your enterprise experienced difficulties in understanding what skill sets to look for in new AI recruits?"
+O7eb1d3,Q12,Yes
+O460133,Q12,No
+O523dc9,Q13,How would you say the following types of support could be for your enterprise to strengthen staff skills in AI?
+Oaad866,Q13,Very useful Moderately Slightly useful Not useful at all
+O927cf3,Q13,useful
+O5e771d,Q13,Partnerships with educational and vocational institutions
+O0cddb4,Q13,Tax allowances or tax credits for training in AI
+O819a86,Q13,Support to develop qualification frameworks for
+O403bc3,Q13,graduates in the field of AI
+O90d4a6,Q14,"In using AI in your enterprise, how helpful would the following types of services provided by the public sector be?"
+Ob019f3,Q14,Very helpful Helpful A little helpful Not helpful at all
+O79b5d6,Q14,Information on and examples of business use cases in
+O0eff07,Q14,your industry
+O7c7feb,Q14,Information on expected rates of return to investments in
+O0b3eae,Q14,Information on available and reliable technology vendors
+O6b80ce,Q14,Information on available and reliable sources of private-
+Oe02d1a,Q14,sector advice and expertise
+O431bab,Q14,Certification or accreditation schemes for AI solution
+Oc7fced,Q14,providers
+O9c36e8,Q14,Information on current or forthcoming regulations around
+Of21763,Q14,data or AI
+O7a04d8,Q15,How helpful would you say the following initiatives provided by the public sector could be for the adoption of AI in your enterprise?
+Od9e415,Q15,Very helpful Helpful A little helpful Not helpful at all
+O037695,Q15,Investing in university education and vocational training
+O9fbb2b,Q15,in fields related to AI
+Oc0d384,Q15,Investing in retraining and lifelong learning for employees
+O21224a,Q15,who work with AI
+O8d79c6,Q15,Improving understanding of AI among government
+O726897,Q15,officials
+O1918f9,Q15,Gathering and publishing administrative public datasets
+O0beaeb,Q15,Promoting a competitive AI vendor market
+O317b3b,Q15,"Upgrading IT infrastructure, such as high-speed"
+Of43238,Q15,broadband
+O00c0d0,Q16,"Some uses of AI that involve autonomous systems might be detrimental to clients, potentially exposing businesses to legal jeopardy."
+O20a92e,Q16,Would you favour regulation that helps to overcome such a problem by establishing clear accountability when AI is used?
+O08523e,Q16,Yes
+O0306b3,Q16,No
+O09a808,Q17,Are any of the following criteria important for your enterprise when developing or using AI applications?
+O2e9577,Q17,Strongly Agree Disagree Strongly
+O2bfca6,Q17,agree disagree
+O05ac12,Q17,The protection of customer data and privacy
+O86164f,Q17,"Making our customers aware of how our AI system(s) are developed,"
+O38efe6,Q17,trained and used
+O08ce34,Q17,"Keeping a full record of our AI applications’ predictions, recommendations"
+O0404b5,Q17,or decisions
+O2c3fb4,Q18,Are you aware that some regulators are considering the following requirements to increase oversight of artificial intelligence
+Of4f6f9,Q18,applications?
+O50a8a7,Q18,Certification of the safety of AI systems
+O74186d,Q18,Notification for customers when decision making is automated
+O2eb661,Q19,Approximately what percentage of your enterprise’s total spending (internal and external) on R&D in 2019 was related to artificial
+Ofd8eaa,Q19,intelligence?
+O0eea6c,Q19,The enterprise does not spend on R&D
+O40c205,Q19,0%
+Oc30ba5,Q19,Between 1 % and 10%
+O2fb182,Q19,Between 11% and 30%
+O9a5c0f,Q19,More than 30%
+O5efac2,Q19,Cannot discuss

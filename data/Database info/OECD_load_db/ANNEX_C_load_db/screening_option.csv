@@ -1,0 +1,33 @@
+OptionID,QuestionID,OptionText
+SC1_1,SC1,Between 10 and 50
+SC1_2,SC1,Between 51 and 249
+SC1_3,SC1,Between 250 and 499
+SC1_4,SC1,Between 500 and 2 500
+SC3_1,SC3,Manufacturing machinery
+SC3_2,SC3,Chemicals
+SC3_3,SC3,Pharmaceuticals
+SC4_1,SC4,Mechanical components
+SC4_2,SC4,Electrical equipment (including domestic appliances)
+SC5_1,SC5,Other manufacturing industry – please state
+SC6_1,SC6,Planning and designing computer systems that integrate computer hardware
+SC6_2,SC6,Software and communication technologies
+SC6_3,SC6,Managing and operating clients’ computer systems and/or data processing facilities
+SC6_4,SC6,Operating or supporting the activities of web search portals
+SC7_1,SC7,None of the above
+SC37_1,SC37,IT Manager
+SC37_2,SC37,Head of Data Science
+SC37_3,SC37,AI Project Manager
+SC37_4,SC37,Chief Information Officer
+SC37_5,SC37,Chief AI Officer
+SC37_6,SC37,Chief Analytics Officer
+SC37_7,SC37,Chief Data Officer
+SC37_8,SC37,Chief Executive Officer
+SC37_9,SC37,Other – please specify
+SC38_1,SC38,Canada
+SC38_2,SC38,France
+SC38_3,SC38,Germany
+SC38_4,SC38,Italy
+SC38_5,SC38,Japan
+SC38_6,SC38,United Kingdom
+SC38_7,SC38,United States
+SC38_8,SC38,None of the above

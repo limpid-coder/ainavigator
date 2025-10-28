@@ -1,0 +1,6 @@
+range_id,min_score,max_score,label,interpretation
+1,3.5,5.0,Very Positive,Strongly positive sentiment
+2,3.0,3.49,Positive,Positive sentiment
+3,2.5,2.99,Neutral,Neither positive nor negative
+4,2.0,2.49,Negative,Some negative sentiment
+5,0.0,1.99,Very Negative,Strongly negative sentiment

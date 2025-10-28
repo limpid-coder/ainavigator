@@ -1,0 +1,9 @@
+QuestionID,SectionID,QuestionText
+SC1,SEC1,How many employees does your enterprise have in total?
+SC3,SEC1,What is the enterprise’s major industry?
+SC4,SEC1,"Automotive: Vehicles, transport equipment and components"
+SC5,SEC1,"Computers, electronics and optical products and parts"
+SC6,SEC1,"Enterprises engaged in writing, modifying, testing and supporting software"
+SC7,SEC1,"Data processing and hosting activities, and online platforms"
+SC37,SEC1,Please indicate your job title:
+SC38,SEC1,In which country is your enterprise located?

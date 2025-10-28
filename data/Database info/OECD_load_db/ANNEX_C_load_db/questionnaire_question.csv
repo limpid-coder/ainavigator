@@ -1,0 +1,20 @@
+QuestionID,SectionID,QuestionText,ResponseType
+Q1,S1,How important are AI applications to your enterprise’s core business processes?,Multiple choice
+Q2,S1,In approximately which year was your enterprise incorporated?,Multiple choice
+Q3,S1,"In the past 12 months, has your enterprise collected or otherwise acquired data from any of the following sources?",Multiple choice
+Q4,S1,"Does your enterprise use a data management solution, such as a data lake?",Multiple choice
+Q5,S1,Do any of the following positions exist in your enterprise structure?,Multiple choice
+Q6,S1,"In the past 12 months, have any of the following conditions limited the use of cloud computing in your enterprise?",Multiple choice
+Q7,S1,"In the past 12 months, has your enterprise implemented any of the following practices to develop artificial intelligence?",Multiple choice
+Q8,S1,"In the past 12 months, has your enterprise used any of the following services provided by the public sector to support the adoption of artificial intelligence?",Multiple choice
+Q9,S1,"In the past 12 months, has your enterprise established collaborations to develop artificial intelligence ...",Multiple choice
+Q10,S1,"In the past 12 months, have any of the following obstacles limited your enterprise in implementing artificial intelligence applications?",Multiple choice
+Q11,S1,"In the past 12 months, has your enterprise recruited graduates in artificial intelligence, machine learning or related fields?",Multiple choice
+Q12,S1,"In the past 12 months, has your enterprise experienced difficulties in understanding what skill sets to look for in new AI recruits?",Multiple choice
+Q13,S1,How would you say the following types of support could be for your enterprise to strengthen staff skills in AI?,Multiple choice
+Q14,S1,"In using AI in your enterprise, how helpful would the following types of services provided by the public sector be?",Multiple choice
+Q15,S1,How helpful would you say the following initiatives provided by the public sector could be for the adoption of AI in your enterprise?,Multiple choice
+Q16,S1,"Some uses of AI that involve autonomous systems might be detrimental to clients, potentially exposing businesses to legal jeopardy.",Multiple choice
+Q17,S1,Are any of the following criteria important for your enterprise when developing or using AI applications?,Multiple choice
+Q18,S1,Are you aware that some regulators are considering the following requirements to increase oversight of artificial intelligence,Multiple choice
+Q19,S1,Approximately what percentage of your enterprise’s total spending (internal and external) on R&D in 2019 was related to artificial,Multiple choice

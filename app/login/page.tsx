@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Brain, Loader2, Mail, Lock, AlertCircle } from 'lucide-react'
-import GradualBlur from '@/components/ui/gradual-blur'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -197,14 +196,7 @@ export default function LoginPage() {
       </div>
 
       {/* Bottom gradient blur */}
-      <GradualBlur 
-        position="bottom" 
-        height="8rem" 
-        strength={2} 
-        divCount={6}
-        curve="ease-out"
-        opacity={0.8}
-      />
+      <div className="fixed bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none" />
     </div>
   )
 }
