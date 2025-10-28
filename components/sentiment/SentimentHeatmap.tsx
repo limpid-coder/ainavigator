@@ -329,7 +329,7 @@ export default function SentimentHeatmap({ data, filters, onAnalyzeProblemAreas 
             <ArrowRight className="w-5 h-5" />
           </button>
           <p className="text-xs text-gray-500 mt-3">
-            Analysis takes 10-15 seconds • Powered by GPT-4
+            Analysis takes 10-15 seconds • Powered by our AI
           </p>
         </motion.div>
       )}

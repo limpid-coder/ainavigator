@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate problem categories using GPT-4
+    // Generate problem categories using our AI
     const problemCategories = await gptService.generateProblemCategories(
       lowest_cells,
       company_context,
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
       data: {
         problem_categories: problemCategories,
         generated_at: new Date().toISOString(),
-        model_used: 'gpt-4-turbo-preview'
+        model_used: 'AI Analysis Engine'
       }
     })
 

@@ -65,7 +65,7 @@ export default function ProblemCategoriesView({
         >
           <Sparkles className="w-12 h-12 text-teal-400" />
         </motion.div>
-        <h3 className="text-xl font-semibold mb-2">Analyzing with GPT-4...</h3>
+        <h3 className="text-xl font-semibold mb-2">Analyzing with our AI...</h3>
         <p className="text-gray-400 text-center max-w-md">
           AI is analyzing your lowest scoring areas and generating personalized problem categories
         </p>

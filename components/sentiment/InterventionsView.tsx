@@ -93,7 +93,7 @@ export default function InterventionsView({
         </motion.div>
         <h3 className="text-xl font-semibold mb-2">Generating Interventions...</h3>
         <p className="text-gray-400 text-center max-w-md">
-          GPT-4 is creating 3 specific, actionable recommendations for "{problemCategory.category_name}"
+          Our AI is creating 3 specific, actionable recommendations for "{problemCategory.category_name}"
         </p>
       </div>
     )

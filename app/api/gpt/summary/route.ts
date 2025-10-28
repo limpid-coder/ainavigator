@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
       success: true,
       data: result,
       generated_at: new Date().toISOString(),
-      model_used: 'gpt-4-turbo-preview'
+      model_used: 'AI Analysis Engine'
     })
 
   } catch (error: any) {

@@ -95,7 +95,7 @@ export default function FilterPanel({
 }: FilterPanelProps) {
   const [isProcessing, setIsProcessing] = useState(false)
   
-  // Extract unique values for each filter
+  // Extract unique values for each filter (matching actual data field names)
   const getUniqueValues = (key: string) => {
     const allData = [...sentimentData, ...capabilityData] as any[]
     const values = new Set<string>()
@@ -105,11 +105,11 @@ export default function FilterPanel({
     return Array.from(values).sort()
   }
 
-  const regions = getUniqueValues('region')
-  const departments = getUniqueValues('department')
-  const functions = getUniqueValues('function')
-  const ageGroups = getUniqueValues('ageGroup')
-  const roles = getUniqueValues('role')
+  const regions = getUniqueValues('Region')
+  const departments = getUniqueValues('Department')
+  const functions = getUniqueValues('Function')
+  const ageGroups = getUniqueValues('Age')
+  const roles = getUniqueValues('Employment_type')
 
   const handleFilterChange = (key: keyof FilterState, value: string | undefined) => {
     setIsProcessing(true)
@@ -120,7 +120,7 @@ export default function FilterPanel({
       newFilters[key] = value
     }
     onFiltersChange(newFilters)
-    setTimeout(() => setIsProcessing(false), 300)
+    setTimeout(() => setIsProcessing(false), 200)
   }
 
   const clearFilters = () => {

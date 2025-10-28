@@ -11,7 +11,7 @@ export const config = {
   },
   openai: {
     apiKey: process.env.OPENAI_API_KEY,
-    model: process.env.OPENAI_MODEL || 'gpt-4-turbo-preview'
+    model: process.env.OPENAI_MODEL || 'gpt-4o-mini'
   },
   supabase: {
     url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
