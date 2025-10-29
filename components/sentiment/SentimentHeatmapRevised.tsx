@@ -16,6 +16,7 @@ interface SentimentHeatmapRevisedProps {
 
 export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProblemAreas }: SentimentHeatmapRevisedProps) {
   const [selectedCell, setSelectedCell] = useState<string | null>(null)
+  const [showExplanation, setShowExplanation] = useState(false)
   
   const { cells, stats } = useMemo(() => 
     calculateSentimentHeatmap(data, filters),
@@ -33,12 +34,21 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
     <div className="h-full flex flex-col gap-3 md:gap-4 overflow-hidden">
       
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row items-start justify-between gap-3 md:gap-0">
-        <div>
+      <div className="flex flex-col md:flex-row items-start justify-between gap-3 md:gap-0 mb-3">
+        <div className="flex-1">
           <h2 className="text-xl font-bold text-white mb-1">Sentiment Analysis Heatmap</h2>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-gray-400 mb-2">
             How {stats.totalRespondents} employees feel about AI across 25 dimensions
           </p>
+          <button
+            onClick={() => setShowExplanation(!showExplanation)}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 hover:border-blue-500/30 transition-all"
+          >
+            <Info className="w-4 h-4 text-blue-400" />
+            <span className="text-xs text-blue-300 font-medium">
+              {showExplanation ? 'Hide' : 'Show'} Heatmap Guide
+            </span>
+          </button>
         </div>
         <div className="flex items-center gap-3">
           <div className="px-3 py-2 rounded-lg bg-teal-500/10 border border-teal-500/20">
@@ -51,6 +61,87 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
           </div>
         </div>
       </div>
+
+      {/* HEATMAP EXPLANATION - Collapsible */}
+      <AnimatePresence>
+        {showExplanation && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-lg border border-blue-500/20 p-4 mb-3">
+              <div className="grid md:grid-cols-2 gap-6 text-xs">
+                <div>
+                  <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded bg-blue-500/20 flex items-center justify-center text-blue-400 text-xs font-bold">Y</span>
+                    Rows: 5 Concern Levels
+                  </h3>
+                  <div className="space-y-2 text-gray-300">
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold flex-shrink-0">L1</span>
+                      <div><span className="text-white font-semibold">Personal Workflow Preferences</span> - How AI affects individual work</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold flex-shrink-0">L2</span>
+                      <div><span className="text-white font-semibold">Collaboration & Role Adjustments</span> - Team dynamics and responsibilities</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold flex-shrink-0">L3</span>
+                      <div><span className="text-white font-semibold">Professional Trust & Fairness</span> - Ethical concerns and bias</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold flex-shrink-0">L4</span>
+                      <div><span className="text-white font-semibold">Career Security & Job Redefinition</span> - Long-term employment anxiety</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-blue-400 font-bold flex-shrink-0">L5</span>
+                      <div><span className="text-white font-semibold">Organizational Stability at Risk</span> - Company-wide transformation concerns</div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded bg-purple-500/20 flex items-center justify-center text-purple-400 text-xs font-bold">X</span>
+                    Columns: 5 Sentiment Categories (Why They're Concerned)
+                  </h3>
+                  <div className="space-y-2 text-gray-300">
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold flex-shrink-0">C1</span>
+                      <div><span className="text-white font-semibold">AI is too Autonomous</span> - Loss of human control</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold flex-shrink-0">C2</span>
+                      <div><span className="text-white font-semibold">AI is too Inflexible</span> - Can't handle exceptions</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold flex-shrink-0">C3</span>
+                      <div><span className="text-white font-semibold">AI is Emotionless</span> - Lacks empathy and understanding</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold flex-shrink-0">C4</span>
+                      <div><span className="text-white font-semibold">AI is too Opaque</span> - Black box, no transparency</div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-purple-400 font-bold flex-shrink-0">C5</span>
+                      <div><span className="text-white font-semibold">People Prefer Human Interaction</span> - Value personal touch</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  <span className="text-teal-400 font-semibold">How to read:</span> Each cell shows the average sentiment score for that specific combination of concern level and category. 
+                  <span className="text-white font-medium"> Colors represent relative ranking</span> (where this cell ranks among all 25 cells), 
+                  not the absolute score value.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HEATMAP GRID */}
       <div className="flex-1 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-3 md:p-5 flex flex-col overflow-hidden">

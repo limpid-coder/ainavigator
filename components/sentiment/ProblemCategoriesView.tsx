@@ -26,8 +26,59 @@ export default function ProblemCategoriesView({
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    analyzeWithGPT()
+    // Use mock data for demo instead of calling API
+    useMockData()
   }, [])
+
+  const useMockData = () => {
+    // Simulate API delay
+    setTimeout(() => {
+      const mockCategories: ProblemCategory[] = [
+        {
+          category_id: "CAT001",
+          category_name: "The Opaque AI",
+          reason: "AI is too Opaque",
+          level: "Level 3 - Professional Trust & Fairness",
+          score: 2.77,
+          affected_count: 156,
+          rank: 23,
+          severity: "high",
+          description: "Employees feel AI systems are black boxes—decisions lack transparency, making it difficult to trust or validate AI recommendations. This creates anxiety around accountability and potential errors.",
+          business_impact: "Reduced adoption rates, compliance risks, employee resistance to AI-driven decisions",
+          examples: ["Can't explain AI hiring recommendations", "Black box credit decisions", "Unclear performance evaluation criteria"]
+        },
+        {
+          category_id: "CAT002",
+          category_name: "The Autonomous Threat",
+          reason: "AI is too Autonomous",
+          level: "Level 4 - Career Security & Job Redefinition",
+          score: 2.42,
+          affected_count: 134,
+          rank: 25,
+          severity: "critical",
+          description: "Concerns about AI replacing human decision-making entirely. Employees worry they'll lose control over their work processes and professional judgment.",
+          business_impact: "High turnover risk, talent retention challenges, decreased morale",
+          examples: ["Fears of job displacement", "Loss of professional autonomy", "Reduced human oversight"]
+        },
+        {
+          category_id: "CAT003",
+          category_name: "The Inflexible System",
+          reason: "AI is too Inflexible",
+          level: "Level 2 - Collaboration & Role Adjustments",
+          score: 2.99,
+          affected_count: 98,
+          rank: 18,
+          severity: "medium",
+          description: "Frustration with AI that can't adapt to context or exceptions. Employees feel constrained by rigid AI processes that don't account for nuanced situations.",
+          business_impact: "Process inefficiencies, workaround creation, reduced productivity",
+          examples: ["Can't handle edge cases", "Rigid workflow constraints", "No customization options"]
+        }
+      ]
+      
+      setProblemCategories(mockCategories)
+      setIsAnalyzing(false)
+    }, 1500) // 1.5 second delay to show loading state
+  }
 
   const analyzeWithGPT = async () => {
     setIsAnalyzing(true)

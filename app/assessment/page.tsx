@@ -20,6 +20,8 @@ import InterventionsView from '@/components/sentiment/InterventionsView'
 import CapabilityAnalysisPro from '@/components/capability/CapabilityAnalysisPro'
 import DimensionDrilldown from '@/components/capability/DimensionDrilldown'
 import OpenEndedSummary from '@/components/capability/OpenEndedSummary'
+import RecommendationsView from '@/components/recommendations/RecommendationsView'
+import ReportsView from '@/components/reports/ReportsView'
 import { generatePDF } from '@/lib/utils/pdfExport'
 import { SkeletonDashboard } from '@/components/ui/skeleton'
 
@@ -642,16 +644,17 @@ export default function AssessmentPage() {
                 {activeView === 'recommendations' && (
                   <motion.div
                     key="recommendations"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="h-full flex items-center justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
                   >
-                    <div className="text-center">
-                      <Brain className="w-16 h-16 text-teal-400 mx-auto mb-4" />
-                      <h2 className="text-2xl font-bold mb-2">AI Recommendations</h2>
-                      <p className="text-gray-400">Actionable interventions coming soon</p>
-                    </div>
+                    <RecommendationsView
+                      sentimentData={sentimentData}
+                      capabilityData={capabilityData}
+                      companyName={companyProfile.displayName}
+                    />
                   </motion.div>
                 )}
 
@@ -659,16 +662,16 @@ export default function AssessmentPage() {
                 {activeView === 'reports' && (
                   <motion.div
                     key="reports"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="h-full flex items-center justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
                   >
-                    <div className="text-center">
-                      <FileText className="w-16 h-16 text-purple-400 mx-auto mb-4" />
-                      <h2 className="text-2xl font-bold mb-2">Reports</h2>
-                      <p className="text-gray-400">Export and share capabilities</p>
-                    </div>
+                    <ReportsView
+                      companyName={companyProfile.displayName}
+                      onExportPDF={handleExportPDF}
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
