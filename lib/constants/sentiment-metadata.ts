@@ -144,26 +144,33 @@ export const COLOR_RANKING = {
   NO_DATA: '#6b7280'     // Gray - no data
 } as const
 
+// INVERTED LOGIC: Lower scores = LESS resistance = BETTER (green)
+// Higher scores = MORE resistance = WORSE (red)
 export function getRankedColor(score: number, allScores: number[]): string {
   if (allScores.length === 0) return COLOR_RANKING.NO_DATA
   
-  const sorted = [...allScores].sort((a, b) => b - a) // Descending
+  // Sort ASCENDING (lowest to highest)
+  const sorted = [...allScores].sort((a, b) => a - b)
   
+  // Top 3 = LOWEST 3 scores (best sentiment, least resistance)
   const top3Threshold = sorted[2] || sorted[sorted.length - 1]
   const top8Threshold = sorted[7] || sorted[sorted.length - 1]
+  
+  // Bottom 3 = HIGHEST 3 scores (worst sentiment, most resistance)
   const bottom8Threshold = sorted[sorted.length - 8] || sorted[0]
   const bottom3Threshold = sorted[sorted.length - 3] || sorted[0]
   
-  if (score >= top3Threshold && sorted.indexOf(score) < 3) {
-    return COLOR_RANKING.TOP_3
-  } else if (score >= top8Threshold) {
-    return COLOR_RANKING.TOP_8
-  } else if (score <= bottom3Threshold && sorted.lastIndexOf(score) >= sorted.length - 3) {
-    return COLOR_RANKING.BOTTOM_3
-  } else if (score <= bottom8Threshold) {
-    return COLOR_RANKING.BOTTOM_8
+  // Lower scores are BETTER (green)
+  if (score <= top3Threshold) {
+    return COLOR_RANKING.TOP_3 // Dark green - least resistance
+  } else if (score <= top8Threshold) {
+    return COLOR_RANKING.TOP_8 // Light green
+  } else if (score >= bottom3Threshold) {
+    return COLOR_RANKING.BOTTOM_3 // Dark red - most resistance
+  } else if (score >= bottom8Threshold) {
+    return COLOR_RANKING.BOTTOM_8 // Orange - concerning
   } else {
-    return COLOR_RANKING.MIDDLE
+    return COLOR_RANKING.MIDDLE // Yellow - moderate
   }
 }
 

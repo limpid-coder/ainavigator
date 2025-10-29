@@ -230,43 +230,43 @@ export default function ExecutiveDashboard({
               <div className="flex items-baseline gap-1 mb-3">
                 <span className="text-6xl font-bold text-purple-400 tabular-nums leading-none">{metrics.sentimentAvg}</span>
                 <div className="flex flex-col justify-end pb-1">
-                  <span className="text-xl text-gray-500 leading-none">/5.0</span>
-                  <span className="text-[8px] text-gray-600 uppercase tracking-wide">Likert</span>
+                  <span className="text-xl text-gray-500 leading-none">/4.0</span>
+                  <span className="text-[8px] text-gray-600 uppercase tracking-wide">Scale</span>
                 </div>
               </div>
 
-              {/* Sentiment Distribution */}
+              {/* Sentiment Assessment */}
               <div className="space-y-2 mb-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Sentiment Level</span>
+                  <span className="text-gray-400">Assessment</span>
                   <span className={cn(
                     "font-semibold",
-                    parseFloat(metrics.sentimentAvg) >= 3.5 ? "text-green-400" :
-                    parseFloat(metrics.sentimentAvg) >= 2.5 ? "text-yellow-400" :
+                    parseFloat(metrics.sentimentAvg) <= 1.5 ? "text-green-400" :
+                    parseFloat(metrics.sentimentAvg) <= 2.5 ? "text-yellow-400" :
                     "text-orange-400"
                   )}>
-                    {parseFloat(metrics.sentimentAvg) >= 3.5 ? 'Positive' :
-                     parseFloat(metrics.sentimentAvg) >= 2.5 ? 'Mixed' :
-                     'Resistant'}
+                    {parseFloat(metrics.sentimentAvg) <= 1.5 ? 'Excellent' :
+                     parseFloat(metrics.sentimentAvg) <= 2.5 ? 'Moderate' :
+                     'Needs Attention'}
                   </span>
                 </div>
                 <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
-                  {/* Neutral marker at 60% (3.0/5.0) */}
-                  <div className="absolute top-0 bottom-0 left-[60%] w-px bg-gray-500/30" />
+                  {/* Neutral marker at 50% */}
+                  <div className="absolute top-0 bottom-0 left-[50%] w-px bg-gray-500/30" />
                   <div 
                     className={cn(
                       "h-full rounded-full",
-                      parseFloat(metrics.sentimentAvg) >= 3.5 ? "bg-gradient-to-r from-green-400 to-teal-400" :
-                      parseFloat(metrics.sentimentAvg) >= 2.5 ? "bg-gradient-to-r from-yellow-400 to-orange-400" :
+                      parseFloat(metrics.sentimentAvg) <= 1.5 ? "bg-gradient-to-r from-green-400 to-teal-400" :
+                      parseFloat(metrics.sentimentAvg) <= 2.5 ? "bg-gradient-to-r from-yellow-400 to-orange-400" :
                       "bg-gradient-to-r from-orange-400 to-red-400"
                     )}
-                    style={{ width: `${(parseFloat(metrics.sentimentAvg) / 5) * 100}%` }} 
+                    style={{ width: `${(parseFloat(metrics.sentimentAvg) / 4) * 100}%` }} 
                   />
                 </div>
                 <div className="flex items-center justify-between text-[9px] text-gray-600">
                   <span>1.0</span>
-                  <span className="text-gray-500">3.0 (Neutral)</span>
-                  <span>5.0</span>
+                  <span className="text-gray-500">2.0</span>
+                  <span>4.0</span>
                 </div>
               </div>
 

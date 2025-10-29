@@ -62,11 +62,11 @@ export function calculateSentimentHeatmap(
     }
   })
   
-  // Get all valid scores for ranking
+  // Get all valid scores for ranking - ASCENDING (lowest first, as they're best)
   const allValidScores = cellScores
     .filter(c => c.count > 0)
     .map(c => c.score)
-    .sort((a, b) => b - a) // Descending (highest first)
+    .sort((a, b) => a - b) // ASCENDING - lowest scores are best
   
   // Calculate color based on relative ranking
   const cells: SentimentCellData[] = cellScores.map((cell, index) => {
@@ -77,24 +77,24 @@ export function calculateSentimentHeatmap(
     const level = SENTIMENT_LEVELS[levelId - 1]
     const category = SENTIMENT_CATEGORIES[categoryId - 1]
     
-    // Determine rank (1 = highest score)
+    // Determine rank (1 = LOWEST score = BEST)
     const rank = cell.count > 0 
       ? allValidScores.findIndex(s => Math.abs(s - cell.score) < 0.001) + 1
       : 99
     
-    // Determine color based on rank
+    // Determine color - INVERTED: Lowest scores get green, highest get red
     let color: string = COLOR_RANKING.NO_DATA
     if (cell.count > 0) {
       if (rank <= 3) {
-        color = COLOR_RANKING.TOP_3
+        color = COLOR_RANKING.TOP_3 // Dark green - lowest 3 scores (best)
       } else if (rank <= 8) {
-        color = COLOR_RANKING.TOP_8
+        color = COLOR_RANKING.TOP_8 // Light green
       } else if (rank >= allValidScores.length - 2) {
-        color = COLOR_RANKING.BOTTOM_3
+        color = COLOR_RANKING.BOTTOM_3 // Dark red - highest 3 scores (worst)
       } else if (rank >= allValidScores.length - 7) {
-        color = COLOR_RANKING.BOTTOM_8
+        color = COLOR_RANKING.BOTTOM_8 // Orange
       } else {
-        color = COLOR_RANKING.MIDDLE
+        color = COLOR_RANKING.MIDDLE // Yellow
       }
     }
     
@@ -159,25 +159,25 @@ function filterData(data: any[], filters: FilterState): any[] {
   })
 }
 
-// Get lowest scoring cells for GPT analysis
+// Get HIGHEST scoring cells for GPT analysis (most resistance = problem areas)
 export function getLowestScoringCells(
   cells: SentimentCellData[],
   count: number = 5
 ): SentimentCellData[] {
   return cells
     .filter(c => c.count > 0)
-    .sort((a, b) => a.score - b.score) // Ascending (lowest first)
+    .sort((a, b) => b.score - a.score) // DESCENDING - highest scores are problem areas
     .slice(0, count)
 }
 
-// Get highest scoring cells (strengths)
+// Get LOWEST scoring cells (strengths - least resistance)
 export function getHighestScoringCells(
   cells: SentimentCellData[],
   count: number = 5
 ): SentimentCellData[] {
   return cells
     .filter(c => c.count > 0)
-    .sort((a, b) => b.score - a.score) // Descending (highest first)
+    .sort((a, b) => a.score - b.score) // ASCENDING - lowest scores are strengths
     .slice(0, count)
 }
 

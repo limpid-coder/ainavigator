@@ -52,11 +52,14 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
         </div>
         <div className="flex items-center gap-3">
           <div className="px-3 py-2 rounded-lg bg-teal-500/10 border border-teal-500/20">
-            <div className="text-xs text-gray-400 mb-0.5">Overall Sentiment</div>
-            <div className="text-2xl font-bold text-teal-400 tabular-nums">{stats.overallAverage.toFixed(1)}<span className="text-sm text-gray-500">/5.0</span></div>
+            <div className="text-xs text-gray-400 mb-0.5">Overall Score</div>
+            <div className="flex items-baseline gap-1">
+              <div className="text-2xl font-bold text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
+              <span className="text-sm text-gray-500">/4.0</span>
+            </div>
           </div>
           <div className="px-3 py-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
-            <div className="text-xs text-gray-400 mb-0.5">Priority Concerns</div>
+            <div className="text-xs text-gray-400 mb-0.5">Priority Areas</div>
             <div className="text-2xl font-bold text-orange-400 tabular-nums">{lowestCells.length}</div>
           </div>
         </div>
@@ -133,9 +136,9 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
               </div>
               <div className="mt-4 pt-4 border-t border-white/10">
                 <p className="text-xs text-gray-400 leading-relaxed">
-                  <span className="text-teal-400 font-semibold">How to read:</span> Each cell shows the average sentiment score for that specific combination of concern level and category. 
-                  <span className="text-white font-medium"> Colors represent relative ranking</span> (where this cell ranks among all 25 cells), 
-                  not the absolute score value.
+                  <span className="text-teal-400 font-semibold">How to interpret:</span> Each cell represents one of 25 "AI Taboos"—unspoken concerns employees have about AI adoption. 
+                  Scores are measured on a 1-4 scale (<span className="text-green-400">1 = least resistance</span>, <span className="text-red-400">4 = most resistance</span>). 
+                  <span className="text-white font-medium"> Colors show relative ranking</span> within your organization to quickly identify priority areas.
                 </p>
               </div>
             </div>
@@ -225,23 +228,23 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
         <div className="flex items-center justify-center gap-6 pt-4 border-t border-white/5">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#15803d' }} />
-            <span className="text-xs text-gray-400">Top 3 (Best)</span>
+            <span className="text-xs text-gray-400 font-medium">Best 3</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#84cc16' }} />
-            <span className="text-xs text-gray-400">Strong (4-8)</span>
+            <span className="text-xs text-gray-400">Strong</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#fcd34d' }} />
-            <span className="text-xs text-gray-400">Moderate (9-17)</span>
+            <span className="text-xs text-gray-400">Moderate</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#fb923c' }} />
-            <span className="text-xs text-gray-400">Concern (18-22)</span>
+            <span className="text-xs text-gray-400">Concerning</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 rounded" style={{ backgroundColor: '#dc2626' }} />
-            <span className="text-xs text-gray-400">Bottom 3 (Critical)</span>
+            <span className="text-xs text-gray-400 font-medium">Worst 3</span>
           </div>
         </div>
       </div>
