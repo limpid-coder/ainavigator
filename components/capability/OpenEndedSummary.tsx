@@ -67,12 +67,12 @@ export default function OpenEndedSummary({
       <div className="h-full flex flex-col items-center justify-center">
         <div className="relative mb-6">
           <div className="w-16 h-16 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center animate-pulse">
-            <Sparkles className="w-8 h-8 text-white" />
+            <Sparkles className="w-8 h-8 text-slate-900 dark:text-white" />
           </div>
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-teal-500 to-purple-500 animate-ping opacity-20" />
         </div>
         <h3 className="text-xl font-semibold mb-2">Analyzing Open-Ended Responses...</h3>
-        <p className="text-gray-400 text-center max-w-md text-sm">
+        <p className="text-slate-600 dark:text-gray-400 text-center max-w-md text-sm">
           Our AI is synthesizing insights from {openEndedResponses?.length || 0} employee responses
         </p>
         <div className="mt-6 flex items-center gap-2">
@@ -103,8 +103,8 @@ export default function OpenEndedSummary({
           <div className="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center mx-auto mb-4">
             <AlertCircle className="w-8 h-8 text-orange-400" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Analysis Unavailable</h3>
-          <p className="text-sm text-gray-400 mb-6">
+          <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Analysis Unavailable</h3>
+          <p className="text-sm text-slate-600 dark:text-gray-400 mb-6">
             {error === 'No open-ended responses available to analyze' 
               ? 'This feature requires open-ended survey responses. The current dataset does not include qualitative feedback.'
               : 'The AI analysis service is currently unavailable. This feature will be enabled when the backend API is configured.'}
@@ -120,7 +120,7 @@ export default function OpenEndedSummary({
             )}
             <button 
               onClick={onBack} 
-              className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white text-sm font-semibold transition-all"
+              className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-900 dark:text-white text-sm font-semibold transition-all"
             >
               Back to Capability View
             </button>
@@ -138,7 +138,7 @@ export default function OpenEndedSummary({
       <div className="glass-dark rounded-xl p-6">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white mb-4 transition-colors"
+          className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white mb-4 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Capability Overview
@@ -150,7 +150,7 @@ export default function OpenEndedSummary({
           </div>
           <div>
             <h2 className="text-2xl font-bold">Overall Capability Assessment Summary</h2>
-            <p className="text-gray-400">
+            <p className="text-slate-600 dark:text-gray-400">
               AI-generated synthesis from {openEndedResponses.length} employee responses
             </p>
           </div>
@@ -168,7 +168,7 @@ export default function OpenEndedSummary({
           <Info className="w-6 h-6 text-teal-400" />
           Overall Picture
         </h3>
-        <p className="text-gray-300 leading-relaxed text-lg whitespace-pre-line">
+        <p className="text-slate-700 dark:text-gray-300 leading-relaxed text-lg whitespace-pre-line">
           {summary.overall_picture}
         </p>
       </motion.div>
@@ -184,7 +184,7 @@ export default function OpenEndedSummary({
           <CheckCircle className="w-6 h-6 text-green-400" />
           Achievements
         </h3>
-        <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+        <div className="text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
           {summary.achievements}
         </div>
       </motion.div>
@@ -200,7 +200,7 @@ export default function OpenEndedSummary({
           <AlertCircle className="w-6 h-6 text-orange-400" />
           Challenges
         </h3>
-        <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+        <div className="text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
           {summary.challenges}
         </div>
       </motion.div>
@@ -216,14 +216,14 @@ export default function OpenEndedSummary({
           <Target className="w-6 h-6 text-purple-400" />
           Milestones & Future Vision
         </h3>
-        <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+        <div className="text-slate-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
           {summary.milestones}
         </div>
       </motion.div>
 
       {/* Footer Note */}
       <div className="glass rounded-lg p-4 border border-blue-500/20">
-        <p className="text-xs text-gray-400 flex items-start gap-2">
+        <p className="text-xs text-slate-600 dark:text-gray-400 flex items-start gap-2">
           <Sparkles className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
           <span>
             This summary was generated by our AI from employee open-ended responses. 

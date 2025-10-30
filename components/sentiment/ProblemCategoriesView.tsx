@@ -121,7 +121,7 @@ export default function ProblemCategoriesView({
           <Sparkles className="w-5 h-5 text-teal-400" />
           AI Analysis in Progress
         </h3>
-        <p className="text-sm text-gray-400 text-center max-w-md">
+        <p className="text-sm text-slate-600 dark:text-gray-400 text-center max-w-md">
           Analyzing {lowestCells.length} problem areas • Generating insights • ~15 seconds
         </p>
         <div className="mt-4 flex items-center gap-2">
@@ -150,18 +150,18 @@ export default function ProblemCategoriesView({
       <div className="h-full flex flex-col items-center justify-center bg-gradient-to-br from-red-500/5 to-transparent rounded-lg border border-red-500/20 p-8">
         <AlertTriangle className="w-16 h-16 text-red-400 mb-4" />
         <h3 className="text-xl font-semibold mb-2">Analysis Failed</h3>
-        <p className="text-gray-400 mb-6 text-center max-w-md">{error}</p>
+        <p className="text-slate-600 dark:text-gray-400 mb-6 text-center max-w-md">{error}</p>
         <div className="flex gap-3">
           <button 
             onClick={analyzeWithGPT}
-            className="px-4 py-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-white text-sm font-semibold transition-all flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-900 dark:text-white text-sm font-semibold transition-all flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
             Retry Analysis
           </button>
           <button 
             onClick={onBack}
-            className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-gray-300 hover:text-white text-sm font-semibold transition-all flex items-center gap-2"
+            className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-slate-700 dark:text-gray-300 hover:text-slate-900 dark:text-white text-sm font-semibold transition-all flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Heatmap
@@ -178,11 +178,11 @@ export default function ProblemCategoriesView({
       <div className="col-span-9 row-span-2 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0">
-            <Brain className="w-5 h-5 text-white" />
+            <Brain className="w-5 h-5 text-slate-900 dark:text-white" />
           </div>
           <div>
-            <div className="text-sm font-semibold text-white mb-0.5">AI-Generated Problem Categories</div>
-            <div className="text-[9px] text-gray-400">
+            <div className="text-sm font-semibold text-slate-900 dark:text-white mb-0.5">AI-Generated Problem Categories</div>
+            <div className="text-[9px] text-slate-600 dark:text-gray-400">
               Analyzed {lowestCells.length} lowest-scoring areas • Identified {problemCategories.length} key challenges
             </div>
           </div>
@@ -248,7 +248,7 @@ export default function ProblemCategoriesView({
                   </div>
 
                   {/* Category Name */}
-                  <h3 className="text-sm font-bold mb-2 text-white group-hover:text-teal-300 transition-colors line-clamp-2">
+                  <h3 className="text-sm font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-300 transition-colors line-clamp-2">
                     {category.category_name}
                   </h3>
 
@@ -256,11 +256,11 @@ export default function ProblemCategoriesView({
                   <div className="space-y-1 mb-2">
                     <div className="flex items-start gap-1 text-[9px]">
                       <span className="text-gray-500 flex-shrink-0">Reason:</span>
-                      <span className="text-gray-400 line-clamp-1">{category.reason}</span>
+                      <span className="text-slate-600 dark:text-gray-400 line-clamp-1">{category.reason}</span>
                     </div>
                     <div className="flex items-start gap-1 text-[9px]">
                       <span className="text-gray-500 flex-shrink-0">Level:</span>
-                      <span className="text-gray-400 line-clamp-1">{category.level}</span>
+                      <span className="text-slate-600 dark:text-gray-400 line-clamp-1">{category.level}</span>
                     </div>
                   </div>
 
@@ -280,7 +280,7 @@ export default function ProblemCategoriesView({
                   </div>
 
                   {/* Description Preview */}
-                  <p className="text-[9px] text-gray-400 line-clamp-3 mb-3 leading-relaxed">
+                  <p className="text-[9px] text-slate-600 dark:text-gray-400 line-clamp-3 mb-3 leading-relaxed">
                     {category.description}
                   </p>
 
@@ -297,10 +297,10 @@ export default function ProblemCategoriesView({
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
               <Info className="w-12 h-12 text-gray-600 mx-auto mb-3" />
-              <p className="text-sm text-gray-400">No problem categories generated</p>
+              <p className="text-sm text-slate-600 dark:text-gray-400">No problem categories generated</p>
               <button 
                 onClick={analyzeWithGPT}
-                className="mt-4 px-4 py-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-white text-sm font-semibold transition-all"
+                className="mt-4 px-4 py-2 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-900 dark:text-white text-sm font-semibold transition-all"
               >
                 Retry Analysis
               </button>

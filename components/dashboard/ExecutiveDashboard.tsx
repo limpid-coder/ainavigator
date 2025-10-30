@@ -72,16 +72,16 @@ export default function ExecutiveDashboard({
       <div className="flex-shrink-0">
         <div className="flex flex-col md:flex-row items-start justify-between gap-3 md:gap-0 mb-2">
           <div className="flex-1">
-            <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
+            <h1 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-1">
               Welcome back, {userName}!
             </h1>
-            <p className="text-sm md:text-base text-gray-300 mb-1">
+            <p className="text-sm md:text-base text-slate-700 dark:text-gray-300 mb-1">
               Your AI Readiness Assessment for <span className="text-teal-400 font-semibold">{companyName}</span> is ready
             </p>
             <div className="flex flex-wrap items-center gap-2 text-xs">
-              <div className="flex items-center gap-1.5 text-gray-400">
+              <div className="flex items-center gap-1.5 text-slate-600 dark:text-gray-400">
                 <Users className="w-3.5 h-3.5 text-teal-400" />
-                <span>Based on <span className="text-white font-semibold">{metrics.respondentCount} employees</span></span>
+                <span>Based on <span className="text-slate-900 dark:text-white font-semibold">{metrics.respondentCount} employees</span></span>
               </div>
               <div className="hidden md:block h-3 w-px bg-white/10" />
               <span className="text-gray-500">Financial Services</span>
@@ -92,7 +92,7 @@ export default function ExecutiveDashboard({
           <div className="flex items-center gap-2">
             <div className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10">
               <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">Date</div>
-              <div className="text-xs text-white font-semibold">Oct 27, 2024</div>
+              <div className="text-xs text-slate-900 dark:text-white font-semibold">Oct 27, 2024</div>
             </div>
             <div className="px-2.5 py-1.5 rounded-lg bg-green-500/10 border border-green-500/20">
               <div className="text-[10px] text-green-500 uppercase tracking-wider mb-0.5">Status</div>
@@ -123,7 +123,7 @@ export default function ExecutiveDashboard({
                   <Target className="w-4 h-4 text-teal-400" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold text-white uppercase tracking-wide">Overall AI Readiness</div>
+                  <div className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide">Overall AI Readiness</div>
                   <div className="text-xs text-gray-500">Composite score (40% sentiment, 60% capability)</div>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function ExecutiveDashboard({
               {/* Progress bar with goal marker */}
               <div className="space-y-2 mb-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Progress to goal (70%)</span>
+                  <span className="text-slate-600 dark:text-gray-400">Progress to goal (70%)</span>
                   <span className={cn("font-semibold", readinessStatus.color)}>{metrics.readinessScore}/70</span>
                 </div>
                 <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
@@ -203,7 +203,7 @@ export default function ExecutiveDashboard({
                 <p className={cn("text-sm font-semibold", readinessStatus.color)}>
                   {readinessStatus.label}
                 </p>
-                <p className="text-[10px] text-gray-400 leading-relaxed">
+                <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed">
                   {readinessStatus.desc}
                 </p>
               </div>
@@ -221,7 +221,7 @@ export default function ExecutiveDashboard({
                   <Users className="w-4 h-4 text-purple-400" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold text-white uppercase tracking-wide">Employee Sentiment</div>
+                  <div className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide">Employee Sentiment</div>
                   <div className="text-xs text-gray-500">How people feel about AI transformation</div>
                 </div>
               </div>
@@ -238,7 +238,7 @@ export default function ExecutiveDashboard({
               {/* Sentiment Assessment */}
               <div className="space-y-2 mb-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Assessment</span>
+                  <span className="text-slate-600 dark:text-gray-400">Assessment</span>
                   <span className={cn(
                     "font-semibold",
                     parseFloat(metrics.sentimentAvg) <= 1.5 ? "text-green-400" :
@@ -282,7 +282,7 @@ export default function ExecutiveDashboard({
                 </div>
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs North America</span>
-                  <span className="text-gray-400 font-semibold">±0.0</span>
+                  <span className="text-slate-600 dark:text-gray-400 font-semibold">±0.0</span>
                 </div>
               </div>
 
@@ -300,7 +300,7 @@ export default function ExecutiveDashboard({
                   <Activity className="w-4 h-4 text-blue-400" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-semibold text-white uppercase tracking-wide">Capability Maturity</div>
+                  <div className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide">Capability Maturity</div>
                   <div className="text-xs text-gray-500">Organizational AI readiness level</div>
                 </div>
               </div>
@@ -317,7 +317,7 @@ export default function ExecutiveDashboard({
               {/* Maturity Levels */}
               <div className="space-y-2 mb-3">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-400">Current Level</span>
+                  <span className="text-slate-600 dark:text-gray-400">Current Level</span>
                   <span className="text-blue-400 font-semibold">Level 4 - Intermediate</span>
                 </div>
                 <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
@@ -371,8 +371,8 @@ export default function ExecutiveDashboard({
               <h3 className="text-xs font-bold text-green-400 uppercase tracking-wide">Strength</h3>
               <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-bold">High</span>
             </div>
-            <p className="text-xs text-gray-300 leading-relaxed mb-1.5">
-              Positive sentiment: <span className="text-white font-medium">collaboration & human interaction</span>
+            <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
+              Positive sentiment: <span className="text-slate-900 dark:text-white font-medium">collaboration & human interaction</span>
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-green-500/10 text-[10px]">
               <span className="text-gray-500">Ethics capability</span>
@@ -389,8 +389,8 @@ export default function ExecutiveDashboard({
               <h3 className="text-xs font-bold text-orange-400 uppercase tracking-wide">Challenge</h3>
               <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-400 font-bold">Critical</span>
             </div>
-            <p className="text-xs text-gray-300 leading-relaxed mb-1.5">
-              Concerns: <span className="text-white font-medium">AI transparency & autonomy</span>
+            <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
+              Concerns: <span className="text-slate-900 dark:text-white font-medium">AI transparency & autonomy</span>
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-orange-500/10 text-[10px]">
               <span className="text-gray-500">Low scores</span>
@@ -407,8 +407,8 @@ export default function ExecutiveDashboard({
               <h3 className="text-xs font-bold text-blue-400 uppercase tracking-wide">Opportunity</h3>
               <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-blue-500/10 border border-blue-500/20 text-blue-400 font-bold">Growth</span>
             </div>
-            <p className="text-xs text-gray-300 leading-relaxed mb-1.5">
-              Strong <span className="text-white font-medium">Ethics & Innovation</span> foundation
+            <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
+              Strong <span className="text-slate-900 dark:text-white font-medium">Ethics & Innovation</span> foundation
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-blue-500/10 text-[10px]">
               <span className="text-gray-500">vs Benchmark</span>
@@ -425,8 +425,8 @@ export default function ExecutiveDashboard({
               <h3 className="text-xs font-bold text-purple-400 uppercase tracking-wide">Recommended</h3>
               <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-purple-500/10 border border-purple-500/20 text-purple-400 font-bold">Action</span>
             </div>
-            <p className="text-xs text-gray-300 leading-relaxed mb-1.5">
-              Focus: <span className="text-white font-medium">Data Infrastructure</span> gap
+            <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
+              Focus: <span className="text-slate-900 dark:text-white font-medium">Data Infrastructure</span> gap
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-purple-500/10 text-[10px]">
               <span className="text-gray-500">Interventions</span>
@@ -444,7 +444,7 @@ export default function ExecutiveDashboard({
               <Activity className="w-4 h-4 text-blue-400" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Capability Dimensions</h2>
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">Capability Dimensions</h2>
               <p className="text-xs text-gray-500">8 areas • Scored vs industry</p>
             </div>
           </div>
@@ -462,12 +462,12 @@ export default function ExecutiveDashboard({
             <table className="w-full text-xs">
               <thead className="sticky top-0 bg-black/80 backdrop-blur-xl z-10">
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-3 px-4 text-gray-400 font-semibold uppercase tracking-wider text-xs">Dimension</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Your Score</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Industry Avg</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Gap</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Items</th>
-                  <th className="text-right py-3 px-4 text-gray-400 font-semibold uppercase tracking-wider text-xs">Performance</th>
+                  <th className="text-left py-3 px-4 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Dimension</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Your Score</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Industry Avg</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Gap</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Items</th>
+                  <th className="text-right py-3 px-4 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Performance</th>
                 </tr>
               </thead>
               <tbody>
@@ -481,7 +481,7 @@ export default function ExecutiveDashboard({
                   >
                     <td className="py-2.5 px-4">
                       <div className="flex items-center gap-2">
-                        <span className="text-white font-semibold group-hover:text-teal-300 transition-colors">{dim.name}</span>
+                        <span className="text-slate-900 dark:text-white font-semibold group-hover:text-teal-300 transition-colors">{dim.name}</span>
                         <Info className="w-3.5 h-3.5 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </td>
@@ -494,7 +494,7 @@ export default function ExecutiveDashboard({
                       </span>
                       <span className="text-gray-600 text-sm ml-0.5">/7.0</span>
                     </td>
-                    <td className="text-center px-3 text-gray-400 tabular-nums font-medium text-sm">{dim.benchmark.toFixed(1)}</td>
+                    <td className="text-center px-3 text-slate-600 dark:text-gray-400 tabular-nums font-medium text-sm">{dim.benchmark.toFixed(1)}</td>
                     <td className="text-center px-3 tabular-nums">
                       <span className={cn(
                         "inline-flex items-center gap-1 font-semibold",
@@ -504,7 +504,7 @@ export default function ExecutiveDashboard({
                         {dim.gap >= 0 ? '+' : ''}{dim.gap.toFixed(1)}
                       </span>
                     </td>
-                    <td className="text-center px-3 text-gray-400 font-medium">{dim.constructs}</td>
+                    <td className="text-center px-3 text-slate-600 dark:text-gray-400 font-medium">{dim.constructs}</td>
                     <td className="text-right px-4">
                       <span className={cn(
                         "inline-block px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider",
@@ -525,11 +525,11 @@ export default function ExecutiveDashboard({
           <div className="flex-shrink-0 px-4 py-3 border-t border-white/5 bg-black/40 backdrop-blur-sm">
             <div className="flex items-center justify-between text-xs">
               <span className="text-gray-500">
-                Industry benchmark: <span className="text-gray-400 font-medium">Financial Services (1000-5000 employees)</span>
+                Industry benchmark: <span className="text-slate-600 dark:text-gray-400 font-medium">Financial Services (1000-5000 employees)</span>
               </span>
               <span className="text-gray-600">•</span>
               <span className="text-gray-500">
-                Framework: <span className="text-gray-400 font-medium">AI Capability Maturity Model v2.0</span>
+                Framework: <span className="text-slate-600 dark:text-gray-400 font-medium">AI Capability Maturity Model v2.0</span>
               </span>
             </div>
           </div>
@@ -547,10 +547,10 @@ export default function ExecutiveDashboard({
           </div>
           <div className="flex-1 text-left">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-semibold text-white">Explore Sentiment Data</span>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white">Explore Sentiment Data</span>
               <ArrowRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform" />
             </div>
-            <p className="text-[10px] text-gray-400 leading-relaxed mb-2">
+            <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed mb-2">
               Analyze the 5×5 sentiment heatmap showing how employees feel about AI across 25 dimensions. Identify resistance patterns and problem areas.
             </p>
             <div className="flex items-center gap-1.5 text-[9px]">
@@ -576,10 +576,10 @@ export default function ExecutiveDashboard({
           </div>
           <div className="flex-1 text-left">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-semibold text-white">Analyze Capability Gaps</span>
+              <span className="text-sm font-semibold text-slate-900 dark:text-white">Analyze Capability Gaps</span>
               <ArrowRight className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
             </div>
-            <p className="text-[10px] text-gray-400 leading-relaxed mb-2">
+            <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed mb-2">
               Deep dive into the 8 capability dimensions with radar charts. Compare against industry benchmarks and identify specific constructs needing improvement.
             </p>
             <div className="flex items-center gap-1.5 text-[9px]">

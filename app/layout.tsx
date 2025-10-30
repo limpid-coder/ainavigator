@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { ProvidersWithChat } from "./providers-with-chat"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,7 +35,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f1ed" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
     { media: "(prefers-color-scheme: dark)", color: "#000000" }
   ],
 }
@@ -45,12 +46,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className="light" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased bg-black text-white min-h-screen`}
+        className={`${inter.variable} font-sans antialiased bg-slate-50 dark:bg-black text-slate-900 dark:text-white min-h-screen transition-colors duration-300`}
         suppressHydrationWarning
       >
-        {children}
+        <ProvidersWithChat>
+          {children}
+        </ProvidersWithChat>
       </body>
     </html>
   )

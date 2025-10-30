@@ -97,8 +97,8 @@ export default function CapabilityAnalysisPro({
         
         {/* Header */}
         <div>
-          <h2 className="text-xl font-bold text-white mb-1">Capability Assessment</h2>
-          <p className="text-sm text-gray-400">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-1">Capability Assessment</h2>
+          <p className="text-sm text-slate-600 dark:text-gray-400">
             8 dimensions • {data.length} respondents analyzed
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function CapabilityAnalysisPro({
                   "flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
                   chartView === view.id
                     ? "bg-teal-500/20 text-teal-400 border border-teal-500/30 shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white hover:bg-white/5"
                 )}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -135,7 +135,7 @@ export default function CapabilityAnalysisPro({
                 "flex-1 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
                 benchmarkType === type
                   ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white hover:bg-white/5"
               )}
             >
               {benchmarkComparisons[type].label}
@@ -146,7 +146,7 @@ export default function CapabilityAnalysisPro({
         {/* Benchmark Info */}
         <div className="px-3 py-2 bg-purple-500/10 rounded-lg border border-purple-500/20">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-gray-400">Comparing to {benchmarkComparisons[benchmarkType].count} companies</span>
+            <span className="text-slate-600 dark:text-gray-400">Comparing to {benchmarkComparisons[benchmarkType].count} companies</span>
             <span className="text-purple-400 font-semibold">
               Avg: {benchmarkComparisons[benchmarkType].avg.toFixed(1)}
             </span>
@@ -156,7 +156,7 @@ export default function CapabilityAnalysisPro({
         {/* Radar Chart */}
         <div className="flex-1 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-4 flex flex-col min-h-0">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-xs text-gray-400">{chartViews.find(v => v.id === chartView)?.description}</span>
+            <span className="text-xs text-slate-600 dark:text-gray-400">{chartViews.find(v => v.id === chartView)?.description}</span>
             <span className="text-xs text-purple-400 font-medium">{benchmarkComparisons[benchmarkType].label}</span>
           </div>
 
@@ -279,11 +279,11 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-gray-400">Your Score</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Your Score</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-purple-400" style={{ borderTop: '2px dashed #a855f7' }} />
-                  <span className="text-xs text-gray-400">Benchmark</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Benchmark</span>
                 </div>
               </>
             )}
@@ -291,15 +291,15 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-green-400" style={{ borderTop: '2px dashed #10b981' }} />
-                  <span className="text-xs text-gray-400">Max</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Max</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-gray-400">Average</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Average</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-red-400" style={{ borderTop: '2px dashed #ef4444' }} />
-                  <span className="text-xs text-gray-400">Min</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Min</span>
                 </div>
               </>
             )}
@@ -307,11 +307,11 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-gray-400">Current</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Current</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-gray-500" style={{ borderTop: '2px dashed #6b7280' }} />
-                  <span className="text-xs text-gray-400">Target (7.0)</span>
+                  <span className="text-xs text-slate-600 dark:text-gray-400">Target (7.0)</span>
                 </div>
               </>
             )}
@@ -324,19 +324,19 @@ export default function CapabilityAnalysisPro({
             <div className="text-2xl font-bold text-teal-400 tabular-nums mb-0.5">
               {assessment.overall.average.toFixed(1)}
             </div>
-            <div className="text-xs text-gray-400">Overall</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Overall</div>
           </div>
           <div className="bg-gradient-to-br from-green-500/10 to-transparent rounded-lg border border-green-500/20 p-2.5 text-center">
             <div className="text-2xl font-bold text-green-400 tabular-nums mb-0.5">
               {aboveBenchmark}
             </div>
-            <div className="text-xs text-gray-400">Above</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Above</div>
           </div>
           <div className="bg-gradient-to-br from-orange-500/10 to-transparent rounded-lg border border-orange-500/20 p-2.5 text-center">
             <div className="text-2xl font-bold text-orange-400 tabular-nums mb-0.5">
               {belowBenchmark}
             </div>
-            <div className="text-xs text-gray-400">Below</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Below</div>
           </div>
         </div>
       </div>
@@ -347,8 +347,8 @@ export default function CapabilityAnalysisPro({
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <div>
-            <h2 className="text-lg font-bold text-white">Dimension Breakdown</h2>
-            <p className="text-sm text-gray-400">Click any row for 4-construct drill-down</p>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">Dimension Breakdown</h2>
+            <p className="text-sm text-slate-600 dark:text-gray-400">Click any row for 4-construct drill-down</p>
           </div>
           <button 
             onClick={onViewSummary}
@@ -365,13 +365,13 @@ export default function CapabilityAnalysisPro({
             <table className="w-full text-sm min-w-[600px]">
               <thead className="sticky top-0 bg-black/90 backdrop-blur-xl z-10">
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-3 px-4 text-gray-400 font-semibold uppercase tracking-wider text-xs">Dimension</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Score</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Max</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Min</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Benchmark</th>
-                  <th className="text-center py-3 px-3 text-gray-400 font-semibold uppercase tracking-wider text-xs">Gap</th>
-                  <th className="text-right py-3 px-4 text-gray-400 font-semibold uppercase tracking-wider text-xs">Status</th>
+                  <th className="text-left py-3 px-4 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Dimension</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Score</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Max</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Min</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Benchmark</th>
+                  <th className="text-center py-3 px-3 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Gap</th>
+                  <th className="text-right py-3 px-4 text-slate-600 dark:text-gray-400 font-semibold uppercase tracking-wider text-xs">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -388,7 +388,7 @@ export default function CapabilityAnalysisPro({
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-white group-hover:text-teal-300 transition-colors">{dim.name}</span>
+                          <span className="font-semibold text-slate-900 dark:text-white group-hover:text-teal-300 transition-colors">{dim.name}</span>
                           <ChevronRight className="w-4 h-4 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       </td>
@@ -434,11 +434,11 @@ export default function CapabilityAnalysisPro({
           <div className="flex-shrink-0 px-4 py-2.5 border-t border-white/5 bg-black/40 backdrop-blur-sm">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
               <span className="text-gray-500">
-                Industry benchmark: <span className="text-gray-400 font-medium">Financial Services (1000-5000 employees)</span>
+                Industry benchmark: <span className="text-slate-600 dark:text-gray-400 font-medium">Financial Services (1000-5000 employees)</span>
               </span>
               <span className="hidden sm:inline text-gray-600">•</span>
               <span className="text-gray-500">
-                Scale: <span className="text-gray-400 font-medium">1-10 Capability Maturity</span>
+                Scale: <span className="text-slate-600 dark:text-gray-400 font-medium">1-10 Capability Maturity</span>
               </span>
             </div>
           </div>

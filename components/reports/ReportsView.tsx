@@ -89,8 +89,8 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
       <div className="flex-shrink-0">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-1">Reports & Export</h2>
-            <p className="text-sm text-gray-400">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Reports & Export</h2>
+            <p className="text-sm text-slate-600 dark:text-gray-400">
               Generate professional reports and share findings with stakeholders
             </p>
           </div>
@@ -106,11 +106,11 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center">
-                <FileText className="w-6 h-6 text-white" />
+                <FileText className="w-6 h-6 text-slate-900 dark:text-white" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white mb-0.5">{companyName} - AI Readiness Assessment</h3>
-                <div className="flex items-center gap-3 text-xs text-gray-400">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-0.5">{companyName} - AI Readiness Assessment</h3>
+                <div className="flex items-center gap-3 text-xs text-slate-600 dark:text-gray-400">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
                     <span>October 27, 2024</span>
@@ -128,7 +128,7 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
             </div>
             <button
               onClick={onExportPDF}
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-white font-semibold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20"
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-teal-500 to-purple-500 hover:from-teal-400 hover:to-purple-400 text-slate-900 dark:text-white font-semibold transition-all flex items-center gap-2 shadow-lg shadow-teal-500/20"
             >
               <Download className="w-5 h-5" />
               Quick Export PDF
@@ -139,7 +139,7 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
 
       {/* Report Types */}
       <div className="flex-1 overflow-y-auto scrollbar-thin">
-        <h3 className="text-sm font-semibold text-white uppercase tracking-wide mb-3">Available Report Formats</h3>
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide mb-3">Available Report Formats</h3>
         
         <div className="grid md:grid-cols-2 gap-3 mb-6">
           {reportTypes.map((report, index) => {
@@ -168,10 +168,10 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
                         ? "bg-gradient-to-br from-blue-500 to-purple-500"
                         : "bg-white/10"
                     )}>
-                      <Icon className="w-6 h-6 text-white" />
+                      <Icon className="w-6 h-6 text-slate-900 dark:text-white" />
                     </div>
                     <div>
-                      <h4 className="text-base font-semibold text-white mb-0.5">{report.title}</h4>
+                      <h4 className="text-base font-semibold text-slate-900 dark:text-white mb-0.5">{report.title}</h4>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-500">{report.format}</span>
                         <span className="text-xs text-gray-600">•</span>
@@ -190,11 +190,11 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
                   )}
                 </div>
 
-                <p className="text-sm text-gray-400 mb-3 leading-relaxed">{report.description}</p>
+                <p className="text-sm text-slate-600 dark:text-gray-400 mb-3 leading-relaxed">{report.description}</p>
 
                 <div className="space-y-1 mb-4">
                   {report.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-600 dark:text-gray-400">
                       <CheckCircle className="w-3 h-3 text-teal-400" />
                       <span>{feature}</span>
                     </div>
@@ -216,7 +216,7 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
         </div>
 
         {/* Share Options */}
-        <h3 className="text-sm font-semibold text-white uppercase tracking-wide mb-3 mt-6">Share & Distribute</h3>
+        <h3 className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide mb-3 mt-6">Share & Distribute</h3>
         
         <div className="grid grid-cols-3 gap-3">
           {shareOptions.map((option, index) => {
@@ -232,9 +232,9 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
                 disabled
               >
                 <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center mx-auto mb-2">
-                  <Icon className="w-5 h-5 text-gray-400" />
+                  <Icon className="w-5 h-5 text-slate-600 dark:text-gray-400" />
                 </div>
-                <h4 className="text-sm font-semibold text-gray-300 mb-1">{option.title}</h4>
+                <h4 className="text-sm font-semibold text-slate-700 dark:text-gray-300 mb-1">{option.title}</h4>
                 <p className="text-xs text-gray-500">{option.description}</p>
                 <div className="mt-3 px-2 py-1 rounded bg-white/5 border border-white/10 text-gray-600 text-[10px] font-semibold">
                   Coming Soon
@@ -247,11 +247,11 @@ export default function ReportsView({ companyName, onExportPDF }: ReportsViewPro
 
       {/* Help Text */}
       <div className="flex-shrink-0 px-4 py-3 bg-blue-500/5 rounded-lg border border-blue-500/20">
-        <p className="text-xs text-gray-400 flex items-start gap-2">
+        <p className="text-xs text-slate-600 dark:text-gray-400 flex items-start gap-2">
           <FileText className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
           <span>
             Reports include all assessment data, insights, and recommendations. 
-            <span className="text-white font-medium"> For custom report formats or additional analyses, contact your account manager.</span>
+            <span className="text-slate-900 dark:text-white font-medium"> For custom report formats or additional analyses, contact your account manager.</span>
           </span>
         </p>
       </div>

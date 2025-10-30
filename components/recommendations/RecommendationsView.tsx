@@ -186,13 +186,13 @@ export default function RecommendationsView({
       <div className="flex-shrink-0">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h2 className="text-2xl font-bold text-white mb-1">Recommended Interventions</h2>
-            <p className="text-sm text-gray-400">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">Recommended Interventions</h2>
+            <p className="text-sm text-slate-600 dark:text-gray-400">
               AI-matched actions based on your sentiment gaps and capability deficits
             </p>
           </div>
           <div className="px-3 py-2 rounded-lg bg-gradient-to-r from-teal-500/10 to-purple-500/10 border border-teal-500/20">
-            <div className="text-xs text-gray-400 mb-0.5">Total Estimated Impact</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400 mb-0.5">Total Estimated Impact</div>
             <div className="text-xl font-bold text-teal-400">30-50% ↑</div>
           </div>
         </div>
@@ -239,18 +239,18 @@ export default function RecommendationsView({
                         intervention.priority === 3 ? "bg-gradient-to-br from-purple-500 to-pink-500" :
                         "bg-white/10"
                       )}>
-                        <span className="text-white font-bold text-lg">#{intervention.priority}</span>
+                        <span className="text-slate-900 dark:text-white font-bold text-lg">#{intervention.priority}</span>
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
-                          <h3 className="text-base font-bold text-white">{intervention.title}</h3>
+                          <h3 className="text-base font-bold text-slate-900 dark:text-white">{intervention.title}</h3>
                           {intervention.priority <= 2 && (
                             <span className="px-2 py-0.5 rounded text-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-400 font-bold uppercase">
                               Critical
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-400">{intervention.tagline}</p>
+                        <p className="text-sm text-slate-600 dark:text-gray-400">{intervention.tagline}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -269,15 +269,15 @@ export default function RecommendationsView({
                   <div className="flex items-center gap-4 text-xs mb-3">
                     <div className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 text-blue-400" />
-                      <span className="text-gray-400">{intervention.impact.timeline}</span>
+                      <span className="text-slate-600 dark:text-gray-400">{intervention.impact.timeline}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <DollarSign className="w-3.5 h-3.5 text-green-400" />
-                      <span className="text-gray-400">{intervention.cost.range}</span>
+                      <span className="text-slate-600 dark:text-gray-400">{intervention.cost.range}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Zap className="w-3.5 h-3.5 text-purple-400" />
-                      <span className="text-gray-400">
+                      <span className="text-slate-600 dark:text-gray-400">
                         {intervention.impact.effort.charAt(0).toUpperCase() + intervention.impact.effort.slice(1)} effort
                       </span>
                     </div>
@@ -292,7 +292,7 @@ export default function RecommendationsView({
                       </div>
                       <div className="space-y-0.5">
                         {intervention.addresses.sentimentGaps.map((gap, i) => (
-                          <div key={i} className="text-xs text-gray-300">• {gap}</div>
+                          <div key={i} className="text-xs text-slate-700 dark:text-gray-300">• {gap}</div>
                         ))}
                       </div>
                     </div>
@@ -303,7 +303,7 @@ export default function RecommendationsView({
                       </div>
                       <div className="space-y-0.5">
                         {intervention.addresses.capabilityGaps.map((gap, i) => (
-                          <div key={i} className="text-xs text-gray-300">• {gap}</div>
+                          <div key={i} className="text-xs text-slate-700 dark:text-gray-300">• {gap}</div>
                         ))}
                       </div>
                     </div>
@@ -321,19 +321,19 @@ export default function RecommendationsView({
                         <div className="pt-4 mt-4 border-t border-white/10 space-y-4">
                           {/* Description */}
                           <div>
-                            <h4 className="text-sm font-semibold text-white mb-2">Full Description</h4>
-                            <p className="text-sm text-gray-300 leading-relaxed">{intervention.description}</p>
+                            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2">Full Description</h4>
+                            <p className="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">{intervention.description}</p>
                           </div>
 
                           {/* Expected Outcomes */}
                           <div>
-                            <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                            <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
                               <CheckCircle className="w-4 h-4 text-green-400" />
                               Expected Outcomes
                             </h4>
                             <div className="grid md:grid-cols-2 gap-2">
                               {intervention.outcomes.map((outcome, i) => (
-                                <div key={i} className="flex items-start gap-2 text-xs text-gray-300">
+                                <div key={i} className="flex items-start gap-2 text-xs text-slate-700 dark:text-gray-300">
                                   <Star className="w-3 h-3 text-yellow-400 flex-shrink-0 mt-0.5" />
                                   <span>{outcome}</span>
                                 </div>
@@ -344,12 +344,12 @@ export default function RecommendationsView({
                           {/* Investment Details */}
                           <div className="grid grid-cols-2 gap-3">
                             <div className="bg-white/5 rounded-lg border border-white/10 p-3">
-                              <div className="text-xs text-gray-400 mb-1">Investment Range</div>
-                              <div className="text-lg font-bold text-white mb-2">{intervention.cost.range}</div>
+                              <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Investment Range</div>
+                              <div className="text-lg font-bold text-slate-900 dark:text-white mb-2">{intervention.cost.range}</div>
                               <div className="text-[10px] text-gray-500">{intervention.cost.breakdown}</div>
                             </div>
                             <div className="bg-white/5 rounded-lg border border-white/10 p-3">
-                              <div className="text-xs text-gray-400 mb-1">Expected ROI</div>
+                              <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Expected ROI</div>
                               <div className="text-lg font-bold text-teal-400 mb-2">{intervention.impact.roi}</div>
                               <div className="text-[10px] text-gray-500">Measured by adoption rates & efficiency gains</div>
                             </div>
@@ -361,7 +361,7 @@ export default function RecommendationsView({
                               <CheckCircle className="w-4 h-4" />
                               Select for Action Plan
                             </div>
-                            <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 text-sm font-semibold cursor-not-allowed opacity-60">
+                            <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-slate-600 dark:text-gray-400 text-sm font-semibold cursor-not-allowed opacity-60">
                               View Case Studies
                             </div>
                           </div>
@@ -381,15 +381,15 @@ export default function RecommendationsView({
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-teal-500/10 to-transparent rounded-lg border border-teal-500/20 p-3 text-center">
             <div className="text-2xl font-bold text-teal-400 mb-1">{interventions.length}</div>
-            <div className="text-xs text-gray-400">Total Interventions</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Total Interventions</div>
           </div>
           <div className="bg-gradient-to-br from-purple-500/10 to-transparent rounded-lg border border-purple-500/20 p-3 text-center">
             <div className="text-2xl font-bold text-purple-400 mb-1">$600K-$1.5M</div>
-            <div className="text-xs text-gray-400">Total Investment Range</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Total Investment Range</div>
           </div>
           <div className="bg-gradient-to-br from-green-500/10 to-transparent rounded-lg border border-green-500/20 p-3 text-center">
             <div className="text-2xl font-bold text-green-400 mb-1">$2M-$5M</div>
-            <div className="text-xs text-gray-400">Potential Savings (3yr)</div>
+            <div className="text-xs text-slate-600 dark:text-gray-400">Potential Savings (3yr)</div>
           </div>
         </div>
       </div>

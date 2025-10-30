@@ -68,7 +68,7 @@ export default function InterventionsView({
       case 'low': return 'text-green-400'
       case 'medium': return 'text-yellow-400'
       case 'high': return 'text-orange-400'
-      default: return 'text-gray-400'
+      default: return 'text-slate-600 dark:text-gray-400'
     }
   }
 
@@ -76,8 +76,8 @@ export default function InterventionsView({
     switch (impact) {
       case 'high': return 'text-green-400'
       case 'medium': return 'text-yellow-400'
-      case 'low': return 'text-gray-400'
-      default: return 'text-gray-400'
+      case 'low': return 'text-slate-600 dark:text-gray-400'
+      default: return 'text-slate-600 dark:text-gray-400'
     }
   }
 
@@ -92,7 +92,7 @@ export default function InterventionsView({
           <Sparkles className="w-12 h-12 text-purple-400" />
         </motion.div>
         <h3 className="text-xl font-semibold mb-2">Generating Interventions...</h3>
-        <p className="text-gray-400 text-center max-w-md">
+        <p className="text-slate-600 dark:text-gray-400 text-center max-w-md">
           Our AI is creating 3 specific, actionable recommendations for "{problemCategory.category_name}"
         </p>
       </div>
@@ -104,7 +104,7 @@ export default function InterventionsView({
       <div className="glass-dark rounded-xl p-8 text-center">
         <AlertTriangle className="w-12 h-12 text-red-400 mx-auto mb-4" />
         <h3 className="text-xl font-semibold mb-2">Failed to Generate Interventions</h3>
-        <p className="text-gray-400 mb-6">{error}</p>
+        <p className="text-slate-600 dark:text-gray-400 mb-6">{error}</p>
         <div className="flex gap-3 justify-center">
           <button onClick={generateInterventions} className="btn-primary">
             Retry
@@ -123,7 +123,7 @@ export default function InterventionsView({
       <div className="glass-dark rounded-xl p-6">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white mb-4 transition-colors"
+          className="flex items-center gap-2 text-sm text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white mb-4 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Problem Categories
@@ -142,7 +142,7 @@ export default function InterventionsView({
             
             <h2 className="text-3xl font-bold mb-3">{problemCategory.category_name}</h2>
             
-            <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
+            <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-gray-400 mb-4">
               <div className="flex items-center gap-2">
                 <span>{problemCategory.reason}</span>
               </div>
@@ -152,21 +152,21 @@ export default function InterventionsView({
               </div>
             </div>
 
-            <p className="text-gray-300 leading-relaxed mb-4">
+            <p className="text-slate-700 dark:text-gray-300 leading-relaxed mb-4">
               {problemCategory.description}
             </p>
 
             {problemCategory.business_impact && (
               <div className="glass rounded-lg p-4 mb-4">
                 <div className="text-sm font-semibold text-teal-400 mb-2">Business Impact</div>
-                <p className="text-sm text-gray-300">{problemCategory.business_impact}</p>
+                <p className="text-sm text-slate-700 dark:text-gray-300">{problemCategory.business_impact}</p>
               </div>
             )}
           </div>
 
           <div className="ml-6 flex-shrink-0">
             <div className="glass rounded-xl p-4 text-center">
-              <div className="text-gray-400 text-xs mb-1">Affected</div>
+              <div className="text-slate-600 dark:text-gray-400 text-xs mb-1">Affected</div>
               <div className="text-3xl font-bold text-orange-400 flex items-center gap-2">
                 <Users className="w-6 h-6" />
                 {problemCategory.affected_count}
@@ -220,7 +220,7 @@ export default function InterventionsView({
                         {intervention.impact} impact
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 text-sm text-gray-400">
+                    <div className="flex items-center gap-1 text-sm text-slate-600 dark:text-gray-400">
                       <Clock className="w-4 h-4" />
                       <span>{intervention.timeframe}</span>
                     </div>
@@ -230,16 +230,16 @@ export default function InterventionsView({
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-400 line-clamp-2">
+                  <p className="text-sm text-slate-600 dark:text-gray-400 line-clamp-2">
                     {intervention.what_to_do}
                   </p>
                 </div>
 
                 <div className="ml-4 flex-shrink-0">
                   {expandedAction === intervention.number ? (
-                    <ChevronUp className="w-5 h-5 text-gray-400" />
+                    <ChevronUp className="w-5 h-5 text-slate-600 dark:text-gray-400" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-400" />
+                    <ChevronDown className="w-5 h-5 text-slate-600 dark:text-gray-400" />
                   )}
                 </div>
               </div>
@@ -258,22 +258,22 @@ export default function InterventionsView({
                     {/* What to Do */}
                     <div>
                       <h5 className="text-sm font-semibold text-teal-400 mb-2">What to Do</h5>
-                      <p className="text-sm text-gray-300">{intervention.what_to_do}</p>
+                      <p className="text-sm text-slate-700 dark:text-gray-300">{intervention.what_to_do}</p>
                     </div>
 
                     {/* Why It Works */}
                     <div className="glass rounded-lg p-4">
                       <h5 className="text-sm font-semibold text-purple-400 mb-2">Why It Works</h5>
-                      <p className="text-sm text-gray-300">{intervention.why_it_works}</p>
+                      <p className="text-sm text-slate-700 dark:text-gray-300">{intervention.why_it_works}</p>
                     </div>
 
                     {/* Resources & Stakeholders */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <h5 className="text-xs font-semibold text-gray-400 mb-2">Required Resources</h5>
+                        <h5 className="text-xs font-semibold text-slate-600 dark:text-gray-400 mb-2">Required Resources</h5>
                         <ul className="space-y-1">
                           {intervention.required_resources.map((resource, idx) => (
-                            <li key={idx} className="text-xs text-gray-300 flex items-center gap-2">
+                            <li key={idx} className="text-xs text-slate-700 dark:text-gray-300 flex items-center gap-2">
                               <div className="w-1 h-1 rounded-full bg-teal-400" />
                               {resource}
                             </li>
@@ -281,10 +281,10 @@ export default function InterventionsView({
                         </ul>
                       </div>
                       <div>
-                        <h5 className="text-xs font-semibold text-gray-400 mb-2">Key Stakeholders</h5>
+                        <h5 className="text-xs font-semibold text-slate-600 dark:text-gray-400 mb-2">Key Stakeholders</h5>
                         <ul className="space-y-1">
                           {intervention.key_stakeholders.map((stakeholder, idx) => (
-                            <li key={idx} className="text-xs text-gray-300 flex items-center gap-2">
+                            <li key={idx} className="text-xs text-slate-700 dark:text-gray-300 flex items-center gap-2">
                               <div className="w-1 h-1 rounded-full bg-purple-400" />
                               {stakeholder}
                             </li>
@@ -295,7 +295,7 @@ export default function InterventionsView({
 
                     {/* Success Metrics */}
                     <div>
-                      <h5 className="text-xs font-semibold text-gray-400 mb-2">Success Metrics</h5>
+                      <h5 className="text-xs font-semibold text-slate-600 dark:text-gray-400 mb-2">Success Metrics</h5>
                       <div className="flex flex-wrap gap-2">
                         {intervention.success_metrics.map((metric, idx) => (
                           <span
@@ -317,7 +317,7 @@ export default function InterventionsView({
                         </h5>
                         <ul className="space-y-1">
                           {intervention.quick_wins.map((win, idx) => (
-                            <li key={idx} className="text-sm text-gray-300 flex items-start gap-2">
+                            <li key={idx} className="text-sm text-slate-700 dark:text-gray-300 flex items-start gap-2">
                               <span className="text-teal-400 mt-0.5">→</span>
                               {win}
                             </li>
@@ -335,7 +335,7 @@ export default function InterventionsView({
 
       {interventions.length === 0 && !isGenerating && (
         <div className="glass-dark rounded-xl p-12 text-center">
-          <p className="text-gray-400">No interventions generated. Please try again.</p>
+          <p className="text-slate-600 dark:text-gray-400">No interventions generated. Please try again.</p>
         </div>
       )}
     </div>

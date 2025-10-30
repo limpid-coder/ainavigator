@@ -29,7 +29,7 @@ const FilterSelect = ({
 
   return (
     <div className="space-y-2">
-      <label className="text-xs font-medium text-gray-400 uppercase tracking-wider flex items-center gap-2">
+      <label className="text-xs font-medium text-slate-600 dark:text-gray-400 uppercase tracking-wider flex items-center gap-2">
         {icon}
         {label}
       </label>
@@ -38,7 +38,7 @@ const FilterSelect = ({
           onClick={() => setIsOpen(!isOpen)}
           className="w-full px-4 py-3 rounded-lg glass hover:glass-hover text-left flex items-center justify-between group transition-all"
         >
-          <span className={value === 'all' ? 'text-gray-500' : 'text-white'}>
+          <span className={value === 'all' ? 'text-gray-500' : 'text-slate-900 dark:text-white'}>
             {value === 'all' ? `All ${label}s` : value}
           </span>
           <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
@@ -59,7 +59,7 @@ const FilterSelect = ({
                     setIsOpen(false)
                   }}
                   className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                    value === 'all' ? 'bg-teal-500/20 text-teal-400' : 'text-gray-400'
+                    value === 'all' ? 'bg-teal-500/20 text-teal-400' : 'text-slate-600 dark:text-gray-400'
                   }`}
                 >
                   All {label}s
@@ -72,7 +72,7 @@ const FilterSelect = ({
                       setIsOpen(false)
                     }}
                     className={`w-full px-4 py-2 text-left hover:bg-white/10 transition-colors ${
-                      value === option ? 'bg-teal-500/20 text-teal-400' : 'text-white'
+                      value === option ? 'bg-teal-500/20 text-teal-400' : 'text-slate-900 dark:text-white'
                     }`}
                   >
                     {option}
@@ -142,7 +142,7 @@ export default function FilterPanel({
           <div>
             <h3 className="text-lg font-semibold">Data Filters</h3>
             {activeFilterCount > 0 && (
-              <p className="text-xs text-gray-400 mt-0.5 font-mono">
+              <p className="text-xs text-slate-600 dark:text-gray-400 mt-0.5 font-mono">
                 {activeFilterCount} ACTIVE
               </p>
             )}
@@ -240,7 +240,7 @@ export default function FilterPanel({
             exit={{ opacity: 0, height: 0 }}
             className="pt-4 border-t border-white/10"
           >
-            <p className="text-xs text-gray-400 mb-3 uppercase tracking-wider">Active Filters</p>
+            <p className="text-xs text-slate-600 dark:text-gray-400 mb-3 uppercase tracking-wider">Active Filters</p>
             <div className="flex flex-wrap gap-2">
               {Object.entries(filters).map(([key, value], index) => (
                 <motion.div
@@ -250,11 +250,11 @@ export default function FilterPanel({
                   transition={{ delay: index * 0.05 }}
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-500/20 to-purple-500/20 border border-teal-500/30 text-sm"
                 >
-                  <span className="text-gray-400 capitalize">{key}:</span>
+                  <span className="text-slate-600 dark:text-gray-400 capitalize">{key}:</span>
                   <span className="font-medium text-teal-400">{value}</span>
                   <button
                     onClick={() => handleFilterChange(key as keyof FilterState, undefined)}
-                    className="ml-1 hover:text-white transition-colors"
+                    className="ml-1 hover:text-slate-900 dark:text-white transition-colors"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -267,7 +267,7 @@ export default function FilterPanel({
 
       {/* Data Stats */}
       <div className="pt-4 border-t border-white/10">
-        <p className="text-xs text-gray-400 mb-3 uppercase tracking-wider">Data Overview</p>
+        <p className="text-xs text-slate-600 dark:text-gray-400 mb-3 uppercase tracking-wider">Data Overview</p>
         <div className="grid grid-cols-2 gap-3">
           <div className="glass rounded-lg p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">

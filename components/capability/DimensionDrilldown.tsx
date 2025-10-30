@@ -92,9 +92,9 @@ export default function DimensionDrilldown({
       }
     }
     return {
-      icon: <CheckCircle className="w-5 h-5 text-gray-400" />,
+      icon: <CheckCircle className="w-5 h-5 text-slate-600 dark:text-gray-400" />,
       text: 'At benchmark',
-      color: 'text-gray-400'
+      color: 'text-slate-600 dark:text-gray-400'
     }
   }
 
@@ -118,9 +118,9 @@ export default function DimensionDrilldown({
           <div className="h-5 w-px bg-white/10" />
           
           <div>
-            <h2 className="text-base font-bold text-white">{dimension.name}</h2>
+            <h2 className="text-base font-bold text-slate-900 dark:text-white">{dimension.name}</h2>
             {dimensionMeta?.description && (
-              <p className="text-[9px] text-gray-400 line-clamp-1">{dimensionMeta.description}</p>
+              <p className="text-[9px] text-slate-600 dark:text-gray-400 line-clamp-1">{dimensionMeta.description}</p>
             )}
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function DimensionDrilldown({
         <div>
           <div className="text-[8px] text-gray-500 uppercase tracking-wide mb-0.5">Constructs</div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-white tabular-nums">{dimension.constructs.length}</span>
+            <span className="text-xl font-bold text-slate-900 dark:text-white tabular-nums">{dimension.constructs.length}</span>
           </div>
         </div>
       </div>
@@ -194,7 +194,7 @@ export default function DimensionDrilldown({
       {/* Construct Radar Chart - Left */}
       <div className="col-span-5 row-span-9 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-2 flex flex-col">
         <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-white/5">
-          <span className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider">4-Construct Analysis</span>
+          <span className="text-[9px] font-semibold text-slate-600 dark:text-gray-400 uppercase tracking-wider">4-Construct Analysis</span>
         </div>
 
         <div className="flex-1 min-h-0">
@@ -235,11 +235,11 @@ export default function DimensionDrilldown({
         <div className="flex items-center justify-center gap-3 mt-1.5 pt-1.5 border-t border-white/5">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-[#0D7C7F]" />
-            <span className="text-[8px] text-gray-400">Your Score</span>
+            <span className="text-[8px] text-slate-600 dark:text-gray-400">Your Score</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-0.5 bg-[#a855f7]" style={{ width: '10px' }} />
-            <span className="text-[8px] text-gray-400">Benchmark</span>
+            <span className="text-[8px] text-slate-600 dark:text-gray-400">Benchmark</span>
           </div>
         </div>
       </div>
@@ -247,7 +247,7 @@ export default function DimensionDrilldown({
       {/* Construct Details Table - Right */}
       <div className="col-span-7 row-span-9 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-2 flex flex-col min-h-0">
         <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-white/5">
-          <span className="text-[9px] font-semibold text-gray-400 uppercase tracking-wider">Construct Breakdown</span>
+          <span className="text-[9px] font-semibold text-slate-600 dark:text-gray-400 uppercase tracking-wider">Construct Breakdown</span>
         </div>
 
         <div className="flex-1 overflow-auto min-h-0">
@@ -266,7 +266,7 @@ export default function DimensionDrilldown({
                 const isWeak = construct.score < dimension.average - 0.5
                 return (
                   <tr key={idx} className="border-b border-white/5 hover:bg-white/5">
-                    <td className="py-1.5 text-white font-medium">{construct.name}</td>
+                    <td className="py-1.5 text-slate-900 dark:text-white font-medium">{construct.name}</td>
                     <td className="text-right tabular-nums">
                       <span className={cn(
                         "font-semibold",
@@ -301,7 +301,7 @@ export default function DimensionDrilldown({
               <AlertTriangle className="w-2.5 h-2.5 text-orange-400 mt-0.5 flex-shrink-0" />
               <div>
                 <div className="text-[9px] font-semibold text-orange-400 uppercase tracking-wide mb-0.5">Focus Areas</div>
-                <p className="text-[9px] text-gray-300 leading-relaxed">
+                <p className="text-[9px] text-slate-700 dark:text-gray-300 leading-relaxed">
                   {dimension.constructs
                     .filter((c: any) => c.score < dimension.average - 0.5)
                     .map((c: any) => c.name)

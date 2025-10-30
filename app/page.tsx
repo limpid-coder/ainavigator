@@ -172,7 +172,7 @@ export default function Home() {
       
       setTimeout(() => {
         sessionStorage.setItem('companyAccess', JSON.stringify(company))
-        window.location.href = "/dashboard"
+        window.location.href = "/assessment"
       }, 2000)
     } else {
       setCodeError("Invalid access code. Please check and try again.")

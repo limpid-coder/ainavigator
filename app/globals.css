@@ -10,13 +10,14 @@
     --brand-blue: 83 128 179;
     --brand-teal: 20 184 166;
 
-    /* Dark Mode Colors */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* Light Mode Colors - Enhanced with better contrast */
+    --background: 248 250 252; /* Subtle blue-gray instead of pure white */
+    --foreground: 15 23 42; /* Slate 900 */
 
-    /* Light Mode Colors */
-    --background-light: 245 241 237;
-    --foreground-light: 17 24 39;
+    /* Light Mode Surfaces */
+    --surface-primary: 255 255 255; /* Pure white for cards */
+    --surface-secondary: 241 245 249; /* Slate 100 */
+    --surface-tertiary: 226 232 240; /* Slate 200 */
 
     /* Glass Morphism */
     --glass-bg-dark: 0 0 0 / 0.4;
@@ -83,6 +84,9 @@
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
+    --surface-primary: 17 24 39; /* Gray 900 */
+    --surface-secondary: 30 41 59; /* Gray 800 */
+    --surface-tertiary: 51 65 85; /* Gray 700 */
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 3.9%;

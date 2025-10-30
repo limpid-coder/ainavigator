@@ -84,12 +84,22 @@ interface UploadSlice {
   clearUploads: () => void
 }
 
+interface ChatMessage {
+  id: string
+  role: 'user' | 'assistant'
+  content: string
+  timestamp: Date
+  metadata?: any
+}
+
 interface UISlice {
   theme: 'light' | 'dark' | 'system'
   sidebarOpen: boolean
   activeView: string
   notifications: Notification[]
   modals: ModalState
+  chatOpen: boolean
+  chatMessages: ChatMessage[]
   setTheme: (theme: 'light' | 'dark' | 'system') => void
   toggleSidebar: () => void
   setActiveView: (view: string) => void
@@ -97,6 +107,10 @@ interface UISlice {
   removeNotification: (id: string) => void
   openModal: (modalId: string, data?: any) => void
   closeModal: (modalId: string) => void
+  toggleChat: () => void
+  setChatOpen: (open: boolean) => void
+  addChatMessage: (message: ChatMessage) => void
+  clearChatHistory: () => void
 }
 
 interface Notification {
@@ -135,7 +149,9 @@ const defaultUIState = {
   sidebarOpen: true,
   activeView: 'dashboard',
   notifications: [],
-  modals: {}
+  modals: {},
+  chatOpen: false,
+  chatMessages: []
 }
 
 // Create store with middleware
@@ -278,6 +294,22 @@ export const useStore = create<AppStore>()(
             if (state.modals[modalId]) {
               state.modals[modalId].isOpen = false
             }
+          }),
+          
+          toggleChat: () => set((state) => {
+            state.chatOpen = !state.chatOpen
+          }),
+          
+          setChatOpen: (open) => set((state) => {
+            state.chatOpen = open
+          }),
+          
+          addChatMessage: (message) => set((state) => {
+            state.chatMessages.push(message)
+          }),
+          
+          clearChatHistory: () => set((state) => {
+            state.chatMessages = []
           })
         }))
       ),
@@ -298,49 +330,64 @@ export const useStore = create<AppStore>()(
   )
 )
 
-// Selectors for optimized re-renders
-export const useAuth = () => useStore((state) => ({
-  user: state.user,
-  session: state.session,
-  isAuthenticated: state.isAuthenticated,
-  isLoading: state.isLoading,
-  setUser: state.setUser,
-  setSession: state.setSession,
-  logout: state.logout
-}))
+// Selectors for legacy compatibility
+// Note: For new components, use individual useStore((state) => state.x) selectors
+// to prevent unnecessary re-renders
+export const useAuth = () => ({
+  user: useStore((state) => state.user),
+  session: useStore((state) => state.session),
+  isAuthenticated: useStore((state) => state.isAuthenticated),
+  isLoading: useStore((state) => state.isLoading),
+  setUser: useStore((state) => state.setUser),
+  setSession: useStore((state) => state.setSession),
+  logout: useStore((state) => state.logout)
+})
 
-export const useData = () => useStore((state) => ({
-  organization: state.organization,
-  sentimentData: state.sentimentData,
-  capabilityData: state.capabilityData,
-  isDataLoading: state.isDataLoading,
-  dataError: state.dataError,
-  setSentimentData: state.setSentimentData,
-  setCapabilityData: state.setCapabilityData,
-  setOrganization: state.setOrganization,
-  clearData: state.clearData
-}))
+export const useData = () => ({
+  organization: useStore((state) => state.organization),
+  sentimentData: useStore((state) => state.sentimentData),
+  capabilityData: useStore((state) => state.capabilityData),
+  isDataLoading: useStore((state) => state.isDataLoading),
+  dataError: useStore((state) => state.dataError),
+  setSentimentData: useStore((state) => state.setSentimentData),
+  setCapabilityData: useStore((state) => state.setCapabilityData),
+  setOrganization: useStore((state) => state.setOrganization),
+  clearData: useStore((state) => state.clearData)
+})
 
-export const useFilters = () => useStore((state) => ({
-  filters: state.filters,
-  setFilters: state.setFilters,
-  resetFilters: state.resetFilters
-}))
+export const useFilters = () => ({
+  filters: useStore((state) => state.filters),
+  setFilters: useStore((state) => state.setFilters),
+  resetFilters: useStore((state) => state.resetFilters)
+})
 
-export const useUI = () => useStore((state) => ({
-  theme: state.theme,
-  sidebarOpen: state.sidebarOpen,
-  activeView: state.activeView,
-  notifications: state.notifications,
-  modals: state.modals,
-  setTheme: state.setTheme,
-  toggleSidebar: state.toggleSidebar,
-  setActiveView: state.setActiveView,
-  addNotification: state.addNotification,
-  removeNotification: state.removeNotification,
-  openModal: state.openModal,
-  closeModal: state.closeModal
-}))
+export const useUI = () => ({
+  theme: useStore((state) => state.theme),
+  sidebarOpen: useStore((state) => state.sidebarOpen),
+  activeView: useStore((state) => state.activeView),
+  notifications: useStore((state) => state.notifications),
+  modals: useStore((state) => state.modals),
+  chatOpen: useStore((state) => state.chatOpen),
+  chatMessages: useStore((state) => state.chatMessages),
+  setTheme: useStore((state) => state.setTheme),
+  toggleSidebar: useStore((state) => state.toggleSidebar),
+  setActiveView: useStore((state) => state.setActiveView),
+  addNotification: useStore((state) => state.addNotification),
+  removeNotification: useStore((state) => state.removeNotification),
+  openModal: useStore((state) => state.openModal),
+  closeModal: useStore((state) => state.closeModal),
+  toggleChat: useStore((state) => state.toggleChat),
+  setChatOpen: useStore((state) => state.setChatOpen),
+  addChatMessage: useStore((state) => state.addChatMessage),
+  clearChatHistory: useStore((state) => state.clearChatHistory)
+})
+
+// Optimized selectors for individual use
+export const selectSentimentData = (state: AppStore) => state.sentimentData
+export const selectCapabilityData = (state: AppStore) => state.capabilityData
+export const selectOrganization = (state: AppStore) => state.organization
+export const selectFilters = (state: AppStore) => state.filters
+export const selectUser = (state: AppStore) => state.user
 
 // Store subscriptions for side effects
 useStore.subscribe(
