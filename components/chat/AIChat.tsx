@@ -14,7 +14,10 @@ import {
   AlertCircle,
   ChevronDown,
   Maximize2,
-  Minimize2
+  Minimize2,
+  BarChart3,
+  FileText,
+  Lightbulb
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useStore } from '@/lib/store'
@@ -47,7 +50,7 @@ const AIChatComponent = ({ className }: AIChatProps) => {
     {
       id: 'welcome',
       role: 'assistant',
-      content: "👋 Hi! I'm your AI Navigator assistant. I can help you:\n\n• Analyze your sentiment and capability data\n• Navigate to specific views and insights\n• Generate custom reports and recommendations\n• Answer questions about your AI readiness\n\nWhat would you like to explore?",
+      content: "👋 I can help you:\n\n• Analyze your biggest challenges and opportunities\n• Generate executive summaries and recommendations\n• Compare departments, regions, and time periods\n• Design specific interventions with ROI estimates\n• Navigate to detailed views and apply filters\n\nWhat would you like to explore?",
       timestamp: new Date()
     }
   ])
@@ -197,9 +200,10 @@ const AIChatComponent = ({ className }: AIChatProps) => {
   }
 
   const quickPrompts = [
-    { icon: TrendingUp, text: "Show me my biggest AI adoption challenges", prompt: "What are the top 3 problems we're facing with AI adoption based on our sentiment data?" },
-    { icon: Sparkles, text: "Generate executive summary", prompt: "Can you generate an executive summary of our current AI readiness?" },
-    { icon: AlertCircle, text: "What should I focus on first?", prompt: "Based on our data, what's the single most important thing we should address first?" },
+    { icon: TrendingUp, text: "Top 3 AI adoption challenges", prompt: "What are our top 3 AI adoption challenges?" },
+    { icon: BarChart3, text: "Capability maturity analysis", prompt: "Analyze our capability maturity across all dimensions" },
+    { icon: FileText, text: "Executive summary for the board", prompt: "Generate an executive summary for the board" },
+    { icon: Lightbulb, text: "Intervention recommendations", prompt: "Design specific interventions with ROI estimates" },
   ]
   
   // Determine if we should hide the chat
@@ -217,28 +221,26 @@ const AIChatComponent = ({ className }: AIChatProps) => {
       <motion.button
         className={cn(
           'fixed bottom-6 right-6 z-50',
-          'w-14 h-14 rounded-full',
-          'bg-gradient-to-br from-teal-500 to-blue-600',
-          'shadow-2xl shadow-teal-500/50',
+          'w-12 h-12 rounded-xl',
+          'bg-gradient-to-br from-teal-500 to-purple-500',
+          'shadow-lg hover:shadow-xl',
           'flex items-center justify-center',
-          'hover:scale-110 active:scale-95',
-          'transition-all duration-200',
+          'transition-shadow duration-300',
           className
         )}
         onClick={() => setIsOpen(true)}
-        initial={{ scale: 0, rotate: -180 }}
-        animate={{ scale: 1, rotate: 0 }}
-        whileHover={{ scale: 1.1 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       >
-        <MessageSquare className="w-6 h-6 text-white" />
+        <Bot className="w-5 h-5 text-white" />
         <motion.div
-          className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full"
+          className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full border border-white"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        >
-          <Sparkles className="w-3 h-3 text-white absolute top-0.5 left-0.5" />
-        </motion.div>
+        />
       </motion.button>
     )
   }
@@ -263,106 +265,74 @@ const AIChatComponent = ({ className }: AIChatProps) => {
       <motion.div
         className={cn(
           'fixed z-50 flex flex-col',
-          'bg-black/90 backdrop-blur-2xl',
-          'border-l border-white/[0.08]',
-          'shadow-2xl',
-          isExpanded 
-            ? 'inset-0 lg:left-auto lg:w-[800px]'
-            : 'bottom-0 right-0 top-0 lg:top-20 lg:bottom-4 lg:right-4 lg:rounded-2xl w-full lg:w-[420px]',
+          'bg-white dark:bg-gray-900 border border-slate-200/60 dark:border-white/[0.08]',
+          'shadow-lg',
+          'bottom-4 right-4 rounded-2xl w-[360px] max-h-[600px]',
           className
         )}
-        initial={{ x: '100%', opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        exit={{ x: '100%', opacity: 0 }}
-        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+        initial={{ scale: 0.9, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/[0.08]">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center">
-                <Bot className="w-5 h-5 text-white" />
-              </div>
-              <motion.div
-                className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-black"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
+        <div className="flex items-center justify-between p-3 border-b border-slate-200/60 dark:border-white/[0.08]">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center">
+              <Bot className="w-4 h-4 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">AI Navigator</h3>
-              <p className="text-xs text-white/60">Always here to help</p>
+              <h3 className="text-sm font-semibold text-slate-900 dark:text-white">AI Agent</h3>
+              <p className="text-[10px] text-slate-600 dark:text-gray-400">Ask me anything</p>
             </div>
           </div>
           
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-              title={isExpanded ? "Minimize" : "Maximize"}
-            >
-              {isExpanded ? (
-                <Minimize2 className="w-4 h-4 text-white/70" />
-              ) : (
-                <Maximize2 className="w-4 h-4 text-white/70" />
-              )}
-            </button>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-            >
-              <X className="w-4 h-4 text-white/70" />
-            </button>
-          </div>
+          <motion.button
+            onClick={() => setIsOpen(false)}
+            className="p-1.5 hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition-colors"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <X className="w-4 h-4 text-slate-600 dark:text-gray-400" />
+          </motion.button>
         </div>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+        <div className="flex-1 overflow-y-auto p-3 space-y-3 scrollbar-thin">
           {messages.map((message) => (
             <motion.div
               key={message.id}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               className={cn(
-                'flex gap-3',
-                message.role === 'user' ? 'flex-row-reverse' : 'flex-row'
+                'flex gap-2',
+                message.role === 'user' ? 'justify-end' : 'justify-start'
               )}
             >
-              {/* Avatar */}
-              <div className={cn(
-                'w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0',
-                message.role === 'user'
-                  ? 'bg-teal-500/20'
-                  : 'bg-gradient-to-br from-teal-500 to-blue-600'
-              )}>
-                {message.role === 'user' ? (
-                  <User className="w-4 h-4 text-teal-400" />
-                ) : (
-                  <Bot className="w-4 h-4 text-white" />
-                )}
-              </div>
-
               {/* Message Content */}
               <div className={cn(
-                'flex-1 max-w-[85%]',
-                message.role === 'user' ? 'flex justify-end' : 'flex justify-start'
+                'max-w-[85%]',
+                message.role === 'user' ? 'order-2' : 'order-1'
               )}>
                 <div className={cn(
-                  'rounded-2xl px-4 py-3',
+                  'rounded-2xl px-3 py-2',
                   message.role === 'user'
-                    ? 'bg-teal-500/20 text-white'
-                    : 'bg-white/5 text-white/90'
+                    ? 'bg-teal-50 dark:bg-teal-500/10 text-slate-900 dark:text-white'
+                    : 'bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white'
                 )}>
-                  <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                  <p className="text-sm leading-relaxed whitespace-pre-wrap">
                     {message.content}
                   </p>
-                  <p className="text-xs text-white/40 mt-2">
-                    {message.timestamp.toLocaleTimeString([], { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })}
-                  </p>
                 </div>
+                <p className={cn(
+                  "text-[10px] text-slate-500 dark:text-gray-500 mt-1 px-1",
+                  message.role === 'user' ? 'text-right' : 'text-left'
+                )}>
+                  {message.timestamp.toLocaleTimeString([], { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                  })}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -371,15 +341,12 @@ const AIChatComponent = ({ className }: AIChatProps) => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex gap-3"
+              className="flex justify-start"
             >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center">
-                <Bot className="w-4 h-4 text-white" />
-              </div>
-              <div className="bg-white/5 rounded-2xl px-4 py-3">
+              <div className="bg-slate-100 dark:bg-white/5 rounded-2xl px-3 py-2">
                 <div className="flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 text-teal-400 animate-spin" />
-                  <span className="text-sm text-white/70">Thinking...</span>
+                  <Loader2 className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 animate-spin" />
+                  <span className="text-sm text-slate-700 dark:text-white/70">Thinking...</span>
                 </div>
               </div>
             </motion.div>
@@ -390,22 +357,24 @@ const AIChatComponent = ({ className }: AIChatProps) => {
 
         {/* Quick Prompts (show when no user messages yet) */}
         {messages.length === 1 && (
-          <div className="px-4 pb-4 space-y-2">
-            <p className="text-xs text-white/50 font-medium mb-2">Quick Actions</p>
+          <div className="px-3 pb-3 space-y-1.5">
+            <p className="text-[10px] text-slate-500 dark:text-gray-500 font-semibold uppercase tracking-wider mb-2">Suggestions</p>
             {quickPrompts.map((prompt, idx) => (
               <motion.button
                 key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
                 onClick={() => {
                   setInputValue(prompt.prompt)
                   inputRef.current?.focus()
                 }}
-                className="w-full flex items-center gap-3 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/[0.05] hover:border-white/10 transition-all text-left group"
+                className="w-full flex items-center gap-2 p-2 rounded-lg bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-all text-left group"
+                whileHover={{ x: 2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <prompt.icon className="w-4 h-4 text-teal-400 flex-shrink-0" />
-                <span className="text-sm text-white/80 group-hover:text-white transition-colors">
+                <prompt.icon className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 flex-shrink-0" />
+                <span className="text-xs text-slate-700 dark:text-gray-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                   {prompt.text}
                 </span>
               </motion.button>
@@ -414,7 +383,7 @@ const AIChatComponent = ({ className }: AIChatProps) => {
         )}
 
         {/* Input */}
-        <div className="p-4 border-t border-white/[0.08]">
+        <div className="p-3 border-t border-slate-200/60 dark:border-white/[0.08]">
           <div className="relative">
             <input
               ref={inputRef}
@@ -422,39 +391,39 @@ const AIChatComponent = ({ className }: AIChatProps) => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask me anything about your AI readiness..."
+              placeholder="Ask me anything..."
               className={cn(
-                'w-full px-4 py-3 pr-12',
-                'bg-white/5 border border-white/10',
-                'rounded-xl text-white placeholder:text-white/40',
-                'focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500/50',
-                'transition-all'
+                'w-full px-3 py-2.5 pr-10',
+                'bg-slate-50 dark:bg-white/5',
+                'rounded-lg text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-500',
+                'focus:outline-none focus:ring-1 focus:ring-teal-500',
+                'transition-all',
+                'text-sm'
               )}
               disabled={isLoading}
             />
-            <button
+            <motion.button
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isLoading}
               className={cn(
-                'absolute right-2 top-1/2 -translate-y-1/2',
-                'w-8 h-8 rounded-lg',
+                'absolute right-1.5 top-1/2 -translate-y-1/2',
+                'w-7 h-7 rounded-lg',
                 'flex items-center justify-center',
                 'transition-all',
                 inputValue.trim() && !isLoading
-                  ? 'bg-gradient-to-br from-teal-500 to-blue-600 hover:scale-105 active:scale-95'
-                  : 'bg-white/5 opacity-50 cursor-not-allowed'
+                  ? 'bg-gradient-to-br from-teal-500 to-purple-500'
+                  : 'bg-slate-200 dark:bg-white/10 opacity-40 cursor-not-allowed'
               )}
+              whileHover={inputValue.trim() && !isLoading ? { scale: 1.05 } : {}}
+              whileTap={inputValue.trim() && !isLoading ? { scale: 0.95 } : {}}
             >
               {isLoading ? (
-                <Loader2 className="w-4 h-4 text-white animate-spin" />
+                <Loader2 className="w-3.5 h-3.5 text-white animate-spin" />
               ) : (
-                <Send className="w-4 h-4 text-white" />
+                <Send className="w-3.5 h-3.5 text-white" />
               )}
-            </button>
+            </motion.button>
           </div>
-          <p className="text-xs text-white/40 mt-2 text-center">
-            AI Assistant
-          </p>
         </div>
       </motion.div>
     </>

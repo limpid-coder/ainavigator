@@ -193,7 +193,7 @@ export default function RecommendationsView({
           </div>
           <div className="px-3 py-2 rounded-lg bg-gradient-to-r from-teal-500/10 to-purple-500/10 border border-teal-500/20">
             <div className="text-xs text-slate-600 dark:text-gray-400 mb-0.5">Total Estimated Impact</div>
-            <div className="text-xl font-bold text-teal-400">30-50% ↑</div>
+            <div className="text-xl font-bold text-teal-700 dark:text-teal-400">30-50% ↑</div>
           </div>
         </div>
         
@@ -256,11 +256,11 @@ export default function RecommendationsView({
                     <div className="flex items-center gap-3">
                       <div className="text-right">
                         <div className="text-xs text-gray-500">Estimated ROI</div>
-                        <div className="text-sm font-bold text-teal-400">{intervention.impact.roi}</div>
+                        <div className="text-sm font-bold text-teal-700 dark:text-teal-400">{intervention.impact.roi}</div>
                       </div>
                       <ChevronRight className={cn(
                         "w-5 h-5 transition-transform",
-                        isSelected ? "rotate-90 text-teal-400" : "text-gray-600"
+                        isSelected ? "rotate-90 text-teal-700 dark:text-teal-400" : "text-gray-600"
                       )} />
                     </div>
                   </button>
@@ -276,7 +276,7 @@ export default function RecommendationsView({
                       <span className="text-slate-600 dark:text-gray-400">{intervention.cost.range}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <Zap className="w-3.5 h-3.5 text-purple-400" />
+                      <Zap className="w-3.5 h-3.5 text-purple-700 dark:text-purple-400" />
                       <span className="text-slate-600 dark:text-gray-400">
                         {intervention.impact.effort.charAt(0).toUpperCase() + intervention.impact.effort.slice(1)} effort
                       </span>
@@ -350,14 +350,14 @@ export default function RecommendationsView({
                             </div>
                             <div className="bg-white/5 rounded-lg border border-white/10 p-3">
                               <div className="text-xs text-slate-600 dark:text-gray-400 mb-1">Expected ROI</div>
-                              <div className="text-lg font-bold text-teal-400 mb-2">{intervention.impact.roi}</div>
+                              <div className="text-lg font-bold text-teal-700 dark:text-teal-400 mb-2">{intervention.impact.roi}</div>
                               <div className="text-[10px] text-gray-500">Measured by adoption rates & efficiency gains</div>
                             </div>
                           </div>
 
                           {/* CTA */}
                           <div className="flex items-center gap-3 pt-2">
-                            <div className="flex-1 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-400/30 text-teal-300 text-sm font-semibold flex items-center justify-center gap-2 cursor-not-allowed opacity-60">
+                            <div className="flex-1 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-400/30 text-teal-700 dark:text-teal-300 text-sm font-semibold flex items-center justify-center gap-2 cursor-not-allowed opacity-60">
                               <CheckCircle className="w-4 h-4" />
                               Select for Action Plan
                             </div>
@@ -380,11 +380,11 @@ export default function RecommendationsView({
       <div className="flex-shrink-0 pt-4 border-t border-white/5">
         <div className="grid grid-cols-3 gap-3">
           <div className="bg-gradient-to-br from-teal-500/10 to-transparent rounded-lg border border-teal-500/20 p-3 text-center">
-            <div className="text-2xl font-bold text-teal-400 mb-1">{interventions.length}</div>
+            <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 mb-1">{interventions.length}</div>
             <div className="text-xs text-slate-600 dark:text-gray-400">Total Interventions</div>
           </div>
           <div className="bg-gradient-to-br from-purple-500/10 to-transparent rounded-lg border border-purple-500/20 p-3 text-center">
-            <div className="text-2xl font-bold text-purple-400 mb-1">$600K-$1.5M</div>
+            <div className="text-2xl font-bold text-purple-700 dark:text-purple-400 mb-1">$600K-$1.5M</div>
             <div className="text-xs text-slate-600 dark:text-gray-400">Total Investment Range</div>
           </div>
           <div className="bg-gradient-to-br from-green-500/10 to-transparent rounded-lg border border-green-500/20 p-3 text-center">

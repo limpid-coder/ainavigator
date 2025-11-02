@@ -150,7 +150,7 @@ export default function DimensionDrilldown({
         <div>
           <div className="text-[8px] text-gray-500 uppercase tracking-wide mb-0.5">Your Score</div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-blue-400 tabular-nums">{dimension.average.toFixed(1)}</span>
+            <span className="text-xl font-bold text-blue-700 dark:text-blue-400 tabular-nums">{dimension.average.toFixed(1)}</span>
             <span className="text-[9px] text-gray-500">/10</span>
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function DimensionDrilldown({
         <div>
           <div className="text-[8px] text-gray-500 uppercase tracking-wide mb-0.5">Benchmark</div>
           <div className="flex items-baseline gap-1">
-            <span className="text-xl font-bold text-purple-400 tabular-nums">{dimension.benchmark.toFixed(1)}</span>
+            <span className="text-xl font-bold text-purple-700 dark:text-purple-400 tabular-nums">{dimension.benchmark.toFixed(1)}</span>
             <span className="text-[9px] text-gray-500">/10</span>
           </div>
         </div>
@@ -282,7 +282,7 @@ export default function DimensionDrilldown({
                         "px-1 py-0.5 rounded text-[8px] font-medium",
                         isWeak ? "bg-orange-500/10 text-orange-400 border border-orange-500/20" :
                         construct.score >= dimension.average + 0.3 ? "bg-green-500/10 text-green-400 border border-green-500/20" :
-                        "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        "bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20"
                       )}>
                         {isWeak ? 'WEAK' : construct.score >= dimension.average + 0.3 ? 'STRONG' : 'OK'}
                       </span>

@@ -114,7 +114,7 @@ export default function CapabilityAnalysisPro({
                 className={cn(
                   "flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
                   chartView === view.id
-                    ? "bg-teal-500/20 text-teal-400 border border-teal-500/30 shadow-lg"
+                    ? "bg-teal-500/20 text-teal-700 dark:text-teal-400 border border-teal-500/30 shadow-lg"
                     : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white hover:bg-white/5"
                 )}
               >
@@ -321,13 +321,13 @@ export default function CapabilityAnalysisPro({
         {/* Key Stats */}
         <div className="grid grid-cols-3 gap-2">
           <div className="bg-gradient-to-br from-teal-500/10 to-transparent rounded-lg border border-teal-500/20 p-2.5 text-center">
-            <div className="text-2xl font-bold text-teal-400 tabular-nums mb-0.5">
+            <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 tabular-nums mb-0.5">
               {assessment.overall.average.toFixed(1)}
             </div>
             <div className="text-xs text-slate-600 dark:text-gray-400">Overall</div>
           </div>
           <div className="bg-gradient-to-br from-green-500/10 to-transparent rounded-lg border border-green-500/20 p-2.5 text-center">
-            <div className="text-2xl font-bold text-green-400 tabular-nums mb-0.5">
+            <div className="text-2xl font-bold text-green-700 dark:text-green-400 tabular-nums mb-0.5">
               {aboveBenchmark}
             </div>
             <div className="text-xs text-slate-600 dark:text-gray-400">Above</div>
@@ -388,26 +388,26 @@ export default function CapabilityAnalysisPro({
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-slate-900 dark:text-white group-hover:text-teal-300 transition-colors">{dim.name}</span>
+                          <span className="font-semibold text-slate-900 dark:text-white group-hover:text-teal-700 dark:text-teal-300 transition-colors">{dim.name}</span>
                           <ChevronRight className="w-4 h-4 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       </td>
                       <td className="text-center px-3 tabular-nums">
                         <span className={cn(
                           "font-bold text-base",
-                          dim.average >= dim.benchmark ? "text-green-400" : "text-orange-400"
+                          dim.average >= dim.benchmark ? "text-green-700 dark:text-green-400" : "text-orange-400"
                         )}>
                           {dim.average.toFixed(1)}
                         </span>
                         <span className="text-gray-600 text-sm ml-0.5">/10</span>
                       </td>
-                      <td className="text-center px-3 text-green-400 tabular-nums font-medium">{dim.max.toFixed(1)}</td>
+                      <td className="text-center px-3 text-green-700 dark:text-green-400 tabular-nums font-medium">{dim.max.toFixed(1)}</td>
                       <td className="text-center px-3 text-orange-400 tabular-nums font-medium">{dim.min.toFixed(1)}</td>
                       <td className="text-center px-3 text-purple-400 tabular-nums font-medium">{dim.benchmark.toFixed(1)}</td>
                       <td className="text-center px-3 tabular-nums">
                         <span className={cn(
                           "inline-flex items-center gap-1 font-semibold",
-                          delta > 0 ? "text-green-400" : "text-orange-400"
+                          delta > 0 ? "text-green-700 dark:text-green-400" : "text-orange-400"
                         )}>
                           {delta > 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
                           {Math.abs(delta).toFixed(0)}%
@@ -416,9 +416,9 @@ export default function CapabilityAnalysisPro({
                       <td className="text-right px-4">
                         <span className={cn(
                           "inline-block px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider",
-                          dim.status === 'above' ? "bg-green-500/10 text-green-400 border border-green-500/20" :
+                          dim.status === 'above' ? "bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20" :
                           dim.status === 'below' ? "bg-orange-500/10 text-orange-400 border border-orange-500/20" :
-                          "bg-red-500/10 text-red-400 border border-red-500/20"
+                          "bg-red-500/10 text-red-700 dark:text-red-400 border border-red-500/20"
                         )}>
                           {dim.status === 'above' ? 'EXCEEDS' : dim.status === 'below' ? 'BELOW' : 'CRITICAL'}
                         </span>

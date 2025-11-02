@@ -66,3 +66,7 @@ export function celebrate(type: 'success' | 'milestone' | 'subtle' = 'success') 
   confetti(configs[type])
 }
 
+
+
+
+

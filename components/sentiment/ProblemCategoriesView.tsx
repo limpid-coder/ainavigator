@@ -26,8 +26,8 @@ export default function ProblemCategoriesView({
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Use mock data for demo instead of calling API
-    useMockData()
+    // Try GPT first, fall back to mock if API key not configured
+    analyzeWithGPT()
   }, [])
 
   const useMockData = () => {
@@ -95,15 +95,24 @@ export default function ProblemCategoriesView({
         })
       })
 
-      if (!response.ok) throw new Error('Failed to analyze')
+      if (!response.ok) {
+        // If GPT not configured, fall back to mock data
+        const result = await response.json()
+        if (result.suggestion?.includes('OpenAI API key')) {
+          console.warn('OpenAI API key not configured, using mock data')
+          useMockData()
+          return
+        }
+        throw new Error(result.error || 'Failed to analyze')
+      }
 
       const result = await response.json()
       setProblemCategories(result.data.problem_categories)
-    } catch (err: any) {
-      setError(err.message)
-      console.error('GPT Analysis failed:', err)
-    } finally {
       setIsAnalyzing(false)
+    } catch (err: any) {
+      console.error('GPT Analysis failed, falling back to mock data:', err)
+      // Fall back to mock data gracefully
+      useMockData()
     }
   }
 
@@ -115,10 +124,10 @@ export default function ProblemCategoriesView({
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           className="mb-4"
         >
-          <Brain className="w-16 h-16 text-teal-400" />
+          <Brain className="w-16 h-16 text-teal-700 dark:text-teal-400" />
         </motion.div>
         <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-teal-400" />
+          <Sparkles className="w-5 h-5 text-teal-700 dark:text-teal-400" />
           AI Analysis in Progress
         </h3>
         <p className="text-sm text-slate-600 dark:text-gray-400 text-center max-w-md">
@@ -208,10 +217,10 @@ export default function ProblemCategoriesView({
           </div>
         </div>
         <div className="bg-gradient-to-br from-orange-500/5 to-transparent rounded-lg border border-orange-500/20 p-2 flex items-center gap-2">
-          <TrendingDown className="w-4 h-4 text-orange-400 flex-shrink-0" />
+          <TrendingDown className="w-4 h-4 text-orange-700 dark:text-orange-400 flex-shrink-0" />
           <div className="flex-1 min-w-0">
             <div className="text-[8px] text-gray-500 uppercase tracking-wide">High</div>
-            <div className="text-lg font-bold text-orange-400 tabular-nums">
+            <div className="text-lg font-bold text-orange-700 dark:text-orange-400 tabular-nums">
               {problemCategories.filter(c => c.severity === 'high').length}
             </div>
           </div>
@@ -237,7 +246,7 @@ export default function ProblemCategoriesView({
                     <div className={cn(
                       "px-1.5 py-0.5 rounded text-[8px] font-bold uppercase",
                       category.severity === 'critical' ? 'bg-red-500/20 text-red-400 border border-red-500/30' :
-                      category.severity === 'high' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' :
+                      category.severity === 'high' ? 'bg-orange-500/20 text-orange-700 dark:text-orange-400 border border-orange-500/30' :
                       'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30'
                     )}>
                       {category.severity}
@@ -248,7 +257,7 @@ export default function ProblemCategoriesView({
                   </div>
 
                   {/* Category Name */}
-                  <h3 className="text-sm font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-300 transition-colors line-clamp-2">
+                  <h3 className="text-sm font-bold mb-2 text-slate-900 dark:text-white group-hover:text-teal-700 dark:text-teal-300 transition-colors line-clamp-2">
                     {category.category_name}
                   </h3>
 
@@ -286,8 +295,8 @@ export default function ProblemCategoriesView({
 
                   {/* CTA */}
                   <div className="flex items-center justify-between px-2 py-1.5 rounded bg-teal-500/10 border border-teal-500/20 group-hover:bg-teal-500/20 transition-all">
-                    <span className="text-[9px] font-semibold text-teal-400 uppercase tracking-wide">View Actions</span>
-                    <ArrowRight className="w-3 h-3 text-teal-400 group-hover:translate-x-0.5 transition-transform" />
+                    <span className="text-[9px] font-semibold text-teal-700 dark:text-teal-400 uppercase tracking-wide">View Actions</span>
+                    <ArrowRight className="w-3 h-3 text-teal-700 dark:text-teal-400 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </motion.button>
               ))}

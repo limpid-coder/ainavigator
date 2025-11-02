@@ -89,7 +89,7 @@ export default function InterventionsView({
           transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
           className="mb-6"
         >
-          <Sparkles className="w-12 h-12 text-purple-400" />
+          <Sparkles className="w-12 h-12 text-purple-700 dark:text-purple-400" />
         </motion.div>
         <h3 className="text-xl font-semibold mb-2">Generating Interventions...</h3>
         <p className="text-slate-600 dark:text-gray-400 text-center max-w-md">
@@ -179,7 +179,7 @@ export default function InterventionsView({
       {/* Interventions */}
       <div className="space-y-4">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <Target className="w-6 h-6 text-purple-400" />
+          <Target className="w-6 h-6 text-purple-700 dark:text-purple-400" />
           Recommended Actions
         </h3>
 
@@ -201,7 +201,7 @@ export default function InterventionsView({
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center font-bold text-purple-300">
+                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center font-bold text-purple-700 dark:text-purple-300">
                       {intervention.number}
                     </div>
                     <h4 className="text-lg font-bold">{intervention.title}</h4>
@@ -263,7 +263,7 @@ export default function InterventionsView({
 
                     {/* Why It Works */}
                     <div className="glass rounded-lg p-4">
-                      <h5 className="text-sm font-semibold text-purple-400 mb-2">Why It Works</h5>
+                      <h5 className="text-sm font-semibold text-purple-700 dark:text-purple-400 mb-2">Why It Works</h5>
                       <p className="text-sm text-slate-700 dark:text-gray-300">{intervention.why_it_works}</p>
                     </div>
 

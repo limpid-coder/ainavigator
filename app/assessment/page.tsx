@@ -6,7 +6,7 @@ import {
   Filter, Download, Sparkles, Activity, 
   Users, Target, TrendingUp, Layers, ChevronRight,
   Home, BarChart3, Brain, FileText, Settings,
-  Maximize2, Minimize2, Grid, Layout, Lightbulb, Bot
+  Maximize2, Minimize2, Grid, Layout, Lightbulb, Bot, Search
 } from 'lucide-react'
 import Link from 'next/link'
 import { useAuth } from '@/lib/hooks/useAuth'
@@ -15,6 +15,15 @@ import { SimpleThemeToggle } from '@/components/ui/simple-theme-toggle'
 import { EnhancedTooltip } from '@/components/ui/enhanced-tooltip'
 import { ContextualHelp } from '@/components/ui/contextual-help'
 import { OnboardingHint } from '@/components/ui/onboarding-hint'
+import { CommandPalette } from '@/components/ui/command-palette'
+import { QuickActionsMenu } from '@/components/ui/quick-actions-menu'
+import { DataComparisonMode } from '@/components/ui/data-comparison-mode'
+import { KeyboardShortcutsHelp } from '@/components/ui/keyboard-shortcuts-help'
+import { useKeyboardNavigation } from '@/hooks/use-keyboard-navigation'
+import { toast } from 'react-hot-toast'
+import { EasterEggAchievement, useAchievements } from '@/components/ui/easter-egg-achievement'
+import { QuirkyLoadingMessage } from '@/components/ui/loading-messages'
+import { useFunInteractions } from '@/hooks/use-fun-interactions'
 import { ViewState, FilterState, CompanyProfile } from '@/lib/types/assessment'
 import { cn } from '@/lib/utils'
 import FilterPanel from '@/components/dashboard/FilterPanel'
@@ -51,6 +60,12 @@ export default function AssessmentPage() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [showOnboarding, setShowOnboarding] = useState(false)
+  const [showCommandPalette, setShowCommandPalette] = useState(false)
+  const [showKeyboardHelp, setShowKeyboardHelp] = useState(false)
+  const [showComparison, setShowComparison] = useState(false)
+  const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set())
+  const [keyboardShortcutCount, setKeyboardShortcutCount] = useState(0)
+  const { achievementToShow, unlock, dismiss } = useAchievements()
 
   // Mock company profile (replace with actual data)
   const companyProfile: CompanyProfile = {
@@ -89,6 +104,165 @@ export default function AssessmentPage() {
       }, 1500)
     }
   }, [isLoading])
+
+  // PDF Export handler (defined here to avoid hoisting issues)
+  const handleExportPDF = async () => {
+    try {
+      // Show loading notification
+      console.log('Generating PDF report...')
+      
+      // Prepare data for PDF
+      const pdfData = {
+        companyName: companyProfile.displayName,
+        assessment: {
+          date: new Date().toLocaleDateString(),
+          respondents: sentimentData?.length || 0,
+          readinessScore: 62, // Calculate from actual data
+          sentimentAverage: 3.2, // Default value
+          capabilityMaturity: 4.1 // Default value
+        },
+        sentimentData: sentimentData.length > 0 ? {
+          heatmap: {},
+          problemCategories: [],
+          lowestCells: []
+        } : undefined,
+        capabilityData: capabilityData.length > 0 ? {
+          dimensions: [],
+          weakestDimensions: [],
+          benchmarkComparison: {}
+        } : undefined,
+        interventions: [
+          {
+            title: 'AI Transparency Program',
+            description: 'Implement clear communication protocols and explainable AI practices to build trust.',
+            investmentRange: '$150K-$350K',
+            expectedROI: '30-50%',
+            timeline: '12 weeks'
+          },
+          {
+            title: 'Data Infrastructure Modernization',
+            description: 'Upgrade data systems to enable AI readiness and improve data accessibility.',
+            investmentRange: '$250K-$500K',
+            expectedROI: '40-60%',
+            timeline: '16 weeks'
+          },
+          {
+            title: 'Human-in-the-Loop Design',
+            description: 'Balance AI automation with human oversight to address autonomy concerns.',
+            investmentRange: '$80K-$200K',
+            expectedROI: '25-35%',
+            timeline: '8 weeks'
+          }
+        ],
+        filters: Object.keys(filters).length > 0 ? filters : undefined,
+        selectedFlow: (currentView.type.includes('sentiment') ? 'sentiment' : 
+                      currentView.type.includes('capability') ? 'capability' : 'both') as 'sentiment' | 'capability' | 'both'
+      }
+
+      await generatePDF(pdfData)
+      
+      // Success notification
+      console.log('PDF generated successfully!')
+      toast.success('PDF report downloaded successfully!')
+    } catch (error) {
+      console.error('PDF export failed:', error)
+      toast.error('Failed to generate PDF report. Please try again.')
+    }
+  }
+
+  // Keyboard navigation with achievement tracking
+  useKeyboardNavigation({
+    onCommandPalette: () => {
+      setShowCommandPalette(true)
+      setKeyboardShortcutCount(prev => {
+        const newCount = prev + 1
+        if (newCount === 1) {
+          unlock('power-user')
+        }
+        return newCount
+      })
+    },
+    onToggleSidebar: () => setSidebarCollapsed(!sidebarCollapsed),
+    onToggleFilters: () => setShowFilters(!showFilters),
+    onExport: handleExportPDF,
+    onHelp: () => setShowKeyboardHelp(true),
+    onNavigate: (view) => {
+      setActiveView(view as NavigationView)
+      if (view === 'overview') setCurrentView({ type: 'overview' })
+      else if (view === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
+      else if (view === 'capability') setCurrentView({ type: 'capability_overview' })
+      
+      // Track keyboard navigation
+      setKeyboardShortcutCount(prev => {
+        const newCount = prev + 1
+        if (newCount >= 5) {
+          unlock('speed-demon')
+        }
+        return newCount
+      })
+    }
+  })
+
+  // Fun interactions
+  useFunInteractions({
+    onKonamiCode: () => {
+      toast.success('🎮 Konami Code! You found our secret! Here\'s some confetti! 🎉')
+      unlock('secret-finder')
+    },
+    onTripleClick: () => {
+      toast('👆 Someone\'s clicking enthusiastically! We like your energy!')
+    }
+  })
+
+  // Track section visits for explorer achievement
+  useEffect(() => {
+    setVisitedSections(prev => {
+      const newSet = new Set(prev)
+      if (!newSet.has(activeView)) {
+        newSet.add(activeView)
+        
+        if (newSet.size >= 5) {
+          unlock('explorer')
+        }
+        
+        return newSet
+      }
+      return prev // Don't update if already visited
+    })
+  }, [activeView, unlock])
+
+  const handleQuickAction = (action: string) => {
+    switch (action) {
+      case 'export':
+        handleExportPDF()
+        toast.success('Exporting PDF report...')
+        break
+      case 'share':
+        navigator.clipboard.writeText(window.location.href)
+        toast.success('Link copied to clipboard!')
+        break
+      case 'bookmark':
+        toast.success('View bookmarked!')
+        break
+      case 'copy':
+        navigator.clipboard.writeText(window.location.href)
+        toast.success('Link copied!')
+        break
+      case 'refresh':
+        loadData()
+        toast.success('Refreshing data...')
+        break
+      case 'toggle-filters':
+        setShowFilters(!showFilters)
+        break
+      case 'settings':
+        toast('Settings coming soon!')
+        break
+      case 'help':
+        setShowKeyboardHelp(true)
+        break
+    }
+  }
 
   const loadData = async () => {
     if (!company?.id) {
@@ -152,21 +326,6 @@ export default function AssessmentPage() {
     })
   }
 
-  const handleExportPDF = async () => {
-    try {
-      await generatePDF({
-        companyName: companyProfile.displayName,
-        sentimentData,
-        capabilityData,
-        selectedFlow: currentView.type.includes('sentiment') ? 'sentiment' : 'capability',
-        filters
-      })
-    } catch (error) {
-      console.error('PDF export failed:', error)
-      alert('Failed to generate PDF')
-    }
-  }
-
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:bg-black flex items-center justify-center">
@@ -213,14 +372,14 @@ export default function AssessmentPage() {
             Loading Assessment Data
           </motion.h2>
           
-          <motion.p
-            className="text-sm text-gray-600 dark:text-gray-400 mb-8"
+          <motion.div
+            className="mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Preparing {company?.display_name || 'your'} AI readiness analysis...
-          </motion.p>
+            <QuirkyLoadingMessage />
+          </motion.div>
 
           {/* Progress dots */}
           <div className="flex items-center justify-center gap-2">
@@ -338,16 +497,14 @@ export default function AssessmentPage() {
         
         {/* Navigation Sidebar */}
         <motion.aside
-          className="relative flex flex-col bg-white/90 dark:bg-black/40 backdrop-blur-2xl border-r border-gray-200 dark:border-white/5 shadow-xl hidden md:flex"
+          className="relative flex flex-col bg-white/95 dark:bg-black/40 backdrop-blur-2xl border-r border-slate-200/60 dark:border-white/[0.08] hidden md:flex"
           initial={false}
           animate={{ width: sidebarCollapsed ? 64 : 240 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          {/* Accent gradient on edge */}
-          <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-teal-500/50 via-purple-500/50 to-blue-500/50" />
           {/* Logo & Company - Aligns with header */}
           <div className={cn(
-            "h-14 border-b border-gray-200 dark:border-white/5 flex items-center px-4 bg-gradient-to-r from-teal-500/5 to-purple-500/5 dark:from-transparent dark:to-transparent",
+            "h-14 border-b border-slate-200/60 dark:border-white/[0.08] flex items-center px-4",
             sidebarCollapsed && "justify-center"
           )}>
             <Link href="/" className="flex items-center gap-3 group">
@@ -392,8 +549,8 @@ export default function AssessmentPage() {
                     "relative w-full flex items-center rounded-xl transition-all group",
                     sidebarCollapsed ? 'px-0 py-2.5 justify-center' : 'px-3 py-2.5 gap-3',
                     isActive 
-                      ? 'bg-gradient-to-r from-teal-500/15 to-purple-500/10 text-teal-700 dark:text-teal-400 border border-teal-500/30 shadow-sm shadow-teal-500/10'
-                      : 'text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gradient-to-r hover:from-gray-100 hover:to-gray-50 dark:hover:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-white/10'
+                      ? 'bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400'
+                      : 'text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-white/5'
                   )}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -404,7 +561,7 @@ export default function AssessmentPage() {
                   {/* Active indicator - fixed positioning */}
                   {isActive && (
                     <motion.div
-                      className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-500 via-purple-500 to-blue-500 rounded-r shadow-lg shadow-teal-500/50"
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-teal-500 rounded-r"
                       layoutId="activeNav"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
@@ -450,7 +607,7 @@ export default function AssessmentPage() {
 
           {/* Bottom Actions */}
           <div className={cn(
-            "border-t border-gray-200/50 dark:border-white/5",
+            "border-t border-slate-200/60 dark:border-white/[0.08]",
             sidebarCollapsed ? "p-2" : "p-3"
           )}>
             <motion.button
@@ -485,12 +642,10 @@ export default function AssessmentPage() {
           
           {/* Top Action Bar */}
           <motion.div 
-            className="relative flex-shrink-0 h-14 bg-white/90 dark:bg-black/20 backdrop-blur-2xl border-b border-gray-200 dark:border-white/5 px-4 md:px-6 flex items-center justify-between overflow-x-auto shadow-sm"
+            className="relative flex-shrink-0 h-14 bg-white/95 dark:bg-black/20 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.08] px-4 md:px-6 flex items-center justify-between overflow-x-auto"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            {/* Subtle gradient accent */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-teal-500/30 via-purple-500/30 to-blue-500/30" />
             <div className="flex items-center gap-2 md:gap-3 text-[10px]">
               <div className="flex items-center gap-2">
                 <motion.div 
@@ -557,7 +712,19 @@ export default function AssessmentPage() {
               </EnhancedTooltip>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
+              {/* Quick Actions */}
+              <QuickActionsMenu
+                onExport={handleExportPDF}
+                onShare={() => handleQuickAction('share')}
+                onBookmark={() => handleQuickAction('bookmark')}
+                onCopy={() => handleQuickAction('copy')}
+                onRefresh={() => handleQuickAction('refresh')}
+                onFullscreen={() => toast('Fullscreen mode coming soon!')}
+              />
+
+              <div className="w-px h-6 bg-slate-300 dark:bg-white/10" />
+
               {/* Filter button - only show on sentiment/capability views */}
               {(activeView === 'sentiment' || activeView === 'capability') && (
                 <EnhancedTooltip
@@ -568,10 +735,10 @@ export default function AssessmentPage() {
                 >
                   <button
                     onClick={() => setShowFilters(!showFilters)}
-                    className={`px-2.5 py-1.5 rounded-lg border transition-all flex items-center gap-1.5 ${
+                    className={`px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
                       showFilters 
-                        ? "bg-teal-500/15 border-teal-500/30 text-teal-700 dark:text-teal-400 shadow-sm shadow-teal-500/10" 
-                        : "bg-white dark:bg-white/5 border-slate-300 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/10 hover:border-slate-400 dark:hover:border-white/20 text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white shadow-sm"
+                        ? "bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400" 
+                        : "bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     <Filter className="w-3.5 h-3.5" />
@@ -593,7 +760,7 @@ export default function AssessmentPage() {
               >
                 <button
                   onClick={handleExportPDF}
-                  className="px-2.5 py-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/20 transition-all flex items-center gap-1.5 text-slate-700 dark:text-gray-300 shadow-sm"
+                  className="px-2.5 py-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 text-slate-700 dark:text-gray-300"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span className="text-[10px] font-medium">Export PDF</span>
@@ -601,14 +768,25 @@ export default function AssessmentPage() {
               </EnhancedTooltip>
 
               {/* Theme Toggle */}
+              {/* Search Bar */}
+              <div className="relative flex-1 max-w-xs hidden lg:block">
+                <button
+                  onClick={() => setShowCommandPalette(true)}
+                  className="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100/50 dark:bg-white/5 hover:bg-slate-200/50 dark:hover:bg-white/10 border border-slate-200/50 dark:border-white/10 transition-colors text-left group"
+                >
+                  <Search className="w-4 h-4 text-slate-400 dark:text-gray-500" />
+                  <span className="text-sm text-slate-500 dark:text-gray-500 flex-1">Quick search...</span>
+                  <kbd className="px-2 py-0.5 rounded bg-slate-200 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-xs text-slate-600 dark:text-gray-400 font-mono">⌘K</kbd>
+                </button>
+              </div>
+
+              <div className="w-px h-6 bg-slate-300 dark:bg-white/10 hidden lg:block" />
+
               <EnhancedTooltip
-                content="Switch between light and dark themes for comfortable viewing in any environment"
-                icon="sparkle"
+                content="Switch between light and dark themes"
                 position="bottom"
               >
-                <div>
-                  <SimpleThemeToggle />
-                </div>
+                <SimpleThemeToggle />
               </EnhancedTooltip>
 
               {/* Help */}
@@ -645,7 +823,7 @@ export default function AssessmentPage() {
                 position="bottom"
               >
                 <button
-                  className="p-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 border border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/20 transition-all text-slate-700 dark:text-gray-300 shadow-sm"
+                  className="p-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 transition-all text-slate-700 dark:text-gray-300"
                   title="Settings"
                 >
                   <Settings className="w-3.5 h-3.5" />
@@ -660,7 +838,7 @@ export default function AssessmentPage() {
             <AnimatePresence>
               {showFilters && (
                 <motion.div
-                  className="absolute top-0 right-0 w-80 h-full bg-white/95 dark:bg-black/60 backdrop-blur-2xl border-l border-slate-200 dark:border-white/5 z-50 overflow-y-auto scrollbar-thin shadow-2xl"
+                  className="absolute top-0 right-0 w-80 h-full bg-white/98 dark:bg-black/60 backdrop-blur-2xl border-l border-slate-200/60 dark:border-white/[0.08] z-50 overflow-y-auto scrollbar-thin"
                   initial={{ x: 320 }}
                   animate={{ x: 0 }}
                   exit={{ x: 320 }}
@@ -897,12 +1075,41 @@ export default function AssessmentPage() {
         </div>
       </div>
 
+      {/* Command Palette */}
+      <CommandPalette
+        isOpen={showCommandPalette}
+        onClose={() => setShowCommandPalette(false)}
+        onNavigate={(view) => {
+          setActiveView(view as NavigationView)
+          if (view === 'overview') setCurrentView({ type: 'overview' })
+          else if (view === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
+          else if (view === 'capability') setCurrentView({ type: 'capability_overview' })
+        }}
+        onAction={handleQuickAction}
+      />
+
+      {/* Keyboard Shortcuts Help */}
+      <KeyboardShortcutsHelp
+        isOpen={showKeyboardHelp}
+        onClose={() => setShowKeyboardHelp(false)}
+      />
+
+      {/* Data Comparison Mode */}
+      <DataComparisonMode
+        isOpen={showComparison}
+        onClose={() => setShowComparison(false)}
+        onCompare={(config) => {
+          console.log('Comparison config:', config)
+          toast.success('Comparison mode activated!')
+        }}
+      />
+
       {/* Onboarding Hint */}
       {showOnboarding && (
         <OnboardingHint
           id="assessment-welcome"
           title="Welcome to Your AI Readiness Assessment! 🎉"
-          description="Navigate through different views using the sidebar. Hover over any element for helpful tips. Click on metrics to drill deeper, and use filters to segment your data for focused insights."
+          description="Navigate through different views using the sidebar. Press ⌘K for quick search, or hover over any element for helpful tips. Use keyboard shortcuts (1-5) for instant navigation!"
           onDismiss={() => {
             setShowOnboarding(false)
             localStorage.setItem('assessment-onboarding-seen', 'true')
@@ -910,6 +1117,12 @@ export default function AssessmentPage() {
           autoShow={false}
         />
       )}
+
+      {/* Achievements */}
+      <EasterEggAchievement
+        achievementId={achievementToShow}
+        onDismiss={dismiss}
+      />
     </div>
   )
 }

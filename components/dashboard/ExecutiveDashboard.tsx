@@ -58,9 +58,9 @@ export default function ExecutiveDashboard({
   ]
 
   const getReadinessStatus = (score: number) => {
-    if (score >= 75) return { label: 'Strong AI Readiness', color: 'text-green-400', desc: 'Organization demonstrates strong momentum and readiness for AI transformation' }
-    if (score >= 60) return { label: 'Moderate Readiness', color: 'text-yellow-400', desc: 'Solid foundation with opportunities for targeted improvements' }
-    return { label: 'Developing Readiness', color: 'text-orange-400', desc: 'Significant opportunity for AI readiness growth and capability building' }
+    if (score >= 75) return { label: 'Strong AI Readiness', color: 'text-green-700 dark:text-green-400', desc: 'Organization demonstrates strong momentum and readiness for AI transformation' }
+    if (score >= 60) return { label: 'Moderate Readiness', color: 'text-yellow-700 dark:text-yellow-400', desc: 'Solid foundation with opportunities for targeted improvements' }
+    return { label: 'Developing Readiness', color: 'text-orange-700 dark:text-orange-400', desc: 'Significant opportunity for AI readiness growth and capability building' }
   }
 
   const readinessStatus = getReadinessStatus(metrics.readinessScore)
@@ -76,11 +76,11 @@ export default function ExecutiveDashboard({
               Welcome back, {userName}!
             </h1>
             <p className="text-sm md:text-base text-slate-700 dark:text-gray-300 mb-1">
-              Your AI Readiness Assessment for <span className="text-teal-400 font-semibold">{companyName}</span> is ready
+              Your AI Readiness Assessment for <span className="text-teal-700 dark:text-teal-400 font-semibold">{companyName}</span> is ready
             </p>
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <div className="flex items-center gap-1.5 text-slate-600 dark:text-gray-400">
-                <Users className="w-3.5 h-3.5 text-teal-400" />
+                <Users className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
                 <span>Based on <span className="text-slate-900 dark:text-white font-semibold">{metrics.respondentCount} employees</span></span>
               </div>
               <div className="hidden md:block h-3 w-px bg-white/10" />
@@ -96,7 +96,7 @@ export default function ExecutiveDashboard({
             </div>
             <div className="px-2.5 py-1.5 rounded-lg bg-green-500/10 border border-green-500/20">
               <div className="text-[10px] text-green-500 uppercase tracking-wider mb-0.5">Status</div>
-              <div className="text-xs text-green-400 font-semibold flex items-center gap-1">
+              <div className="text-xs text-green-700 dark:text-green-400 font-semibold flex items-center gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Complete
               </div>
@@ -120,7 +120,7 @@ export default function ExecutiveDashboard({
               {/* Header */}
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-7 h-7 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center">
-                  <Target className="w-4 h-4 text-teal-400" />
+                  <Target className="w-4 h-4 text-teal-700 dark:text-teal-400" />
                 </div>
                 <div className="flex-1">
                   <div className="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wide">Overall AI Readiness</div>
@@ -147,17 +147,17 @@ export default function ExecutiveDashboard({
                   )}>
                     {metrics.readinessScore >= 60 ? (
                       <>
-                        <TrendingUp className="w-3.5 h-3.5 text-green-400" />
+                        <TrendingUp className="w-3.5 h-3.5 text-green-700 dark:text-green-400" />
                         <div>
-                          <div className="text-sm font-bold tabular-nums text-green-400">+8%</div>
+                          <div className="text-sm font-bold tabular-nums text-green-700 dark:text-green-400">+8%</div>
                           <div className="text-[8px] text-gray-500 uppercase tracking-wide">vs Q3</div>
                         </div>
                       </>
                     ) : (
                       <>
-                        <TrendingDown className="w-3.5 h-3.5 text-orange-400" />
+                        <TrendingDown className="w-3.5 h-3.5 text-orange-700 dark:text-orange-400" />
                         <div>
-                          <div className="text-sm font-bold tabular-nums text-orange-400">-3%</div>
+                          <div className="text-sm font-bold tabular-nums text-orange-700 dark:text-orange-400">-3%</div>
                           <div className="text-[8px] text-gray-500 uppercase tracking-wide">vs Q3</div>
                         </div>
                       </>
@@ -177,7 +177,7 @@ export default function ExecutiveDashboard({
                   <div className="absolute top-0 bottom-0 left-[70%] w-0.5 bg-yellow-400/50 z-20" />
                   <div className="absolute top-0 bottom-0 left-[70%] -translate-x-1/2">
                     <div className="w-3 h-2 flex items-center justify-center">
-                      <div className="text-[8px] text-yellow-400 font-bold -mt-3">⚑</div>
+                      <div className="text-[8px] text-yellow-700 dark:text-yellow-400 font-bold -mt-3">⚑</div>
                     </div>
                   </div>
                   {/* Progress fill */}
@@ -193,7 +193,7 @@ export default function ExecutiveDashboard({
                 </div>
                 <div className="flex items-center justify-between text-xs text-gray-600">
                   <span>0%</span>
-                  <span className="text-yellow-400 font-medium">Goal: 70%</span>
+                  <span className="text-yellow-700 dark:text-yellow-400 font-medium">Goal: 70%</span>
                   <span>100%</span>
                 </div>
               </div>
@@ -241,9 +241,9 @@ export default function ExecutiveDashboard({
                   <span className="text-slate-600 dark:text-gray-400">Assessment</span>
                   <span className={cn(
                     "font-semibold",
-                    parseFloat(metrics.sentimentAvg) <= 1.5 ? "text-green-400" :
-                    parseFloat(metrics.sentimentAvg) <= 2.5 ? "text-yellow-400" :
-                    "text-orange-400"
+                    parseFloat(metrics.sentimentAvg) <= 1.5 ? "text-green-700 dark:text-green-400" :
+                    parseFloat(metrics.sentimentAvg) <= 2.5 ? "text-yellow-700 dark:text-yellow-400" :
+                    "text-orange-700 dark:text-orange-400"
                   )}>
                     {parseFloat(metrics.sentimentAvg) <= 1.5 ? 'Excellent' :
                      parseFloat(metrics.sentimentAvg) <= 2.5 ? 'Moderate' :
@@ -274,11 +274,11 @@ export default function ExecutiveDashboard({
               <div className="space-y-1 pt-2 border-t border-white/5">
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs All companies</span>
-                  <span className="text-green-400 font-semibold">+0.3</span>
+                  <span className="text-green-700 dark:text-green-400 font-semibold">+0.3</span>
                 </div>
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs Financial Services</span>
-                  <span className="text-orange-400 font-semibold">-0.2</span>
+                  <span className="text-orange-700 dark:text-orange-400 font-semibold">-0.2</span>
                 </div>
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs North America</span>
@@ -323,7 +323,7 @@ export default function ExecutiveDashboard({
                 <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
                   {/* Level markers */}
                   <div className="absolute top-0 bottom-0 left-[57%] w-px bg-green-400/30" />
-                  <div className="absolute -top-3 left-[57%] -translate-x-1/2 text-[8px] text-green-400 font-bold">
+                  <div className="absolute -top-3 left-[57%] -translate-x-1/2 text-[8px] text-green-700 dark:text-green-400 font-bold">
                     ⚑ Target: 4.0
                   </div>
                   {/* Progress */}
@@ -334,7 +334,7 @@ export default function ExecutiveDashboard({
                 </div>
                 <div className="flex items-center justify-between text-[9px] text-gray-600">
                   <span>Level 1</span>
-                  <span className="text-green-400 font-medium">Level 4</span>
+                  <span className="text-green-700 dark:text-green-400 font-medium">Level 4</span>
                   <span>Level 7</span>
                 </div>
               </div>
@@ -343,15 +343,15 @@ export default function ExecutiveDashboard({
               <div className="space-y-1 pt-2 border-t border-white/5">
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs All companies</span>
-                  <span className="text-green-400 font-semibold">+0.5</span>
+                  <span className="text-green-700 dark:text-green-400 font-semibold">+0.5</span>
                 </div>
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs Financial Services</span>
-                  <span className="text-orange-400 font-semibold">-0.4</span>
+                  <span className="text-orange-700 dark:text-orange-400 font-semibold">-0.4</span>
                 </div>
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="text-gray-500">vs North America</span>
-                  <span className="text-green-400 font-semibold">+0.2</span>
+                  <span className="text-green-700 dark:text-green-400 font-semibold">+0.2</span>
                 </div>
               </div>
             </div>
@@ -366,17 +366,17 @@ export default function ExecutiveDashboard({
           <div className="bg-gradient-to-br from-green-500/5 to-transparent rounded-lg border border-green-500/20 p-2 hover:border-green-500/30 transition-all cursor-pointer">
             <div className="flex items-center gap-1.5 mb-1.5">
               <div className="w-5 h-5 rounded bg-green-500/10 flex items-center justify-center">
-                <CheckCircle className="w-3 h-3 text-green-400" />
+                <CheckCircle className="w-3 h-3 text-green-700 dark:text-green-400" />
               </div>
-              <h3 className="text-xs font-bold text-green-400 uppercase tracking-wide">Strength</h3>
-              <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-bold">High</span>
+              <h3 className="text-xs font-bold text-green-700 dark:text-green-400 uppercase tracking-wide">Strength</h3>
+              <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-green-500/10 border border-green-500/20 text-green-700 dark:text-green-400 font-bold">High</span>
             </div>
             <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
               Positive sentiment: <span className="text-slate-900 dark:text-white font-medium">collaboration & human interaction</span>
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-green-500/10 text-[10px]">
               <span className="text-gray-500">Ethics capability</span>
-              <span className="text-green-400 font-bold">5.3/7.0</span>
+              <span className="text-green-700 dark:text-green-400 font-bold">5.3/7.0</span>
             </div>
           </div>
 
@@ -384,17 +384,17 @@ export default function ExecutiveDashboard({
           <div className="bg-gradient-to-br from-orange-500/5 to-transparent rounded-lg border border-orange-500/20 p-2 hover:border-orange-500/30 transition-all cursor-pointer">
             <div className="flex items-center gap-1.5 mb-1.5">
               <div className="w-5 h-5 rounded bg-orange-500/10 flex items-center justify-center">
-                <AlertTriangle className="w-3 h-3 text-orange-400" />
+                <AlertTriangle className="w-3 h-3 text-orange-700 dark:text-orange-400" />
               </div>
-              <h3 className="text-xs font-bold text-orange-400 uppercase tracking-wide">Challenge</h3>
-              <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-400 font-bold">Critical</span>
+              <h3 className="text-xs font-bold text-orange-700 dark:text-orange-400 uppercase tracking-wide">Challenge</h3>
+              <span className="ml-auto px-1.5 py-0.5 rounded text-[10px] bg-orange-500/10 border border-orange-500/20 text-orange-700 dark:text-orange-400 font-bold">Critical</span>
             </div>
             <p className="text-xs text-slate-700 dark:text-gray-300 leading-relaxed mb-1.5">
               Concerns: <span className="text-slate-900 dark:text-white font-medium">AI transparency & autonomy</span>
             </p>
             <div className="flex items-center justify-between pt-1.5 border-t border-orange-500/10 text-[10px]">
               <span className="text-gray-500">Low scores</span>
-              <span className="text-orange-400 font-bold">{metrics.lowScoreCount} areas</span>
+              <span className="text-orange-700 dark:text-orange-400 font-bold">{metrics.lowScoreCount} areas</span>
             </div>
           </div>
 
@@ -481,14 +481,14 @@ export default function ExecutiveDashboard({
                   >
                     <td className="py-2.5 px-4">
                       <div className="flex items-center gap-2">
-                        <span className="text-slate-900 dark:text-white font-semibold group-hover:text-teal-300 transition-colors">{dim.name}</span>
+                        <span className="text-slate-900 dark:text-white font-semibold group-hover:text-teal-700 dark:text-teal-300 transition-colors">{dim.name}</span>
                         <Info className="w-3.5 h-3.5 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                       </div>
                     </td>
                     <td className="text-center px-3 tabular-nums">
                       <span className={cn(
                         "font-bold text-base",
-                        dim.score >= dim.benchmark ? "text-green-400" : "text-orange-400"
+                        dim.score >= dim.benchmark ? "text-green-700 dark:text-green-400" : "text-orange-700 dark:text-orange-400"
                       )}>
                         {dim.score.toFixed(1)}
                       </span>
@@ -498,7 +498,7 @@ export default function ExecutiveDashboard({
                     <td className="text-center px-3 tabular-nums">
                       <span className={cn(
                         "inline-flex items-center gap-1 font-semibold",
-                        dim.gap >= 0 ? "text-green-400" : "text-orange-400"
+                        dim.gap >= 0 ? "text-green-700 dark:text-green-400" : "text-orange-700 dark:text-orange-400"
                       )}>
                         {dim.gap >= 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <Down className="w-3.5 h-3.5" />}
                         {dim.gap >= 0 ? '+' : ''}{dim.gap.toFixed(1)}
@@ -508,9 +508,9 @@ export default function ExecutiveDashboard({
                     <td className="text-right px-4">
                       <span className={cn(
                         "inline-block px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider",
-                        dim.score >= 5 ? "bg-green-500/10 text-green-400 border border-green-500/20" :
+                        dim.score >= 5 ? "bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20" :
                         dim.score >= 4 ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" :
-                        "bg-orange-500/10 text-orange-400 border border-orange-500/20"
+                        "bg-orange-500/10 text-orange-700 dark:text-orange-400 border border-orange-500/20"
                       )}>
                         {dim.score >= 5 ? 'EXCEEDS' : dim.score >= 4 ? 'MEETS' : 'BELOW'}
                       </span>
@@ -543,24 +543,24 @@ export default function ExecutiveDashboard({
           className="group bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/15 hover:to-purple-500/15 rounded-lg border border-teal-500/30 hover:border-teal-400/50 transition-all p-3.5 flex items-center gap-3"
         >
           <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-teal-500/20 border border-teal-500/30 flex items-center justify-center shadow-lg shadow-teal-500/10">
-            <Users className="w-5 h-5 text-teal-400" />
+            <Users className="w-5 h-5 text-teal-700 dark:text-teal-400" />
           </div>
           <div className="flex-1 text-left">
             <div className="flex items-center justify-between mb-1">
               <span className="text-sm font-semibold text-slate-900 dark:text-white">Explore Sentiment Data</span>
-              <ArrowRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 text-teal-700 dark:text-teal-400 group-hover:translate-x-1 transition-transform" />
             </div>
             <p className="text-[10px] text-slate-600 dark:text-gray-400 leading-relaxed mb-2">
               Analyze the 5×5 sentiment heatmap showing how employees feel about AI across 25 dimensions. Identify resistance patterns and problem areas.
             </p>
             <div className="flex items-center gap-1.5 text-[9px]">
-              <span className="px-1.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 text-teal-400 font-semibold">
+              <span className="px-1.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 text-teal-700 dark:text-teal-400 font-semibold">
                 25 dimensions
               </span>
-              <span className="px-1.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 text-teal-400 font-semibold">
+              <span className="px-1.5 py-0.5 rounded bg-teal-500/10 border border-teal-500/20 text-teal-700 dark:text-teal-400 font-semibold">
                 {metrics.respondentCount} responses
               </span>
-              <span className="px-1.5 py-0.5 rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold">
+              <span className="px-1.5 py-0.5 rounded bg-orange-500/10 border border-orange-500/20 text-orange-700 dark:text-orange-400 font-semibold">
                 {metrics.lowScoreCount} concerns
               </span>
             </div>
@@ -589,7 +589,7 @@ export default function ExecutiveDashboard({
               <span className="px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 font-semibold">
                 32 constructs
               </span>
-              <span className="px-1.5 py-0.5 rounded bg-orange-500/10 border border-orange-500/20 text-orange-400 font-semibold">
+              <span className="px-1.5 py-0.5 rounded bg-orange-500/10 border border-orange-500/20 text-orange-700 dark:text-orange-400 font-semibold">
                 3 gaps found
               </span>
             </div>

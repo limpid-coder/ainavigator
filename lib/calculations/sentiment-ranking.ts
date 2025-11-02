@@ -51,12 +51,25 @@ export function calculateSentimentHeatmap(
   
   Object.entries(SENTIMENT_COLUMN_MAPPING).forEach(([cellId, columnName]) => {
     const scores = filtered
-      .map(row => row[columnName])
-      .filter((score): score is number => typeof score === 'number' && !isNaN(score))
+      .map(row => {
+        const rawScore = row[columnName]
+        if (typeof rawScore === 'number' && !isNaN(rawScore)) {
+          // Transform from 1-2 scale to 2-4 scale for better user understanding
+          // Formula: transformed = (original - 1.0) * 2.0 + 2.0
+          // This maps: 1.0 → 2.0, 1.5 → 3.0, 2.0 → 4.0
+          const transformed = (rawScore - 1.0) * 2.0 + 2.0
+          // Clamp to 2-4 range
+          return Math.max(2.0, Math.min(4.0, transformed))
+        }
+        return null
+      })
+      .filter((score): score is number => score !== null)
     
     if (scores.length > 0) {
       const average = scores.reduce((sum, s) => sum + s, 0) / scores.length
-      cellScores.push({ cellId, score: average, count: scores.length })
+      // Ensure average is on 2-4 scale
+      const normalizedAverage = Math.max(2.0, Math.min(4.0, average))
+      cellScores.push({ cellId, score: normalizedAverage, count: scores.length })
     } else {
       cellScores.push({ cellId, score: 0, count: 0 })
     }

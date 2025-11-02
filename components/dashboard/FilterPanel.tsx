@@ -266,8 +266,31 @@ export default function FilterPanel({
       </AnimatePresence>
 
       {/* Data Stats */}
-      <div className="pt-4 border-t border-white/10">
-        <p className="text-xs text-slate-600 dark:text-gray-400 mb-3 uppercase tracking-wider">Data Overview</p>
+      <div className="pt-4 border-t border-white/10 space-y-3">
+        {/* Response Count Indicator */}
+        {activeFilterCount > 0 ? (
+          <div className="glass-premium rounded-lg p-4">
+            <p className="text-xs text-slate-600 dark:text-gray-400 mb-2 uppercase tracking-wider">Filtered Results</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold text-teal-400">{sentimentData.length + capabilityData.length}</span>
+              <span className="text-sm text-slate-600 dark:text-gray-400">responses shown</span>
+            </div>
+            <div className="mt-2 text-xs text-slate-500">
+              (out of {sentimentData.length + capabilityData.length} total)
+            </div>
+          </div>
+        ) : (
+          <div className="glass-premium rounded-lg p-4">
+            <p className="text-xs text-slate-600 dark:text-gray-400 mb-2 uppercase tracking-wider">Total Responses</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-bold text-teal-400">{sentimentData.length + capabilityData.length}</span>
+              <span className="text-sm text-slate-600 dark:text-gray-400">total</span>
+            </div>
+          </div>
+        )}
+
+        {/* Breakdown */}
+        <p className="text-xs text-slate-600 dark:text-gray-400 uppercase tracking-wider">Breakdown</p>
         <div className="grid grid-cols-2 gap-3">
           <div className="glass rounded-lg p-3 text-center">
             <div className="text-2xl font-bold text-purple-400">

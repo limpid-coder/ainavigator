@@ -185,7 +185,7 @@ export default function Home() {
   const subTextColor = isDarkMode ? "text-white/60" : "text-gray-500"
 
   const navItems = [
-    { name: 'Features', href: '#features' },
+    { name: 'Framework', href: '#framework' },
     { name: 'How it Works', href: '#how-it-works' },
     { name: 'Demo', href: '/demo' },
   ]
@@ -364,13 +364,13 @@ export default function Home() {
                       </div>
 
                       <h1 className={`text-[32px] md:text-[42px] font-light ${textColor} mb-4 tracking-[-0.02em] leading-[1.1] animate-fade-in-up`}>
-                        Transform Your<br />
+                        Break Through<br />
                         <span className="font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
-                AI Journey
+                AI Taboos
               </span>
             </h1>
                       <p className={`${subTextColor} text-[14px] md:text-[15px] leading-relaxed max-w-sm mx-auto opacity-0 animate-fade-in-up`} style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-                        Data-driven insights to navigate enterprise AI transformation
+                        Discover and address the 100 unspoken fears holding back your AI transformation
                       </p>
                     </div>
 
@@ -391,7 +391,7 @@ export default function Home() {
                           variant="primary"
                           className="w-full sm:w-auto"
                         >
-                          Join Waitlist
+                          Get Started
                         </Button>
                       </div>
                     </form>
@@ -434,16 +434,16 @@ export default function Home() {
                               ? 'bg-white/[0.04] hover:bg-white/[0.08] text-white/70 hover:text-white'
                               : 'bg-black/[0.02] hover:bg-black/[0.04] text-gray-600 hover:text-gray-900'
                           }`}>
-                            Demo
+                            Try Demo
                           </button>
               </Link>
-                        <Link href="/upload">
+                        <Link href="/assessment">
                           <button className={`text-[12px] font-medium px-4 py-2 rounded-2xl transition-all duration-300 ${
                             isDarkMode
                               ? 'bg-white/[0.04] hover:bg-white/[0.08] text-white/70 hover:text-white'
                               : 'bg-black/[0.02] hover:bg-black/[0.04] text-gray-600 hover:text-gray-900'
                           }`}>
-                            Upload
+                            Quick Scan
                           </button>
               </Link>
                       </div>
@@ -471,7 +471,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Problem Section - Two Column Wide Layout with Parallax */}
+        {/* Problem Section - The Elephant in the Room */}
         <section className="py-24 px-6 relative">
           {/* Optimized background accent */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -479,163 +479,824 @@ export default function Home() {
             <div className="absolute right-0 bottom-1/2 w-48 md:w-72 h-48 md:h-72 bg-orange-500/5 rounded-full blur-3xl" />
           </div>
           <div className="max-w-7xl mx-auto relative">
-            <div className="mb-12 animate-fade-in-up">
+            <div className="mb-12 animate-fade-in-up text-center">
               <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-red-400' : 'text-red-500'}`}>
-                The Challenge
+                The Hidden Problem
               </p>
-              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
-                67% of AI initiatives fail
+              <h2 className={`text-[42px] md:text-[52px] font-light ${textColor} tracking-tight mb-4`}>
+                The biggest barriers are<br />the ones <span className="italic font-normal">nobody talks about</span>
               </h2>
+              <p className={`${subTextColor} text-[16px] max-w-2xl mx-auto leading-relaxed`}>
+                Most AI resistance stems from psychological <span className="font-semibold">taboos</span>—unspoken fears and concerns that employees feel they can't discuss openly
+              </p>
+            </div>
+            
+            {/* Taboo Symptoms */}
+            <div className="max-w-5xl mx-auto mb-12">
+              <div className={`p-6 rounded-[24px] ${
+                isDarkMode
+                  ? 'bg-gradient-to-br from-red-500/5 to-transparent border border-red-500/20'
+                  : 'bg-gradient-to-br from-red-50 to-white border border-red-200'
+              }`}>
+                <div className="text-center mb-6">
+                  <span className="text-[32px] mb-2 block">🤫</span>
+                  <h3 className={`text-[18px] font-semibold ${textColor}`}>
+                    Spot the Taboos: What You'll See
+                  </h3>
+                </div>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    { emoji: '🙈', symptom: 'Quiet Non-Adoption', example: 'Tools are available but mysteriously unused' },
+                    { emoji: '🎭', symptom: 'Surface Agreement', example: '"Great idea!" in meetings, resistance in practice' },
+                    { emoji: '🔧', symptom: 'Creative Workarounds', example: 'Bypassing AI systems to use "the old way"' }
+                  ].map(item => (
+                    <div key={item.symptom} className={`p-4 rounded-xl ${
+                      isDarkMode ? 'bg-black/20' : 'bg-white/60'
+                    }`}>
+                      <div className="text-[24px] mb-2">{item.emoji}</div>
+                      <div className={`text-[13px] font-semibold ${textColor} mb-1`}>{item.symptom}</div>
+                      <div className={`text-[11px] ${subTextColor} italic`}>"{item.example}"</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="max-w-5xl mx-auto">
+              <div className={`p-8 md:p-12 rounded-[32px] ${
+                isDarkMode
+                  ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
+                  : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+              }`}>
+                <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                        <X className="w-6 h-6 text-red-500" strokeWidth={2} />
+                      </div>
+                      <h3 className={`text-[22px] font-semibold ${textColor}`}>What Doesn't Work</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      {[
+                        'Assuming everyone is excited about AI',
+                        'Generic "change management" programs',
+                        'Ignoring emotional and psychological resistance',
+                        'One-size-fits-all training approaches'
+                      ].map(point => (
+                        <li key={point} className={`text-[14px] ${subTextColor} flex items-start gap-3`}>
+                          <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-red-500" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+                        <Check className="w-6 h-6 text-green-500" strokeWidth={2} />
+                      </div>
+                      <h3 className={`text-[22px] font-semibold ${textColor}`}>Our Approach</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      {[
+                        'Identify all 100 AI taboos in your organization',
+                        'Map resistance by reason and intensity level',
+                        'Provide targeted, neuroscience-based interventions',
+                        'Track progress and measure effectiveness'
+                      ].map(point => (
+                        <li key={point} className={`text-[14px] ${subTextColor} flex items-start gap-3`}>
+                          <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-green-500" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Periodic Table Section */}
+        <section id="framework" className="py-32 px-6 relative">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#5380b3]/5 via-[#7a6ca8]/5 to-[#a74f8b]/5 rounded-full blur-3xl" />
+          </div>
+          <div className="max-w-7xl mx-auto relative">
+            <div className="text-center mb-16 animate-fade-in-up">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
+                The Framework
+              </p>
+              <h2 className={`text-[42px] md:text-[52px] font-light ${textColor} tracking-tight mb-4`}>
+                The Periodic Table of AI Taboos
+              </h2>
+              <p className={`${subTextColor} text-[16px] max-w-3xl mx-auto leading-relaxed`}>
+                Like the periodic table organizes chemical elements, we've mapped the <span className="font-semibold text-[#5380b3]">100 unspoken fears</span> about AI into <span className="font-semibold text-[#a74f8b]">25 distinct zones</span>. Each zone contains <span className="font-semibold text-[#6ba368]">2 specific taboos</span> with shared patterns, triggers, and science-based remedies.
+              </p>
+            </div>
+            
+            {/* Real-world examples teaser */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  {
+                    persona: '🚛 Truck Driver',
+                    age: '55+',
+                    quote: 'AI makes decisions without me—I prefer talking to my supervisor',
+                    zone: 'Autonomy × Concerned',
+                    color: '#e0874e'
+                  },
+                  {
+                    persona: '⚖️ Young Lawyer',
+                    age: '30',
+                    quote: 'Will AI make my years of training obsolete?',
+                    zone: 'Career Security × Resistant',
+                    color: '#c44569'
+                  }
+                ].map((example) => (
+                  <div key={example.persona} className={`p-6 rounded-[20px] ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-white/[0.03] to-transparent border border-white/[0.08]'
+                      : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+                  }`}>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-[28px]">{example.persona.split(' ')[0]}</span>
+                      <div>
+                        <div className={`text-[15px] font-semibold ${textColor}`}>{example.persona.slice(2)}</div>
+                        <div className={`text-[12px] ${subTextColor}`}>{example.age}</div>
+                      </div>
+                    </div>
+                    <p className={`text-[13px] ${subTextColor} italic mb-3 leading-relaxed`}>
+                      "{example.quote}"
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: example.color }}
+                      />
+                      <span className={`text-[11px] font-semibold uppercase tracking-wider`} style={{ color: example.color }}>
+                        {example.zone}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Playful Callout */}
+            <div className={`max-w-4xl mx-auto mb-12 p-6 rounded-[24px] text-center ${
+              isDarkMode
+                ? 'bg-gradient-to-r from-[#5380b3]/10 via-[#7a6ca8]/10 to-[#a74f8b]/10 border border-white/[0.08]'
+                : 'bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border border-gray-200'
+            }`}>
+              <div className="text-[32px] mb-3">🧪 ✨</div>
+              <h3 className={`text-[20px] font-semibold ${textColor} mb-2`}>
+                Like Chemistry, But for Change
+              </h3>
+              <p className={`${subTextColor} text-[14px] max-w-2xl mx-auto`}>
+                Just as Mendeleev's periodic table revealed patterns in elements, our framework reveals the hidden patterns in how people <span className="italic">really</span> feel about AI—helping you design interventions that actually work.
+              </p>
+            </div>
+
+            {/* Visual Grid Representation - Enhanced */}
+            <div className="max-w-7xl mx-auto mb-16">
+              <div className={`p-8 md:p-12 rounded-[32px] ${
+                isDarkMode
+                  ? 'bg-gradient-to-br from-[#1a1f2e] to-[#0f1419] border border-white/[0.08]'
+                  : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+              }`}>
+                {/* Header with 5 Reasons */}
+                <div className="mb-8">
+                  <div className={`text-center text-[12px] ${subTextColor} mb-6 flex items-center justify-center gap-2`}>
+                    <span className="text-[16px]">👆</span>
+                    <span className="italic">Hover any cell to explore • Each zone contains multiple taboos</span>
+                  </div>
+                  <div className="grid grid-cols-5 gap-3 md:gap-4 mb-6">
+                    {[
+                      { icon: '🤖', title: 'AI is too Autonomous', subtitle: 'Autonomy concerns', color: '#5380b3' },
+                      { icon: '🔧', title: 'AI is too Inflexible', subtitle: 'Rigidity issues', color: '#e0874e' },
+                      { icon: '🤐', title: 'AI is Emotionless', subtitle: 'Lacks warmth', color: '#6ba368' },
+                      { icon: '🌫️', title: 'AI is too Opaque', subtitle: 'Unclear decisions', color: '#808080' },
+                      { icon: '🤝', title: 'People Prefer Human Interaction', subtitle: 'Connection matters', color: '#d4a834' }
+                    ].map((reason) => (
+                      <div key={reason.title} className="text-center">
+                        <div className="text-[32px] mb-2">{reason.icon}</div>
+                        <div 
+                          className="text-[11px] md:text-[12px] font-bold leading-tight mb-1"
+                          style={{ color: reason.color }}
+                        >
+                          {reason.title}
+                        </div>
+                        <div className={`text-[10px] ${subTextColor} italic`}>
+                          {reason.subtitle}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex gap-6 md:gap-8">
+                  {/* Y-axis labels */}
+                  <div className="flex flex-col gap-3">
+                    {[
+                      { level: '1', label: 'Workflow', icon: '👤', color: '#5380b3' },
+                      { level: '2', label: 'Collaboration', icon: '👥', color: '#7a6ca8' },
+                      { level: '3', label: 'Trust & Fairness', icon: '⚖️', color: '#a74f8b' },
+                      { level: '4', label: 'Career Security', icon: '💼', color: '#c44569' },
+                      { level: '5', label: 'Org Stability', icon: '🏢', color: '#e0874e' }
+                    ].map((item) => (
+                      <div key={item.level} className={`flex items-center gap-3 h-[70px] md:h-[90px] px-3 rounded-2xl ${
+                        isDarkMode ? 'bg-white/[0.02]' : 'bg-gray-50'
+                      }`}>
+                        <div 
+                          className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-[14px]"
+                          style={{ 
+                            backgroundColor: isDarkMode ? `${item.color}30` : `${item.color}20`,
+                            color: item.color 
+                          }}
+                        >
+                          {item.level}
+                        </div>
+                        <span className="text-[20px]">{item.icon}</span>
+                        <div className={`text-[10px] ${subTextColor} leading-tight hidden md:block`}>
+                          <div className="font-semibold">Level {item.level}</div>
+                          <div>{item.label}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Main Grid - 5x5 with actual taboo codes */}
+                  <div className="flex-1">
+                    <div className="grid grid-cols-5 gap-3">
+                      {[
+                        // Row 1
+                        { codes: ['Bw', 'Sy'], names: ['Bewilderment', 'Superiority'], col: 0 },
+                        { codes: ['Am', 'Mi'], names: ['Amplification', 'Mismatch'], col: 1 },
+                        { codes: ['Cn', 'Ds'], names: ['Condescension', 'Dismissiveness'], col: 2 },
+                        { codes: ['Av', 'Fg'], names: ['Aversion', 'Fogginess'], col: 3 },
+                        { codes: ['Al', 'An'], names: ['Alienation', 'Antipathy'], col: 4 },
+                        // Row 2
+                        { codes: ['Dl', 'Ov'], names: ['Delegation', 'Overtrust'], col: 0 },
+                        { codes: ['Cf', 'Eg'], names: ['Conformity', 'Exaggeration'], col: 1 },
+                        { codes: ['Dt', 'Hw'], names: ['Detachment', 'Hollowness'], col: 2 },
+                        { codes: ['Bl', 'Cc'], names: ['Blindspot', 'Concealment'], col: 3 },
+                        { codes: ['Dd', 'Di'], names: ['Dependence', 'Distance'], col: 4 },
+                        // Row 3
+                        { codes: ['Dc', 'Du'], names: ['Discrimination', 'Diffusion'], col: 0 },
+                        { codes: ['Ce', 'Co'], names: ['Convergence', 'Constraint'], col: 1 },
+                        { codes: ['Cr', 'Dv'], names: ['Corruption', 'Devastation'], col: 2 },
+                        { codes: ['Cv', 'Dr'], names: ['Covertness', 'Disproportion'], col: 3 },
+                        { codes: ['Df', 'Of'], names: ['Defiance', 'Offloading'], col: 4 },
+                        // Row 4
+                        { codes: ['Dm', 'Dp'], names: ['Dismissal', 'Displacement'], col: 0 },
+                        { codes: ['Ad', 'Ay'], names: ['Adaptation', 'Atrophy'], col: 1 },
+                        { codes: ['Da', 'Im'], names: ['Disappointment', 'Impairment'], col: 2 },
+                        { codes: ['In', 'Ob'], names: ['Inscrutability', 'Obscurity'], col: 3 },
+                        { codes: ['Dt', 'La'], names: ['Destitution', 'Lagging'], col: 4 },
+                        // Row 5
+                        { codes: ['Fa', 'Oh'], names: ['Favoritism', 'Overhaul'], col: 0 },
+                        { codes: ['Fr', 'Li'], names: ['Fragility', 'Lock-in'], col: 1 },
+                        { codes: ['Dn', 'Do'], names: ['Depletion', 'Domination'], col: 2 },
+                        { codes: ['Em', 'Et'], names: ['Enmeshment', 'Extinction'], col: 3 },
+                        { codes: ['De', 'Ed'], names: ['Dissonance', 'Endangerment'], col: 4 }
+                      ].map((cell, idx) => {
+                        const row = Math.floor(idx / 5)
+                        const colors = ['#5380b3', '#e0874e', '#6ba368', '#808080', '#d4a834']
+                        const color = colors[cell.col]
+                        const intensity = 0.2 + (row / 4) * 0.5
+                        
+                        return (
+                          <div
+                            key={idx}
+                            className={`h-[70px] md:h-[90px] rounded-2xl transition-all duration-300 hover:scale-110 hover:-rotate-2 cursor-pointer group relative ${
+                              isDarkMode
+                                ? 'border-2 border-white/[0.08] hover:border-white/40 shadow-lg hover:shadow-2xl'
+                                : 'border-2 border-gray-300 hover:border-gray-500 shadow-md hover:shadow-xl'
+                            }`}
+                            style={{
+                              backgroundColor: isDarkMode 
+                                ? `${color}${Math.floor(intensity * 255).toString(16).padStart(2, '0')}` 
+                                : `${color}${Math.floor(intensity * 200).toString(16).padStart(2, '0')}`,
+                              boxShadow: isDarkMode 
+                                ? `0 4px 20px ${color}20` 
+                                : `0 2px 10px ${color}30`
+                            }}
+                          >
+                            {/* Default view - abbreviations */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-2 group-hover:opacity-0 transition-opacity">
+                              <div 
+                                className="text-[16px] md:text-[18px] font-bold mb-1"
+                                style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+                              >
+                                {cell.codes[0]}
+                              </div>
+                              <div className="w-4 h-[2px] rounded-full opacity-50" style={{ backgroundColor: color }} />
+                              <div 
+                                className="text-[16px] md:text-[18px] font-bold mt-1"
+                                style={{ color: isDarkMode ? '#ffffff' : '#000000' }}
+                              >
+                                {cell.codes[1]}
+                              </div>
+                            </div>
+                            
+                            {/* Hover view - full names */}
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <div className={`text-[10px] md:text-[11px] font-bold leading-tight text-center ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                                <div className="mb-1">{cell.names[0]}</div>
+                                <div className="text-[8px] opacity-60">+</div>
+                                <div className="mt-1">{cell.names[1]}</div>
+                              </div>
+                            </div>
+                            
+                            {/* Tooltip */}
+                            <div className={`absolute -top-24 left-1/2 transform -translate-x-1/2 px-4 py-3 rounded-xl ${
+                              isDarkMode ? 'bg-black/95 border-2 border-white/20' : 'bg-gray-900 border-2 border-gray-700'
+                            } text-white text-[11px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20 shadow-2xl`}>
+                              <div className="font-bold mb-2 flex items-center gap-2">
+                                <span>Zone {idx + 1}</span>
+                                <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ backgroundColor: `${color}40` }}>
+                                  2 Taboos
+                                </span>
+                              </div>
+                              <div className="text-[10px] opacity-80 mb-2">
+                                Level {row + 1} × {['Autonomous', 'Inflexible', 'Emotionless', 'Opaque', 'Human'][cell.col]}
+                              </div>
+                              <div className="text-[10px] opacity-90 space-y-1">
+                                <div>• {cell.codes[0]}: {cell.names[0]}</div>
+                                <div>• {cell.codes[1]}: {cell.names[1]}</div>
+                              </div>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Legend with Examples */}
+                <div className={`mt-10 pt-8 border-t ${isDarkMode ? 'border-white/[0.06]' : 'border-gray-200'}`}>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className={`text-[16px] font-semibold ${textColor} mb-4`}>📊 5 Levels of Discomfort</h4>
+                      <div className="space-y-3">
+                        {[
+                          { level: 'Excited', emoji: '🚀', example: '"This will transform my work!"' },
+                          { level: 'Supportive', emoji: '👍', example: '"I see the potential benefits"' },
+                          { level: 'Neutral', emoji: '😐', example: '"Not sure what to think yet"' },
+                          { level: 'Concerned', emoji: '😟', example: '"I have some worries about this"' },
+                          { level: 'Resistant', emoji: '🛑', example: '"This threatens what I value"' }
+                        ].map((item, idx) => (
+                          <div key={item.level} className={`p-3 rounded-xl ${
+                            isDarkMode ? 'bg-white/[0.02]' : 'bg-gray-50'
+                          }`}>
+                            <div className="flex items-center gap-3 mb-1">
+                              <div className={`w-4 h-4 rounded`} style={{ 
+                                background: `linear-gradient(to right, #5380b3, #a74f8b)`,
+                                opacity: 0.3 + ((4 - idx) / 4) * 0.7
+                              }} />
+                              <span className="text-[16px]">{item.emoji}</span>
+                              <span className={`text-[13px] font-semibold ${textColor}`}>{item.level}</span>
+                            </div>
+                            <p className={`text-[11px] ${subTextColor} italic pl-7`}>{item.example}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className={`text-[16px] font-semibold ${textColor} mb-4`}>🎯 5 Underlying Reasons</h4>
+                      <div className="space-y-3">
+                        {[
+                          { reason: 'Career Security', icon: '💼', concern: 'Will AI replace my job or devalue my skills?' },
+                          { reason: 'Competence Anxiety', icon: '🧠', concern: 'Can I learn to work effectively with AI?' },
+                          { reason: 'Ethics & Trust', icon: '⚖️', concern: 'Is AI making fair and reliable decisions?' },
+                          { reason: 'Autonomy', icon: '🎮', concern: 'Am I losing control over how I work?' },
+                          { reason: 'Human Connection', icon: '🤝', concern: 'Is work becoming too impersonal?' }
+                        ].map(item => (
+                          <div key={item.reason} className={`p-3 rounded-xl ${
+                            isDarkMode ? 'bg-white/[0.02]' : 'bg-gray-50'
+                          }`}>
+                            <div className="flex items-center gap-3 mb-1">
+                              <span className="text-[16px]">{item.icon}</span>
+                              <span className={`text-[13px] font-semibold ${textColor}`}>{item.reason}</span>
+                            </div>
+                            <p className={`text-[11px] ${subTextColor} pl-7`}>{item.concern}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Real-World Use Cases */}
+            <div className="mt-16 max-w-6xl mx-auto">
+              <h3 className={`text-[28px] font-semibold ${textColor} mb-8 text-center`}>
+                See It In Action
+              </h3>
+              
+              <div className="space-y-6">
+                {/* Truck Driver Case */}
+                <div className={`p-6 md:p-8 rounded-[24px] ${
+                  isDarkMode
+                    ? 'bg-gradient-to-br from-orange-500/5 to-transparent border border-orange-500/20'
+                    : 'bg-gradient-to-br from-orange-50 to-white border border-orange-200'
+                }`}>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-20 h-20 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-[36px]">
+                        🚛
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-3 mb-3">
+                        <h4 className={`text-[20px] font-semibold ${textColor}`}>Driving Home</h4>
+                        <span className={`text-[12px] px-3 py-1 rounded-full ${
+                          isDarkMode ? 'bg-orange-500/10 text-orange-400' : 'bg-orange-100 text-orange-700'
+                        }`}>
+                          European Logistics | 55+ years
+                        </span>
+                      </div>
+                      
+                      <p className={`${subTextColor} text-[14px] mb-4 leading-relaxed`}>
+                        <span className="font-semibold">The Situation:</span> Experienced truck drivers nearing retirement resist AI-assisted routing and logistics systems.
+                      </p>
+                      
+                      <div className="grid md:grid-cols-2 gap-4 mb-4">
+                        <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-black/20' : 'bg-white/60'}`}>
+                          <div className={`text-[11px] font-semibold uppercase tracking-wider mb-2 ${subTextColor}`}>How it showed up</div>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Avoid AI tools, prefer manual methods',
+                              'Bypass AI systems, seek human advice',
+                              'Disable AI features silently'
+                            ].map(point => (
+                              <li key={point} className={`text-[12px] ${subTextColor} flex items-start gap-2`}>
+                                <X className="w-3 h-3 text-red-500 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-black/20' : 'bg-white/60'}`}>
+                          <div className={`text-[11px] font-semibold uppercase tracking-wider mb-2 ${subTextColor}`}>Our intervention</div>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Designated Human: colleague available for edge cases',
+                              'What to Change/Keep: drivers identify where AI helps vs. hinders'
+                            ].map(point => (
+                              <li key={point} className={`text-[12px] ${subTextColor} flex items-start gap-2`}>
+                                <Check className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`text-[11px] px-3 py-1.5 rounded-full font-semibold ${
+                          isDarkMode ? 'bg-white/[0.06] text-orange-400' : 'bg-orange-50 text-orange-600'
+                        }`}>
+                          🎮 Autonomy × Concerned
+                        </span>
+                        <span className={`text-[11px] px-3 py-1.5 rounded-full font-semibold ${
+                          isDarkMode ? 'bg-white/[0.06] text-orange-400' : 'bg-orange-50 text-orange-600'
+                        }`}>
+                          🤝 Human Connection × Concerned
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Young Lawyer Case */}
+                <div className={`p-6 md:p-8 rounded-[24px] ${
+                  isDarkMode
+                    ? 'bg-gradient-to-br from-red-500/5 to-transparent border border-red-500/20'
+                    : 'bg-gradient-to-br from-red-50 to-white border border-red-200'
+                }`}>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-20 h-20 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-[36px]">
+                        ⚖️
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex flex-wrap items-center gap-3 mb-3">
+                        <h4 className={`text-[20px] font-semibold ${textColor}`}>The Young Lawyer</h4>
+                        <span className={`text-[12px] px-3 py-1 rounded-full ${
+                          isDarkMode ? 'bg-red-500/10 text-red-400' : 'bg-red-100 text-red-700'
+                        }`}>
+                          International Law Firm | 30 years
+                        </span>
+                      </div>
+                      
+                      <p className={`${subTextColor} text-[14px] mb-4 leading-relaxed`}>
+                        <span className="font-semibold">The Situation:</span> Associates who invested years in training now face AI tools that can draft documents and analyze cases in seconds.
+                      </p>
+                      
+                      <div className="grid md:grid-cols-2 gap-4 mb-4">
+                        <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-black/20' : 'bg-white/60'}`}>
+                          <div className={`text-[11px] font-semibold uppercase tracking-wider mb-2 ${subTextColor}`}>How it showed up</div>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Manually rework AI outputs',
+                              'Question AI conclusions and decisions',
+                              'Disengage when AI performance is unclear',
+                              'Quiet skepticism toward AI deployments'
+                            ].map(point => (
+                              <li key={point} className={`text-[12px] ${subTextColor} flex items-start gap-2`}>
+                                <X className="w-3 h-3 text-red-500 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        
+                        <div className={`p-4 rounded-xl ${isDarkMode ? 'bg-black/20' : 'bg-white/60'}`}>
+                          <div className={`text-[11px] font-semibold uppercase tracking-wider mb-2 ${subTextColor}`}>Our intervention</div>
+                          <ul className="space-y-1.5">
+                            {[
+                              'Human Oversight Sessions: diverse group evaluates AI outcomes',
+                              'AI Experiments: compare AI vs human work in simulations'
+                            ].map(point => (
+                              <li key={point} className={`text-[12px] ${subTextColor} flex items-start gap-2`}>
+                                <Check className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`text-[11px] px-3 py-1.5 rounded-full font-semibold ${
+                          isDarkMode ? 'bg-white/[0.06] text-red-400' : 'bg-red-50 text-red-600'
+                        }`}>
+                          💼 Career Security × Resistant
+                        </span>
+                        <span className={`text-[11px] px-3 py-1.5 rounded-full font-semibold ${
+                          isDarkMode ? 'bg-white/[0.06] text-red-400' : 'bg-red-50 text-red-600'
+                        }`}>
+                          ⚖️ Ethics & Trust × Concerned
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Stats */}
+            <div className="grid md:grid-cols-4 gap-4 mt-16">
+              {[
+                { number: '100', label: 'Unique Taboos', sublabel: '50 pairs across the table', emoji: '🧪' },
+                { number: '25', label: 'Zones', sublabel: '5 Reasons × 5 Levels', emoji: '📍' },
+                { number: '5', label: 'Core Dimensions', sublabel: 'From Autonomy to Connection', emoji: '🎯' },
+                { number: '∞', label: 'Solutions', sublabel: 'Tailored interventions', emoji: '✨' }
+              ].map(stat => (
+                <div key={stat.label} className={`p-6 rounded-[24px] text-center transition-all duration-300 hover:scale-105 ${
+                  isDarkMode
+                    ? 'bg-white/[0.02] border border-white/[0.06] hover:border-white/20'
+                    : 'bg-gray-50 border border-gray-200 hover:border-gray-300'
+                }`}>
+                  <div className="text-[32px] mb-2">{stat.emoji}</div>
+                  <div className={`text-[42px] font-light ${textColor} mb-2 bg-gradient-to-r from-[#5380b3] to-[#a74f8b] bg-clip-text text-transparent`}>
+                    {stat.number}
+                  </div>
+                  <div className={`text-[15px] font-semibold ${textColor} mb-1`}>{stat.label}</div>
+                  <div className={`text-[12px] ${subTextColor}`}>{stat.sublabel}</div>
+                </div>
+              ))}
+            </div>
+            
+            {/* How to Read It */}
+            <div className={`mt-12 max-w-4xl mx-auto p-6 rounded-[24px] ${
+              isDarkMode
+                ? 'bg-gradient-to-r from-[#5380b3]/5 to-[#a74f8b]/5 border border-white/[0.06]'
+                : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-gray-200'
+            }`}>
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="text-[48px]">📖</div>
+                <div className="flex-1">
+                  <h4 className={`text-[16px] font-semibold ${textColor} mb-2`}>
+                    How to Read the Table
+                  </h4>
+                  <p className={`${subTextColor} text-[13px] leading-relaxed`}>
+                    Each <span className="font-semibold">zone</span> represents the intersection of a <span className="italic">reason for resistance</span> (column) and a <span className="italic">level of discomfort</span> (row). 
+                    Within each zone live <span className="font-semibold">2 specific taboos</span>—individual fears or concerns that share similar patterns and require tailored interventions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section - Three Levels */}
+        <section id="how-it-works" className="py-32 px-6 relative bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+          <div className="max-w-7xl mx-auto relative">
+            <div className="text-center mb-16">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#a74f8b]' : 'text-[#a74f8b]'}`}>
+                Three Levels of Customization
+              </p>
+              <h2 className={`text-[42px] font-light ${textColor} tracking-tight mb-4`}>
+                From Quick Insights to Deep Transformation
+              </h2>
+              <p className={`${subTextColor} text-[16px] max-w-2xl mx-auto`}>
+                Choose the level of depth that matches your needs and organizational readiness
+              </p>
+            </div>
+
+            <div className="max-w-6xl mx-auto space-y-6">
               {[
                 {
-                  icon: Users,
-                  title: 'Human Resistance',
-                  stat: '73%',
-                  statLabel: 'cite culture as barrier',
-                  description: 'Teams resist change without understanding the "why" behind transformation.',
-                  points: [
-                    'Fear of job displacement blocks adoption',
-                    'Leadership lacks visibility into team sentiment',
-                    'No framework for managing emotional barriers'
-                  ],
-                  color: 'red'
+                  level: '01',
+                  title: 'Predictive Analysis',
+                  subtitle: 'Based on Your Data',
+                  description: 'We analyze your organization\'s demographics (age, profession, education, industry, AI experience) to predict which taboos are likely present and suggest areas of focus.',
+                  icon: Database,
+                  color: '#5380b3',
+                  features: ['No employee survey needed', 'Instant insights', 'General recommendations'],
+                  time: '< 1 hour'
                 },
                 {
-                  icon: Layers,
-                  title: 'Capability Gaps',
-                  stat: '89%',
-                  statLabel: 'lack AI expertise',
-                  description: 'Organizations invest blindly without knowing their true readiness level.',
-                  points: [
-                    'Hidden gaps in data infrastructure',
-                    'Talent shortages across critical roles',
-                    'Misaligned technology investments'
-                  ],
-                  color: 'orange'
+                  level: '02',
+                  title: 'AI Taboo Quick Scan',
+                  subtitle: 'Digital Questionnaire',
+                  description: 'A targeted questionnaire that pinpoints actual areas where AI adoption is challenging. Provides precise suggestions for actions and measurable evaluation.',
+                  icon: Activity,
+                  color: '#7a6ca8',
+                  features: ['15-minute digital assessment', 'Specific problem areas identified', 'Targeted action plans'],
+                  time: '< 1 day'
+                },
+                {
+                  level: '03',
+                  title: 'AI Taboo Assessment',
+                  subtitle: 'Comprehensive Deep Dive',
+                  description: 'Full assessment across a larger employee group. Creates a detailed picture of your situation with tailored solutions and specific evaluation of intervention effectiveness.',
+                  icon: Cpu,
+                  color: '#a74f8b',
+                  features: ['Org-wide assessment', 'Detailed zone mapping', 'Custom intervention design', 'Neuroscience-based activities'],
+                  time: '2-4 weeks'
                 }
               ].map((item) => {
                 const Icon = item.icon
-                
                 return (
-                  <div key={item.title} className={`group relative p-6 md:p-10 rounded-[24px] md:rounded-[32px] ${
-              isDarkMode
-                      ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
-                      : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
-                  } transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl will-change-transform`}>
-                    <div className="flex items-start gap-6">
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${
-                        item.color === 'red'
-                          ? 'bg-red-500/10 border border-red-500/20'
-                          : 'bg-orange-500/10 border border-orange-500/20'
-                      }`}>
-                        <Icon className={`w-7 h-7 ${item.color === 'red' ? 'text-red-500' : 'text-orange-500'}`} strokeWidth={1.5} />
-                      </div>
-                      
-                      <div className="flex-1">
-                        <div className="flex items-baseline justify-between mb-4">
-                          <h3 className={`text-[22px] font-semibold ${textColor}`}>{item.title}</h3>
-                          <div className="text-right">
-                            <div className={`text-[28px] font-light ${item.color === 'red' ? 'text-red-500' : 'text-orange-500'}`}>
-                              {item.stat}
-                            </div>
-                            <div className={`text-[10px] uppercase tracking-wider ${subTextColor}`}>
-                              {item.statLabel}
-                            </div>
+                  <div key={item.level} className={`group p-8 md:p-10 rounded-[32px] transition-all duration-300 hover:scale-[1.01] ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06] hover:border-white/20'
+                      : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-gray-300'
+                  }`}>
+                    <div className="flex flex-col md:flex-row gap-6 md:gap-10">
+                      <div className="flex items-start gap-6 flex-1">
+                        <div className="flex flex-col items-center gap-3">
+                          <div 
+                            className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+                            style={{ 
+                              backgroundColor: `${item.color}15`,
+                              borderWidth: '1px',
+                              borderColor: `${item.color}30`
+                            }}
+                          >
+                            <Icon className="w-8 h-8" style={{ color: item.color }} strokeWidth={1.5} />
+                          </div>
+                          <div 
+                            className="text-[32px] font-light opacity-40"
+                            style={{ color: item.color }}
+                          >
+                            {item.level}
                           </div>
                         </div>
                         
-                        <p className={`${subTextColor} text-[14px] mb-6 leading-relaxed`}>
-                          {item.description}
-                        </p>
-                        
-                        <ul className="space-y-3">
-                          {item.points.map(point => (
-                            <li key={point} className={`text-[13px] ${subTextColor} flex items-start gap-3`}>
-                              <div className={`w-1 h-1 rounded-full mt-1.5 flex-shrink-0 ${
-                                item.color === 'red' ? 'bg-red-500' : 'bg-orange-500'
-            }`} />
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-          </div>
-        </div>
-                  </div>
-                )
-              })}
-          </div>
-        </div>
-      </section>
-
-        {/* Features Section - Compact Cards with 3D Effect */}
-        <section id="features" className="py-20 px-6 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent relative">
-          {/* Refined floating particles effect */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {isDarkMode && isMounted && (
-              <>
-                <div className="absolute top-20 left-10 w-2 h-2 bg-[#5380b3]/50 rounded-full animate-pulse" />
-                <div className="absolute top-40 right-20 w-3 h-3 bg-[#a74f8b]/50 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <div className="absolute bottom-20 left-1/4 w-2 h-2 bg-[#e0874e]/50 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute bottom-40 right-1/3 w-3 h-3 bg-[#5380b3]/50 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }} />
-              </>
-            )}
-          </div>
-          <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 ${isDarkMode ? 'text-[#5380b3]' : 'text-[#5380b3]'}`}>
-                Capabilities
-              </p>
-              <h2 className={`text-[36px] font-light ${textColor} tracking-tight`}>
-                Complete AI Assessment Platform
-              </h2>
-          </div>
-
-            <div className="grid md:grid-cols-3 gap-3 md:gap-4">
-            {[
-              {
-                  icon: Target,
-                  title: 'Sentiment',
-                  description: '25 key dimensions of organizational readiness',
-                  metric: '25',
-                  metricLabel: 'dimensions'
-                },
-                {
-                  icon: Hexagon,
-                  title: 'Capability',
-                  description: 'Maturity across 8 critical areas',
-                  metric: '32',
-                  metricLabel: 'constructs'
-              },
-              {
-                  icon: Zap,
-                  title: 'Action Plans',
-                  description: 'Targeted interventions for gaps',
-                  metric: '<3',
-                  metricLabel: 'minutes'
-              }
-              ].map((feature) => {
-                const Icon = feature.icon
-                return (
-                  <div key={feature.title} className={`group p-5 md:p-6 rounded-[20px] md:rounded-[24px] ${
-                      isDarkMode
-                      ? 'bg-white/[0.02] hover:bg-white/[0.04] border border-white/[0.06]'
-                      : 'bg-gray-50 hover:bg-white border border-gray-200'
-                  } transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-xl will-change-transform`}>
-                    <Icon className="w-8 h-8 text-[#5380b3] mb-4" strokeWidth={1.5} />
-                    
-                    <h3 className={`text-[18px] font-semibold mb-2 ${textColor}`}>{feature.title}</h3>
-                    <p className={`${subTextColor} mb-4 text-[13px] leading-relaxed`}>{feature.description}</p>
-                    
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-[24px] font-light text-[#5380b3]">{feature.metric}</span>
-                      <span className={`text-[11px] uppercase tracking-wider ${subTextColor}`}>{feature.metricLabel}</span>
+                        <div className="flex-1">
+                          <h3 className={`text-[24px] font-semibold ${textColor} mb-1`}>{item.title}</h3>
+                          <p className={`text-[14px] mb-4`} style={{ color: item.color }}>
+                            {item.subtitle}
+                          </p>
+                          <p className={`${subTextColor} text-[15px] mb-6 leading-relaxed`}>
+                            {item.description}
+                          </p>
+                          
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {item.features.map(feature => (
+                              <span 
+                                key={feature}
+                                className={`text-[12px] px-3 py-1.5 rounded-full ${
+                                  isDarkMode
+                                    ? 'bg-white/[0.04] text-white/70'
+                                    : 'bg-black/[0.04] text-gray-600'
+                                }`}
+                              >
+                                {feature}
+                              </span>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <Clock className="w-4 h-4" style={{ color: item.color }} />
+                            <span className={`text-[13px] ${subTextColor}`}>
+                              Timeline: <span className="font-semibold">{item.time}</span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Interventions Section */}
+        <section className="py-24 px-6 relative">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <p className={`text-[12px] font-semibold uppercase tracking-wider mb-3 text-green-500`}>
+                The Result
+              </p>
+              <h2 className={`text-[42px] font-light ${textColor} tracking-tight mb-4`}>
+                Engaging, Science-Based Interventions
+              </h2>
+              <p className={`${subTextColor} text-[16px] max-w-2xl mx-auto`}>
+                Transform resistance into adoption with playful, neuroscience-backed activities designed for lasting change
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: Sparkles,
+                  title: 'Neuroscience-Based Methods',
+                  description: 'Activities grounded in proven principles of learning and behavioral change',
+                  examples: ['Cognitive reframing exercises', 'Experiential learning workshops', 'Social proof techniques']
+                },
+                {
+                  icon: Users,
+                  title: 'Engaging & Playful',
+                  description: 'Interactive experiences that make difficult conversations feel safe and productive',
+                  examples: ['Gamified scenarios', 'Role-playing simulations', 'Team challenges']
+                },
+                {
+                  icon: Target,
+                  title: 'Tailored to Context',
+                  description: 'Interventions designed specifically for your organization\'s unique taboo profile',
+                  examples: ['Zone-specific activities', 'Role-based approaches', 'Culture-aware solutions']
+                },
+                {
+                  icon: TrendingUp,
+                  title: 'Measurable Impact',
+                  description: 'Track progress and effectiveness with clear metrics and continuous assessment',
+                  examples: ['Before/after comparisons', 'Adoption rate tracking', 'Sentiment shifts']
+                }
+              ].map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className={`p-8 rounded-[24px] ${
+                    isDarkMode
+                      ? 'bg-gradient-to-br from-white/[0.02] to-transparent border border-white/[0.06]'
+                      : 'bg-gradient-to-br from-gray-50 to-white border border-gray-200'
+                  }`}>
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-green-500" strokeWidth={1.5} />
+                      </div>
+                      <div>
+                        <h3 className={`text-[20px] font-semibold ${textColor} mb-2`}>{item.title}</h3>
+                        <p className={`${subTextColor} text-[14px] leading-relaxed`}>
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                    <ul className="space-y-2 pl-16">
+                      {item.examples.map(example => (
+                        <li key={example} className={`text-[13px] ${subTextColor} flex items-start gap-2`}>
+                          <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" strokeWidth={2} />
+                          {example}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className={`mt-10 p-8 rounded-[24px] text-center ${
+              isDarkMode
+                ? 'bg-gradient-to-r from-green-500/5 to-[#5380b3]/5 border border-green-500/20'
+                : 'bg-gradient-to-r from-green-50 to-blue-50 border border-green-200'
+            }`}>
+              <h3 className={`text-[20px] font-semibold ${textColor} mb-3`}>
+                The Goal: Effective AI Use
+              </h3>
+              <p className={`${subTextColor} text-[15px] max-w-2xl mx-auto`}>
+                Our objective is always to improve <span className="font-semibold">effective</span> use of AI. 
+                This means helping your team understand both when to use AI—and importantly, when <span className="italic">not</span> to use it.
+              </p>
             </div>
           </div>
         </section>
@@ -1006,14 +1667,14 @@ export default function Home() {
           </div>
           <div className="max-w-3xl mx-auto text-center relative z-10">
             <h2 className={`text-[48px] font-light ${textColor} mb-4 tracking-tight animate-fade-in-up`}>
-              Ready to start your
-              <span className="block text-[52px] font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent animate-pulse">
-                transformation?
+              Ready to break through
+              <span className="block text-[52px] font-normal bg-gradient-to-r from-[#5380b3] via-[#7a6ca8] to-[#a74f8b] bg-clip-text text-transparent">
+                your AI taboos?
               </span>
             </h2>
             
             <p className={`${subTextColor} text-[16px] mb-8 max-w-xl mx-auto`}>
-              Get early access at Web Summit 2025
+              Discover what's really holding your organization back—and how to fix it
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -1021,21 +1682,25 @@ export default function Home() {
                 <Button 
                   variant="primary" 
                   isDark={isDarkMode}
-                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl min-w-[140px]"
+                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl min-w-[160px]"
                 >
-                  Try Demo
+                  View Demo
                 </Button>
                 </Link>
-              <Link href="/upload">
+              <Link href="/assessment">
                 <Button 
                   variant="secondary" 
                   isDark={isDarkMode}
-                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] min-w-[140px]"
+                  className="w-full sm:w-auto transform transition-all duration-300 hover:scale-[1.02] min-w-[160px]"
                 >
-                  Upload Data
+                  Take Quick Scan
                 </Button>
                 </Link>
             </div>
+            
+            <p className={`text-[12px] ${subTextColor} mt-8`}>
+              See you at <span className="font-semibold">Web Summit 2025</span> · Lisbon
+            </p>
           </div>
         </section>
 
@@ -1055,8 +1720,8 @@ export default function Home() {
               <div className="flex gap-4 md:gap-5">
                 {[
                   { label: 'Demo', href: '/demo' },
-                  { label: 'Features', href: '#features' },
-                  { label: 'Security', href: '#security' }
+                  { label: 'Framework', href: '#framework' },
+                  { label: 'How It Works', href: '#how-it-works' }
                 ].map((item) => (
                   <Link key={item.label} href={item.href} className={`text-[11px] md:text-[12px] ${subTextColor} hover:${textColor} transition-colors`}>
                     {item.label}
