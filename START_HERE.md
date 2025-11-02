@@ -145,9 +145,28 @@ Shh... here are the secrets:
 
 ## 📖 **Full Documentation**
 
-- **QUICK_REFERENCE.md** - All shortcuts and features
-- **README_UX_ENHANCEMENTS.md** - Detailed UX guide
-- **FINAL_SUMMARY.md** - Complete transformation details
+### Essential Reading
+- **[README.md](README.md)** - Project overview and setup
+- **[CLAUDE.md](CLAUDE.md)** - Development guidelines
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute
+
+### User Guides
+- **[Demo Guide](docs/guides/DEMO_GUIDE.md)** - Complete demo walkthrough
+- **[Quick Reference](docs/guides/QUICK_REFERENCE.md)** - All shortcuts and features
+- **[AI Chat Quick Start](docs/guides/QUICK_START_AI_CHAT.md)** - AI chat feature guide
+- **[Run Demo](docs/guides/RUN_DEMO.md)** - How to run demonstrations
+
+### Development Docs
+- **[Architecture](docs/development/ARCHITECTURE.md)** - System architecture
+- **[Product Spec](docs/development/CORRECT_PRODUCT_SPEC.md)** - Product requirements
+- **[GPT Integration](docs/development/GPT_INTEGRATION_SPEC.md)** - AI integration specs
+
+### Feature Documentation
+- **[AI Chat Ecosystem](docs/features/COMPLETE_AI_CHAT_ECOSYSTEM.md)** - AI chat architecture
+- **[Demo Flow](docs/features/COMPLETE_DEMO_FLOW.md)** - Complete demo flow guide
+
+### Browse All Docs
+- **[Documentation Index](docs/README.md)** - Complete documentation structure
 
 ---
 
