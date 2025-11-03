@@ -206,6 +206,7 @@ export function useWebWorker<T, R>(
     }
   }, [])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const runWorker = useCallback((data: T) => {
     setLoading(true)
     setError(null)

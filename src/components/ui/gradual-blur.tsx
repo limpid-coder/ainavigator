@@ -55,12 +55,14 @@ const getGradientDirection = (position: string) => {
   return directions[position] || "to bottom";
 };
 
-const debounce = (fn: Function, wait: number) => { 
-  let t: NodeJS.Timeout; 
-  return (...a: any[]) => { 
-    clearTimeout(t); 
-    t = setTimeout(() => fn(...a), wait); 
-  }; 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const debounce = (fn: (...args: any[]) => void, wait: number) => {
+  let t: NodeJS.Timeout;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (...a: any[]) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), wait);
+  };
 };
 
 const useResponsiveDimension = (responsive: boolean, config: any, key: string) => {
