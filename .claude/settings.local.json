@@ -12,7 +12,19 @@
       "Bash(mkdir:*)",
       "Bash(mv:*)",
       "Bash(awk:*)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "mcp__linear-server__list_issues",
+      "mcp__linear-server__list_projects",
+      "Bash(git fetch:*)",
+      "Bash(gh pr:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(npm run test:unit:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
