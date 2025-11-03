@@ -24,7 +24,12 @@
       "Bash(npm run test:unit:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__supabase__list_tables",
+      "mcp__supabase__list_migrations",
+      "mcp__supabase__list_extensions",
+      "Bash(curl:*)",
+      "mcp__supabase__apply_migration"
     ],
     "deny": [],
     "ask": []
