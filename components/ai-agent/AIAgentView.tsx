@@ -49,7 +49,7 @@ export default function AIAgentView({
       id: 'welcome',
       role: 'assistant',
       content: sentimentData.length > 0 || capabilityData.length > 0
-        ? `# Welcome to AI Navigator\n\nI'm your AI assistant analyzing **${companyName}'s** AI readiness:\n\n📊 **Your Data:**\n• ${sentimentData.length} sentiment responses across 25 dimensions\n• ${capabilityData.length} capability assessments across 7 dimensions\n\n💡 **I can help you:**\n• Analyze your biggest challenges and opportunities\n• Generate executive summaries and recommendations\n• Compare departments, regions, and time periods\n• Design specific interventions with ROI estimates\n• Navigate to detailed views and apply filters\n\n**Try asking:**\n"What are our top 3 AI adoption challenges?"\n"Analyze our capability maturity across all dimensions"\n"Generate an executive summary for the board"\n\nWhat would you like to explore?`
+        ? `# Welcome to AI Navigator\n\nI'm your AI assistant analyzing **${companyName}'s** AI readiness:\n\n📊 **Your Data:**\n• ${sentimentData.length} sentiment responses across 25 dimensions\n• ${capabilityData.length} capability assessments across 8 dimensions\n\n💡 **I can help you:**\n• Analyze your biggest challenges and opportunities\n• Generate executive summaries and recommendations\n• Compare departments, regions, and time periods\n• Design specific interventions with ROI estimates\n• Navigate to detailed views and apply filters\n\n**Try asking:**\n"What are our top 3 AI adoption challenges?"\n"Analyze our capability maturity across all dimensions"\n"Generate an executive summary for the board"\n\nWhat would you like to explore?`
         : `# Welcome to AI Navigator\n\nI'm your AI assistant, ready to help analyze your AI readiness data.\n\n⚠️ **No data loaded yet**\n\nTo get started:\n1. Upload your assessment data\n2. Or try the demo with sample data\n\nI can help you understand sentiment patterns, capability gaps, and generate actionable recommendations once data is available.`,
       timestamp: new Date()
     }
@@ -199,10 +199,10 @@ export default function AIAgentView({
       text: "Top 3 AI adoption challenges", 
       prompt: "What are the top 3 problems we're facing with AI adoption based on our sentiment data? Give me specific scores and affected employee counts."
     },
-    { 
-      icon: BarChart3, 
-      text: "Capability maturity analysis", 
-      prompt: "Analyze our AI capability maturity across all 7 dimensions. Show me strengths, weaknesses, and gaps with specific scores."
+    {
+      icon: BarChart3,
+      text: "Capability maturity analysis",
+      prompt: "Analyze our AI capability maturity across all 8 dimensions. Show me strengths, weaknesses, and gaps with specific scores."
     },
     { 
       icon: FileText, 

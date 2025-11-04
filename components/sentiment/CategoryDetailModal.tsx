@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  X, Sparkles, Zap, Shield, Dice6, ArrowRight, 
-  TrendingUp, Clock, Users, Target, Flame, 
+import {
+  X, Sparkles, Zap, Shield, Dice6, ArrowRight,
+  TrendingUp, Clock, Users, Target, Flame,
   CheckCircle2, ChevronRight, Info, Eye
 } from 'lucide-react'
 import { CategoryActionData } from '@/lib/services/category-data.service'
 import { cn } from '@/lib/utils'
+import { InterventionDetail } from '@/components/interventions/InterventionDetail'
 
 interface CategoryDetailModalProps {
   cellData: {
@@ -25,41 +26,49 @@ interface CategoryDetailModalProps {
   onClose: () => void
 }
 
-type SolutionFlavor = 'basic' | 'risky' | 'boring' | 'lucky'
+interface Intervention {
+  code: string
+  name: string
+  level: string
+  core_function: string
+  description: string | null
+}
+
+type SolutionFlavor = 'primary' | 'secondary' | 'tertiary' | 'lucky'
 
 const FLAVOR_CONFIG = {
-  basic: {
-    icon: Target,
-    label: 'Basic Solution',
-    subtitle: 'Straightforward & Reliable',
-    color: 'blue',
-    gradient: 'from-blue-500 to-cyan-500',
-    bgGradient: 'from-blue-500/10 to-cyan-500/10',
-    borderColor: 'border-blue-500/30',
-    textColor: 'text-blue-400',
-    description: 'Standard approach that works every time'
-  },
-  risky: {
+  primary: {
     icon: Flame,
-    label: 'Risky Solution',
-    subtitle: 'Bold & High-Impact',
+    label: 'Primary Intervention',
+    subtitle: 'Highest Impact',
     color: 'orange',
     gradient: 'from-orange-500 to-red-500',
     bgGradient: 'from-orange-500/10 to-red-500/10',
     borderColor: 'border-orange-500/30',
     textColor: 'text-orange-400',
-    description: 'Creative approach with high potential'
+    description: 'Most recommended solution for this area'
   },
-  boring: {
+  secondary: {
+    icon: Target,
+    label: 'Secondary Intervention',
+    subtitle: 'Strong Alternative',
+    color: 'blue',
+    gradient: 'from-blue-500 to-cyan-500',
+    bgGradient: 'from-blue-500/10 to-cyan-500/10',
+    borderColor: 'border-blue-500/30',
+    textColor: 'text-blue-400',
+    description: 'Complementary approach'
+  },
+  tertiary: {
     icon: Shield,
-    label: 'Safe Solution',
-    subtitle: 'Conservative & Proven',
-    color: 'gray',
-    gradient: 'from-gray-500 to-slate-500',
-    bgGradient: 'from-gray-500/10 to-slate-500/10',
-    borderColor: 'border-gray-500/30',
-    textColor: 'text-gray-400',
-    description: 'Low-risk, time-tested approach'
+    label: 'Tertiary Intervention',
+    subtitle: 'Supporting Option',
+    color: 'teal',
+    gradient: 'from-teal-500 to-green-500',
+    bgGradient: 'from-teal-500/10 to-green-500/10',
+    borderColor: 'border-teal-500/30',
+    textColor: 'text-teal-400',
+    description: 'Additional reinforcement'
   },
   lucky: {
     icon: Dice6,
@@ -82,9 +91,48 @@ export default function CategoryDetailModal({
   const [selectedFlavor, setSelectedFlavor] = useState<SolutionFlavor | null>(null)
   const [showSolution, setShowSolution] = useState(false)
   const [isRolling, setIsRolling] = useState(false)
+  const [interventions, setInterventions] = useState<Intervention[]>([])
+  const [loading, setLoading] = useState(true)
+  const [selectedInterventionCode, setSelectedInterventionCode] = useState<string | null>(null)
+  const [showInterventionDetail, setShowInterventionDetail] = useState(false)
 
-  // Reset when modal opens
+  // Parse cellId to get level and category (e.g., "L1_C3" -> level=1, category=3)
+  const parseCellId = (cellId: string) => {
+    const match = cellId.match(/L(\d+)_C(\d+)/)
+    if (match) {
+      return { level: parseInt(match[1]), category: parseInt(match[2]) }
+    }
+    return null
+  }
+
+  // Fetch interventions when modal opens
   useEffect(() => {
+    const fetchInterventions = async () => {
+      setLoading(true)
+      const cellInfo = parseCellId(cellData.cellId)
+
+      if (!cellInfo) {
+        setLoading(false)
+        return
+      }
+
+      try {
+        const response = await fetch(
+          `/api/interventions/sentiment?level=${cellInfo.level}&category=${cellInfo.category}`
+        )
+
+        if (response.ok) {
+          const data = await response.json()
+          setInterventions(data.interventions || [])
+        }
+      } catch (error) {
+        console.error('Error fetching interventions:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchInterventions()
     setSelectedFlavor(null)
     setShowSolution(false)
     setIsRolling(false)
@@ -94,15 +142,15 @@ export default function CategoryDetailModal({
     if (flavor === 'lucky') {
       // Roll the dice!
       setIsRolling(true)
-      const flavors: SolutionFlavor[] = ['basic', 'risky', 'boring']
-      
+      const flavors: SolutionFlavor[] = ['primary', 'secondary', 'tertiary']
+
       // Animate dice roll
       let rollCount = 0
       const rollInterval = setInterval(() => {
         const randomFlavor = flavors[Math.floor(Math.random() * flavors.length)]
         setSelectedFlavor(randomFlavor)
         rollCount++
-        
+
         if (rollCount > 8) { // Roll 8 times
           clearInterval(rollInterval)
           // Final selection
@@ -118,13 +166,21 @@ export default function CategoryDetailModal({
     }
   }
 
-  const getSelectedAction = () => {
-    if (!categoryData || !selectedFlavor) return null
-    return categoryData.actions.find(a => a.flavor === selectedFlavor) || categoryData.actions[0]
+  const getSelectedIntervention = () => {
+    if (!selectedFlavor || interventions.length === 0) return null
+    const index = selectedFlavor === 'primary' ? 0 : selectedFlavor === 'secondary' ? 1 : 2
+    return interventions[index]
   }
 
-  const selectedAction = getSelectedAction()
+  const selectedIntervention = getSelectedIntervention()
   const flavorConfig = selectedFlavor ? FLAVOR_CONFIG[selectedFlavor] : null
+
+  const handleViewInterventionDetail = () => {
+    if (selectedIntervention) {
+      setSelectedInterventionCode(selectedIntervention.code)
+      setShowInterventionDetail(true)
+    }
+  }
 
   return (
     <motion.div
@@ -242,8 +298,16 @@ export default function CategoryDetailModal({
             </motion.div>
           )}
 
+          {/* LOADING STATE */}
+          {loading && (
+            <div className="text-center py-12">
+              <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-purple-600 border-r-transparent mb-4"></div>
+              <p className="text-gray-400">Loading interventions...</p>
+            </div>
+          )}
+
           {/* SOLUTION FLAVOR SELECTOR */}
-          {!showSolution && categoryData && categoryData.actions.length > 0 && (
+          {!loading && !showSolution && interventions.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -346,7 +410,7 @@ export default function CategoryDetailModal({
 
           {/* SELECTED SOLUTION */}
           <AnimatePresence>
-            {showSolution && selectedAction && flavorConfig && (
+            {showSolution && selectedIntervention && flavorConfig && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -369,19 +433,27 @@ export default function CategoryDetailModal({
                         return <Icon className="w-6 h-6 text-white" />
                       })()}
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <div className={cn("text-xs font-bold uppercase tracking-wide mb-1", flavorConfig.textColor)}>
-                        {flavorConfig.label}
+                        {selectedIntervention.code} • {flavorConfig.label}
                       </div>
                       <h3 className="text-lg font-bold text-white">
-                        {selectedAction.title}
+                        {selectedIntervention.name}
                       </h3>
                     </div>
                   </div>
 
-                  <p className="text-sm text-gray-300 leading-relaxed">
-                    {selectedAction.explanation}
+                  <p className="text-sm text-gray-300 leading-relaxed mb-4">
+                    {selectedIntervention.core_function}
                   </p>
+
+                  {/* Level Badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10">
+                    <Sparkles className="w-4 h-4 text-yellow-400" />
+                    <span className="text-xs text-gray-400">
+                      {selectedIntervention.level}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Action Buttons */}
@@ -393,9 +465,10 @@ export default function CategoryDetailModal({
                     }}
                     className="flex-1 px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all text-sm font-semibold text-gray-300 hover:text-white"
                   >
-                    Try Another Style
+                    Choose Different Intervention
                   </button>
                   <button
+                    onClick={handleViewInterventionDetail}
                     className={cn(
                       "flex-1 px-4 py-3 rounded-lg border-2 transition-all text-sm font-semibold flex items-center justify-center gap-2 group",
                       "bg-gradient-to-r text-white shadow-xl hover:shadow-2xl hover:scale-105",
@@ -403,7 +476,7 @@ export default function CategoryDetailModal({
                       flavorConfig.borderColor
                     )}
                   >
-                    Implement Solution
+                    View Full Details & Next Steps
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
@@ -412,15 +485,25 @@ export default function CategoryDetailModal({
           </AnimatePresence>
 
           {/* No Data Fallback */}
-          {!categoryData && (
+          {!loading && interventions.length === 0 && (
             <div className="text-center py-8">
               <p className="text-gray-500 text-sm">
-                No detailed actions available for this category yet.
+                No interventions available for this cell yet.
               </p>
             </div>
           )}
         </div>
       </motion.div>
+
+      {/* INTERVENTION DETAIL MODAL */}
+      <InterventionDetail
+        isOpen={showInterventionDetail}
+        onClose={() => setShowInterventionDetail(false)}
+        interventionCode={selectedInterventionCode}
+        onSelectNextStep={(code) => {
+          setSelectedInterventionCode(code)
+        }}
+      />
     </motion.div>
   )
 }

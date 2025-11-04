@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo } from 'react'
+import { useTheme } from '@/lib/contexts/theme-context'
 import {
   Radar,
   RadarChart,
@@ -10,7 +11,7 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts'
-import { 
+import {
   ChevronRight, AlertTriangle, CheckCircle, TrendingUp, TrendingDown,
   Target, Info, Zap, Award, AlertCircle
 } from 'lucide-react'
@@ -33,13 +34,15 @@ export default function CapabilityOverview({
   onDimensionClick,
   onViewSummary
 }: CapabilityOverviewProps) {
-  
+  const { theme } = useTheme()
+  const isDark = theme === 'dark'
+
   const assessment = useMemo(() =>
     calculateCapabilityAssessment(data, benchmarks, filters),
     [data, benchmarks, filters]
   )
-  
-  const radarData = useMemo(() => 
+
+  const radarData = useMemo(() =>
     assessment.dimensions.map(dim => ({
       dimension: dim.name,
       average: dim.average,
@@ -165,14 +168,17 @@ export default function CapabilityOverview({
         <div className="flex-1 min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
-              <PolarGrid stroke="rgba(255, 255, 255, 0.1)" strokeWidth={0.5} />
+              <PolarGrid
+                stroke={isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.15)"}
+                strokeWidth={0.5}
+              />
               <PolarAngleAxis
                 dataKey="dimension"
-                tick={{ fill: '#9CA3AF', fontSize: 9 }}
+                tick={{ fill: isDark ? '#9CA3AF' : '#374151', fontSize: 9 }}
               />
               <PolarRadiusAxis
                 domain={[0, 10]}
-                tick={{ fill: '#6B7280', fontSize: 8 }}
+                tick={{ fill: isDark ? '#6B7280' : '#4B5563', fontSize: 8 }}
                 tickCount={6}
               />
               
@@ -220,11 +226,12 @@ export default function CapabilityOverview({
               
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#1f2937',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  backgroundColor: isDark ? '#1f2937' : '#ffffff',
+                  border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
                   borderRadius: '6px',
                   fontSize: '10px',
-                  padding: '6px 8px'
+                  padding: '6px 8px',
+                  color: isDark ? '#ffffff' : '#000000'
                 }}
               />
             </RadarChart>

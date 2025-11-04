@@ -2,13 +2,14 @@
 
 import { useMemo, useState } from 'react'
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from 'recharts'
-import { 
+import {
   ChevronRight, TrendingUp, TrendingDown,
   Target, Info, BarChart3, Layers, Eye
 } from 'lucide-react'
 import { calculateCapabilityAssessment } from '@/lib/calculations/capability-analysis'
 import { FilterState } from '@/lib/types/assessment'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/lib/contexts/theme-context'
 
 interface CapabilityAnalysisProProps {
   data: any[]
@@ -28,10 +29,11 @@ export default function CapabilityAnalysisPro({
   onDimensionClick,
   onViewSummary
 }: CapabilityAnalysisProProps) {
-  
+
+  const { theme } = useTheme()
   const [chartView, setChartView] = useState<ChartView>('comparison')
   const [benchmarkType, setBenchmarkType] = useState<BenchmarkType>('industry')
-  
+
   const assessment = useMemo(() =>
     calculateCapabilityAssessment(data, benchmarks, filters),
     [data, benchmarks, filters]
@@ -115,7 +117,7 @@ export default function CapabilityAnalysisPro({
                   "flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
                   chartView === view.id
                     ? "bg-teal-500/20 text-teal-700 dark:text-teal-400 border border-teal-500/30 shadow-lg"
-                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white hover:bg-white/5"
+                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
                 )}
               >
                 <Icon className="w-3.5 h-3.5" />
@@ -134,8 +136,8 @@ export default function CapabilityAnalysisPro({
               className={cn(
                 "flex-1 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
                 benchmarkType === type
-                  ? "bg-purple-500/20 text-purple-400 border border-purple-500/30"
-                  : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:text-white hover:bg-white/5"
+                  ? "bg-purple-500/20 text-purple-700 dark:text-purple-400 border border-purple-500/30"
+                  : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
               )}
             >
               {benchmarkComparisons[type].label}
@@ -172,24 +174,25 @@ export default function CapabilityAnalysisPro({
               >
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#1f2937',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    backgroundColor: theme === 'light' ? '#ffffff' : '#1f2937',
+                    border: theme === 'light' ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(255,255,255,0.1)',
                     borderRadius: '8px',
                     fontSize: '12px',
-                    padding: '8px 12px'
+                    padding: '8px 12px',
+                    color: theme === 'light' ? '#1f2937' : '#ffffff'
                   }}
                 />
-                <PolarAngleAxis 
-                  dataKey="dimension" 
-                  tick={{ fill: '#fff', fontSize: 12, fontWeight: 700 }}
+                <PolarAngleAxis
+                  dataKey="dimension"
+                  tick={{ fill: theme === 'light' ? '#1f2937' : '#ffffff', fontSize: 12, fontWeight: 700 }}
                 />
                 <PolarRadiusAxis
                   domain={[0, 10]}
-                  tick={{ fill: '#9ca3af', fontSize: 10 }}
+                  tick={{ fill: theme === 'light' ? '#6b7280' : '#9ca3af', fontSize: 10 }}
                   tickCount={6}
                 />
-                <PolarGrid 
-                  stroke="rgba(255, 255, 255, 0.15)" 
+                <PolarGrid
+                  stroke={theme === 'light' ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.15)'}
                   strokeWidth={1}
                   radialLines={chartView !== 'variance'}
                 />
@@ -279,11 +282,11 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Your Score</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Your Score</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-purple-400" style={{ borderTop: '2px dashed #a855f7' }} />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Benchmark</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Benchmark</span>
                 </div>
               </>
             )}
@@ -291,15 +294,15 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-green-400" style={{ borderTop: '2px dashed #10b981' }} />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Max</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Max</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Average</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Average</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-red-400" style={{ borderTop: '2px dashed #ef4444' }} />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Min</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Min</span>
                 </div>
               </>
             )}
@@ -307,11 +310,11 @@ export default function CapabilityAnalysisPro({
               <>
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-teal-400" />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Current</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Current</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-6 h-0.5 bg-gray-500" style={{ borderTop: '2px dashed #6b7280' }} />
-                  <span className="text-xs text-slate-600 dark:text-gray-400">Target (7.0)</span>
+                  <span className="text-xs text-slate-700 dark:text-gray-400">Target (7.0)</span>
                 </div>
               </>
             )}
@@ -324,19 +327,19 @@ export default function CapabilityAnalysisPro({
             <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 tabular-nums mb-0.5">
               {assessment.overall.average.toFixed(1)}
             </div>
-            <div className="text-xs text-slate-600 dark:text-gray-400">Overall</div>
+            <div className="text-xs text-slate-700 dark:text-gray-400">Overall</div>
           </div>
           <div className="bg-gradient-to-br from-green-500/10 to-transparent rounded-lg border border-green-500/20 p-2.5 text-center">
             <div className="text-2xl font-bold text-green-700 dark:text-green-400 tabular-nums mb-0.5">
               {aboveBenchmark}
             </div>
-            <div className="text-xs text-slate-600 dark:text-gray-400">Above</div>
+            <div className="text-xs text-slate-700 dark:text-gray-400">Above</div>
           </div>
           <div className="bg-gradient-to-br from-orange-500/10 to-transparent rounded-lg border border-orange-500/20 p-2.5 text-center">
-            <div className="text-2xl font-bold text-orange-400 tabular-nums mb-0.5">
+            <div className="text-2xl font-bold text-orange-700 dark:text-orange-400 tabular-nums mb-0.5">
               {belowBenchmark}
             </div>
-            <div className="text-xs text-slate-600 dark:text-gray-400">Below</div>
+            <div className="text-xs text-slate-700 dark:text-gray-400">Below</div>
           </div>
         </div>
       </div>
@@ -388,26 +391,26 @@ export default function CapabilityAnalysisPro({
                     >
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
-                          <span className="font-semibold text-slate-900 dark:text-white group-hover:text-teal-700 dark:text-teal-300 transition-colors">{dim.name}</span>
-                          <ChevronRight className="w-4 h-4 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <span className="font-semibold text-slate-900 dark:text-white group-hover:text-teal-700 dark:group-hover:text-teal-300 transition-colors">{dim.name}</span>
+                          <ChevronRight className="w-4 h-4 text-slate-400 dark:text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                       </td>
                       <td className="text-center px-3 tabular-nums">
                         <span className={cn(
                           "font-bold text-base",
-                          dim.average >= dim.benchmark ? "text-green-700 dark:text-green-400" : "text-orange-400"
+                          dim.average >= dim.benchmark ? "text-green-700 dark:text-green-400" : "text-orange-700 dark:text-orange-400"
                         )}>
                           {dim.average.toFixed(1)}
                         </span>
-                        <span className="text-gray-600 text-sm ml-0.5">/10</span>
+                        <span className="text-slate-500 dark:text-gray-600 text-sm ml-0.5">/10</span>
                       </td>
                       <td className="text-center px-3 text-green-700 dark:text-green-400 tabular-nums font-medium">{dim.max.toFixed(1)}</td>
-                      <td className="text-center px-3 text-orange-400 tabular-nums font-medium">{dim.min.toFixed(1)}</td>
-                      <td className="text-center px-3 text-purple-400 tabular-nums font-medium">{dim.benchmark.toFixed(1)}</td>
+                      <td className="text-center px-3 text-orange-700 dark:text-orange-400 tabular-nums font-medium">{dim.min.toFixed(1)}</td>
+                      <td className="text-center px-3 text-purple-700 dark:text-purple-400 tabular-nums font-medium">{dim.benchmark.toFixed(1)}</td>
                       <td className="text-center px-3 tabular-nums">
                         <span className={cn(
                           "inline-flex items-center gap-1 font-semibold",
-                          delta > 0 ? "text-green-700 dark:text-green-400" : "text-orange-400"
+                          delta > 0 ? "text-green-700 dark:text-green-400" : "text-orange-700 dark:text-orange-400"
                         )}>
                           {delta > 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
                           {Math.abs(delta).toFixed(0)}%

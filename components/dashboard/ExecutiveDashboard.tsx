@@ -1,18 +1,21 @@
 'use client'
 
-import { 
+import {
   Target, Users, Activity, TrendingUp, TrendingDown,
   AlertTriangle, CheckCircle, Lightbulb, ArrowRight,
   ChevronRight, Info, Zap, Brain, TrendingDown as Down
 } from 'lucide-react'
 import { useMemo } from 'react'
 import { cn } from '@/lib/utils'
+import { calculateCapabilityAssessment } from '@/lib/calculations/capability-analysis'
+import { calculateSentimentHeatmap } from '@/lib/calculations/sentiment-ranking'
 
 interface ExecutiveDashboardProps {
   companyName: string
   userName: string
   sentimentData: any[]
   capabilityData: any[]
+  benchmarks: Record<number, number>
   onNavigate: (view: 'sentiment' | 'capability') => void
 }
 
@@ -21,21 +24,34 @@ export default function ExecutiveDashboard({
   userName,
   sentimentData,
   capabilityData,
+  benchmarks,
   onNavigate
 }: ExecutiveDashboardProps) {
 
+  // Calculate real capability assessment
+  const capabilityAssessment = useMemo(() =>
+    calculateCapabilityAssessment(capabilityData, benchmarks, {}),
+    [capabilityData, benchmarks]
+  )
+
+  // Calculate real sentiment assessment using same logic as detailed view
+  const sentimentAssessment = useMemo(() =>
+    calculateSentimentHeatmap(sentimentData, {}),
+    [sentimentData]
+  )
+
   const metrics = useMemo(() => {
-    const sentimentScores = sentimentData.flatMap(r =>
-      Array.from({ length: 25 }, (_, i) => r[`Sentiment_${i + 1}`])
-    ).filter(s => typeof s === 'number' && !isNaN(s))
+    // Use real sentiment average from calculated assessment (same as detailed view)
+    const sentimentAvg = sentimentAssessment.stats.overallAverage
 
-    const sentimentAvg = sentimentScores.length > 0
-      ? sentimentScores.reduce((sum, s) => sum + s, 0) / sentimentScores.length
-      : 0
+    // Use real capability average from calculated assessment
+    const capabilityAvg = capabilityAssessment.overall.average
 
-    const capabilityAvg = 4.1
-    const readiness = Math.round(((sentimentAvg / 5) * 0.4 + (capabilityAvg / 7) * 0.6) * 100)
-    const lowScores = sentimentScores.filter(s => s < 2.0).length
+    // Calculate readiness score (sentiment is on 1-4 scale after transformation)
+    const readiness = Math.round(((sentimentAvg / 4) * 0.4 + (capabilityAvg / 7) * 0.6) * 100)
+
+    // Count cells with low scores (high resistance areas)
+    const lowScores = sentimentAssessment.cells.filter(c => c.score >= 3.0 && c.count > 0).length
 
     return {
       respondentCount: sentimentData.length,
@@ -44,18 +60,19 @@ export default function ExecutiveDashboard({
       readinessScore: readiness,
       lowScoreCount: lowScores
     }
-  }, [sentimentData, capabilityData])
+  }, [sentimentData, sentimentAssessment, capabilityAssessment])
 
-  const dimensions = [
-    { name: 'Strategy & Vision', score: 4.5, benchmark: 4.3, gap: 0.2, constructs: 4 },
-    { name: 'Data Infrastructure', score: 4.1, benchmark: 5.5, gap: -1.4, constructs: 4 },
-    { name: 'Technology Stack', score: 5.2, benchmark: 4.8, gap: 0.4, constructs: 4 },
-    { name: 'Talent & Skills', score: 3.8, benchmark: 4.5, gap: -0.7, constructs: 4 },
-    { name: 'Process & Operations', score: 4.7, benchmark: 4.6, gap: 0.1, constructs: 4 },
-    { name: 'Innovation Culture', score: 5.1, benchmark: 4.3, gap: 0.8, constructs: 4 },
-    { name: 'Change & Adoption', score: 3.9, benchmark: 4.2, gap: -0.3, constructs: 4 },
-    { name: 'Ethics & Governance', score: 5.3, benchmark: 4.9, gap: 0.4, constructs: 4 },
-  ]
+  // Use real dimension data from capability assessment
+  const dimensions = useMemo(() =>
+    capabilityAssessment.dimensions.map(dim => ({
+      name: dim.name,
+      score: dim.average,
+      benchmark: dim.benchmark,
+      gap: dim.average - dim.benchmark,
+      constructs: dim.constructs.length
+    })),
+    [capabilityAssessment]
+  )
 
   const getReadinessStatus = (score: number) => {
     if (score >= 75) return { label: 'Strong AI Readiness', color: 'text-green-700 dark:text-green-400', desc: 'Organization demonstrates strong momentum and readiness for AI transformation' }

@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { 
-  Filter, Download, Sparkles, Activity, 
-  Users, Target, TrendingUp, Layers, ChevronRight,
-  Home, BarChart3, Brain, FileText, Settings,
-  Maximize2, Minimize2, Grid, Layout, Lightbulb, Bot, Search
+import {
+  Filter, Download, Activity,
+  Users, Target, ChevronRight,
+  BarChart3, Brain, FileText, Settings,
+  Maximize2, Minimize2, Bot, Search
 } from 'lucide-react'
 import Link from 'next/link'
 import { useAuth } from '@/lib/hooks/useAuth'
@@ -38,12 +38,13 @@ import RecommendationsView from '@/components/recommendations/RecommendationsVie
 import ReportsView from '@/components/reports/ReportsView'
 import AIAgentView from '@/components/ai-agent/AIAgentView'
 import { generatePDF } from '@/lib/utils/pdfExport'
-import { SkeletonDashboard } from '@/components/ui/skeleton'
+// Skeleton component imported but not actively used in current view
+// import { SkeletonDashboard } from '@/components/ui/skeleton'
 
 type NavigationView = 'overview' | 'sentiment' | 'capability' | 'recommendations' | 'reports' | 'ai-agent'
 
 export default function AssessmentPage() {
-  const { session, company, isAuthenticated, logout } = useAuth()
+  const { session, company } = useAuth()
   
   const [activeView, setActiveView] = useState<NavigationView>('ai-agent')
   const [currentView, setCurrentView] = useState<ViewState>({ type: 'overview' })
@@ -63,6 +64,7 @@ export default function AssessmentPage() {
   const [showCommandPalette, setShowCommandPalette] = useState(false)
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false)
   const [showComparison, setShowComparison] = useState(false)
+  const [selectedWave, setSelectedWave] = useState<string | undefined>(undefined)
   const [visitedSections, setVisitedSections] = useState<Set<string>>(new Set())
   const [keyboardShortcutCount, setKeyboardShortcutCount] = useState(0)
   const { achievementToShow, unlock, dismiss } = useAchievements()
@@ -94,6 +96,13 @@ export default function AssessmentPage() {
       loadData()
     }
   }, [company?.id])
+
+  // Reload data when selectedWave changes (temporal filtering)
+  useEffect(() => {
+    if (company?.id && selectedWave !== undefined) {
+      loadData(selectedWave)
+    }
+  }, [selectedWave])
 
   useEffect(() => {
     // Show onboarding hint for first-time users
@@ -264,7 +273,7 @@ export default function AssessmentPage() {
     }
   }
 
-  const loadData = async () => {
+  const loadData = async (wave?: string) => {
     if (!company?.id) {
       setIsLoading(false)
       return
@@ -272,58 +281,40 @@ export default function AssessmentPage() {
 
     setIsLoading(true)
     try {
-      const response = await fetch('/api/data/respondents', {
+      // Build query params for temporal filtering
+      const queryParams = wave ? `?survey_wave=${encodeURIComponent(wave)}` : ''
+
+      // Load sentiment data
+      const sentimentResponse = await fetch(`/api/data/respondents${queryParams}`, {
         headers: {
           'x-company-id': company.id
         }
       })
 
-      if (!response.ok) throw new Error('Failed to load data')
+      if (!sentimentResponse.ok) throw new Error('Failed to load sentiment data')
 
-      const result = await response.json()
-      setSentimentData(result.data)
+      const sentimentResult = await sentimentResponse.json()
+      setSentimentData(sentimentResult.data)
 
-      // Generate sample capability data (TODO: Load from API)
-      const sampleCapabilityData = generateSampleCapabilityData(result.data.length)
-      setCapabilityData(sampleCapabilityData)
+      // Load capability data from API
+      const capabilityResponse = await fetch(`/api/data/capability${queryParams}`, {
+        headers: {
+          'x-company-id': company.id
+        }
+      })
+
+      if (capabilityResponse.ok) {
+        const capabilityResult = await capabilityResponse.json()
+        setCapabilityData(capabilityResult.data)
+      } else {
+        console.warn('Failed to load capability data, using empty array')
+        setCapabilityData([])
+      }
     } catch (error) {
       console.error('Data load error:', error)
     } finally {
       setIsLoading(false)
     }
-  }
-
-  // Generate sample capability data matching respondent count
-  const generateSampleCapabilityData = (count: number) => {
-    return Array.from({ length: count }, (_, i) => {
-      const respondent: any = {
-        RespondentID: `R${i + 1}`,
-        Region: ['North', 'South', 'East', 'West'][Math.floor(Math.random() * 4)],
-        Department: ['Finance', 'IT', 'Operations', 'Sales'][Math.floor(Math.random() * 4)],
-        Employment_type: ['Full-time', 'Part-time', 'Contract'][Math.floor(Math.random() * 3)],
-        Age: ['18-25', '26-35', '36-45', '46-55', '56+'][Math.floor(Math.random() * 5)],
-        UserLanguage: 'EN'
-      }
-
-      // Add 32 construct scores (Q1-Q32 mapped to construct_1-construct_32)
-      for (let j = 1; j <= 32; j++) {
-        // Generate scores between 1-10 with variation
-        // Make some dimensions naturally higher/lower for realism
-        let basescore = 5.0
-        if (j <= 4) basescore = 4.5 // Strategy
-        if (j >= 5 && j <= 8) basescore = 6.2 // Data
-        if (j >= 9 && j <= 12) basescore = 5.8 // Technology
-        if (j >= 13 && j <= 16) basescore = 4.1 // Talent
-        if (j >= 17 && j <= 20) basescore = 5.5 // Org Processes
-        if (j >= 21 && j <= 24) basescore = 4.7 // Innovation
-        if (j >= 25 && j <= 28) basescore = 5.3 // Adaptation
-        if (j >= 29 && j <= 32) basescore = 6.5 // Ethics
-
-        respondent[`construct_${j}`] = Math.min(10, Math.max(1, basescore + (Math.random() * 2 - 1)))
-      }
-
-      return respondent
-    })
   }
 
   if (isLoading) {
@@ -638,7 +629,7 @@ export default function AssessmentPage() {
         </motion.aside>
 
         {/* Main Content Area - Fixed Height, No Scroll */}
-        <div className="flex-1 flex flex-col h-full overflow-hidden">
+        <div className="flex-1 flex flex-col h-full overflow-hidden pb-20 md:pb-0">
           
           {/* Top Action Bar */}
           <motion.div 
@@ -849,6 +840,8 @@ export default function AssessmentPage() {
                     capabilityData={capabilityData}
                     filters={filters}
                     onFiltersChange={setFilters}
+                    selectedWave={selectedWave}
+                    onWaveChange={setSelectedWave}
                   />
                 </motion.div>
               )}
@@ -872,6 +865,7 @@ export default function AssessmentPage() {
                       userName={session?.user?.fullName?.split(' ')[0] || 'Sarah'}
                       sentimentData={sentimentData}
                       capabilityData={capabilityData}
+                      benchmarks={benchmarks}
                       onNavigate={(view) => {
                         if (view === 'sentiment') {
                           setActiveView('sentiment')
@@ -1123,6 +1117,52 @@ export default function AssessmentPage() {
         achievementId={achievementToShow}
         onDismiss={dismiss}
       />
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-t border-slate-200/60 dark:border-white/[0.08] safe-area-inset-bottom">
+        <div className="grid grid-cols-6 gap-0">
+          {navigationItems.map((item) => {
+            const Icon = item.icon
+            const isActive = activeView === item.id
+            return (
+              <button
+                key={item.id}
+                onClick={() => {
+                  setActiveView(item.id)
+                  if (item.id === 'overview') setCurrentView({ type: 'overview' })
+                  else if (item.id === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
+                  else if (item.id === 'capability') setCurrentView({ type: 'capability_overview' })
+                  else if (item.id === 'recommendations') setCurrentView({ type: 'recommendations_combined' })
+                  else if (item.id === 'reports') setCurrentView({ type: 'recommendations_combined' })
+                  else if (item.id === 'ai-agent') setCurrentView({ type: 'overview' })
+                }}
+                className={cn(
+                  "flex flex-col items-center justify-center py-2 px-1 min-h-[64px] transition-all relative",
+                  isActive
+                    ? "text-teal-600 dark:text-teal-400"
+                    : "text-slate-600 dark:text-gray-400 active:scale-95"
+                )}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="mobileActiveTab"
+                    className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-teal-500 to-purple-500"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+                <Icon className={cn("w-5 h-5 mb-1", isActive && "scale-110")} />
+                <span className={cn(
+                  "text-[10px] font-medium leading-tight text-center",
+                  isActive && "font-semibold"
+                )}>
+                  {item.label === 'Command Center' ? 'Dashboard' : item.label}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+      </nav>
     </div>
   )
 }

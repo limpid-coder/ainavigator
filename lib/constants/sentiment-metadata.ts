@@ -62,43 +62,43 @@ export const SENTIMENT_CATEGORIES = [
   }
 ] as const
 
-// How Sentiment_1 through Sentiment_25 map to the 5×5 grid
+// How sentiment_1 through sentiment_25 map to the 5×5 grid
 // Pattern: Row-by-row, left to right
 export const SENTIMENT_COLUMN_MAPPING = {
   // Level 1 (Personal Workflow) × 5 categories
-  'L1_C1': 'Sentiment_1',   // Personal × Too Autonomous
-  'L1_C2': 'Sentiment_2',   // Personal × Too Inflexible  
-  'L1_C3': 'Sentiment_3',   // Personal × Emotionless
-  'L1_C4': 'Sentiment_4',   // Personal × Too Opaque
-  'L1_C5': 'Sentiment_5',   // Personal × Prefer Human
-  
+  'L1_C1': 'sentiment_1',   // Personal × Too Autonomous
+  'L1_C2': 'sentiment_2',   // Personal × Too Inflexible
+  'L1_C3': 'sentiment_3',   // Personal × Emotionless
+  'L1_C4': 'sentiment_4',   // Personal × Too Opaque
+  'L1_C5': 'sentiment_5',   // Personal × Prefer Human
+
   // Level 2 (Collaboration) × 5 categories
-  'L2_C1': 'Sentiment_6',   
-  'L2_C2': 'Sentiment_7',   
-  'L2_C3': 'Sentiment_8',   
-  'L2_C4': 'Sentiment_9',   
-  'L2_C5': 'Sentiment_10',  
-  
+  'L2_C1': 'sentiment_6',
+  'L2_C2': 'sentiment_7',
+  'L2_C3': 'sentiment_8',
+  'L2_C4': 'sentiment_9',
+  'L2_C5': 'sentiment_10',
+
   // Level 3 (Trust & Fairness) × 5 categories
-  'L3_C1': 'Sentiment_11',  
-  'L3_C2': 'Sentiment_12',  
-  'L3_C3': 'Sentiment_13',  
-  'L3_C4': 'Sentiment_14',  
-  'L3_C5': 'Sentiment_15',  
-  
+  'L3_C1': 'sentiment_11',
+  'L3_C2': 'sentiment_12',
+  'L3_C3': 'sentiment_13',
+  'L3_C4': 'sentiment_14',
+  'L3_C5': 'sentiment_15',
+
   // Level 4 (Career Security) × 5 categories
-  'L4_C1': 'Sentiment_16',  
-  'L4_C2': 'Sentiment_17',  
-  'L4_C3': 'Sentiment_18',  
-  'L4_C4': 'Sentiment_19',  
-  'L4_C5': 'Sentiment_20',  
-  
+  'L4_C1': 'sentiment_16',
+  'L4_C2': 'sentiment_17',
+  'L4_C3': 'sentiment_18',
+  'L4_C4': 'sentiment_19',
+  'L4_C5': 'sentiment_20',
+
   // Level 5 (Org Stability) × 5 categories
-  'L5_C1': 'Sentiment_21',  
-  'L5_C2': 'Sentiment_22',  
-  'L5_C3': 'Sentiment_23',  
-  'L5_C4': 'Sentiment_24',  
-  'L5_C5': 'Sentiment_25',  
+  'L5_C1': 'sentiment_21',
+  'L5_C2': 'sentiment_22',
+  'L5_C3': 'sentiment_23',
+  'L5_C4': 'sentiment_24',
+  'L5_C5': 'sentiment_25',
 } as const
 
 // Detailed cell descriptions (to be enhanced with GPT)
@@ -136,16 +136,16 @@ export const CELL_DESCRIPTIONS = {
 
 // Color coding based on RELATIVE ranking
 export const COLOR_RANKING = {
-  TOP_3: '#15803d',      // Dark green - highest 3 scores
+  TOP_3: '#15803d',      // Dark green - highest 3 scores (best/least resistance)
   TOP_8: '#84cc16',      // Light green - top 8 scores
   MIDDLE: '#fcd34d',     // Yellow - middle range
-  BOTTOM_8: '#fb923c',   // Light pink/orange - bottom 8
-  BOTTOM_3: '#dc2626',   // Dark red - lowest 3 scores
+  BOTTOM_8: '#fb923c',   // Light pink/orange - bottom 8 scores
+  BOTTOM_3: '#dc2626',   // Dark red - lowest 3 scores (worst/most resistance)
   NO_DATA: '#6b7280'     // Gray - no data
 } as const
 
-// INVERTED LOGIC: Lower scores = LESS resistance = BETTER (green)
-// Higher scores = MORE resistance = WORSE (red)
+// STANDARD LOGIC: Lower display scores (1-2) = MORE resistance = WORSE (red)
+// Higher display scores (3-4) = LESS resistance = BETTER (green)
 export function getRankedColor(score: number, allScores: number[]): string {
   if (allScores.length === 0) return COLOR_RANKING.NO_DATA
   

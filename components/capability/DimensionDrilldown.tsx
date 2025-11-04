@@ -13,6 +13,7 @@ import {
 import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, Info } from 'lucide-react'
 import { getDimensionById, getConstructsForDimension } from '@/lib/constants/capability-metadata'
 import { DimensionScore } from '@/lib/calculations/capability-analysis'
+import { useTheme } from '@/lib/contexts/theme-context'
 
 interface DimensionDrilldownProps {
   dimensionId: number
@@ -33,7 +34,8 @@ export default function DimensionDrilldown({
   onNext,
   onPrevious
 }: DimensionDrilldownProps) {
-  
+
+  const { theme } = useTheme()
   const dimensionMeta = getDimensionById(dimensionId)
   const constructsMeta = getConstructsForDimension(dimensionId)
   
@@ -200,14 +202,17 @@ export default function DimensionDrilldown({
         <div className="flex-1 min-h-0">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData}>
-              <PolarGrid stroke="rgba(255, 255, 255, 0.1)" strokeWidth={0.5} />
+              <PolarGrid
+                stroke={theme === 'light' ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'}
+                strokeWidth={0.5}
+              />
               <PolarAngleAxis
                 dataKey="construct"
-                tick={{ fill: '#9CA3AF', fontSize: 9 }}
+                tick={{ fill: theme === 'light' ? '#374151' : '#9CA3AF', fontSize: 9 }}
               />
               <PolarRadiusAxis
                 domain={[0, 10]}
-                tick={{ fill: '#6B7280', fontSize: 8 }}
+                tick={{ fill: theme === 'light' ? '#6B7280' : '#6B7280', fontSize: 8 }}
                 tickCount={6}
               />
               

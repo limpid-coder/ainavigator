@@ -29,7 +29,20 @@
       "mcp__supabase__list_migrations",
       "mcp__supabase__list_extensions",
       "Bash(curl:*)",
-      "mcp__supabase__apply_migration"
+      "mcp__supabase__apply_migration",
+      "Bash(unzip:*)",
+      "Bash(python3:*)",
+      "Bash(tee:*)",
+      "Bash(pip3 install:*)",
+      "mcp__supabase__get_project_url",
+      "mcp__supabase__get_anon_key",
+      "Bash(NEXT_PUBLIC_SUPABASE_URL=\"https://zxxxsstkzmiughpgwmaw.supabase.co\" NEXT_PUBLIC_SUPABASE_ANON_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4eHhzc3Rrem1pdWdocGd3bWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0MDU3MjksImV4cCI6MjA3Njk4MTcyOX0.lttYRLTFZ5-opKbCz1j8SdvaDVbkF7IvxDtzJIi5Dbc\" python3:*)",
+      "mcp__supabase__execute_sql",
+      "mcp__linear-server__get_issue",
+      "Bash(NEXT_PUBLIC_SUPABASE_URL=\"https://zxxxsstkzmiughpgwmaw.supabase.co\" NEXT_PUBLIC_SUPABASE_ANON_KEY=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4eHhzc3Rrem1pdWdocGd3bWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE0MDU3MjksImV4cCI6MjA3Njk4MTcyOX0.lttYRLTFZ5-opKbCz1j8SdvaDVbkF7IvxDtzJIi5Dbc\" timeout 120 python3:*)",
+      "Bash(pkill:*)",
+      "mcp__linear-server__update_issue",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

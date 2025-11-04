@@ -54,12 +54,14 @@ export function calculateSentimentHeatmap(
       .map(row => {
         const rawScore = row[columnName]
         if (typeof rawScore === 'number' && !isNaN(rawScore)) {
-          // Transform from 1-2 scale to 2-4 scale for better user understanding
-          // Formula: transformed = (original - 1.0) * 2.0 + 2.0
-          // This maps: 1.0 → 2.0, 1.5 → 3.0, 2.0 → 4.0
-          const transformed = (rawScore - 1.0) * 2.0 + 2.0
-          // Clamp to 2-4 range
-          return Math.max(2.0, Math.min(4.0, transformed))
+          // INVERTED: Transform from 1-2 scale to 1-4 scale (inverted)
+          // Raw data: 1=positive (low resistance), 2=negative (high resistance)
+          // Display: 1=negative (dark red), 4=positive (green)
+          // Formula: displayScore = (2.0 - rawScore) * 3.0 + 1.0
+          // This maps: 1.0 → 4.0 (good), 1.5 → 2.5, 2.0 → 1.0 (bad)
+          const transformed = (2.0 - rawScore) * 3.0 + 1.0
+          // Clamp to 1-4 range
+          return Math.max(1.0, Math.min(4.0, transformed))
         }
         return null
       })
@@ -67,19 +69,19 @@ export function calculateSentimentHeatmap(
     
     if (scores.length > 0) {
       const average = scores.reduce((sum, s) => sum + s, 0) / scores.length
-      // Ensure average is on 2-4 scale
-      const normalizedAverage = Math.max(2.0, Math.min(4.0, average))
+      // Ensure average is on 1-4 scale (inverted)
+      const normalizedAverage = Math.max(1.0, Math.min(4.0, average))
       cellScores.push({ cellId, score: normalizedAverage, count: scores.length })
     } else {
       cellScores.push({ cellId, score: 0, count: 0 })
     }
   })
-  
-  // Get all valid scores for ranking - ASCENDING (lowest first, as they're best)
+
+  // Get all valid scores for ranking - ASCENDING (lowest first, as they're worst after transformation)
   const allValidScores = cellScores
     .filter(c => c.count > 0)
     .map(c => c.score)
-    .sort((a, b) => a - b) // ASCENDING - lowest scores are best
+    .sort((a, b) => a - b) // ASCENDING - lowest scores (1.x) are worst (high resistance)
   
   // Calculate color based on relative ranking
   const cells: SentimentCellData[] = cellScores.map((cell, index) => {
@@ -90,24 +92,25 @@ export function calculateSentimentHeatmap(
     const level = SENTIMENT_LEVELS[levelId - 1]
     const category = SENTIMENT_CATEGORIES[categoryId - 1]
     
-    // Determine rank (1 = LOWEST score = BEST)
-    const rank = cell.count > 0 
+    // Determine rank (1 = LOWEST score = WORST)
+    const rank = cell.count > 0
       ? allValidScores.findIndex(s => Math.abs(s - cell.score) < 0.001) + 1
       : 99
-    
-    // Determine color - INVERTED: Lowest scores get green, highest get red
+
+    // Determine color - Standard logic: Lowest scores get red, highest get green
+    // After transformation: 1.0 = high resistance (bad), 4.0 = low resistance (good)
     let color: string = COLOR_RANKING.NO_DATA
     if (cell.count > 0) {
       if (rank <= 3) {
-        color = COLOR_RANKING.TOP_3 // Dark green - lowest 3 scores (best)
+        color = COLOR_RANKING.BOTTOM_3 // Dark red - lowest 3 scores (worst/most resistance)
       } else if (rank <= 8) {
-        color = COLOR_RANKING.TOP_8 // Light green
+        color = COLOR_RANKING.BOTTOM_8 // Orange - low scores
       } else if (rank >= allValidScores.length - 2) {
-        color = COLOR_RANKING.BOTTOM_3 // Dark red - highest 3 scores (worst)
+        color = COLOR_RANKING.TOP_3 // Dark green - highest 3 scores (best/least resistance)
       } else if (rank >= allValidScores.length - 7) {
-        color = COLOR_RANKING.BOTTOM_8 // Orange
+        color = COLOR_RANKING.TOP_8 // Light green - high scores
       } else {
-        color = COLOR_RANKING.MIDDLE // Yellow
+        color = COLOR_RANKING.MIDDLE // Yellow - middle range
       }
     }
     

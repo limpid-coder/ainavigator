@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react'
 import { X, RefreshCw, Filter, ChevronDown, Database, Cpu } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FilterState, SentimentResponse, CapabilityResponse } from '@/lib/types'
+import { AssessmentPeriodSelector } from '@/components/ui/assessment-period-selector'
 
 interface FilterPanelProps {
   sentimentData: Partial<SentimentResponse>[]
   capabilityData: Partial<CapabilityResponse>[]
   filters: FilterState
   onFiltersChange: (filters: FilterState) => void
+  selectedWave?: string
+  onWaveChange: (wave: string | undefined) => void
 }
 
 const FilterSelect = ({ 
@@ -91,9 +94,12 @@ export default function FilterPanel({
   sentimentData,
   capabilityData,
   filters,
-  onFiltersChange
+  onFiltersChange,
+  selectedWave,
+  onWaveChange
 }: FilterPanelProps) {
   const [isProcessing, setIsProcessing] = useState(false)
+  const [showComparison, setShowComparison] = useState(false)
   
   // Extract unique values for each filter (matching actual data field names)
   const getUniqueValues = (key: string) => {
@@ -180,6 +186,16 @@ export default function FilterPanel({
 
       {/* Filter Controls */}
       <div className="space-y-4">
+        {/* Temporal Filtering - Assessment Period Selection */}
+        <div className="pb-4 border-b border-white/10">
+          <AssessmentPeriodSelector
+            selectedWave={selectedWave}
+            onWaveChange={onWaveChange}
+            showComparison={showComparison}
+            onComparisonChange={setShowComparison}
+          />
+        </div>
+
         {regions.length > 0 && (
           <FilterSelect
             label="Region"

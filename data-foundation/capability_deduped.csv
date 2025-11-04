@@ -1,0 +1,865 @@
+respondent_id,company_id,dimension_id,dimension,construct_id,construct,score,industry_synthetic,country_synthetic,continent_synthetic,role_synthetic
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.33554054054054,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.466081081081081,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,3.101689189189189,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.449831081081081,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.853918918918919,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.388277027027027,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.5253716216216215,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.908209459459459,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.402263513513513,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,5.228243243243243,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.509932432432433,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,4.0162162162162165,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.913614864864865,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,4.196925675675676,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.44152027027027,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.313547297297297,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.298783783783784,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.8372972972972974,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.531891891891892,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.338716216216216,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.1475,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,4.299121621621621,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.300743243243243,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.775304054054054,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.583851351351351,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.16875,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.873412162162162,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.382972972972973,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.543412162162162,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,4.2339864864864865,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,6.088175675675675,Government,India,North America,Staff
+0046a5e5,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.914425675675676,Government,India,North America,Staff
+113b34f0,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.05112582781457,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.557417218543046,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.927119205298013,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.261026490066225,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.7569536423841057,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.095430463576159,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.572450331125828,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.779602649006623,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.05364238410596,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.065198675496689,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.149668874172185,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.766920529801324,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.806688741721854,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.123476821192053,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.400331125827815,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.143278145695364,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.1971523178807946,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.7360596026490067,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.304271523178809,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.2094370860927155,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.848046357615893,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,4.0161920529801325,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.3153973509933774,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.7901655629139075,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.369503311258278,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.184370860927152,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.5788741721854302,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.340496688741721,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.393609271523179,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.919403973509934,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.620033112582782,Manufacturing,France,Asia,IT & Data
+113b34f0,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.751456953642384,Manufacturing,France,Asia,IT & Data
+26d0d233,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.08608832807571,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.4063722397476335,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.8441640378548896,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.267823343848581,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.5710094637223975,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.12397476340694,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.292712933753943,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.6437539432176655,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.048643533123029,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,4.912050473186119,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.355678233438486,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.803059936908517,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.654605678233438,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,3.8694006309148263,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.3732807570977914,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.187034700315457,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.141608832807571,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.710630914826498,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.277665615141956,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.189716088328076,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,4.955425867507886,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.8921766561514195,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.1721135646687695,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.544668769716089,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.40608832807571,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,3.947255520504732,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.6415772870662466,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.126309148264984,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.337066246056782,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,3.9981388012618297,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.859053627760252,Government,India,North America,Strategy & Policy
+26d0d233,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.714952681388012,Government,India,North America,Strategy & Policy
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,3.9852962962962963,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.797481481481482,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.902481481481481,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.4237777777777785,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.754851851851852,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.134518518518519,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.556666666666667,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.7465185185185184,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.211962962962963,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,5.084814814814815,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.2882592592592585,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.863,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.863074074074074,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,4.2406296296296295,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.3393333333333333,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.355444444444444,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.312185185185185,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.671333333333333,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.388925925925926,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.511333333333333,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.145037037037038,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.8662592592592597,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.3524814814814814,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.792407407407407,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.480074074074074,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.188962962962963,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.7597407407407406,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.446407407407407,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.414703703703704,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,3.9684074074074074,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.946481481481482,Financial Services,Netherlands,Europe,IT & Data
+2c7b1ffe,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.837851851851852,Financial Services,Netherlands,Europe,IT & Data
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,1,Alignment with Business Goals,4.022124183006536,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,2,Leadership Commitment,4.637058823529412,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,3,Long-Term Vision,2.8741830065359477,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,4,Resource Allocation,4.370490196078432,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,2,Data,5,Data Quality,3.5040522875816995,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,2,Data,6,Data Accessibility,4.252516339869281,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,2,Data,7,Data Governance Framework,4.43343137254902,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,2,Data,8,Data Integration,3.5998692810457515,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,3,Technology,9,AI Tools and Platforms,5.02186274509804,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,3,Technology,10,Scalability,4.931013071895425,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,3,Technology,11,Cloud vs. On-Premises Solutions,4.285294117647059,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,3,Technology,12,Integration and Optimization,3.762156862745098,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,13,AI Skills and Expertise,4.824313725490196,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,14,Training and Development,3.9374183006535945,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,15,Recruitment and Team Formation,3.407418300653595,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,16,Cross-Functional Collaboration,4.230098039215687,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,17,AI Governance and Structure,3.159313725490196,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,18,Process Integration and Optimization,2.710686274509804,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,19,Change Management,5.248758169934641,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.259019607843137,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,6,Innovation,21,Prototyping and Experimentation,5.0141503267973855,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,6,Innovation,22,Products and Services,3.8829738562091505,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,6,Innovation,23,Speed of Implementation,3.2287254901960782,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,6,Innovation,24,Innovation Culture and Leadership,4.860065359477124,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,25,Tooldropping,4.401470588235294,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,26,Jobs,4.063039215686274,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,27,Engagement,3.79562091503268,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,28,Confidence/Authority,4.323333333333333,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,29,Ethical AI Framework,4.342549019607843,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,30,Bias and Fairness,4.020098039215687,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,31,Transparency and Explainability,5.974673202614379,Technology,United States,Africa,Leadership
+2d1eb579,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,32,Data Privacy and Security,6.688071895424836,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.027260726072607,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.627194719471947,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.928910891089109,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.4911551155115506,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.7331683168316836,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.173234323432343,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.3560396039603955,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.9186798679867985,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.414257425742575,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.106303630363036,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.425280528052805,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.895775577557756,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.966435643564356,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.220693069306931,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.3593069306930694,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.2766006600660065,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.267755775577558,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.674257425742574,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.485775577557756,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.369009900990099,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.167491749174918,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.9562046204620462,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.2516831683168315,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.803597359735973,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.467689768976898,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.135082508250825,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.9186138613861385,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.457293729372937,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.441518151815181,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.009141914191419,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,6.128811881188119,Technology,United States,Africa,Leadership
+318a6f0c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.996204620462046,Technology,United States,Africa,Leadership
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,1,Alignment with Business Goals,3.968996415770609,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,2,Leadership Commitment,4.640250896057348,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,3,Long-Term Vision,2.939068100358423,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,4,Resource Allocation,4.149247311827957,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,2,Data,5,Data Quality,3.5867025089605735,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,2,Data,6,Data Accessibility,3.9098207885304657,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,2,Data,7,Data Governance Framework,4.43089605734767,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,2,Data,8,Data Integration,3.7655197132616487,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,3,Technology,9,AI Tools and Platforms,5.05089605734767,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,3,Technology,10,Scalability,5.084982078853047,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,3,Technology,11,Cloud vs. On-Premises Solutions,4.232903225806452,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,3,Technology,12,Integration and Optimization,3.9727956989247315,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,13,AI Skills and Expertise,4.6725448028673835,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,14,Training and Development,4.106487455197133,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,15,Recruitment and Team Formation,3.166810035842294,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,16,Cross-Functional Collaboration,4.268028673835126,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,17,AI Governance and Structure,3.1754121863799285,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,18,Process Integration and Optimization,2.5385663082437278,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,19,Change Management,5.287168458781362,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.395232974910394,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,6,Innovation,21,Prototyping and Experimentation,4.7575985663082445,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,6,Innovation,22,Products and Services,3.660322580645161,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,6,Innovation,23,Speed of Implementation,3.16752688172043,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,6,Innovation,24,Innovation Culture and Leadership,4.639964157706093,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,25,Tooldropping,4.298064516129033,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,26,Jobs,4.0532258064516125,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,27,Engagement,3.416989247311828,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,28,Confidence/Authority,4.2572401433691756,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,29,Ethical AI Framework,4.3153763440860216,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,30,Bias and Fairness,3.8546594982078854,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,31,Transparency and Explainability,5.656308243727598,Financial Services,Netherlands,Europe,IT & Data
+4942ce7b,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,32,Data Privacy and Security,6.737025089605735,Financial Services,Netherlands,Europe,IT & Data
+625f4354,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.015348837209302,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.445049833887043,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.7943189368770764,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.38641196013289,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.6607308970099672,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.0712292358803985,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.365083056478405,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.757275747508306,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.346179401993355,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.264651162790698,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.339568106312292,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.7875415282392026,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.853023255813953,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.06641196013289,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.2037873754152826,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.121461794019933,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.106212624584718,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.6291029900332226,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.465647840531561,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.481528239202658,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.1168438538205985,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.880996677740864,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.261395348837209,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.6600332225913625,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.461960132890365,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,3.9848504983388704,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.7874750830564783,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.352225913621262,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.23953488372093,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.143056478405315,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,6.214086378737542,Education,United Kingdom,South America,Strategy & Policy
+625f4354,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.900431893687708,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.9489597315436242,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.582013422818792,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.9221476510067115,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.321610738255034,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.7293288590604026,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.142248322147651,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.401912751677853,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.7769127516778522,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.276241610738255,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.17010067114094,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.236342281879195,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.9207046979865767,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.933724832214765,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.253456375838926,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.2811073825503354,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.096476510067114,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.2171140939597316,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.6381208053691276,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.484429530201342,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.451442953020134,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.12258389261745,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.8842953020134225,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.22996644295302,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.956644295302013,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.266845637583892,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.1495973154362416,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.709194630872483,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.550570469798657,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.22486577181208,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.043959731543624,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.9705033557046985,Education,United Kingdom,South America,Strategy & Policy
+727de8da,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.913859060402684,Education,United Kingdom,South America,Strategy & Policy
+75bec41c,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.19844696969697,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.564128787878788,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.8918939393939396,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.095681818181818,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.3656439393939395,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.263863636363637,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.181325757575757,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.6604924242424244,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,4.952272727272728,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,4.843560606060606,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.288106060606061,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.799810606060606,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.418181818181819,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,3.629848484848485,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.3126136363636363,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.050416666666666,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.0349242424242426,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.653257575757576,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.203333333333333,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.090340909090909,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,4.641022727272727,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,4.040227272727273,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.0843560606060607,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.668257575757576,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.3118181818181816,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,3.9941666666666666,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.4895454545454547,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.003636363636364,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.294318181818182,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,3.9140151515151516,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.7509848484848485,Financial Services,Netherlands,Europe,Leadership
+75bec41c,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.806590909090909,Financial Services,Netherlands,Europe,Leadership
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.945191082802548,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.361528662420382,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.9590127388535032,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.269490445859872,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.575796178343949,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.246464968152867,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.224585987261147,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.7078980891719744,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.1622611464968156,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,4.885891719745223,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.345095541401274,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.9257006369426755,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.8183439490445865,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.050923566878981,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.374904458598726,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.149649681528662,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.105828025477707,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.670286624203822,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.614999999999999,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.356114649681529,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.010955414012739,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.89452229299363,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.1488535031847134,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.8564331210191085,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.1996815286624205,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.099968152866242,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.7185031847133754,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.3011783439490445,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.256019108280255,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.0354458598726115,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.791433121019108,Education,United Kingdom,South America,Strategy & Policy
+7825ec1c,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,7.0962738853503184,Education,United Kingdom,South America,Strategy & Policy
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.07768456375839,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.674597315436242,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.8968456375838927,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.51251677852349,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.794496644295302,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.223557046979866,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.5611409395973155,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.966308724832215,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.383288590604027,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,5.217986577181208,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.379093959731544,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.9409060402684566,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,5.053020134228188,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,4.193322147651006,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.3393624161073827,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.571912751677853,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.286510067114094,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.6433557046979868,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.491308724832215,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.636208053691275,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.110536912751678,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.88751677852349,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.216208053691275,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.771409395973154,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.54503355704698,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.123322147651007,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.8639597315436243,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.43006711409396,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.536744966442953,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,3.9929194630872487,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,6.001208053691275,Manufacturing,France,Asia,IT & Data
+794f3cc7,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.9408389261744965,Manufacturing,France,Asia,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,3.8678899082568807,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.412477064220184,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.884770642201835,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.43691131498471,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.5358715596330277,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.212874617737003,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.429755351681957,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.6452293577981654,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.055290519877675,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,4.909174311926606,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.3132415902140675,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.6814678899082565,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.682079510703364,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,3.897859327217125,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.2544954128440367,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.06,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.2161162079510706,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.6197247706422018,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.226941896024465,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.090519877675841,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,4.910733944954128,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.8210091743119268,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.132140672782875,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.688746177370031,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.483241590214067,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,3.988929663608563,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.7078287461773702,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.225963302752294,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.167951070336391,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,4.017339449541285,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.9862996941896025,Education,United Kingdom,South America,IT & Data
+79a47cdb,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.757125382262997,Education,United Kingdom,South America,IT & Data
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.0111178247734145,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.5920845921450155,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.93380664652568,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.463172205438067,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.687311178247734,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.175770392749245,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.435317220543807,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.7900302114803623,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.210755287009063,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.1179154078549844,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.393897280966768,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.826465256797583,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,5.023625377643504,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.072084592145015,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.4244712990936557,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.270755287009063,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.207039274924471,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.6648942598187313,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.280422960725075,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.4664652567975835,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.018489425981873,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.8736858006042296,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.2421148036253777,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.743444108761329,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.582507552870091,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.015015105740181,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.8379758308157097,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.277462235649547,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.319335347432024,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.97833836858006,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,6.089274924471299,Technology,United States,Africa,Leadership
+7ea5981e,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.870030211480363,Technology,United States,Africa,Leadership
+9061ed18,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.9829084967320263,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.4201307189542485,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.943529411764706,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.402614379084968,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.728529411764706,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.32202614379085,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.554967320261437,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.641503267973856,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.023725490196078,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.014183006535948,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.532124183006536,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.9091176470588236,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.91218954248366,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,3.963986928104575,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.4164052287581703,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.282222222222222,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.1859477124183004,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.7780718954248367,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.363235294117647,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.3759477124183,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.894901960784313,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,4.0025490196078435,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.1883986928104573,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.7823529411764705,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.508235294117647,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.128169934640523,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.709313725490196,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.213398692810458,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.37437908496732,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.033169934640523,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.921535947712418,Financial Services,Netherlands,Europe,IT & Data
+9061ed18,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.903627450980393,Financial Services,Netherlands,Europe,IT & Data
+91b22859,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,1,Alignment with Business Goals,3.8560465116279072,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,2,Leadership Commitment,4.594119601328903,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,3,Long-Term Vision,2.9724584717607976,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,4,Resource Allocation,4.350431893687707,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,2,Data,5,Data Quality,3.679401993355482,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,2,Data,6,Data Accessibility,4.10063122923588,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,2,Data,7,Data Governance Framework,4.395016611295682,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,2,Data,8,Data Integration,3.700963455149502,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,3,Technology,9,AI Tools and Platforms,5.202458471760798,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,3,Technology,10,Scalability,5.083488372093024,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,3,Technology,11,Cloud vs. On-Premises Solutions,4.28890365448505,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,3,Technology,12,Integration and Optimization,3.7922259136212624,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,13,AI Skills and Expertise,4.834119601328903,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,14,Training and Development,4.190697674418605,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,15,Recruitment and Team Formation,3.3508970099667774,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,16,Cross-Functional Collaboration,4.043521594684385,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,17,AI Governance and Structure,3.2401661129568105,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,18,Process Integration and Optimization,2.593355481727575,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,19,Change Management,5.397607973421927,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.382325581395349,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,6,Innovation,21,Prototyping and Experimentation,4.901694352159469,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,6,Innovation,22,Products and Services,3.7637541528239207,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,6,Innovation,23,Speed of Implementation,3.1716943521594683,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,6,Innovation,24,Innovation Culture and Leadership,4.891495016611295,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,25,Tooldropping,4.432026578073089,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,26,Jobs,4.044617940199336,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,27,Engagement,3.5869102990033226,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,28,Confidence/Authority,4.375182724252492,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,29,Ethical AI Framework,4.184916943521595,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,30,Bias and Fairness,3.893687707641196,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,31,Transparency and Explainability,5.877740863787375,Healthcare,Germany,North America,Staff
+91b22859,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,32,Data Privacy and Security,6.912392026578074,Healthcare,Germany,North America,Staff
+98a96934,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.039401408450704,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.489507042253521,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,3.0275704225352116,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.480985915492957,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.626654929577465,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.1237676056338035,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.492112676056338,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.6917957746478876,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.063661971830986,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,4.969260563380281,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.6383450704225355,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.879788732394366,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.867464788732394,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,3.852464788732394,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.4755281690140842,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.187007042253521,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.286056338028169,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.76580985915493,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.099612676056338,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.36693661971831,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,4.768098591549296,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.8889788732394366,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.218732394366197,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.487570422535211,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.4573943661971835,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,3.9575,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.623098591549296,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.039753521126761,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.447464788732394,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,3.976760563380282,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.919612676056338,Education,United Kingdom,South America,Strategy & Policy
+98a96934,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.707570422535212,Education,United Kingdom,South America,Strategy & Policy
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,1,Alignment with Business Goals,3.8571290322580647,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,2,Leadership Commitment,4.855741935483871,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,3,Long-Term Vision,2.906032258064516,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,4,Resource Allocation,4.5082903225806445,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,2,Data,5,Data Quality,3.619548387096774,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,2,Data,6,Data Accessibility,4.166096774193549,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,2,Data,7,Data Governance Framework,4.387225806451613,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,2,Data,8,Data Integration,3.7755483870967743,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,3,Technology,9,AI Tools and Platforms,5.211129032258064,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,3,Technology,10,Scalability,5.0681290322580645,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,3,Technology,11,Cloud vs. On-Premises Solutions,4.285161290322581,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,3,Technology,12,Integration and Optimization,3.7787419354838714,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,13,AI Skills and Expertise,4.8388709677419355,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,14,Training and Development,4.119290322580645,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,15,Recruitment and Team Formation,3.3447096774193543,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,16,Cross-Functional Collaboration,4.220290322580645,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,17,AI Governance and Structure,3.1794516129032258,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,18,Process Integration and Optimization,2.6189999999999998,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,19,Change Management,5.316,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.303193548387097,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,6,Innovation,21,Prototyping and Experimentation,5.033225806451613,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,6,Innovation,22,Products and Services,3.914870967741935,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,6,Innovation,23,Speed of Implementation,3.2258709677419355,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,6,Innovation,24,Innovation Culture and Leadership,5.016258064516129,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,25,Tooldropping,4.539129032258064,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,26,Jobs,4.003161290322581,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,27,Engagement,3.9116774193548385,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,28,Confidence/Authority,4.391,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,29,Ethical AI Framework,4.230290322580646,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,30,Bias and Fairness,4.010193548387097,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,31,Transparency and Explainability,6.13541935483871,Manufacturing,France,Asia,IT & Data
+a1f58ce0,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,32,Data Privacy and Security,6.918451612903225,Manufacturing,France,Asia,IT & Data
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.8198257839721252,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.296445993031359,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.7786062717770035,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.347456445993031,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.7253310104529618,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.226933797909408,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.387526132404181,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.8247038327526135,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.211428571428572,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,4.904808362369338,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.217700348432055,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.8115331010452964,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,5.019547038327525,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.097560975609756,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.3961324041811847,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.1154703832752615,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.127073170731707,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.572369337979094,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.372229965156794,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.19418118466899,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.961707317073171,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.7804878048780486,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.22397212543554,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.873484320557491,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.233588850174216,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.125365853658536,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.71794425087108,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.311324041811846,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.282787456445993,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.9960278745644597,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.752264808362369,Technology,United States,Africa,Leadership
+a2f7ce34,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.992857142857143,Technology,United States,Africa,Leadership
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.047458193979933,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.417658862876254,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,3.0058528428093645,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.40675585284281,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.7761872909698995,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.160133779264214,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.444882943143813,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.8329096989966556,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.240802675585284,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,4.949866220735786,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.338628762541806,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.994816053511706,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,5.004648829431439,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.225518394648829,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.539498327759197,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.255083612040134,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.293779264214047,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.789732441471572,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.503311036789298,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.299832775919732,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.972608695652173,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.86876254180602,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.351036789297659,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.877892976588629,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.357458193979934,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.073946488294314,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.8266889632107026,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.337290969899665,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.449397993311036,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.99943143812709,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.831170568561872,Education,United Kingdom,South America,Strategy & Policy
+b4c1035b,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.822408026755853,Education,United Kingdom,South America,Strategy & Policy
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,3.913846153846154,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.762274247491639,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.9743478260869565,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.619899665551839,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.815117056856187,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.307591973244147,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.6640133779264215,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.8392307692307694,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.140301003344482,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,5.14571906354515,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.507190635451505,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.9190635451505016,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.991939799331103,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,4.079464882943144,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.5485953177257525,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.432207357859532,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.23247491638796,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.7934113712374584,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.412207357859532,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.609899665551839,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.139966555183946,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,4.125819397993311,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.2143478260869567,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.863377926421405,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.550066889632107,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.099464882943144,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.8650501672240805,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.385083612040134,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.552107023411371,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,4.124882943143812,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.966521739130434,Healthcare,Germany,North America,Staff
+b8fd5449,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,7.029163879598662,Healthcare,Germany,North America,Staff
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,1,Alignment with Business Goals,3.9364561403508778,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,2,Leadership Commitment,4.862245614035087,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,3,Long-Term Vision,2.89140350877193,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,1,Strategy and Vision,4,Resource Allocation,4.280771929824561,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,2,Data,5,Data Quality,3.482701754385965,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,2,Data,6,Data Accessibility,4.116631578947368,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,2,Data,7,Data Governance Framework,4.413157894736842,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,2,Data,8,Data Integration,3.533438596491228,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,3,Technology,9,AI Tools and Platforms,5.104877192982457,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,3,Technology,10,Scalability,4.859859649122807,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,3,Technology,11,Cloud vs. On-Premises Solutions,4.183929824561404,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,3,Technology,12,Integration and Optimization,3.7814736842105265,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,13,AI Skills and Expertise,4.70919298245614,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,14,Training and Development,4.04659649122807,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,15,Recruitment and Team Formation,3.315719298245614,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,4,Talent and Skills,16,Cross-Functional Collaboration,4.208877192982456,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,17,AI Governance and Structure,3.157017543859649,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,18,Process Integration and Optimization,2.632842105263158,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,19,Change Management,5.232982456140351,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.278842105263158,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,6,Innovation,21,Prototyping and Experimentation,5.013894736842105,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,6,Innovation,22,Products and Services,3.7958596491228067,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,6,Innovation,23,Speed of Implementation,3.246947368421053,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,6,Innovation,24,Innovation Culture and Leadership,4.888842105263158,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,25,Tooldropping,4.467649122807018,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,26,Jobs,4.053508771929825,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,27,Engagement,3.66740350877193,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,7,Adaptation & Adoption,28,Confidence/Authority,4.377578947368421,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,29,Ethical AI Framework,4.302947368421052,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,30,Bias and Fairness,3.972175438596491,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,31,Transparency and Explainability,5.953578947368421,Technology,United States,Africa,Leadership
+cc2a2a05,550e8400-e29b-41d4-a716-446655440001,8,Ethics and Responsibility,32,Data Privacy and Security,6.752280701754386,Technology,United States,Africa,Leadership
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.782347266881029,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.32588424437299,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.814180064308682,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.3108038585209005,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.5547909967845657,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.24700964630225,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.257845659163987,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.657427652733119,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.00475884244373,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,4.8596141479099675,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.224951768488746,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.61016077170418,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.713247588424437,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,3.962926045016077,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.357974276527331,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.042186495176849,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.0690353697749195,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.6377491961414794,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.362475884244373,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.255209003215434,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.942572347266881,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.9756913183279745,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.1033440514469453,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.720707395498392,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.412282958199357,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.091993569131833,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.707942122186495,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.134855305466238,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.222347266881029,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.869614147909968,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.82395498392283,Government,India,Africa,Staff
+d3de8ea9,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.968456591639872,Government,India,Africa,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,3.9978501628664493,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.717035830618893,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,2.925342019543974,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.407361563517915,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.614723127035831,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.109902280130293,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.49371335504886,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.6922801302931596,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.1328664495114005,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,4.969315960912052,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.389967426710098,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,3.9009120521172638,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.779478827361563,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,3.984397394136808,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.508175895765472,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.334625407166124,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.184918566775244,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.7721824104234525,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.416058631921824,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.490781758957655,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.157557003257328,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,3.9472964169381104,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.2635504885993485,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.828306188925081,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.313811074918567,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.151954397394137,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.76671009771987,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.331661237785016,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.495895765472313,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,4.054690553745928,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.832605863192182,Government,India,South America,Staff
+d5ab3ed0,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.900390879478827,Government,India,South America,Staff
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,4.110889570552147,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.364662576687116,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.889325153374233,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.159723926380368,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.644233128834356,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.117975460122699,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.410981595092025,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.6829754601227,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.130920245398773,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.143865030674847,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.339478527607362,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.9309202453987733,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.6054601226993865,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.018650306748466,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.230337423312883,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.077576687116564,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.2034355828220855,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.6226687116564418,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.392239263803681,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.334938650306749,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,4.911625766871166,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.9177607361963194,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.179723926380368,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.61463190184049,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.450766871165644,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,4.089723926380368,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.50941717791411,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.169233128834356,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.222453987730061,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,3.953282208588957,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.886472392638037,Education,United Kingdom,South America,IT & Data
+d73ee50d,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.798312883435583,Education,United Kingdom,South America,IT & Data
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,1,Alignment with Business Goals,4.2002999999999995,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,2,Leadership Commitment,4.574766666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,3,Long-Term Vision,3.0136333333333334,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,1,Strategy and Vision,4,Resource Allocation,4.342733333333333,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,2,Data,5,Data Quality,3.6986,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,2,Data,6,Data Accessibility,4.296633333333333,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,2,Data,7,Data Governance Framework,4.3349,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,2,Data,8,Data Integration,3.789666666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,3,Technology,9,AI Tools and Platforms,5.275133333333333,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,3,Technology,10,Scalability,5.117966666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,3,Technology,11,Cloud vs. On-Premises Solutions,4.436233333333334,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,3,Technology,12,Integration and Optimization,4.038233333333333,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,13,AI Skills and Expertise,4.842466666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,14,Training and Development,4.0577,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,15,Recruitment and Team Formation,3.5420666666666665,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,4,Talent and Skills,16,Cross-Functional Collaboration,4.203366666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,17,AI Governance and Structure,3.1866,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,18,Process Integration and Optimization,2.7771333333333335,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,19,Change Management,5.5713333333333335,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.529766666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,6,Innovation,21,Prototyping and Experimentation,5.091666666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,6,Innovation,22,Products and Services,4.1273,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,6,Innovation,23,Speed of Implementation,3.190933333333333,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,6,Innovation,24,Innovation Culture and Leadership,4.8899333333333335,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,25,Tooldropping,4.383866666666667,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,26,Jobs,4.0119,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,27,Engagement,3.7128999999999994,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,7,Adaptation & Adoption,28,Confidence/Authority,4.275533333333334,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,29,Ethical AI Framework,4.380366666666666,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,30,Bias and Fairness,4.0446333333333335,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,31,Transparency and Explainability,5.932566666666666,Education,United Kingdom,South America,Strategy & Policy
+eb1d4031,550e8400-e29b-41d4-a716-446655440003,8,Ethics and Responsibility,32,Data Privacy and Security,6.902,Education,United Kingdom,South America,Strategy & Policy
+ff953159,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,1,Alignment with Business Goals,3.8565686274509803,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,2,Leadership Commitment,4.826568627450981,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,3,Long-Term Vision,2.977843137254902,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,1,Strategy and Vision,4,Resource Allocation,4.573398692810458,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,2,Data,5,Data Quality,3.6981372549019613,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,2,Data,6,Data Accessibility,4.195326797385621,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,2,Data,7,Data Governance Framework,4.404346405228758,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,2,Data,8,Data Integration,3.8651633986928107,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,3,Technology,9,AI Tools and Platforms,5.276830065359477,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,3,Technology,10,Scalability,5.1613725490196085,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,3,Technology,11,Cloud vs. On-Premises Solutions,4.465882352941176,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,3,Technology,12,Integration and Optimization,3.80078431372549,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,13,AI Skills and Expertise,4.860718954248366,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,14,Training and Development,4.0898039215686275,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,15,Recruitment and Team Formation,3.479019607843137,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,4,Talent and Skills,16,Cross-Functional Collaboration,4.09483660130719,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,17,AI Governance and Structure,3.2613725490196077,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,18,Process Integration and Optimization,2.7141503267973857,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,19,Change Management,5.296535947712418,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,5,Organisation and Processes,20,AI-Driven Decision Optimization,4.477385620915032,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,6,Innovation,21,Prototyping and Experimentation,5.018104575163399,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,6,Innovation,22,Products and Services,3.9139542483660135,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,6,Innovation,23,Speed of Implementation,3.2058169934640524,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,6,Innovation,24,Innovation Culture and Leadership,4.752254901960785,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,25,Tooldropping,4.4283986928104575,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,26,Jobs,3.945980392156863,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,27,Engagement,3.796339869281046,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,7,Adaptation & Adoption,28,Confidence/Authority,4.2897058823529415,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,29,Ethical AI Framework,4.385849673202614,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,30,Bias and Fairness,4.049934640522876,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,31,Transparency and Explainability,5.989509803921568,Manufacturing,France,Asia,IT & Data
+ff953159,550e8400-e29b-41d4-a716-446655440002,8,Ethics and Responsibility,32,Data Privacy and Security,6.8818954248366015,Manufacturing,France,Asia,IT & Data

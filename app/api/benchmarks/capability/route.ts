@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { calculateCapabilityBenchmark } from '@/lib/services/benchmark.service'
+import { calculateCapabilityBenchmarkFromScores } from '@/lib/services/capability-benchmark.service'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
 
     const region = searchParams.get('region') || undefined
-    const department = searchParams.get('department') || undefined
     const industry = searchParams.get('industry') || undefined
+    const continent = searchParams.get('continent') || undefined
 
     if (!companyId) {
       return NextResponse.json(
@@ -23,27 +23,27 @@ export async function GET(request: NextRequest) {
 
     const supabase = createClient(supabaseUrl, supabaseKey)
 
-    // Fetch all respondents across all companies (for benchmark)
-    const { data: allRespondents, error: allError } = await supabase
-      .from('respondents')
+    // Fetch all capability scores across all companies (for benchmark)
+    const { data: allScores, error: allError } = await supabase
+      .from('capability_scores')
       .select('*')
 
     if (allError) {
-      console.error('Supabase error fetching all data:', allError)
+      console.error('Supabase error fetching all capability scores:', allError)
       return NextResponse.json(
         { error: 'Failed to fetch benchmark data' },
         { status: 500 }
       )
     }
 
-    // Fetch current company's respondents
-    const { data: companyRespondents, error: companyError } = await supabase
-      .from('respondents')
+    // Fetch current company's capability scores
+    const { data: companyScores, error: companyError } = await supabase
+      .from('capability_scores')
       .select('*')
       .eq('company_id', companyId)
 
     if (companyError) {
-      console.error('Supabase error fetching company data:', companyError)
+      console.error('Supabase error fetching company capability scores:', companyError)
       return NextResponse.json(
         { error: 'Failed to fetch company data' },
         { status: 500 }
@@ -51,17 +51,22 @@ export async function GET(request: NextRequest) {
     }
 
     // Calculate capability benchmark
-    const benchmark = calculateCapabilityBenchmark(
-      allRespondents || [],
-      companyRespondents || [],
-      { region, department, industry }
+    const benchmark = calculateCapabilityBenchmarkFromScores(
+      allScores || [],
+      companyScores || [],
+      { region, industry, continent }
     )
 
     return NextResponse.json({
       success: true,
       benchmark,
-      filters: { region, department, industry },
+      filters: { region, industry, continent },
       companyId,
+      metadata: {
+        totalScores: allScores?.length || 0,
+        companyScores: companyScores?.length || 0,
+        uniqueRespondents: new Set((companyScores || []).map((s: any) => s.respondent_id)).size,
+      },
     })
   } catch (error) {
     console.error('API error:', error)
