@@ -43,59 +43,54 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
   const selectedCellData = cells.find(c => c.cellId === selectedCell)
 
   return (
-    <div className="h-full flex flex-col gap-3 md:gap-4 overflow-hidden">
+    <div className="h-full flex flex-col gap-2 overflow-hidden">
       
-      {/* HEADER */}
-      <div className="flex flex-col gap-4 mb-3">
-        {/* Title and description */}
-        <div>
-          <div className="flex items-center gap-3 mb-1">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Sentiment Analysis Heatmap</h2>
-            {categoryDataLoaded && (
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-purple-700 dark:text-purple-400" />
-                <span className="text-xs font-bold text-purple-700 dark:text-purple-700 dark:text-purple-300">Interactive Mode</span>
-              </motion.div>
-            )}
-          </div>
-          <p className="text-sm text-slate-600 dark:text-gray-400 mb-2">
-            How {stats.totalRespondents} employees feel about AI across 25 dimensions
-            {categoryDataLoaded && (
-              <span className="text-purple-600 dark:text-purple-700 dark:text-purple-400 font-medium"> • Click any cell for gamified solutions</span>
-            )}
-          </p>
-          <button
-            onClick={() => setShowExplanation(!showExplanation)}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 hover:border-blue-500/30 transition-all"
-          >
-            <Info className="w-4 h-4 text-blue-700 dark:text-blue-400" />
-            <span className="text-xs text-blue-700 dark:text-blue-700 dark:text-blue-300 font-medium">
-              {showExplanation ? 'Hide' : 'Show'} Heatmap Guide
-            </span>
-          </button>
+      {/* ULTRA COMPACT HEADER - Single row */}
+      <div className="flex items-center justify-between gap-3 flex-shrink-0">
+        {/* Left: Title and meta */}
+        <div className="flex items-center gap-2.5">
+          <h2 className="text-base font-bold text-slate-900 dark:text-white">Sentiment Heatmap</h2>
+          {categoryDataLoaded && (
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30"
+            >
+              <Sparkles className="w-2.5 h-2.5 text-purple-700 dark:text-purple-400" />
+              <span className="text-[9px] font-bold text-purple-700 dark:text-purple-300">Interactive</span>
+            </motion.div>
+          )}
+          <span className="text-xs text-slate-600 dark:text-gray-400">
+            {stats.totalRespondents.toLocaleString()} employees • 25 dimensions
+          </span>
         </div>
 
-        {/* Stats - full width */}
-        <div className="flex items-center gap-3">
-          <div className="px-3 py-2 rounded-lg bg-teal-500/10 border border-teal-500/20">
-            <div className="text-xs text-slate-600 dark:text-gray-400 mb-0.5">Overall Average</div>
-            <div className="flex items-baseline gap-1">
-              <div className="text-2xl font-bold text-teal-700 dark:text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
+        {/* Right: Stats and action */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-teal-500/10 border border-teal-500/20">
+            <div>
+              <div className="text-[9px] text-slate-600 dark:text-gray-400 uppercase tracking-wide">Overall</div>
+              <div className="text-lg font-bold text-teal-700 dark:text-teal-400 tabular-nums leading-tight">{stats.overallAverage.toFixed(2)}</div>
             </div>
-            <div className="text-[10px] text-slate-500 mt-0.5">
-              {stats.overallAverage < 2.5 ? '✅ Low concern' :
-               stats.overallAverage < 3.0 ? '⚠️ Moderate' :
-               stats.overallAverage < 3.5 ? '🔶 High concern' : '🔴 Critical'}
+            <div className="text-base">
+              {stats.overallAverage >= 3.5 ? '✅' :
+               stats.overallAverage >= 3.0 ? '⚠️' :
+               stats.overallAverage >= 2.5 ? '🔶' : '🔴'}
             </div>
           </div>
-          <div className="px-3 py-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
-            <div className="text-xs text-slate-600 dark:text-gray-400 mb-0.5">Priority Areas</div>
-            <div className="text-2xl font-bold text-orange-700 dark:text-orange-400 tabular-nums">{lowestCells.length}</div>
+          <div className="px-2 py-1 rounded-lg bg-orange-500/10 border border-orange-500/20">
+            <div className="text-[9px] text-slate-600 dark:text-gray-400 uppercase tracking-wide">Priority</div>
+            <div className="text-lg font-bold text-orange-700 dark:text-orange-400 tabular-nums leading-tight">{lowestCells.length}</div>
           </div>
+          <button
+            onClick={() => setShowExplanation(!showExplanation)}
+            className="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg bg-blue-500/10 hover:bg-blue-500/15 border border-blue-500/20 hover:border-blue-500/30 transition-all"
+          >
+            <Info className="w-3 h-3 text-blue-700 dark:text-blue-400" />
+            <span className="text-[10px] text-blue-700 dark:text-blue-300 font-medium">
+              {showExplanation ? 'Hide' : 'Show'} Guide
+            </span>
+          </button>
         </div>
       </div>
 
@@ -181,19 +176,19 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                       </div>
                       <div className="text-slate-700 dark:text-gray-300 space-y-1.5">
                         <div className="flex items-center gap-2">
-                          <span className="text-green-600 dark:text-green-400 font-bold">2.0-2.5:</span> 
+                          <span className="text-green-600 dark:text-green-400 font-bold">3.5-4.0:</span> 
                           <span>Ready to adopt AI</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-yellow-600 dark:text-yellow-400 font-bold">2.5-3.0:</span> 
+                          <span className="text-yellow-600 dark:text-yellow-400 font-bold">2.5-3.5:</span> 
                           <span>Some concerns, manageable</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-orange-600 dark:text-orange-400 font-bold">3.0-3.5:</span> 
+                          <span className="text-orange-600 dark:text-orange-400 font-bold">1.5-2.5:</span> 
                           <span>Significant resistance</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-red-600 dark:text-red-400 font-bold">3.5-4.0:</span> 
+                          <span className="text-red-600 dark:text-red-400 font-bold">1.0-1.5:</span> 
                           <span>Critical - needs intervention</span>
                         </div>
                       </div>
@@ -225,28 +220,55 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
       </AnimatePresence>
 
       {/* HEATMAP GRID */}
-      <div className="flex-1 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-3 md:p-5 flex flex-col overflow-hidden">
+      <div className="flex-1 bg-gradient-to-br from-white/[0.08] to-white/[0.02] rounded-lg border border-white/10 p-3 flex flex-col overflow-hidden">
         
+        {/* Legend - Ultra compact inline */}
+        <div className="flex items-center justify-between gap-3 pb-1.5 mb-2 border-b border-white/5 flex-shrink-0">
+          <span className="text-[10px] font-semibold text-slate-600 dark:text-gray-400 uppercase tracking-wider">Legend:</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded flex items-center justify-center text-white font-bold text-[9px]" style={{ backgroundColor: '#15803d' }}>✓</div>
+              <span className="text-[11px] text-slate-900 dark:text-white font-semibold">Top 3</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded flex items-center justify-center text-white font-bold text-[9px]" style={{ backgroundColor: '#84cc16' }}>+</div>
+              <span className="text-[11px] text-slate-900 dark:text-white">Strong</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded flex items-center justify-center text-white font-bold text-[9px]" style={{ backgroundColor: '#fcd34d' }}>○</div>
+              <span className="text-[11px] text-slate-900 dark:text-white">Average</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded flex items-center justify-center text-white font-bold text-[9px]" style={{ backgroundColor: '#fb923c' }}>!</div>
+              <span className="text-[11px] text-slate-900 dark:text-white">Attention</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-5 h-5 rounded flex items-center justify-center text-white font-bold text-[9px]" style={{ backgroundColor: '#dc2626' }}>⚠</div>
+              <span className="text-[11px] text-slate-900 dark:text-white font-semibold">Priority</span>
+            </div>
+          </div>
+        </div>
+
         {/* Grid Container with Averages */}
-        <div className="flex-1 flex gap-2 md:gap-4 overflow-auto">
+        <div className="flex-1 flex gap-2 overflow-auto min-h-0">
           
           {/* Y-Axis Labels */}
           <div className="flex flex-col flex-shrink-0 gap-2">
             {/* Row labels aligned with grid rows */}
             <div className="grid grid-rows-5 gap-2">
               {SENTIMENT_LEVELS.map(level => (
-                <div key={level.id} className="flex items-center justify-end pr-4">
+                <div key={level.id} className="flex items-center justify-end pr-3">
                   <div className="text-right">
-                    <div className="text-xs text-slate-500 mb-0.5">Level {level.id}</div>
-                    <div className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">{level.name}</div>
+                    <div className="text-[10px] text-slate-500 mb-0.5">L{level.id}</div>
+                    <div className="text-xs font-semibold text-slate-900 dark:text-white leading-tight">{level.name}</div>
                   </div>
                 </div>
               ))}
             </div>
             {/* Label for column averages row */}
-            <div className="flex items-center justify-end pr-4 mt-2">
-              <div className="text-xs font-bold text-slate-600 dark:text-gray-400">
-                Column Avg
+            <div className="flex items-center justify-end pr-3 mt-2">
+              <div className="text-[10px] font-bold text-slate-600 dark:text-gray-400 uppercase">
+                Col Avg
               </div>
             </div>
           </div>
@@ -280,11 +302,11 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                       >
                         {cell && cell.count > 0 ? (
                           <>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-2">
-                              <div className="text-3xl font-bold text-white drop-shadow-lg tabular-nums">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-1.5">
+                              <div className="text-2xl font-bold text-white drop-shadow-lg tabular-nums">
                                 {cell.score.toFixed(2)}
                               </div>
-                              <div className="text-[10px] text-white/80 font-medium mt-1">
+                              <div className="text-[9px] text-white/80 font-medium mt-0.5">
                                 n={cell.count}
                               </div>
                             </div>
@@ -312,12 +334,12 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
               </div>
 
               {/* Row Averages */}
-              <div className="grid grid-rows-5 gap-2 w-20 flex-shrink-0">
+              <div className="grid grid-rows-5 gap-2 w-16 flex-shrink-0">
                 {stats.rowAverages.map((avg, idx) => (
                   <div key={idx} className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30">
                     <div className="text-center">
-                      <div className="text-lg font-bold text-slate-900 dark:text-white tabular-nums">{avg.toFixed(2)}</div>
-                      <div className="text-[9px] text-slate-600 dark:text-gray-400">Row</div>
+                      <div className="text-base font-bold text-slate-900 dark:text-white tabular-nums">{avg.toFixed(2)}</div>
+                      <div className="text-[8px] text-slate-600 dark:text-gray-400 uppercase">Row</div>
                     </div>
                   </div>
                 ))}
@@ -325,81 +347,36 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
             </div>
 
             {/* Column Averages + Labels + Overall */}
-            <div className="flex gap-2 mt-2 mb-4">
+            <div className="flex gap-2 mt-2">
               <div className="flex-1 grid grid-cols-5 gap-2">
                 {SENTIMENT_CATEGORIES.map((cat, idx) => (
                   <div key={cat.id} className="flex flex-col gap-1">
                     {/* Column Average */}
-                    <div className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30 py-3">
+                    <div className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30 py-2">
                       <div className="text-center">
-                        <div className="text-lg font-bold text-slate-900 dark:text-white tabular-nums">{stats.columnAverages[idx]?.toFixed(2) || '—'}</div>
-                        <div className="text-[9px] text-slate-600 dark:text-gray-400">Col</div>
+                        <div className="text-base font-bold text-slate-900 dark:text-white tabular-nums">{stats.columnAverages[idx]?.toFixed(2) || '—'}</div>
+                        <div className="text-[8px] text-slate-600 dark:text-gray-400 uppercase">Col</div>
                       </div>
                     </div>
                     {/* Category Label */}
                     <div className="text-center">
-                      <div className="text-xs font-semibold text-slate-900 dark:text-white leading-tight">{cat.shortName}</div>
-                      <div className="text-[10px] text-gray-500">C{cat.id}</div>
+                      <div className="text-[11px] font-semibold text-slate-900 dark:text-white leading-tight">{cat.shortName}</div>
+                      <div className="text-[8px] text-gray-500">C{cat.id}</div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Overall Average */}
-              <div className="w-20 flex-shrink-0">
-                <div className="flex items-center justify-center rounded-lg bg-teal-500/20 border-2 border-teal-500/40 py-3">
+              <div className="w-16 flex-shrink-0">
+                <div className="flex items-center justify-center rounded-lg bg-teal-500/20 border-2 border-teal-500/40 py-2">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-teal-700 dark:text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
-                    <div className="text-[9px] text-teal-600 dark:text-teal-500">All</div>
+                    <div className="text-base font-bold text-teal-700 dark:text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
+                    <div className="text-[8px] text-teal-600 dark:text-teal-500 uppercase">All</div>
                   </div>
                 </div>
               </div>
             </div>
-        </div>
-
-        {/* Legend - Simple and Business Friendly */}
-        <div className="pt-4 border-t border-white/5">
-          <div className="text-center mb-3">
-            <div className="text-xs font-semibold text-slate-900 dark:text-white mb-1">How to Read the Colors</div>
-            <div className="text-[11px] text-slate-600 dark:text-gray-400">Colors show relative performance within your organization</div>
-          </div>
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: '#15803d' }}>✓</div>
-              <div className="text-left">
-                <div className="text-sm text-slate-900 dark:text-white font-semibold">Top 3</div>
-                <div className="text-[10px] text-slate-600 dark:text-gray-400">Strongest areas</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: '#84cc16' }}>+</div>
-              <div className="text-left">
-                <div className="text-sm text-slate-900 dark:text-white font-medium">Strong</div>
-                <div className="text-[10px] text-slate-600 dark:text-gray-400">Doing well</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: '#fcd34d' }}>○</div>
-              <div className="text-left">
-                <div className="text-sm text-slate-900 dark:text-white">Middle</div>
-                <div className="text-[10px] text-slate-600 dark:text-gray-400">Average</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: '#fb923c' }}>!</div>
-              <div className="text-left">
-                <div className="text-sm text-slate-900 dark:text-white font-medium">Attention</div>
-                <div className="text-[10px] text-slate-600 dark:text-gray-400">Needs work</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg" style={{ backgroundColor: '#dc2626' }}>⚠</div>
-              <div className="text-left">
-                <div className="text-sm text-slate-900 dark:text-white font-semibold">Priority</div>
-                <div className="text-[10px] text-slate-600 dark:text-gray-400">Focus here</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -414,25 +391,25 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
         )}
       </AnimatePresence>
 
-      {/* ACTION BUTTON */}
+      {/* ACTION BUTTON - Ultra Compact */}
       {lowestCells.length > 0 && (
         <div className="flex-shrink-0">
           <button
             onClick={() => onAnalyzeProblemAreas(lowestCells)}
-            className="w-full bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/15 hover:to-purple-500/15 rounded-lg border border-teal-500/30 hover:border-teal-400/50 transition-all p-4 flex items-center justify-between group"
+            className="w-full bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/15 hover:to-purple-500/15 rounded-lg border border-teal-500/30 hover:border-teal-400/50 transition-all p-2 flex items-center justify-between group"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center shadow-lg">
-                <Sparkles className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center shadow-lg flex-shrink-0">
+                <Sparkles className="w-4 h-4 text-white" />
               </div>
               <div className="text-left">
-                <div className="text-base font-bold text-white mb-1">Generate AI Insights</div>
-                <div className="text-sm text-gray-400">
-                  Analyze {lowestCells.length} priority concern areas with our AI • Get actionable recommendations
+                <div className="text-xs font-bold text-white">Generate AI Insights</div>
+                <div className="text-[10px] text-gray-400">
+                  Analyze {lowestCells.length} priority areas • Get recommendations
                 </div>
               </div>
             </div>
-            <ArrowRight className="w-5 h-5 text-teal-400 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-3.5 h-3.5 text-teal-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </button>
         </div>
       )}

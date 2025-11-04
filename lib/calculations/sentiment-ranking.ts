@@ -54,12 +54,12 @@ export function calculateSentimentHeatmap(
       .map(row => {
         const rawScore = row[columnName]
         if (typeof rawScore === 'number' && !isNaN(rawScore)) {
-          // INVERTED: Transform from 1-2 scale to 1-4 scale (inverted)
-          // Raw data: 1=positive (low resistance), 2=negative (high resistance)
-          // Display: 1=negative (dark red), 4=positive (green)
-          // Formula: displayScore = (2.0 - rawScore) * 3.0 + 1.0
-          // This maps: 1.0 → 4.0 (good), 1.5 → 2.5, 2.0 → 1.0 (bad)
-          const transformed = (2.0 - rawScore) * 3.0 + 1.0
+          // SCORE INVERSION:
+          // Raw data: 1 = most positive (low resistance), 3 = most negative (high resistance)
+          // Display: 1 = worst (dark red), 4 = best (green)
+          // Formula: displayScore = 5.5 - (rawScore * 1.5)
+          // This maps: Raw 1.0 → Display 4.0 (best), Raw 2.0 → Display 2.5, Raw 3.0 → Display 1.0 (worst)
+          const transformed = 5.5 - (rawScore * 1.5)
           // Clamp to 1-4 range
           return Math.max(1.0, Math.min(4.0, transformed))
         }
@@ -81,7 +81,7 @@ export function calculateSentimentHeatmap(
   const allValidScores = cellScores
     .filter(c => c.count > 0)
     .map(c => c.score)
-    .sort((a, b) => a - b) // ASCENDING - lowest scores (1.x) are worst (high resistance)
+    .sort((a, b) => a - b) // ASCENDING - lowest display scores (1.x) are worst (high resistance in original 3.0 data)
   
   // Calculate color based on relative ranking
   const cells: SentimentCellData[] = cellScores.map((cell, index) => {
@@ -97,18 +97,18 @@ export function calculateSentimentHeatmap(
       ? allValidScores.findIndex(s => Math.abs(s - cell.score) < 0.001) + 1
       : 99
 
-    // Determine color - Standard logic: Lowest scores get red, highest get green
-    // After transformation: 1.0 = high resistance (bad), 4.0 = low resistance (good)
+    // Determine color - Lowest display scores get red, highest get green
+    // After transformation from 1-3 raw scale: Display 1.0 = worst (raw 3.0), Display 4.0 = best (raw 1.0)
     let color: string = COLOR_RANKING.NO_DATA
     if (cell.count > 0) {
       if (rank <= 3) {
-        color = COLOR_RANKING.BOTTOM_3 // Dark red - lowest 3 scores (worst/most resistance)
+        color = COLOR_RANKING.BOTTOM_3 // Dark red - lowest 3 display scores (worst/most resistance)
       } else if (rank <= 8) {
-        color = COLOR_RANKING.BOTTOM_8 // Orange - low scores
+        color = COLOR_RANKING.BOTTOM_8 // Orange - low display scores
       } else if (rank >= allValidScores.length - 2) {
-        color = COLOR_RANKING.TOP_3 // Dark green - highest 3 scores (best/least resistance)
+        color = COLOR_RANKING.TOP_3 // Dark green - highest 3 display scores (best/least resistance)
       } else if (rank >= allValidScores.length - 7) {
-        color = COLOR_RANKING.TOP_8 // Light green - high scores
+        color = COLOR_RANKING.TOP_8 // Light green - high display scores
       } else {
         color = COLOR_RANKING.MIDDLE // Yellow - middle range
       }
@@ -175,25 +175,27 @@ function filterData(data: any[], filters: FilterState): any[] {
   })
 }
 
-// Get HIGHEST scoring cells for GPT analysis (most resistance = problem areas)
+// Get LOWEST display scoring cells for GPT analysis (most resistance = problem areas)
+// After transformation: lowest display scores (near 1.0) = highest raw scores (near 3.0) = worst areas
 export function getLowestScoringCells(
   cells: SentimentCellData[],
   count: number = 5
 ): SentimentCellData[] {
   return cells
     .filter(c => c.count > 0)
-    .sort((a, b) => b.score - a.score) // DESCENDING - highest scores are problem areas
+    .sort((a, b) => a.score - b.score) // ASCENDING - lowest display scores are problem areas
     .slice(0, count)
 }
 
-// Get LOWEST scoring cells (strengths - least resistance)
+// Get HIGHEST display scoring cells (strengths - least resistance)
+// After transformation: highest display scores (near 4.0) = lowest raw scores (near 1.0) = best areas
 export function getHighestScoringCells(
   cells: SentimentCellData[],
   count: number = 5
 ): SentimentCellData[] {
   return cells
     .filter(c => c.count > 0)
-    .sort((a, b) => a.score - b.score) // ASCENDING - lowest scores are strengths
+    .sort((a, b) => b.score - a.score) // DESCENDING - highest display scores are strengths
     .slice(0, count)
 }
 
