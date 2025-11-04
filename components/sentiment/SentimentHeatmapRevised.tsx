@@ -249,25 +249,25 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
           </div>
         </div>
 
-        {/* Grid Container with Averages */}
-        <div className="flex-1 flex gap-2 overflow-auto min-h-0">
+        {/* Grid Container with Averages - SCALED DOWN */}
+        <div className="flex-1 flex gap-1.5 overflow-auto min-h-0">
           
           {/* Y-Axis Labels */}
-          <div className="flex flex-col flex-shrink-0 gap-2">
+          <div className="flex flex-col flex-shrink-0 gap-1.5">
             {/* Row labels aligned with grid rows */}
-            <div className="grid grid-rows-5 gap-2">
+            <div className="flex-1 grid grid-rows-5 gap-1.5">
               {SENTIMENT_LEVELS.map(level => (
-                <div key={level.id} className="flex items-center justify-end pr-3">
+                <div key={level.id} className="flex items-center justify-end pr-2">
                   <div className="text-right">
-                    <div className="text-[10px] text-slate-500 mb-0.5">L{level.id}</div>
-                    <div className="text-xs font-semibold text-slate-900 dark:text-white leading-tight">{level.name}</div>
+                    <div className="text-[9px] text-slate-500">L{level.id}</div>
+                    <div className="text-[10px] font-semibold text-slate-900 dark:text-white leading-tight">{level.name}</div>
                   </div>
                 </div>
               ))}
             </div>
             {/* Label for column averages row */}
-            <div className="flex items-center justify-end pr-3 mt-2">
-              <div className="text-[10px] font-bold text-slate-600 dark:text-gray-400 uppercase">
+            <div className="flex items-center justify-end pr-2 h-[35px]">
+              <div className="text-[9px] font-bold text-slate-600 dark:text-gray-400 uppercase">
                 Col Avg
               </div>
             </div>
@@ -276,9 +276,9 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
           {/* Grid + Averages */}
           <div className="flex-1 flex flex-col min-w-0">
             {/* Main Grid with Row Averages */}
-            <div className="flex-1 flex gap-2">
-              {/* Heatmap Grid */}
-              <div className="flex-1 grid grid-cols-5 grid-rows-5 gap-2">
+            <div className="flex-1 flex gap-1.5">
+              {/* Heatmap Grid - FULL HEIGHT */}
+              <div className="flex-1 grid grid-cols-5 grid-rows-5 gap-1.5">
                 {SENTIMENT_LEVELS.map((level) => (
                   SENTIMENT_CATEGORIES.map((cat) => {
                     const cellId = `L${level.id}_C${cat.id}`
@@ -289,24 +289,24 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                         key={cellId}
                         onClick={() => cell && cell.count > 0 ? setSelectedCell(cellId) : null}
                         className={cn(
-                          "relative rounded-lg transition-all border-2 group aspect-square",
-                          selectedCell === cellId ? 'ring-4 ring-white/30 scale-105 z-20' : 'ring-0',
-                          cell && cell.count > 0 ? 'cursor-pointer hover:scale-105 hover:z-10' : 'cursor-default opacity-40'
+                          "relative rounded transition-all border group min-h-0",
+                          selectedCell === cellId ? 'ring-2 ring-white/30 scale-105 z-20' : 'ring-0',
+                          cell && cell.count > 0 ? 'cursor-pointer hover:scale-[1.03] hover:z-10' : 'cursor-default opacity-40'
                         )}
                         style={{
                           backgroundColor: cell?.color || '#374151',
                           borderColor: selectedCell === cellId ? '#fff' : 'transparent'
                         }}
-                        whileHover={cell && cell.count > 0 ? { scale: 1.05 } : {}}
+                        whileHover={cell && cell.count > 0 ? { scale: 1.03 } : {}}
                         whileTap={cell && cell.count > 0 ? { scale: 0.98 } : {}}
                       >
                         {cell && cell.count > 0 ? (
                           <>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center p-1.5">
-                              <div className="text-2xl font-bold text-white drop-shadow-lg tabular-nums">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-1">
+                              <div className="text-xl font-bold text-white drop-shadow-lg tabular-nums">
                                 {cell.score.toFixed(2)}
                               </div>
-                              <div className="text-[9px] text-white/80 font-medium mt-0.5">
+                              <div className="text-[8px] text-white/80 font-medium">
                                 n={cell.count}
                               </div>
                             </div>
@@ -334,11 +334,11 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
               </div>
 
               {/* Row Averages */}
-              <div className="grid grid-rows-5 gap-2 w-16 flex-shrink-0">
+              <div className="grid grid-rows-5 gap-1.5 w-14 flex-shrink-0">
                 {stats.rowAverages.map((avg, idx) => (
                   <div key={idx} className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30">
                     <div className="text-center">
-                      <div className="text-base font-bold text-slate-900 dark:text-white tabular-nums">{avg.toFixed(2)}</div>
+                      <div className="text-sm font-bold text-slate-900 dark:text-white tabular-nums">{avg.toFixed(2)}</div>
                       <div className="text-[8px] text-slate-600 dark:text-gray-400 uppercase">Row</div>
                     </div>
                   </div>
@@ -347,32 +347,32 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
             </div>
 
             {/* Column Averages + Labels + Overall */}
-            <div className="flex gap-2 mt-2">
-              <div className="flex-1 grid grid-cols-5 gap-2">
+            <div className="flex gap-1.5 mt-1">
+              <div className="flex-1 grid grid-cols-5 gap-1.5">
                 {SENTIMENT_CATEGORIES.map((cat, idx) => (
-                  <div key={cat.id} className="flex flex-col gap-1">
+                  <div key={cat.id} className="flex flex-col gap-0.5">
                     {/* Column Average */}
-                    <div className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30 py-2">
+                    <div className="flex items-center justify-center rounded-lg bg-slate-500/20 border border-slate-500/30 h-[35px]">
                       <div className="text-center">
-                        <div className="text-base font-bold text-slate-900 dark:text-white tabular-nums">{stats.columnAverages[idx]?.toFixed(2) || '—'}</div>
-                        <div className="text-[8px] text-slate-600 dark:text-gray-400 uppercase">Col</div>
+                        <div className="text-sm font-bold text-slate-900 dark:text-white tabular-nums">{stats.columnAverages[idx]?.toFixed(2) || '—'}</div>
+                        <div className="text-[7px] text-slate-600 dark:text-gray-400 uppercase">Col</div>
                       </div>
                     </div>
                     {/* Category Label */}
                     <div className="text-center">
-                      <div className="text-[11px] font-semibold text-slate-900 dark:text-white leading-tight">{cat.shortName}</div>
-                      <div className="text-[8px] text-gray-500">C{cat.id}</div>
+                      <div className="text-[10px] font-semibold text-slate-900 dark:text-white leading-tight">{cat.shortName}</div>
+                      <div className="text-[7px] text-gray-500">C{cat.id}</div>
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Overall Average */}
-              <div className="w-16 flex-shrink-0">
-                <div className="flex items-center justify-center rounded-lg bg-teal-500/20 border-2 border-teal-500/40 py-2">
+              <div className="w-14 flex-shrink-0">
+                <div className="flex items-center justify-center rounded-lg bg-teal-500/20 border-2 border-teal-500/40 h-[35px]">
                   <div className="text-center">
-                    <div className="text-base font-bold text-teal-700 dark:text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
-                    <div className="text-[8px] text-teal-600 dark:text-teal-500 uppercase">All</div>
+                    <div className="text-sm font-bold text-teal-700 dark:text-teal-400 tabular-nums">{stats.overallAverage.toFixed(2)}</div>
+                    <div className="text-[7px] text-teal-600 dark:text-teal-500 uppercase">All</div>
                   </div>
                 </div>
               </div>

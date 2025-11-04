@@ -77,11 +77,11 @@ export function calculateSentimentHeatmap(
     }
   })
 
-  // Get all valid scores for ranking - ASCENDING (lowest first, as they're worst after transformation)
+  // Get all valid scores for ranking - DESCENDING (highest first, as they're worst)
   const allValidScores = cellScores
     .filter(c => c.count > 0)
     .map(c => c.score)
-    .sort((a, b) => a - b) // ASCENDING - lowest display scores (1.x) are worst (high resistance in original 3.0 data)
+    .sort((a, b) => b - a) // DESCENDING - highest display scores are worst (will show red)
   
   // Calculate color based on relative ranking
   const cells: SentimentCellData[] = cellScores.map((cell, index) => {
@@ -92,23 +92,24 @@ export function calculateSentimentHeatmap(
     const level = SENTIMENT_LEVELS[levelId - 1]
     const category = SENTIMENT_CATEGORIES[categoryId - 1]
     
-    // Determine rank (1 = LOWEST score = WORST)
+    // Determine rank (1 = HIGHEST score = WORST)
     const rank = cell.count > 0
       ? allValidScores.findIndex(s => Math.abs(s - cell.score) < 0.001) + 1
       : 99
 
-    // Determine color - Lowest display scores get red, highest get green
-    // After transformation from 1-3 raw scale: Display 1.0 = worst (raw 3.0), Display 4.0 = best (raw 1.0)
+    // Determine color - RELATIVE RANKING
+    // HIGH SCORES = RED (worst), LOW SCORES = GREEN (best)
+    // Rank 1-3 = highest display scores = WORST cells = DARK RED
     let color: string = COLOR_RANKING.NO_DATA
     if (cell.count > 0) {
       if (rank <= 3) {
-        color = COLOR_RANKING.BOTTOM_3 // Dark red - lowest 3 display scores (worst/most resistance)
+        color = COLOR_RANKING.BOTTOM_3 // Dark red - HIGHEST 3 scores (worst)
       } else if (rank <= 8) {
-        color = COLOR_RANKING.BOTTOM_8 // Orange - low display scores
+        color = COLOR_RANKING.BOTTOM_8 // Orange - ranks 4-8 (high scores)
       } else if (rank >= allValidScores.length - 2) {
-        color = COLOR_RANKING.TOP_3 // Dark green - highest 3 display scores (best/least resistance)
+        color = COLOR_RANKING.TOP_3 // Dark green - LOWEST 3 scores (best)
       } else if (rank >= allValidScores.length - 7) {
-        color = COLOR_RANKING.TOP_8 // Light green - high display scores
+        color = COLOR_RANKING.TOP_8 // Light green - low scores
       } else {
         color = COLOR_RANKING.MIDDLE // Yellow - middle range
       }
