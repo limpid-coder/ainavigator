@@ -57,10 +57,11 @@ export function calculateSentimentHeatmap(
           // SCORE INVERSION:
           // Raw data: 1 = most positive (low resistance), 3 = most negative (high resistance)
           // Display: 1 = worst (dark red), 4 = best (green)
-          // Formula: displayScore = 5.5 - (rawScore * 1.5)
+          // Actual data range: 1.0 to 3.0 (confirmed by database analysis)
+          // Formula: displayScore = 4.0 - (rawScore - 1.0) * 1.5
           // This maps: Raw 1.0 → Display 4.0 (best), Raw 2.0 → Display 2.5, Raw 3.0 → Display 1.0 (worst)
-          const transformed = 5.5 - (rawScore * 1.5)
-          // Clamp to 1-4 range
+          const transformed = 4.0 - ((rawScore - 1.0) * 1.5)
+          // Clamp to 1-4 range for safety
           return Math.max(1.0, Math.min(4.0, transformed))
         }
         return null

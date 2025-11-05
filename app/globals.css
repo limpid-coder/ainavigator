@@ -10,14 +10,14 @@
     --brand-blue: 83 128 179;
     --brand-teal: 20 184 166;
 
-    /* Light Mode Colors - Enhanced with better contrast */
-    --background: 248 250 252; /* Subtle blue-gray instead of pure white */
+    /* Light Mode Colors - Bone Off-White Primary */
+    --background: 249 246 240; /* Bone off-white - warm, inviting cream tone */
     --foreground: 15 23 42; /* Slate 900 */
 
-    /* Light Mode Surfaces */
-    --surface-primary: 255 255 255; /* Pure white for cards */
-    --surface-secondary: 241 245 249; /* Slate 100 */
-    --surface-tertiary: 226 232 240; /* Slate 200 */
+    /* Light Mode Surfaces - Warm Palette */
+    --surface-primary: 255 253 250; /* Warm white for cards */
+    --surface-secondary: 245 242 236; /* Slightly darker bone */
+    --surface-tertiary: 235 230 222; /* Warmer tertiary surface */
 
     /* Glass Morphism */
     --glass-bg-dark: 0 0 0 / 0.4;

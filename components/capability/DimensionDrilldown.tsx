@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   Radar,
@@ -10,10 +10,11 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer
 } from 'recharts'
-import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, Info } from 'lucide-react'
+import { ArrowLeft, ArrowRight, AlertTriangle, CheckCircle, Info, Lightbulb, Sparkles } from 'lucide-react'
 import { getDimensionById, getConstructsForDimension } from '@/lib/constants/capability-metadata'
 import { DimensionScore } from '@/lib/calculations/capability-analysis'
 import { useTheme } from '@/lib/contexts/theme-context'
+import { InterventionDetail } from '@/components/interventions/InterventionDetail'
 
 interface DimensionDrilldownProps {
   dimensionId: number
@@ -38,7 +39,30 @@ export default function DimensionDrilldown({
   const { theme } = useTheme()
   const dimensionMeta = getDimensionById(dimensionId)
   const constructsMeta = getConstructsForDimension(dimensionId)
-  
+
+  // Intervention state
+  const [interventions, setInterventions] = useState<any[]>([])
+  const [selectedIntervention, setSelectedIntervention] = useState<string | null>(null)
+  const [interventionsLoading, setInterventionsLoading] = useState(false)
+
+  // Fetch interventions for this dimension
+  useEffect(() => {
+    const fetchInterventions = async () => {
+      setInterventionsLoading(true)
+      try {
+        const response = await fetch(`/api/interventions/capability?dimension=${dimensionId}`)
+        const data = await response.json()
+        setInterventions(data.interventions || [])
+      } catch (error) {
+        console.error('Failed to fetch interventions:', error)
+        setInterventions([])
+      } finally {
+        setInterventionsLoading(false)
+      }
+    }
+    fetchInterventions()
+  }, [dimensionId])
+
   // Calculate dimension scores from data
   const dimension = useMemo(() => {
     // Calculate scores for each construct in this dimension
@@ -104,6 +128,7 @@ export default function DimensionDrilldown({
   const cn = (...classes: (string | boolean | undefined)[]) => classes.filter(Boolean).join(' ')
 
   return (
+    <>
     <div className="h-full grid grid-cols-12 grid-rows-12 gap-2 overflow-hidden">
       
       {/* TOP ROW: NAVIGATION & HEADER - Row 1-2 */}
@@ -318,7 +343,66 @@ export default function DimensionDrilldown({
         )}
       </div>
 
+      {/* Intervention Recommendations - Full Width Below Main Grid */}
+      <div className="col-span-12 row-span-1 mt-2">
+        <div className="bg-gradient-to-br from-purple-500/5 to-transparent rounded-lg border border-purple-500/20 p-2">
+          <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-white/5">
+            <div className="flex items-center gap-1.5">
+              <Lightbulb className="w-3.5 h-3.5 text-purple-400" />
+              <span className="text-[9px] font-semibold text-slate-600 dark:text-gray-400 uppercase tracking-wider">
+                Recommended Interventions
+              </span>
+            </div>
+            {interventionsLoading && (
+              <span className="text-[8px] text-gray-500">Loading...</span>
+            )}
+          </div>
+
+          {!interventionsLoading && interventions.length === 0 && (
+            <div className="text-[9px] text-gray-500 text-center py-2">
+              No interventions available for this dimension
+            </div>
+          )}
+
+          {!interventionsLoading && interventions.length > 0 && (
+            <div className="grid grid-cols-3 gap-2">
+              {interventions.slice(0, 3).map((intervention: any, idx: number) => (
+                <button
+                  key={intervention.code}
+                  onClick={() => setSelectedIntervention(intervention.code)}
+                  className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-400/30 rounded p-1.5 transition-all text-left group"
+                >
+                  <div className="flex items-start gap-1 mb-0.5">
+                    <Sparkles className="w-2.5 h-2.5 text-purple-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[9px] font-semibold text-slate-900 dark:text-white line-clamp-1 group-hover:text-purple-400 transition-colors">
+                        {intervention.code}: {intervention.name}
+                      </div>
+                      <div className="text-[8px] text-gray-500 uppercase tracking-wide">
+                        {intervention.level} • Priority {idx + 1}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-[8px] text-slate-600 dark:text-gray-400 line-clamp-2 leading-relaxed">
+                    {intervention.core_function}
+                  </p>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
     </div>
+
+    {/* Intervention Detail Modal */}
+    <InterventionDetail
+      isOpen={selectedIntervention !== null}
+      interventionCode={selectedIntervention}
+      onClose={() => setSelectedIntervention(null)}
+      onSelectNextStep={(code) => setSelectedIntervention(code)}
+    />
+  </>
   )
 }
 

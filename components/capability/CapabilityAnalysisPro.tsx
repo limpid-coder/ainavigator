@@ -34,17 +34,32 @@ export default function CapabilityAnalysisPro({
   const [chartView, setChartView] = useState<ChartView>('comparison')
   const [benchmarkType, setBenchmarkType] = useState<BenchmarkType>('industry')
 
-  const assessment = useMemo(() =>
-    calculateCapabilityAssessment(data, benchmarks, filters),
-    [data, benchmarks, filters]
-  )
-
   // Mock benchmark data (replace with actual database queries)
   const benchmarkComparisons = useMemo(() => ({
     all: { label: 'All Companies', avg: 4.3, count: 150 },
     industry: { label: 'Financial Services', avg: 4.5, count: 42 },
     region: { label: 'North America', avg: 4.2, count: 68 },
   }), [])
+
+  // Adjust benchmarks based on selected benchmark type
+  const adjustedBenchmarks = useMemo(() => {
+    // Industry is the baseline (what was passed in as the default benchmarks prop)
+    const baselineAvg = benchmarkComparisons['industry'].avg
+    const targetAvg = benchmarkComparisons[benchmarkType].avg
+    const scaleFactor = targetAvg / baselineAvg
+
+    // Scale all benchmark values proportionally
+    const adjusted: Record<number, number> = {}
+    Object.keys(benchmarks).forEach(dimId => {
+      adjusted[Number(dimId)] = benchmarks[Number(dimId)] * scaleFactor
+    })
+    return adjusted
+  }, [benchmarks, benchmarkType, benchmarkComparisons])
+
+  const assessment = useMemo(() =>
+    calculateCapabilityAssessment(data, adjustedBenchmarks, filters),
+    [data, adjustedBenchmarks, filters]
+  )
   
   // Chart 1: Your Score vs Benchmark
   const comparisonData = useMemo(() => 
@@ -106,7 +121,7 @@ export default function CapabilityAnalysisPro({
         </div>
 
         {/* Chart View Selector */}
-        <div className="flex items-center gap-1.5 p-1 bg-white/5 rounded-lg border border-white/10">
+        <div className="flex items-center gap-2 p-1.5 bg-white/5 rounded-lg border border-white/10">
           {chartViews.map((view) => {
             const Icon = view.icon
             return (
@@ -114,13 +129,13 @@ export default function CapabilityAnalysisPro({
                 key={view.id}
                 onClick={() => setChartView(view.id)}
                 className={cn(
-                  "flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
+                  "flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-md transition-all text-sm font-medium",
                   chartView === view.id
                     ? "bg-teal-500/20 text-teal-700 dark:text-teal-400 border border-teal-500/30 shadow-lg"
                     : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
                 )}
               >
-                <Icon className="w-3.5 h-3.5" />
+                <Icon className="w-4 h-4" />
                 <span className="hidden sm:inline">{view.label}</span>
               </button>
             )
@@ -128,13 +143,13 @@ export default function CapabilityAnalysisPro({
         </div>
 
         {/* Benchmark Selector */}
-        <div className="flex items-center gap-1.5 p-1 bg-white/5 rounded-lg border border-white/10">
+        <div className="flex items-center gap-2 p-1.5 bg-white/5 rounded-lg border border-white/10">
           {(['all', 'industry', 'region'] as BenchmarkType[]).map((type) => (
             <button
               key={type}
               onClick={() => setBenchmarkType(type)}
               className={cn(
-                "flex-1 px-2 py-1.5 rounded-md transition-all text-xs font-medium",
+                "flex-1 px-3 py-2.5 rounded-md transition-all text-sm font-medium",
                 benchmarkType === type
                   ? "bg-purple-500/20 text-purple-700 dark:text-purple-400 border border-purple-500/30"
                   : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"

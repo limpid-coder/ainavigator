@@ -71,17 +71,17 @@ export default function CapabilityOverview({
           <div className="flex items-baseline gap-1">
             <span className={cn(
               "text-5xl font-bold tabular-nums",
-              assessment.overall.average >= 7 ? "text-green-400" : 
-              assessment.overall.average >= 5 ? "text-blue-400" : "text-orange-400"
+              assessment.overall.average >= 6 ? "text-green-400" :
+              assessment.overall.average >= 4 ? "text-blue-400" : "text-orange-400"
             )}>
               {assessment.overall.average.toFixed(1)}
             </span>
-            <span className="text-lg text-gray-500 mb-2">/10</span>
+            <span className="text-lg text-gray-500 mb-2">/7</span>
           </div>
         </div>
         <div className="flex items-center justify-between text-[9px]">
           <span className="text-gray-500">
-            {assessment.overall.average >= 7 ? 'Advanced' : assessment.overall.average >= 5 ? 'Intermediate' : 'Developing'}
+            {assessment.overall.average >= 6 ? 'Advanced' : assessment.overall.average >= 4 ? 'Intermediate' : 'Developing'}
           </span>
           <div className="flex items-center gap-0.5">
             <TrendingUp className="w-2.5 h-2.5 text-green-400" />
@@ -100,7 +100,7 @@ export default function CapabilityOverview({
           <div className="text-[11px] font-medium text-white mb-0.5">{assessment.overall.highest?.name}</div>
           <div className="flex items-baseline gap-1">
             <span className="text-2xl font-bold text-green-400 tabular-nums">{assessment.overall.highest?.average.toFixed(1)}</span>
-            <span className="text-xs text-gray-500">/10</span>
+            <span className="text-xs text-gray-500">/7</span>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function CapabilityOverview({
           <div className="text-[11px] font-medium text-white mb-0.5">{assessment.overall.lowest?.name}</div>
           <div className="flex items-baseline gap-1">
             <span className="text-2xl font-bold text-orange-400 tabular-nums">{assessment.overall.lowest?.average.toFixed(1)}</span>
-            <span className="text-xs text-gray-500">/10</span>
+            <span className="text-xs text-gray-500">/7</span>
           </div>
         </div>
       </div>
@@ -177,9 +177,9 @@ export default function CapabilityOverview({
                 tick={{ fill: isDark ? '#9CA3AF' : '#374151', fontSize: 9 }}
               />
               <PolarRadiusAxis
-                domain={[0, 10]}
+                domain={[0, 7]}
                 tick={{ fill: isDark ? '#6B7280' : '#4B5563', fontSize: 8 }}
-                tickCount={6}
+                tickCount={8}
               />
               
               {/* Max (outer bound) */}

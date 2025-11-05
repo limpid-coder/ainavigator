@@ -5,11 +5,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   X, Sparkles, Zap, Shield, Dice6, ArrowRight,
   TrendingUp, Clock, Users, Target, Flame,
-  CheckCircle2, ChevronRight, Info, Eye
+  CheckCircle2, ChevronRight, Info, Eye, AlertTriangle
 } from 'lucide-react'
 import { CategoryActionData } from '@/lib/services/category-data.service'
 import { cn } from '@/lib/utils'
 import { InterventionDetail } from '@/components/interventions/InterventionDetail'
+import { CELL_TABOOS } from '@/lib/constants/sentiment-metadata'
 
 interface CategoryDetailModalProps {
   cellData: {
@@ -291,6 +292,31 @@ export default function CategoryDetailModal({
                       <p className="text-sm text-gray-300 leading-relaxed">
                         {categoryData.showsUpAs}
                       </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Taboos - Things to Avoid */}
+              {CELL_TABOOS[cellData.cellId] && (
+                <div className="bg-gradient-to-r from-red-500/5 to-amber-500/5 rounded-xl border border-red-500/20 p-4">
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <h3 className="text-sm font-semibold text-red-400 mb-3 uppercase tracking-wide">
+                        Critical Things to Avoid
+                      </h3>
+                      <ul className="space-y-2">
+                        {CELL_TABOOS[cellData.cellId].map((taboo, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-2 text-sm text-gray-300 leading-relaxed"
+                          >
+                            <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">•</span>
+                            <span>{taboo}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>

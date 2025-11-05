@@ -6,7 +6,7 @@ import {
   Filter, Download, Activity,
   Users, Target, ChevronRight,
   BarChart3, Brain, FileText, Settings,
-  Maximize2, Minimize2, Bot, Search
+  Maximize2, Minimize2, Bot, Search, Lightbulb
 } from 'lucide-react'
 import Link from 'next/link'
 import { useAuth } from '@/lib/hooks/useAuth'
@@ -37,11 +37,12 @@ import OpenEndedSummary from '@/components/capability/OpenEndedSummary'
 import RecommendationsView from '@/components/recommendations/RecommendationsView'
 import ReportsView from '@/components/reports/ReportsView'
 import AIAgentView from '@/components/ai-agent/AIAgentView'
+import InterventionsBrowsePage from '@/components/interventions/InterventionsBrowsePage'
 import { generatePDF } from '@/lib/utils/pdfExport'
 // Skeleton component imported but not actively used in current view
 // import { SkeletonDashboard } from '@/components/ui/skeleton'
 
-type NavigationView = 'overview' | 'sentiment' | 'capability' | 'recommendations' | 'reports' | 'ai-agent'
+type NavigationView = 'overview' | 'sentiment' | 'capability' | 'interventions' | 'recommendations' | 'reports' | 'ai-agent'
 
 export default function AssessmentPage() {
   const { session, company } = useAuth()
@@ -200,7 +201,8 @@ export default function AssessmentPage() {
       if (view === 'overview') setCurrentView({ type: 'overview' })
       else if (view === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
       else if (view === 'capability') setCurrentView({ type: 'capability_overview' })
-      
+      else if (view === 'interventions') setCurrentView({ type: 'overview' })
+
       // Track keyboard navigation
       setKeyboardShortcutCount(prev => {
         const newCount = prev + 1
@@ -419,17 +421,24 @@ export default function AssessmentPage() {
       description: '25 dimensions',
       tooltip: 'Deep dive into employee sentiment across 25 key dimensions to identify engagement patterns and concerns.'
     },
-    { 
-      id: 'capability' as NavigationView, 
-      icon: Target, 
-      label: 'Capability', 
+    {
+      id: 'capability' as NavigationView,
+      icon: Target,
+      label: 'Capability',
       description: '8 dimensions',
       tooltip: 'Assess organizational AI capabilities across 8 strategic dimensions and compare against industry benchmarks.'
     },
-    { 
-      id: 'recommendations' as NavigationView, 
-      icon: Brain, 
-      label: 'Recommendations', 
+    {
+      id: 'interventions' as NavigationView,
+      icon: Lightbulb,
+      label: 'Interventions',
+      description: 'Browse catalog',
+      tooltip: 'Explore the complete catalogue of interventions to improve your AI readiness across all dimensions.'
+    },
+    {
+      id: 'recommendations' as NavigationView,
+      icon: Brain,
+      label: 'Recommendations',
       description: 'AI insights',
       tooltip: 'Get AI-powered recommendations tailored to your organization\'s specific needs and gaps.'
     },
@@ -1009,6 +1018,20 @@ export default function AssessmentPage() {
                   </AnimatePresence>
                 )}
 
+                {/* INTERVENTIONS */}
+                {activeView === 'interventions' && (
+                  <motion.div
+                    key="interventions"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full"
+                  >
+                    <InterventionsBrowsePage />
+                  </motion.div>
+                )}
+
                 {/* RECOMMENDATIONS */}
                 {activeView === 'recommendations' && (
                   <motion.div
@@ -1078,6 +1101,7 @@ export default function AssessmentPage() {
           if (view === 'overview') setCurrentView({ type: 'overview' })
           else if (view === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
           else if (view === 'capability') setCurrentView({ type: 'capability_overview' })
+          else if (view === 'interventions') setCurrentView({ type: 'overview' })
         }}
         onAction={handleQuickAction}
       />
@@ -1119,8 +1143,8 @@ export default function AssessmentPage() {
       />
 
       {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-t border-slate-200/60 dark:border-white/[0.08] safe-area-inset-bottom">
-        <div className="grid grid-cols-6 gap-0">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-t border-slate-200/60 dark:border-white/[0.08] safe-area-inset-bottom overflow-x-auto">
+        <div className="grid grid-cols-7 gap-0 min-w-max">
           {navigationItems.map((item) => {
             const Icon = item.icon
             const isActive = activeView === item.id
@@ -1132,6 +1156,7 @@ export default function AssessmentPage() {
                   if (item.id === 'overview') setCurrentView({ type: 'overview' })
                   else if (item.id === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
                   else if (item.id === 'capability') setCurrentView({ type: 'capability_overview' })
+                  else if (item.id === 'interventions') setCurrentView({ type: 'overview' })
                   else if (item.id === 'recommendations') setCurrentView({ type: 'recommendations_combined' })
                   else if (item.id === 'reports') setCurrentView({ type: 'recommendations_combined' })
                   else if (item.id === 'ai-agent') setCurrentView({ type: 'overview' })

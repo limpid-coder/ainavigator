@@ -96,12 +96,13 @@ export function calculateCapabilityAssessment(
     
     const benchmark = benchmarks[dim.id] || 0
     
-    // Determine status
+    // Determine status (scale: 1-7, where 7 is highest maturity)
+    // Thresholds adjusted for 1-7 scale: 0.3 ≈ 4%, 0.7 ≈ 10%, 1.0 ≈ 14%
     let status: 'above' | 'at' | 'below' | 'significantly_below' = 'at'
     const diff = average - benchmark
-    if (diff > 0.5) status = 'above'
-    else if (diff < -1.0) status = 'significantly_below'
-    else if (diff < -0.3) status = 'below'
+    if (diff > 0.3) status = 'above'  // More than 4% above benchmark
+    else if (diff < -1.0) status = 'significantly_below'  // More than 14% below
+    else if (diff < -0.3) status = 'below'  // More than 4% below
     
     return {
       dimensionId: dim.id,

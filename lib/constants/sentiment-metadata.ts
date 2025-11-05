@@ -144,22 +144,180 @@ export const COLOR_RANKING = {
   NO_DATA: '#6b7280'     // Gray - no data
 } as const
 
+// Taboos: Things to AVOID when addressing concerns in each sentiment area
+export const CELL_TABOOS: Record<string, string[]> = {
+  'L1_C1': [
+    "Don't remove all human decision points from workflows",
+    "Avoid implementing AI without clear opt-out mechanisms",
+    "Never deploy AI that can't be paused or overridden by users",
+    "Don't hide automation behind opaque systems"
+  ],
+  'L1_C2': [
+    "Don't create rigid AI systems that can't handle exceptions",
+    "Avoid one-size-fits-all AI workflows without customization",
+    "Never ignore user requests for workflow modifications",
+    "Don't lock users into inflexible AI processes"
+  ],
+  'L1_C3': [
+    "Don't eliminate all personal interaction opportunities",
+    "Avoid cold, purely transactional AI communications",
+    "Never remove empathy cues from AI responses",
+    "Don't replace human mentorship with AI entirely"
+  ],
+  'L1_C4': [
+    "Don't deploy black-box AI without explanation",
+    "Avoid hiding how AI assists individual work",
+    "Never refuse to explain AI recommendations",
+    "Don't make AI changes without communicating impact"
+  ],
+  'L1_C5': [
+    "Don't force AI adoption for all personal tasks",
+    "Avoid eliminating human support options",
+    "Never shame employees for preferring human interaction",
+    "Don't make AI the only path for personal productivity"
+  ],
+
+  'L2_C1': [
+    "Don't let AI dictate team roles without consultation",
+    "Avoid autonomous AI that bypasses team input",
+    "Never implement AI that undermines team authority",
+    "Don't remove team autonomy in favor of AI decisions"
+  ],
+  'L2_C2': [
+    "Don't impose rigid AI workflows on dynamic teams",
+    "Avoid AI systems that can't adapt to team needs",
+    "Never force standardization that kills team creativity",
+    "Don't lock teams into inflexible AI collaboration tools"
+  ],
+  'L2_C3': [
+    "Don't replace all team bonding with AI coordination",
+    "Avoid eliminating casual team interactions",
+    "Never let AI mediate all team communication",
+    "Don't remove emotional support from team dynamics"
+  ],
+  'L2_C4': [
+    "Don't hide how AI affects team responsibilities",
+    "Avoid opaque AI changes to collaboration patterns",
+    "Never deploy AI that secretly reshapes roles",
+    "Don't obscure AI's impact on team structure"
+  ],
+  'L2_C5': [
+    "Don't eliminate human managers for AI supervision",
+    "Avoid replacing team leads with AI coordinators",
+    "Never force AI-mediated teamwork for all tasks",
+    "Don't remove human judgment from team decisions"
+  ],
+
+  'L3_C1': [
+    "Don't let AI make fairness decisions without oversight",
+    "Avoid autonomous AI in performance evaluation",
+    "Never allow AI to make irreversible career decisions",
+    "Don't remove human judgment from critical professional matters"
+  ],
+  'L3_C2': [
+    "Don't create rigid AI evaluation systems",
+    "Avoid inflexible AI that can't consider context",
+    "Never use AI that ignores professional nuance",
+    "Don't lock professionals into standardized AI assessments"
+  ],
+  'L3_C3': [
+    "Don't remove empathy from professional feedback",
+    "Avoid purely metric-driven AI evaluations",
+    "Never eliminate human support in difficult situations",
+    "Don't let AI deliver sensitive professional news"
+  ],
+  'L3_C4': [
+    "Don't use black-box AI for professional decisions",
+    "Avoid unexplained AI in fairness-critical contexts",
+    "Never hide how AI affects professional outcomes",
+    "Don't make AI decisions non-contestable"
+  ],
+  'L3_C5': [
+    "Don't replace human judgment in ethical dilemmas",
+    "Avoid AI-only solutions for trust-critical issues",
+    "Never eliminate human accountability for professional standards",
+    "Don't let AI override professional expertise"
+  ],
+
+  'L4_C1': [
+    "Don't let AI autonomously eliminate jobs",
+    "Avoid surprise career-impacting AI decisions",
+    "Never use AI to secretly plan workforce changes",
+    "Don't remove human control over career trajectory"
+  ],
+  'L4_C2': [
+    "Don't create inflexible AI that limits career growth",
+    "Avoid rigid AI skill assessments",
+    "Never lock employees into narrow AI-defined roles",
+    "Don't use AI to restrict career development paths"
+  ],
+  'L4_C3': [
+    "Don't implement AI without addressing job security fears",
+    "Avoid cold, impersonal AI job transition support",
+    "Never eliminate human career counseling",
+    "Don't let AI deliver job change news without empathy"
+  ],
+  'L4_C4': [
+    "Don't hide AI's impact on job security",
+    "Avoid opaque AI-driven workforce planning",
+    "Never deploy AI that secretly assesses job viability",
+    "Don't obscure how AI affects individual career futures"
+  ],
+  'L4_C5': [
+    "Don't replace career counselors with AI chatbots",
+    "Avoid removing human mentorship in transitions",
+    "Never force AI-only career development",
+    "Don't eliminate personal guidance during job changes"
+  ],
+
+  'L5_C1': [
+    "Don't implement AI that can destabilize the organization",
+    "Avoid autonomous AI in strategic decisions",
+    "Never deploy AI that threatens organizational control",
+    "Don't remove leadership oversight of AI systems"
+  ],
+  'L5_C2': [
+    "Don't create inflexible AI that can't adapt to business changes",
+    "Avoid rigid AI infrastructure during organizational change",
+    "Never lock the organization into inflexible AI architectures",
+    "Don't use AI systems that resist business evolution"
+  ],
+  'L5_C3': [
+    "Don't let AI eliminate organizational culture and values",
+    "Avoid cold AI that damages company identity",
+    "Never remove human elements from organizational mission",
+    "Don't replace cultural touchpoints with AI automation"
+  ],
+  'L5_C4': [
+    "Don't hide AI's systemic organizational impact",
+    "Avoid opaque AI driving major organizational changes",
+    "Never deploy enterprise AI without transparency",
+    "Don't obscure how AI reshapes the organization"
+  ],
+  'L5_C5': [
+    "Don't eliminate human leadership for AI governance",
+    "Avoid removing executive oversight in favor of AI",
+    "Never let AI make final organizational decisions",
+    "Don't replace strategic human judgment with algorithms"
+  ]
+}
+
 // STANDARD LOGIC: Lower display scores (1-2) = MORE resistance = WORSE (red)
 // Higher display scores (3-4) = LESS resistance = BETTER (green)
 export function getRankedColor(score: number, allScores: number[]): string {
   if (allScores.length === 0) return COLOR_RANKING.NO_DATA
-  
+
   // Sort ASCENDING (lowest to highest)
   const sorted = [...allScores].sort((a, b) => a - b)
-  
+
   // Top 3 = LOWEST 3 scores (best sentiment, least resistance)
   const top3Threshold = sorted[2] || sorted[sorted.length - 1]
   const top8Threshold = sorted[7] || sorted[sorted.length - 1]
-  
+
   // Bottom 3 = HIGHEST 3 scores (worst sentiment, most resistance)
   const bottom8Threshold = sorted[sorted.length - 8] || sorted[0]
   const bottom3Threshold = sorted[sorted.length - 3] || sorted[0]
-  
+
   // Lower scores are BETTER (green)
   if (score <= top3Threshold) {
     return COLOR_RANKING.TOP_3 // Dark green - least resistance
