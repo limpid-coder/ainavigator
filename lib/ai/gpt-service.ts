@@ -243,6 +243,88 @@ export class GPTService {
       throw error
     }
   }
+
+  async generateCapabilityInsights(
+    weakDimensions: any[],
+    companyContext: CompanyContext,
+    filters: Record<string, any> = {}
+  ): Promise<any[]> {
+    // Build prompt for capability insights
+    const dimensionsText = weakDimensions
+      .map(dim => `- ${dim.name}: ${dim.average.toFixed(1)}/7 (Benchmark: ${dim.benchmark.toFixed(1)})`)
+      .join('\n')
+
+    const prompt = `Analyze these weak AI capability dimensions for ${companyContext.name}:
+
+${dimensionsText}
+
+Company Context:
+- Industry: ${companyContext.industry}
+- Size: ${companyContext.size}
+- AI Maturity: ${companyContext.aiMaturity}
+
+Generate 3-5 actionable insights about capability gaps. For each insight:
+
+1. Identify the root cause of the weakness
+2. Explain business impact
+3. Provide specific, actionable recommendations
+4. Suggest quick wins and long-term strategies
+
+Return as JSON array with this structure:
+{
+  "insights": [
+    {
+      "dimension": "dimension name",
+      "priority": "critical|high|medium",
+      "gap_analysis": "detailed explanation of the gap",
+      "business_impact": "how this affects the organization",
+      "recommendations": ["recommendation 1", "recommendation 2"],
+      "quick_wins": ["quick win 1", "quick win 2"],
+      "long_term_strategy": "strategic approach",
+      "estimated_effort": "low|medium|high",
+      "estimated_timeline": "time estimate"
+    }
+  ]
+}`
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.apiKey}`
+        },
+        body: JSON.stringify({
+          model: this.model,
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an expert AI capability consultant who provides detailed, actionable insights for improving organizational AI maturity. Always respond in valid JSON format.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ],
+          response_format: { type: 'json_object' },
+          temperature: 0.7,
+          max_tokens: 2500
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.statusText}`)
+      }
+
+      const data = await response.json()
+      const result = JSON.parse(data.choices[0].message.content)
+
+      return result.insights || []
+    } catch (error) {
+      console.error('GPT Capability Insights Error:', error)
+      throw error
+    }
+  }
 }
 
 // Singleton instance

@@ -78,6 +78,7 @@ export type ViewState =
   | { type: 'capability_overview' }
   | { type: 'capability_dimension', dimensionId: number }
   | { type: 'capability_summary' }
+  | { type: 'capability_insights', weakDimensions: any[] }
   | { type: 'recommendations_combined' }
 
 export interface DashboardState {

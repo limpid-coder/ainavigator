@@ -1,15 +1,17 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer, Tooltip } from 'recharts'
 import {
   ChevronRight, TrendingUp, TrendingDown,
-  Target, Info, BarChart3, Layers, Eye
+  Target, Info, BarChart3, Layers, Eye, Sparkles, ArrowRight, Lightbulb, AlertTriangle
 } from 'lucide-react'
 import { calculateCapabilityAssessment } from '@/lib/calculations/capability-analysis'
 import { FilterState } from '@/lib/types/assessment'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/lib/contexts/theme-context'
+import { brandColors } from '@/lib/constants/brand-colors'
 
 interface CapabilityAnalysisProProps {
   data: any[]
@@ -17,6 +19,7 @@ interface CapabilityAnalysisProProps {
   filters: FilterState
   onDimensionClick: (dimensionId: number) => void
   onViewSummary: () => void
+  onAnalyzeWeakDimensions?: (weakDimensions: any[]) => void
 }
 
 type ChartView = 'comparison' | 'variance' | 'performance'
@@ -27,12 +30,14 @@ export default function CapabilityAnalysisPro({
   benchmarks,
   filters,
   onDimensionClick,
-  onViewSummary
+  onViewSummary,
+  onAnalyzeWeakDimensions
 }: CapabilityAnalysisProProps) {
 
   const { theme } = useTheme()
   const [chartView, setChartView] = useState<ChartView>('comparison')
   const [benchmarkType, setBenchmarkType] = useState<BenchmarkType>('industry')
+  const [showGuide, setShowGuide] = useState(false)
 
   // Mock benchmark data (replace with actual database queries)
   const benchmarkComparisons = useMemo(() => ({
@@ -105,20 +110,170 @@ export default function CapabilityAnalysisPro({
 
   const aboveBenchmark = assessment.dimensions.filter(d => d.status === 'above').length
   const belowBenchmark = assessment.dimensions.filter(d => d.status === 'below' || d.status === 'significantly_below').length
+  const weakDimensions = assessment.dimensions.filter(d => d.status === 'below' || d.status === 'significantly_below')
 
   return (
-    <div className="h-full flex flex-col md:flex-row gap-3 md:gap-4 overflow-hidden">
+    <div className="h-full flex flex-col gap-4 overflow-hidden">
+      
+      {/* REFINED HEADER - Clear hierarchy with brand colors */}
+      <div className="flex flex-col gap-3 flex-shrink-0">
+        {/* Top row: Title and actions */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              Organizational Capability Analysis
+            </h2>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-500/10 dark:to-cyan-500/10 border border-blue-200 dark:border-blue-500/20"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+              <span className="text-xs font-semibold text-blue-700 dark:text-blue-300">Click dimensions for details</span>
+            </motion.div>
+          </div>
+
+          <motion.button
+            onClick={() => setShowGuide(!showGuide)}
+            className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all",
+              showGuide
+                ? "bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-400 ring-2 ring-teal-200 dark:ring-teal-500/30"
+                : "bg-gray-50 dark:bg-white/5 text-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10"
+            )}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Info className="w-4 h-4" />
+            <span className="text-sm font-medium">{showGuide ? 'Hide' : 'How to Read'}</span>
+          </motion.button>
+        </div>
+
+        {/* Key metrics cards */}
+        <div className="grid grid-cols-3 gap-3">
+          <motion.div 
+            className="px-4 py-3 rounded-xl bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-500/10 dark:to-cyan-500/10 border-2 border-teal-200 dark:border-teal-500/30"
+            whileHover={{ scale: 1.02, y: -2 }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-teal-500 flex items-center justify-center">
+                <BarChart3 className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Avg Score</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white tabular-nums">{assessment.overall.average.toFixed(1)}</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="px-4 py-3 rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-500/10 dark:to-emerald-500/10 border-2 border-green-200 dark:border-green-500/30"
+            whileHover={{ scale: 1.02, y: -2 }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Above Benchmark</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white tabular-nums">{aboveBenchmark}</div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="px-4 py-3 rounded-xl bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-500/10 dark:to-red-500/10 border-2 border-orange-200 dark:border-orange-500/30"
+            whileHover={{ scale: 1.02, y: -2 }}
+          >
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                <AlertTriangle className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <div className="text-xs text-gray-600 dark:text-gray-400 font-medium">Need Improvement</div>
+                <div className="text-2xl font-bold text-gray-900 dark:text-white tabular-nums">{belowBenchmark}</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Call to Action - Weak Dimensions */}
+        {weakDimensions.length > 0 && onAnalyzeWeakDimensions && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="px-4 py-3 rounded-xl bg-gradient-to-r from-orange-50 via-red-50 to-pink-50 dark:from-orange-500/10 dark:via-red-500/10 dark:to-pink-500/10 border-2 border-orange-300 dark:border-orange-500/30"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                  <Lightbulb className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white">
+                    {weakDimensions.length} {weakDimensions.length === 1 ? 'dimension needs' : 'dimensions need'} strengthening
+                  </p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                    Below industry benchmark - view AI-powered recommendations
+                  </p>
+                </div>
+              </div>
+              <motion.button
+                onClick={() => onAnalyzeWeakDimensions(weakDimensions)}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Get Insights</span>
+                <ArrowRight className="w-4 h-4" />
+              </motion.button>
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      {/* Guide Panel */}
+      <AnimatePresence>
+        {showGuide && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="px-4 py-3 rounded-xl bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center flex-shrink-0">
+                  <Info className="w-4 h-4 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white mb-2">Understanding Your Capability Assessment</h4>
+                  <div className="grid grid-cols-2 gap-3 text-xs text-gray-700 dark:text-gray-300">
+                    <div>
+                      <span className="font-semibold">8 Dimensions:</span> Key areas for AI readiness
+                    </div>
+                    <div>
+                      <span className="font-semibold">Benchmarks:</span> Compare against industry standards
+                    </div>
+                    <div>
+                      <span className="font-semibold">Scores 1-10:</span> Higher is better, 7+ is mature
+                    </div>
+                    <div>
+                      <span className="font-semibold">Click dimensions:</span> Deep dive into specific areas
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* MAIN CONTENT - Charts and Dimensions */}
+      <div className="flex-1 flex flex-col md:flex-row gap-3 md:gap-4 overflow-hidden">
       
       {/* LEFT: MULTI-VIEW RADAR CHARTS */}
       <div className="md:w-5/12 flex flex-col gap-3">
-        
-        {/* Header */}
-        <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-1">Capability Assessment</h2>
-          <p className="text-sm text-slate-600 dark:text-gray-400">
-            8 dimensions • {data.length} respondents analyzed
-          </p>
-        </div>
 
         {/* Chart View Selector */}
         <div className="flex items-center gap-2 p-1.5 bg-white/5 rounded-lg border border-white/10">
@@ -368,13 +523,24 @@ export default function CapabilityAnalysisPro({
             <h2 className="text-lg font-bold text-slate-900 dark:text-white">Dimension Breakdown</h2>
             <p className="text-sm text-slate-600 dark:text-gray-400">Click any row for 4-construct drill-down</p>
           </div>
-          <button 
-            onClick={onViewSummary}
-            className="px-3 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/15 border border-purple-500/20 hover:border-purple-500/30 text-sm text-purple-400 hover:text-purple-300 flex items-center gap-2 transition-all font-medium"
-          >
-            <Eye className="w-4 h-4" />
-            Open-Ended Summary <ChevronRight className="w-4 h-4" />
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2">
+            {weakDimensions.length > 0 && onAnalyzeWeakDimensions && (
+              <button
+                onClick={() => onAnalyzeWeakDimensions(weakDimensions)}
+                className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/20 hover:to-purple-500/20 border border-teal-500/30 hover:border-teal-500/40 text-sm text-teal-400 hover:text-teal-300 flex items-center gap-2 transition-all font-medium"
+              >
+                <Sparkles className="w-4 h-4" />
+                AI Insights ({weakDimensions.length}) <ChevronRight className="w-4 h-4" />
+              </button>
+            )}
+            <button
+              onClick={onViewSummary}
+              className="px-3 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/15 border border-purple-500/20 hover:border-purple-500/30 text-sm text-purple-400 hover:text-purple-300 flex items-center gap-2 transition-all font-medium"
+            >
+              <Eye className="w-4 h-4" />
+              Open-Ended Summary <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Table */}
@@ -458,6 +624,7 @@ export default function CapabilityAnalysisPro({
               <span className="text-gray-500">
                 Scale: <span className="text-slate-600 dark:text-gray-400 font-medium">1-10 Capability Maturity</span>
               </span>
+            </div>
             </div>
           </div>
         </div>

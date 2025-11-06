@@ -26,6 +26,7 @@ import { QuirkyLoadingMessage } from '@/components/ui/loading-messages'
 import { useFunInteractions } from '@/hooks/use-fun-interactions'
 import { ViewState, FilterState, CompanyProfile } from '@/lib/types/assessment'
 import { cn } from '@/lib/utils'
+import { brandColors, viewColors, brandGradients } from '@/lib/constants/brand-colors'
 import FilterPanel from '@/components/dashboard/FilterPanel'
 import ExecutiveDashboard from '@/components/dashboard/ExecutiveDashboard'
 import SentimentHeatmapRevised from '@/components/sentiment/SentimentHeatmapRevised'
@@ -34,6 +35,7 @@ import InterventionsView from '@/components/sentiment/InterventionsView'
 import CapabilityAnalysisPro from '@/components/capability/CapabilityAnalysisPro'
 import DimensionDrilldown from '@/components/capability/DimensionDrilldown'
 import OpenEndedSummary from '@/components/capability/OpenEndedSummary'
+import CapabilityInsightsView from '@/components/capability/CapabilityInsightsView'
 import RecommendationsView from '@/components/recommendations/RecommendationsView'
 import ReportsView from '@/components/reports/ReportsView'
 import AIAgentView from '@/components/ai-agent/AIAgentView'
@@ -47,7 +49,7 @@ type NavigationView = 'overview' | 'sentiment' | 'capability' | 'interventions' 
 export default function AssessmentPage() {
   const { session, company } = useAuth()
   
-  const [activeView, setActiveView] = useState<NavigationView>('ai-agent')
+  const [activeView, setActiveView] = useState<NavigationView>('overview')
   const [currentView, setCurrentView] = useState<ViewState>({ type: 'overview' })
   const setStoreActiveView = useStore((state) => state.setActiveView)
   
@@ -321,48 +323,95 @@ export default function AssessmentPage() {
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:bg-black flex items-center justify-center">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-gray-950 dark:via-black dark:to-gray-950 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-400/10 via-blue-400/5 dark:from-teal-900/10 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-purple-400/10 via-pink-400/5 dark:from-purple-900/10 to-transparent" />
+      <div className="fixed inset-0 bg-white dark:bg-black flex items-center justify-center overflow-hidden">
+        {/* Playful gradient background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-black dark:to-gray-950" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-teal-200/40 via-transparent to-transparent dark:from-teal-900/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-purple-200/40 via-transparent to-transparent dark:from-purple-900/20" />
+          
+          {/* Floating orbs */}
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: 200,
+                height: 200,
+                left: `${20 + i * 30}%`,
+                top: `${20 + i * 20}%`,
+                background: i === 0 
+                  ? 'radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent)'
+                  : i === 1
+                  ? 'radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent)'
+                  : 'radial-gradient(circle, rgba(236, 72, 153, 0.15), transparent)',
+                filter: 'blur(60px)',
+              }}
+              animate={{
+                y: [0, -30, 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                ease: 'easeInOut',
+                delay: i,
+              }}
+            />
+          ))}
         </div>
         
         {/* Loading content */}
         <div className="relative z-10 text-center">
-          {/* Pulsing logo */}
+          {/* Animated logo with multiple effects */}
           <motion.div
             className="relative mb-8 flex justify-center"
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, type: "spring", stiffness: 200 }}
           >
+            {/* Outer pulse ring */}
             <motion.div
-              className="w-20 h-20 rounded-2xl bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center shadow-2xl"
+              className="absolute inset-0 rounded-2xl bg-gradient-to-br from-teal-500 to-purple-500"
               animate={{
-                boxShadow: [
-                  "0 0 30px rgba(20, 184, 166, 0.3)",
-                  "0 0 60px rgba(167, 79, 139, 0.5)",
-                  "0 0 30px rgba(20, 184, 166, 0.3)"
-                ]
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 0, 0.5],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
+                ease: "easeOut"
+              }}
+            />
+            
+            {/* Main logo */}
+            <motion.div
+              className="relative w-24 h-24 rounded-2xl bg-gradient-to-br from-teal-500 to-purple-500 flex items-center justify-center shadow-2xl"
+              animate={{
+                rotate: [0, 5, -5, 0],
+                boxShadow: [
+                  "0 0 40px rgba(20, 184, 166, 0.4)",
+                  "0 0 80px rgba(168, 85, 247, 0.6)",
+                  "0 0 40px rgba(20, 184, 166, 0.4)"
+                ]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
                 ease: "easeInOut"
               }}
             >
-              <Activity className="w-10 h-10 text-white" />
+              <Activity className="w-12 h-12 text-white" />
             </motion.div>
           </motion.div>
 
           <motion.h2
-            className="text-2xl font-bold text-gray-900 dark:text-white mb-3"
+            className="text-3xl font-bold text-gray-900 dark:text-white mb-3"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            Loading Assessment Data
+            Loading Your Assessment
           </motion.h2>
           
           <motion.div
@@ -374,20 +423,25 @@ export default function AssessmentPage() {
             <QuirkyLoadingMessage />
           </motion.div>
 
-          {/* Progress dots */}
-          <div className="flex items-center justify-center gap-2">
-            {[0, 1, 2, 3].map((i) => (
+          {/* Animated progress dots with brand colors */}
+          <div className="flex items-center justify-center gap-3">
+            {[
+              { color: 'from-teal-400 to-teal-500', delay: 0 },
+              { color: 'from-purple-400 to-purple-500', delay: 0.2 },
+              { color: 'from-pink-400 to-pink-500', delay: 0.4 },
+              { color: 'from-orange-400 to-orange-500', delay: 0.6 },
+            ].map((dot, i) => (
               <motion.div
                 key={i}
-                className="w-2 h-2 bg-teal-400 rounded-full"
+                className={`w-3 h-3 rounded-full bg-gradient-to-r ${dot.color} shadow-lg`}
                 animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 1, 0.3]
+                  scale: [1, 1.8, 1],
+                  opacity: [0.4, 1, 0.4]
                 }}
                 transition={{
                   duration: 1.5,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: dot.delay,
                   ease: "easeInOut"
                 }}
               />
@@ -398,94 +452,125 @@ export default function AssessmentPage() {
     )
   }
 
-  // Navigation items for sidebar with tooltips
-  const navigationItems = [
-    { 
-      id: 'ai-agent' as NavigationView, 
-      icon: Bot, 
-      label: 'AI Agent', 
-      description: 'Chat Interface',
-      tooltip: 'Your intelligent AI assistant - ask questions, get insights, and navigate your AI readiness data through natural conversation.'
-    },
-    { 
-      id: 'overview' as NavigationView, 
-      icon: BarChart3, 
-      label: 'Command Center', 
-      description: 'Executive dashboard',
-      tooltip: 'Your AI readiness at a glance - see high-level insights and key metrics across all dimensions.'
-    },
-    { 
-      id: 'sentiment' as NavigationView, 
-      icon: Users, 
-      label: 'Sentiment', 
-      description: '25 dimensions',
-      tooltip: 'Deep dive into employee sentiment across 25 key dimensions to identify engagement patterns and concerns.'
+  // Simplified Navigation - More Intuitive Structure
+  const navigationSections = [
+    {
+      title: 'Overview',
+      items: [
+        { 
+          id: 'overview' as NavigationView, 
+          icon: BarChart3, 
+          label: 'Dashboard', 
+          description: 'Overview',
+          tooltip: 'Your AI readiness at a glance - see high-level insights and key metrics.'
+        },
+      ]
     },
     {
-      id: 'capability' as NavigationView,
-      icon: Target,
-      label: 'Capability',
-      description: '8 dimensions',
-      tooltip: 'Assess organizational AI capabilities across 8 strategic dimensions and compare against industry benchmarks.'
+      title: 'Assessment',
+      items: [
+        { 
+          id: 'sentiment' as NavigationView, 
+          icon: Users, 
+          label: 'Sentiment', 
+          description: 'Employee attitudes',
+          tooltip: 'Analyze employee sentiment across 25 dimensions to identify engagement patterns.'
+        },
+        {
+          id: 'capability' as NavigationView,
+          icon: Target,
+          label: 'Capability',
+          description: 'Organizational readiness',
+          tooltip: 'Assess organizational AI capabilities across 8 strategic dimensions.'
+        },
+      ]
     },
     {
-      id: 'interventions' as NavigationView,
-      icon: Lightbulb,
-      label: 'Interventions',
-      description: 'Browse catalog',
-      tooltip: 'Explore the complete catalogue of interventions to improve your AI readiness across all dimensions.'
+      title: 'Solutions',
+      items: [
+        {
+          id: 'recommendations' as NavigationView,
+          icon: Brain,
+          label: 'Insights',
+          description: 'AI-powered',
+          tooltip: 'Get AI-powered recommendations tailored to your specific needs.'
+        },
+        {
+          id: 'interventions' as NavigationView,
+          icon: Lightbulb,
+          label: 'Interventions',
+          description: 'Action plans',
+          tooltip: 'Explore proven interventions to improve your AI readiness.'
+        },
+      ]
     },
     {
-      id: 'recommendations' as NavigationView,
-      icon: Brain,
-      label: 'Recommendations',
-      description: 'AI insights',
-      tooltip: 'Get AI-powered recommendations tailored to your organization\'s specific needs and gaps.'
-    },
-    { 
-      id: 'reports' as NavigationView, 
-      icon: FileText, 
-      label: 'Reports', 
-      description: 'Export PDF',
-      tooltip: 'Generate comprehensive reports to share insights with stakeholders and track progress over time.'
-    },
+      title: 'Tools',
+      items: [
+        { 
+          id: 'ai-agent' as NavigationView, 
+          icon: Bot, 
+          label: 'AI Assistant', 
+          description: 'Ask questions',
+          tooltip: 'Chat with your AI assistant to explore your data and get instant answers.'
+        },
+        { 
+          id: 'reports' as NavigationView, 
+          icon: FileText, 
+          label: 'Reports', 
+          description: 'Export & share',
+          tooltip: 'Generate and export comprehensive reports for stakeholders.'
+        },
+      ]
+    }
   ]
 
+  // Flatten for easy lookup
+  const navigationItems = navigationSections.flatMap(section => section.items)
+
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:bg-black overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-gray-950 dark:via-black dark:to-gray-950 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-400/8 via-blue-400/4 dark:from-teal-900/5 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-400/8 via-pink-400/4 dark:from-purple-900/5 to-transparent" />
+    <div className="fixed inset-0 bg-white dark:bg-black overflow-hidden">
+      {/* Light mode optimized gradient background */}
+      <div className="absolute inset-0 z-0">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-white to-purple-50 dark:from-gray-950 dark:via-black dark:to-gray-950" />
         
-        {/* Playful floating shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(8)].map((_, i) => (
+        {/* Radial overlays - subtle and refined */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-100/40 via-transparent to-transparent dark:from-teal-900/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-100/40 via-transparent to-transparent dark:from-purple-900/20" />
+        
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+        
+        {/* Clean floating orbs - fewer and more subtle */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full mix-blend-multiply dark:mix-blend-screen"
+              className="absolute rounded-full"
               style={{
-                width: 100 + Math.random() * 200,
-                height: 100 + Math.random() * 200,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: i % 3 === 0 
-                  ? 'radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent)'
-                  : i % 3 === 1
-                  ? 'radial-gradient(circle, rgba(168, 85, 247, 0.15), transparent)'
-                  : 'radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent)',
-                filter: 'blur(40px)',
+                width: 300,
+                height: 300,
+                left: `${20 + i * 30}%`,
+                top: `${10 + i * 25}%`,
+                background: i === 0 
+                  ? 'radial-gradient(circle, rgba(20, 184, 166, 0.08), transparent 70%)'
+                  : i === 1
+                  ? 'radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 70%)'
+                  : 'radial-gradient(circle, rgba(236, 72, 153, 0.08), transparent 70%)',
+                filter: 'blur(60px)',
               }}
               animate={{
-                x: [0, Math.random() * 100 - 50, 0],
-                y: [0, Math.random() * 100 - 50, 0],
-                scale: [1, 1.2, 1],
+                y: [0, -30, 0],
+                scale: [1, 1.1, 1],
               }}
               transition={{
-                duration: 20 + Math.random() * 10,
+                duration: 15 + i * 3,
                 repeat: Infinity,
                 ease: 'easeInOut',
-                delay: Math.random() * 5,
+                delay: i * 2,
               }}
             />
           ))}
@@ -495,25 +580,30 @@ export default function AssessmentPage() {
       {/* Main Layout - No Scroll Command Center */}
       <div className="relative z-10 h-full flex">
         
-        {/* Navigation Sidebar */}
+        {/* Navigation Sidebar - Light mode optimized */}
         <motion.aside
-          className="relative flex flex-col bg-white/95 dark:bg-black/40 backdrop-blur-2xl border-r border-slate-200/60 dark:border-white/[0.08] hidden md:flex"
+          className="relative flex flex-col bg-white/80 dark:bg-black/40 backdrop-blur-xl border-r border-gray-200 dark:border-white/[0.08] shadow-sm hidden md:flex"
           initial={false}
           animate={{ width: sidebarCollapsed ? 64 : 240 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          {/* Logo & Company - Aligns with header */}
+          {/* Logo & Company - Brand colored */}
           <div className={cn(
-            "h-14 border-b border-slate-200/60 dark:border-white/[0.08] flex items-center px-4",
+            "h-14 border-b border-gray-200 dark:border-white/[0.08] flex items-center px-4 bg-gradient-to-r from-teal-50/50 to-transparent dark:from-teal-950/20",
             sidebarCollapsed && "justify-center"
           )}>
             <Link href="/" className="flex items-center gap-3 group">
-              <motion.img 
-                src="/LeadingwithAI-removebg-preview.png" 
-                alt="AI Navigator" 
-                className={cn("object-contain flex-shrink-0", sidebarCollapsed ? "w-8 h-8" : "w-10 h-10")}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              />
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-purple-400 rounded-xl blur-md opacity-20 group-hover:opacity-30 transition-opacity" />
+                <img 
+                  src="/LeadingwithAI-removebg-preview.png" 
+                  alt="AI Navigator" 
+                  className={cn("relative object-contain flex-shrink-0", sidebarCollapsed ? "w-8 h-8" : "w-10 h-10")}
+                />
+              </motion.div>
               {!sidebarCollapsed && (
                 <motion.div
                   initial={{ opacity: 0, x: -10 }}
@@ -521,199 +611,322 @@ export default function AssessmentPage() {
                   exit={{ opacity: 0, x: -10 }}
                   className="flex-1 min-w-0"
                 >
-                  <p className="text-sm font-semibold truncate text-slate-900 dark:text-white">{companyProfile.displayName}</p>
-                  <p className="text-xs text-slate-600 dark:text-gray-500 truncate">{companyProfile.industry}</p>
+                  <p className="text-sm font-bold truncate bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent">
+                    {companyProfile.displayName}
+                  </p>
+                  <p className="text-xs text-gray-600 dark:text-gray-500 truncate font-medium">{companyProfile.industry}</p>
                 </motion.div>
               )}
             </Link>
           </div>
 
-          {/* Navigation Items */}
-          <nav className={cn("flex-1 space-y-1 overflow-y-auto scrollbar-thin", sidebarCollapsed ? "p-2" : "p-3")}>
-            {navigationItems.map((item, index) => {
-              const Icon = item.icon
-              const isActive = activeView === item.id
-              
-              const button = (
-                <motion.button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveView(item.id)
-                    // Reset to default view for each section
-                    if (item.id === 'overview') setCurrentView({ type: 'overview' })
-                    else if (item.id === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
-                    else if (item.id === 'capability') setCurrentView({ type: 'capability_overview' })
-                    // AI Agent doesn't need a currentView, it's handled by activeView
-                  }}
-                  className={cn(
-                    "relative w-full flex items-center rounded-xl transition-all group",
-                    sidebarCollapsed ? 'px-0 py-2.5 justify-center' : 'px-3 py-2.5 gap-3',
-                    isActive 
-                      ? 'bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400'
-                      : 'text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/50 dark:hover:bg-white/5'
-                  )}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ x: sidebarCollapsed ? 0 : 2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {/* Active indicator - fixed positioning */}
-                  {isActive && (
-                    <motion.div
-                      className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-teal-500 rounded-r"
-                      layoutId="activeNav"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  
-                  <Icon className={cn("flex-shrink-0", isActive && 'text-teal-600 dark:text-teal-400', sidebarCollapsed ? "w-5 h-5" : "w-4 h-4")} />
-                  
-                  {!sidebarCollapsed && (
-                    <motion.div
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex-1 text-left min-w-0"
-                    >
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <p className="text-xs font-semibold truncate">{item.label}</p>
-                        <span className="px-1 py-0.5 rounded text-[8px] bg-slate-200/70 dark:bg-white/5 text-slate-700 dark:text-gray-600 font-mono">
-                          {index + 1}
-                        </span>
-                      </div>
-                      <p className="text-[10px] text-slate-600 dark:text-gray-500 truncate">{item.description}</p>
-                    </motion.div>
-                  )}
-                  
-                  {isActive && !sidebarCollapsed && (
-                    <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
-                  )}
-                </motion.button>
-              )
+          {/* Navigation Items - Organized by Section */}
+          <nav className={cn("flex-1 overflow-y-auto scrollbar-thin", sidebarCollapsed ? "p-2" : "p-3")}>
+            {navigationSections.map((section, sectionIndex) => (
+              <div key={section.title} className={cn(sectionIndex > 0 && "mt-6")}>
+                {/* Section Header - Brand colored */}
+                {!sidebarCollapsed && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: sectionIndex * 0.1 }}
+                    className="px-3 mb-2"
+                  >
+                    <h3 className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-600">
+                      {section.title}
+                    </h3>
+                  </motion.div>
+                )}
+                {sidebarCollapsed && sectionIndex > 0 && (
+                  <div className="h-px bg-gray-200 dark:bg-white/[0.06] my-3 mx-2" />
+                )}
+                
+                {/* Section Items */}
+                <div className="space-y-1">
+                  {section.items.map((item, itemIndex) => {
+                    const Icon = item.icon
+                    const isActive = activeView === item.id
+                    const globalIndex = navigationItems.findIndex(navItem => navItem.id === item.id)
+                    
+                    const button = (
+                      <motion.button
+                        key={item.id}
+                        onClick={() => {
+                          setActiveView(item.id)
+                          // Reset to default view for each section
+                          if (item.id === 'overview') setCurrentView({ type: 'overview' })
+                          else if (item.id === 'sentiment') setCurrentView({ type: 'sentiment_heatmap' })
+                          else if (item.id === 'capability') setCurrentView({ type: 'capability_overview' })
+                          // AI Agent doesn't need a currentView, it's handled by activeView
+                        }}
+                        className={cn(
+                          "relative w-full flex items-center rounded-xl transition-all group",
+                          sidebarCollapsed ? 'px-0 py-2.5 justify-center' : 'px-3 py-2.5 gap-3',
+                          isActive
+                            ? 'bg-gradient-to-r from-teal-50 to-purple-50/30 dark:from-teal-500/10 dark:to-teal-500/5 text-teal-700 dark:text-teal-400 shadow-md ring-2 ring-teal-200 dark:ring-teal-500/30'
+                            : 'text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5'
+                        )}
+                        aria-label={item.label}
+                        aria-current={isActive ? 'page' : undefined}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: (sectionIndex * 0.1) + (itemIndex * 0.05) }}
+                        whileHover={{ x: sidebarCollapsed ? 0 : 3, scale: sidebarCollapsed ? 1.05 : 1 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        {/* Active indicator - properly positioned */}
+                        {isActive && (
+                          <motion.div
+                            className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-teal-500 to-teal-600 dark:from-teal-400 dark:to-teal-500 rounded-r-full shadow-lg shadow-teal-500/30"
+                            layoutId="activeNav"
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                          />
+                        )}
 
-              return sidebarCollapsed ? (
-                <EnhancedTooltip
-                  key={item.id}
-                  content={item.tooltip}
-                  title={item.label}
-                  icon="info"
-                  position="right"
-                >
-                  {button}
-                </EnhancedTooltip>
-              ) : button
-            })}
+                        <div className={cn(
+                          "flex-shrink-0 flex items-center justify-center rounded-lg transition-all",
+                          sidebarCollapsed ? "w-8 h-8" : "w-9 h-9",
+                          isActive && "bg-gradient-to-br from-teal-100 to-purple-100 dark:from-teal-500/20 dark:to-purple-500/20 ring-2 ring-white dark:ring-white/10 shadow-sm"
+                        )}>
+                          <Icon className={cn(
+                            "transition-all",
+                            sidebarCollapsed ? "w-4.5 h-4.5" : "w-4.5 h-4.5",
+                            isActive && "scale-110 text-teal-600 dark:text-teal-400"
+                          )} />
+                        </div>
+                        
+                        {!sidebarCollapsed && (
+                          <motion.div
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="flex-1 text-left min-w-0"
+                          >
+                            <div className="flex items-center gap-2 mb-0.5">
+                              <p className={cn(
+                                "text-[13px] font-semibold truncate",
+                                isActive && "text-teal-700 dark:text-teal-400"
+                              )}>
+                                {item.label}
+                              </p>
+                              {!isActive && (
+                                <span className="px-1.5 py-0.5 rounded text-[8px] font-mono flex-shrink-0 bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-600">
+                                  {globalIndex + 1}
+                                </span>
+                              )}
+                            </div>
+                            <p className={cn(
+                              "text-[10px] truncate font-medium",
+                              isActive 
+                                ? "text-teal-600 dark:text-teal-400/70"
+                                : "text-gray-500 dark:text-gray-500"
+                            )}>
+                              {item.description}
+                            </p>
+                          </motion.div>
+                        )}
+                        
+                        {isActive && !sidebarCollapsed && (
+                          <motion.div
+                            initial={{ x: -5, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          >
+                            <ChevronRight className="w-3.5 h-3.5 flex-shrink-0 text-teal-600 dark:text-teal-400" />
+                          </motion.div>
+                        )}
+                      </motion.button>
+                    )
+
+                    return sidebarCollapsed ? (
+                      <EnhancedTooltip
+                        key={item.id}
+                        content={item.tooltip}
+                        title={item.label}
+                        icon="info"
+                        position="right"
+                      >
+                        {button}
+                      </EnhancedTooltip>
+                    ) : button
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
 
-          {/* Bottom Actions */}
+          {/* Bottom Actions - Brand styled */}
           <div className={cn(
-            "border-t border-slate-200/60 dark:border-white/[0.08]",
+            "border-t border-gray-200 dark:border-white/[0.08] bg-gradient-to-r from-teal-50/30 to-transparent dark:from-teal-950/10",
             sidebarCollapsed ? "p-2" : "p-3"
           )}>
-            <motion.button
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className={cn(
-                "w-full flex items-center rounded-lg transition-all",
-                sidebarCollapsed 
-                  ? 'justify-center p-2.5 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white'
-                  : 'justify-between px-3 py-2 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white'
-              )}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              title={sidebarCollapsed ? "Expand sidebar (⌘ B)" : "Collapse sidebar"}
-            >
-              {sidebarCollapsed ? (
-                <Maximize2 className="w-4 h-4" />
-              ) : (
-                <>
-                  <div className="flex items-center gap-2">
-                    <Minimize2 className="w-3.5 h-3.5" />
-                    <span className="text-xs font-medium">Collapse</span>
-                  </div>
-                  <div className="text-[10px] text-slate-500 dark:text-gray-600">⌘ B</div>
-                </>
-              )}
-            </motion.button>
+            {sidebarCollapsed ? (
+              <EnhancedTooltip
+                content="Expand sidebar to see full navigation menu"
+                title="Expand (⌘ B)"
+                icon="tip"
+                position="right"
+              >
+                <motion.button
+                  onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                  className="w-full flex items-center justify-center p-2.5 rounded-lg bg-gradient-to-br from-teal-50 to-purple-50 dark:from-white/5 dark:to-white/5 hover:from-teal-100 hover:to-purple-100 dark:hover:from-teal-500/10 dark:hover:to-purple-500/10 text-teal-700 dark:text-gray-400 hover:text-teal-800 dark:hover:text-teal-400 transition-all group shadow-sm"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Expand sidebar"
+                >
+                  <Maximize2 className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </motion.button>
+              </EnhancedTooltip>
+            ) : (
+              <motion.button
+                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-gradient-to-r from-gray-50 to-gray-100 dark:from-white/5 dark:to-white/5 hover:from-teal-50 hover:to-purple-50 dark:hover:from-teal-500/10 dark:hover:to-purple-500/10 text-gray-700 dark:text-gray-400 hover:text-teal-700 dark:hover:text-teal-400 transition-all group shadow-sm"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                aria-label="Collapse sidebar"
+              >
+                <div className="flex items-center gap-2">
+                  <Minimize2 className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs font-semibold">Collapse</span>
+                </div>
+                <kbd className="px-1.5 py-0.5 rounded bg-white dark:bg-white/10 ring-1 ring-gray-200 dark:ring-white/20 text-[10px] text-gray-600 dark:text-gray-500 font-mono">⌘ B</kbd>
+              </motion.button>
+            )}
           </div>
         </motion.aside>
 
         {/* Main Content Area - Fixed Height, No Scroll */}
         <div className="flex-1 flex flex-col h-full overflow-hidden pb-20 md:pb-0">
           
-          {/* Top Action Bar */}
+          {/* Top Action Bar - Light mode with brand colors */}
           <motion.div 
-            className="relative flex-shrink-0 h-14 bg-white/95 dark:bg-black/20 backdrop-blur-2xl border-b border-slate-200/60 dark:border-white/[0.08] px-4 md:px-6 flex items-center justify-between overflow-x-auto"
+            className="relative flex-shrink-0 h-14 bg-white/90 dark:bg-black/20 backdrop-blur-xl border-b border-gray-200 dark:border-white/[0.08] px-4 md:px-6 flex items-center justify-between gap-4 shadow-sm"
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
           >
-            <div className="flex items-center gap-2 md:gap-3 text-[10px]">
-              <div className="flex items-center gap-2">
-                <motion.div 
-                  className={cn(
-                    "w-7 h-7 rounded-xl flex items-center justify-center shadow-lg relative overflow-hidden",
-                    activeView === 'overview' && "bg-gradient-to-br from-teal-500 to-purple-500",
-                    activeView === 'sentiment' && "bg-gradient-to-br from-purple-500 to-pink-500",
-                    activeView === 'capability' && "bg-gradient-to-br from-blue-500 to-cyan-500",
-                    activeView === 'recommendations' && "bg-gradient-to-br from-purple-500 to-indigo-500",
-                    activeView === 'reports' && "bg-gradient-to-br from-blue-500 to-purple-500"
-                  )}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
+            {/* Left: Breadcrumbs & Current View */}
+            <div className="flex items-center gap-3 min-w-0">
+              {/* Breadcrumb Navigation */}
+              <div className="flex items-center gap-2 text-sm">
+                <Link 
+                  href="/"
+                  className="text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-colors font-medium"
                 >
-                  {/* Shine effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                    animate={{
-                      x: ['-200%', '200%'],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                      ease: 'linear',
-                    }}
-                  />
-                  {(() => {
-                    const item = navigationItems.find(item => item.id === activeView)
-                    const Icon = item?.icon || BarChart3
-                    return <Icon className="w-4 h-4 text-white relative z-10" />
-                  })()}
-                </motion.div>
-                <div className="hidden sm:block">
-                  <div className="font-semibold text-slate-900 dark:text-white tracking-wide text-xs">
-                    {navigationItems.find(item => item.id === activeView)?.label || 'Command Center'}
-                  </div>
-                  <div className="text-[9px] text-slate-600 dark:text-gray-500">
-                    {navigationItems.find(item => item.id === activeView)?.description}
-                  </div>
-                </div>
+                  Home
+                </Link>
+                <ChevronRight className="w-3.5 h-3.5 text-gray-400" />
+                <span className="text-gray-900 dark:text-white font-semibold">
+                  {navigationItems.find(item => item.id === activeView)?.label || 'Dashboard'}
+                </span>
               </div>
-              <div className="hidden sm:block h-3 w-px bg-slate-300 dark:bg-white/10" />
-              <EnhancedTooltip
-                content="Total number of respondents in your assessment dataset"
-                icon="info"
-                position="bottom"
-              >
-                <div className="hidden sm:flex items-center gap-1 cursor-help">
-                  <Activity className="w-3 h-3 text-teal-600 dark:text-teal-400" />
-                  <span className="text-slate-700 dark:text-gray-400 font-semibold">{sentimentData.length}</span>
-                </div>
-              </EnhancedTooltip>
-              <div className="hidden md:block h-3 w-px bg-slate-300 dark:bg-white/10" />
-              <EnhancedTooltip
-                content="Your data is synced and up-to-date"
-                icon="sparkle"
-                position="bottom"
-              >
-                <div className="hidden md:flex items-center gap-1 cursor-help">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-500/50" />
-                  <span className="text-slate-700 dark:text-gray-400 font-semibold">Live</span>
-                </div>
-              </EnhancedTooltip>
+
+              <div className="hidden lg:block h-5 w-px bg-gray-300 dark:bg-white/10" />
+              
+              {/* Current View Icon */}
+              <div className="hidden lg:flex items-center gap-3">
+                {/* Stats Badges */}
+                <EnhancedTooltip
+                  content="Total respondents in your assessment"
+                  icon="info"
+                  position="bottom"
+                >
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-50 dark:bg-white/5 cursor-help border border-gray-200 dark:border-white/10">
+                    <Activity className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+                    <span className="text-[12px] font-bold text-gray-900 dark:text-gray-400">
+                      {sentimentData.length}
+                    </span>
+                    <span className="text-[10px] text-gray-500 dark:text-gray-600">responses</span>
+                  </div>
+                </EnhancedTooltip>
+                
+                <EnhancedTooltip
+                  content="Data is synced and up-to-date"
+                  icon="sparkle"
+                  position="bottom"
+                >
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 cursor-help border border-emerald-200 dark:border-emerald-500/20">
+                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-sm shadow-emerald-500/50" />
+                    <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400">Live</span>
+                  </div>
+                </EnhancedTooltip>
+              </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              {/* Quick Actions */}
+            {/* Right: Actions & Tools */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              {/* Search - Compact */}
+              <div className="relative hidden lg:block">
+                <button
+                  onClick={() => setShowCommandPalette(true)}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm hover:shadow-md ring-1 ring-slate-200/50 dark:ring-white/5 transition-all group"
+                  aria-label="Open command palette"
+                >
+                  <Search className="w-3.5 h-3.5 text-slate-400 dark:text-gray-500 group-hover:text-teal-500 dark:group-hover:text-teal-400 transition-colors" />
+                  <span className="text-[11px] text-slate-500 dark:text-gray-500">Search</span>
+                  <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-white/10 text-[9px] text-slate-600 dark:text-gray-400 font-mono">⌘K</kbd>
+                </button>
+              </div>
+
+              <div className="hidden lg:block w-px h-6 bg-slate-300 dark:bg-white/10" />
+
+              {/* Filter button - only show on sentiment/capability views */}
+              {(activeView === 'sentiment' || activeView === 'capability') && (
+                <>
+                  <EnhancedTooltip
+                    content="Filter data by demographics and segments"
+                    title="Filters"
+                    icon="tip"
+                    position="bottom"
+                  >
+                    <motion.button
+                      onClick={() => setShowFilters(!showFilters)}
+                      className={cn(
+                        "px-3 py-1.5 rounded-lg transition-all flex items-center gap-2 shadow-sm hover:shadow-md",
+                        showFilters
+                          ? "bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400 ring-2 ring-teal-200 dark:ring-teal-500/30"
+                          : "bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-gray-400 ring-1 ring-slate-200/50 dark:ring-white/5"
+                      )}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      aria-label="Toggle filters"
+                      aria-pressed={showFilters}
+                    >
+                      <Filter className="w-3.5 h-3.5" />
+                      {Object.keys(filters).length > 0 && (
+                        <span className={cn(
+                          "px-1.5 py-0.5 rounded-full text-[9px] font-bold",
+                          showFilters 
+                            ? "bg-teal-500 text-white"
+                            : "bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-gray-400"
+                        )}>
+                          {Object.keys(filters).length}
+                        </span>
+                      )}
+                    </motion.button>
+                  </EnhancedTooltip>
+                  
+                  <div className="w-px h-6 bg-slate-300 dark:bg-white/10" />
+                </>
+              )}
+              
+              {/* Export */}
+              <EnhancedTooltip
+                content="Export comprehensive PDF report"
+                icon="tip"
+                position="bottom"
+              >
+                <motion.button
+                  onClick={handleExportPDF}
+                  className="px-3 py-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-all flex items-center gap-1.5 text-slate-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-teal-400 shadow-sm hover:shadow-md ring-1 ring-slate-200/50 dark:ring-white/5"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  aria-label="Export PDF report"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline text-[11px] font-medium">Export</span>
+                </motion.button>
+              </EnhancedTooltip>
+
+              {/* Quick Actions Menu */}
               <QuickActionsMenu
                 onExport={handleExportPDF}
                 onShare={() => handleQuickAction('share')}
@@ -725,65 +938,9 @@ export default function AssessmentPage() {
 
               <div className="w-px h-6 bg-slate-300 dark:bg-white/10" />
 
-              {/* Filter button - only show on sentiment/capability views */}
-              {(activeView === 'sentiment' || activeView === 'capability') && (
-                <EnhancedTooltip
-                  content="Filter data by region, department, demographics, and more to drill into specific segments"
-                  title="Advanced Filters"
-                  icon="tip"
-                  position="bottom"
-                >
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className={`px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
-                      showFilters 
-                        ? "bg-teal-50 dark:bg-teal-500/10 text-teal-700 dark:text-teal-400" 
-                        : "bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 text-slate-700 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
-                    }`}
-                  >
-                    <Filter className="w-3.5 h-3.5" />
-                    <span className="text-[10px] font-medium">Filter</span>
-                    {Object.keys(filters).length > 0 && (
-                      <span className="px-1 py-0.5 rounded text-[8px] bg-teal-500 text-white font-bold">
-                        {Object.keys(filters).length}
-                      </span>
-                    )}
-                  </button>
-                </EnhancedTooltip>
-              )}
-              
-              <EnhancedTooltip
-                content="Export a comprehensive PDF report of your current view with all insights and visualizations"
-                title="Export Report"
-                icon="tip"
-                position="bottom"
-              >
-                <button
-                  onClick={handleExportPDF}
-                  className="px-2.5 py-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 transition-all flex items-center gap-1.5 text-slate-700 dark:text-gray-300"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span className="text-[10px] font-medium">Export PDF</span>
-                </button>
-              </EnhancedTooltip>
-
               {/* Theme Toggle */}
-              {/* Search Bar */}
-              <div className="relative flex-1 max-w-xs hidden lg:block">
-                <button
-                  onClick={() => setShowCommandPalette(true)}
-                  className="w-full flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-100/50 dark:bg-white/5 hover:bg-slate-200/50 dark:hover:bg-white/10 border border-slate-200/50 dark:border-white/10 transition-colors text-left group"
-                >
-                  <Search className="w-4 h-4 text-slate-400 dark:text-gray-500" />
-                  <span className="text-sm text-slate-500 dark:text-gray-500 flex-1">Quick search...</span>
-                  <kbd className="px-2 py-0.5 rounded bg-slate-200 dark:bg-white/10 border border-slate-300 dark:border-white/20 text-xs text-slate-600 dark:text-gray-400 font-mono">⌘K</kbd>
-                </button>
-              </div>
-
-              <div className="w-px h-6 bg-slate-300 dark:bg-white/10 hidden lg:block" />
-
               <EnhancedTooltip
-                content="Switch between light and dark themes"
+                content="Switch theme"
                 position="bottom"
               >
                 <SimpleThemeToggle />
@@ -818,16 +975,18 @@ export default function AssessmentPage() {
               />
               
               <EnhancedTooltip
-                content="Customize your assessment preferences and notification settings"
+                content="Settings and preferences"
                 icon="info"
                 position="bottom"
               >
-                <button
-                  className="p-1.5 rounded-lg bg-white dark:bg-white/5 hover:bg-slate-50 dark:hover:bg-white/10 transition-all text-slate-700 dark:text-gray-300"
-                  title="Settings"
+                <motion.button
+                  className="p-2 rounded-lg bg-white dark:bg-white/5 hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-all text-slate-700 dark:text-gray-300 hover:text-teal-700 dark:hover:text-teal-400 shadow-sm hover:shadow-md ring-1 ring-slate-200/50 dark:ring-white/5"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label="Settings"
                 >
                   <Settings className="w-3.5 h-3.5" />
-                </button>
+                </motion.button>
               </EnhancedTooltip>
             </div>
           </motion.div>
@@ -974,6 +1133,9 @@ export default function AssessmentPage() {
                             setCurrentView({ type: 'capability_dimension', dimensionId })
                           }
                           onViewSummary={() => setCurrentView({ type: 'capability_summary' })}
+                          onAnalyzeWeakDimensions={(weakDimensions) =>
+                            setCurrentView({ type: 'capability_insights', weakDimensions })
+                          }
                         />
                       </motion.div>
                     )}
@@ -1009,8 +1171,27 @@ export default function AssessmentPage() {
                         className="h-full overflow-y-auto scrollbar-thin"
                       >
                         <OpenEndedSummary
-                          openEndedResponses={[]} 
+                          openEndedResponses={[]}
                           companyContext={companyProfile}
+                          onBack={() => setCurrentView({ type: 'capability_overview' })}
+                        />
+                      </motion.div>
+                    )}
+
+                    {/* Capability AI Insights */}
+                    {currentView.type === 'capability_insights' && currentView.weakDimensions && (
+                      <motion.div
+                        key="capability-insights"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="h-full overflow-y-auto scrollbar-thin"
+                      >
+                        <CapabilityInsightsView
+                          weakDimensions={currentView.weakDimensions}
+                          companyContext={companyProfile}
+                          filters={filters}
                           onBack={() => setCurrentView({ type: 'capability_overview' })}
                         />
                       </motion.div>
@@ -1142,14 +1323,19 @@ export default function AssessmentPage() {
         onDismiss={dismiss}
       />
 
-      {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-black/95 backdrop-blur-2xl border-t border-slate-200/60 dark:border-white/[0.08] safe-area-inset-bottom overflow-x-auto">
-        <div className="grid grid-cols-7 gap-0 min-w-max">
-          {navigationItems.map((item) => {
+      {/* Mobile Bottom Navigation - Refined */}
+      <motion.nav 
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/98 dark:bg-black/98 backdrop-blur-2xl border-t border-slate-200/60 dark:border-white/[0.08] safe-area-inset-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_-4px_20px_rgba(0,0,0,0.4)]"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
+        <div className="grid grid-cols-7 gap-0 max-w-screen overflow-x-auto scrollbar-hide">
+          {navigationItems.map((item, index) => {
             const Icon = item.icon
             const isActive = activeView === item.id
             return (
-              <button
+              <motion.button
                 key={item.id}
                 onClick={() => {
                   setActiveView(item.id)
@@ -1162,32 +1348,79 @@ export default function AssessmentPage() {
                   else if (item.id === 'ai-agent') setCurrentView({ type: 'overview' })
                 }}
                 className={cn(
-                  "flex flex-col items-center justify-center py-2 px-1 min-h-[64px] transition-all relative",
+                  "flex flex-col items-center justify-center py-2.5 px-1 min-h-[68px] transition-all relative",
                   isActive
                     ? "text-teal-600 dark:text-teal-400"
-                    : "text-slate-600 dark:text-gray-400 active:scale-95"
+                    : "text-slate-600 dark:text-gray-400"
                 )}
+                whileTap={{ scale: 0.92 }}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: index * 0.03, type: "spring", stiffness: 300, damping: 25 }}
               >
+                {/* Active indicator - top border */}
                 {isActive && (
                   <motion.div
                     layoutId="mobileActiveTab"
-                    className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-teal-500 to-purple-500"
+                    className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-500 via-teal-400 to-purple-500 rounded-b-full"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 )}
-                <Icon className={cn("w-5 h-5 mb-1", isActive && "scale-110")} />
+                
+                {/* Icon with background on active */}
+                <motion.div
+                  className={cn(
+                    "relative mb-1 rounded-xl transition-all",
+                    isActive && "bg-teal-50 dark:bg-teal-500/10 p-1.5"
+                  )}
+                  animate={{ scale: isActive ? 1.1 : 1 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                >
+                  <Icon className={cn(
+                    "w-5 h-5 transition-all",
+                    isActive && "drop-shadow-lg"
+                  )} />
+                  
+                  {/* Pulse indicator for active */}
+                  {isActive && (
+                    <motion.div
+                      className="absolute inset-0 rounded-xl bg-teal-400/20"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 0, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  )}
+                </motion.div>
+                
                 <span className={cn(
-                  "text-[10px] font-medium leading-tight text-center",
-                  isActive && "font-semibold"
+                  "text-[9px] font-medium leading-tight text-center max-w-[60px]",
+                  isActive && "font-bold"
                 )}>
                   {item.label === 'Command Center' ? 'Dashboard' : item.label}
                 </span>
-              </button>
+                
+                {/* Badge with keyboard shortcut on active */}
+                {isActive && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute -top-0.5 right-1 w-4 h-4 rounded-full bg-teal-500 flex items-center justify-center"
+                  >
+                    <span className="text-[8px] font-bold text-white">{index + 1}</span>
+                  </motion.div>
+                )}
+              </motion.button>
             )
           })}
         </div>
-      </nav>
+      </motion.nav>
     </div>
   )
 }

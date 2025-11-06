@@ -13,7 +13,7 @@ import {
 } from 'recharts'
 import {
   ChevronRight, AlertTriangle, CheckCircle, TrendingUp, TrendingDown,
-  Target, Info, Zap, Award, AlertCircle
+  Target, Info, Zap, Award, AlertCircle, Sparkles
 } from 'lucide-react'
 import { calculateCapabilityAssessment } from '@/lib/calculations/capability-analysis'
 import { FilterState } from '@/lib/types/assessment'
@@ -25,6 +25,7 @@ interface CapabilityOverviewProps {
   filters: FilterState
   onDimensionClick: (dimensionId: number) => void
   onViewSummary: () => void
+  onAnalyzeWeakDimensions?: (weakDimensions: any[]) => void
 }
 
 export default function CapabilityOverview({
@@ -32,7 +33,8 @@ export default function CapabilityOverview({
   benchmarks,
   filters,
   onDimensionClick,
-  onViewSummary
+  onViewSummary,
+  onAnalyzeWeakDimensions
 }: CapabilityOverviewProps) {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
@@ -55,6 +57,7 @@ export default function CapabilityOverview({
 
   const aboveBenchmark = assessment.dimensions.filter(d => d.status === 'above').length
   const belowBenchmark = assessment.dimensions.filter(d => d.status === 'below' || d.status === 'significantly_below').length
+  const weakDimensions = assessment.dimensions.filter(d => d.status === 'below' || d.status === 'significantly_below')
 
   return (
     <div className="h-full grid grid-cols-12 grid-rows-12 gap-2 overflow-hidden">
@@ -256,6 +259,19 @@ export default function CapabilityOverview({
             <span className="text-[8px] text-gray-400">Bench</span>
           </div>
         </div>
+
+        {/* AI Insights Button */}
+        {weakDimensions.length > 0 && onAnalyzeWeakDimensions && (
+          <div className="mt-2 pt-2 border-t border-white/5">
+            <button
+              onClick={() => onAnalyzeWeakDimensions(weakDimensions)}
+              className="w-full px-3 py-2 rounded-lg bg-gradient-to-r from-teal-500/10 to-purple-500/10 hover:from-teal-500/20 hover:to-purple-500/20 border border-teal-500/30 text-teal-400 hover:text-teal-300 transition-all flex items-center justify-center gap-2 text-[10px] font-semibold"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              Generate AI Insights ({weakDimensions.length} weak {weakDimensions.length === 1 ? 'dimension' : 'dimensions'})
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Dimension Table & Insights - Right side */}

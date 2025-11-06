@@ -1,9 +1,10 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import {
   Target, Users, Activity, TrendingUp, TrendingDown,
   AlertTriangle, CheckCircle, Lightbulb, ArrowRight,
-  ChevronRight, Info, Zap, Brain, TrendingDown as Down
+  ChevronRight, Info, Zap, Brain, TrendingDown as Down, Sparkles
 } from 'lucide-react'
 import { useMemo } from 'react'
 import { cn } from '@/lib/utils'
@@ -83,30 +84,53 @@ export default function ExecutiveDashboard({
   const readinessStatus = getReadinessStatus(metrics.readinessScore)
 
   return (
-    <div className="h-full flex flex-col gap-3 overflow-hidden">
+    <div className="h-full flex flex-col gap-4 overflow-hidden">
       
-      {/* SECTION 1: HEADER & CONTEXT */}
-      <div className="flex-shrink-0">
-        <div className="flex flex-col md:flex-row items-start justify-between gap-3 md:gap-0 mb-2">
+      {/* REFINED HEADER with playful animations */}
+      <motion.div 
+        className="flex-shrink-0"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="flex flex-col md:flex-row items-start justify-between gap-4">
           <div className="flex-1">
-            <h1 className="text-xl md:text-2xl font-semibold text-slate-900 dark:text-white mb-1">
-              Welcome back, {userName}!
-            </h1>
-            <p className="text-sm md:text-base text-slate-700 dark:text-gray-300 mb-1">
-              Your AI Readiness Assessment for <span className="text-teal-700 dark:text-teal-400 font-semibold">{companyName}</span> is ready
-            </p>
-            <div className="flex flex-wrap items-center gap-2 text-xs">
-              <div className="flex items-center gap-1.5 text-slate-600 dark:text-gray-400">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <h1 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                Welcome back, {userName}! 👋
+              </h1>
+              <p className="text-base text-gray-700 dark:text-gray-300 mb-3">
+                Your AI Readiness Assessment for <span className="font-bold text-teal-600 dark:text-teal-400">{companyName}</span>
+              </p>
+            </motion.div>
+            <motion.div 
+              className="flex flex-wrap items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-teal-50 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/20">
                 <Users className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
-                <span>Based on <span className="text-slate-900 dark:text-white font-semibold">{metrics.respondentCount} employees</span></span>
+                <span className="text-xs text-gray-700 dark:text-gray-300 font-medium">
+                  <span className="text-gray-900 dark:text-white font-semibold">{metrics.respondentCount}</span> employees
+                </span>
               </div>
-              <div className="hidden md:block h-3 w-px bg-white/10" />
-              <span className="text-gray-500">Financial Services</span>
-              <div className="hidden md:block h-3 w-px bg-white/10" />
-              <span className="text-gray-500">1000-5000 employees</span>
-            </div>
+              <div className="hidden md:block h-3 w-px bg-gray-300 dark:bg-white/10" />
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Financial Services</span>
+              <div className="hidden md:block h-3 w-px bg-gray-300 dark:bg-white/10" />
+              <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">1000-5000 employees</span>
+            </motion.div>
           </div>
-          <div className="flex items-center gap-2">
+          
+          <motion.div 
+            className="flex items-center gap-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             <div className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10">
               <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">Date</div>
               <div className="text-xs text-slate-900 dark:text-white font-semibold">Oct 27, 2024</div>
@@ -118,11 +142,11 @@ export default function ExecutiveDashboard({
                 Complete
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
         
         <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-2" />
-      </div>
+      </motion.div>
 
       {/* SECTION 2: PRIMARY METRICS - Compact */}
       <div className="flex-shrink-0">

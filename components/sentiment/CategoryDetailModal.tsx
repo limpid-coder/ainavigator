@@ -35,6 +35,16 @@ interface Intervention {
   description: string | null
 }
 
+interface Taboo {
+  id: string
+  name: string
+  short_description: string
+  description: string
+  how_it_shows_up: string
+  possible_actions: string
+  root_cause_explanation: string
+}
+
 type SolutionFlavor = 'primary' | 'secondary' | 'tertiary' | 'lucky'
 
 const FLAVOR_CONFIG = {
@@ -93,7 +103,9 @@ export default function CategoryDetailModal({
   const [showSolution, setShowSolution] = useState(false)
   const [isRolling, setIsRolling] = useState(false)
   const [interventions, setInterventions] = useState<Intervention[]>([])
+  const [taboos, setTaboos] = useState<Taboo[]>([])
   const [loading, setLoading] = useState(true)
+  const [tabooLoading, setTabooLoading] = useState(true)
   const [selectedInterventionCode, setSelectedInterventionCode] = useState<string | null>(null)
   const [showInterventionDetail, setShowInterventionDetail] = useState(false)
 
@@ -106,24 +118,27 @@ export default function CategoryDetailModal({
     return null
   }
 
-  // Fetch interventions when modal opens
+  // Fetch interventions and taboos when modal opens
   useEffect(() => {
-    const fetchInterventions = async () => {
+    const fetchData = async () => {
       setLoading(true)
+      setTabooLoading(true)
       const cellInfo = parseCellId(cellData.cellId)
 
       if (!cellInfo) {
         setLoading(false)
+        setTabooLoading(false)
         return
       }
 
       try {
-        const response = await fetch(
+        // Fetch interventions
+        const interventionsResponse = await fetch(
           `/api/interventions/sentiment?level=${cellInfo.level}&category=${cellInfo.category}`
         )
 
-        if (response.ok) {
-          const data = await response.json()
+        if (interventionsResponse.ok) {
+          const data = await interventionsResponse.json()
           setInterventions(data.interventions || [])
         }
       } catch (error) {
@@ -131,9 +146,25 @@ export default function CategoryDetailModal({
       } finally {
         setLoading(false)
       }
+
+      try {
+        // Fetch taboos
+        const taboosResponse = await fetch(
+          `/api/taboos?level=${cellInfo.level}&category=${cellInfo.category}`
+        )
+
+        if (taboosResponse.ok) {
+          const data = await taboosResponse.json()
+          setTaboos(data.taboos || [])
+        }
+      } catch (error) {
+        console.error('Error fetching taboos:', error)
+      } finally {
+        setTabooLoading(false)
+      }
     }
 
-    fetchInterventions()
+    fetchData()
     setSelectedFlavor(null)
     setShowSolution(false)
     setIsRolling(false)
@@ -297,27 +328,83 @@ export default function CategoryDetailModal({
                 </div>
               )}
 
-              {/* Taboos - Things to Avoid */}
-              {CELL_TABOOS[cellData.cellId] && (
-                <div className="bg-gradient-to-r from-red-500/5 to-amber-500/5 rounded-xl border border-red-500/20 p-4">
-                  <div className="flex items-start gap-3">
-                    <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+              {/* Taboos - Resistance Patterns to Understand */}
+              {!tabooLoading && taboos.length > 0 && (
+                <div className="bg-gradient-to-r from-red-500/5 to-amber-500/5 rounded-xl border border-red-500/20 p-6">
+                  <div className="flex items-start gap-3 mb-4">
+                    <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <h3 className="text-sm font-semibold text-red-400 mb-3 uppercase tracking-wide">
-                        Critical Things to Avoid
+                      <h3 className="text-lg font-bold text-red-400 mb-2">
+                        Adoption Taboos in This Area
                       </h3>
-                      <ul className="space-y-2">
-                        {CELL_TABOOS[cellData.cellId].map((taboo, index) => (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2 text-sm text-gray-300 leading-relaxed"
-                          >
-                            <span className="text-red-400 font-bold flex-shrink-0 mt-0.5">•</span>
-                            <span>{taboo}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                        Understanding these resistance patterns helps you navigate AI adoption more effectively.
+                        These taboos represent common concerns and anxieties that surface in this sentiment area.
+                      </p>
                     </div>
+                  </div>
+
+                  {/* Taboo Cards */}
+                  <div className="space-y-4">
+                    {taboos.map((taboo, index) => (
+                      <motion.div
+                        key={taboo.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-black/30 rounded-lg border border-red-500/10 p-4 hover:border-red-500/30 transition-colors"
+                      >
+                        {/* Taboo Name and Short Description */}
+                        <div className="flex items-start gap-3 mb-3">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-500/20 border border-red-500/30 flex items-center justify-center">
+                            <span className="text-sm font-bold text-red-400">{index + 1}</span>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-base font-bold text-white mb-1">
+                              {taboo.name}
+                            </h4>
+                            <p className="text-sm text-gray-400 italic">
+                              {taboo.short_description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Full Description */}
+                        <p className="text-sm text-gray-300 leading-relaxed mb-3 pl-11">
+                          {taboo.description}
+                        </p>
+
+                        {/* How It Shows Up */}
+                        <div className="pl-11 mb-3">
+                          <p className="text-xs font-semibold text-orange-400 mb-1 uppercase tracking-wide">
+                            How It Shows Up
+                          </p>
+                          <p className="text-sm text-gray-400 leading-relaxed">
+                            {taboo.how_it_shows_up}
+                          </p>
+                        </div>
+
+                        {/* Possible Actions */}
+                        <div className="pl-11">
+                          <p className="text-xs font-semibold text-teal-400 mb-1 uppercase tracking-wide">
+                            What You Can Do
+                          </p>
+                          <p className="text-sm text-gray-400 leading-relaxed">
+                            {taboo.possible_actions}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Loading state for taboos */}
+              {tabooLoading && (
+                <div className="bg-gradient-to-r from-red-500/5 to-amber-500/5 rounded-xl border border-red-500/20 p-6">
+                  <div className="flex items-center gap-3">
+                    <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-red-400 border-r-transparent"></div>
+                    <p className="text-sm text-gray-400">Loading adoption taboos...</p>
                   </div>
                 </div>
               )}

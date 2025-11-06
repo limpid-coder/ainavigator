@@ -32,7 +32,14 @@ export default function LoginPage() {
         return
       }
 
-      // Store session
+      // CRITICAL: Clear ALL storage before setting new session
+      // This prevents data from previous users/companies from persisting
+      sessionStorage.clear()
+      
+      // Clear zustand persist store (keeps theme/UI prefs, clears user data)
+      localStorage.removeItem('ai-navigator-store')
+      
+      // Store new session
       sessionStorage.setItem('aiNavigatorSession', JSON.stringify(data.session))
 
       // Redirect to dashboard

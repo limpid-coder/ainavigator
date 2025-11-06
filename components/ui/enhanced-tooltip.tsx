@@ -36,6 +36,7 @@ export function EnhancedTooltip({
 }: EnhancedTooltipProps) {
   const [isVisible, setIsVisible] = useState(false)
   const [actualPosition, setActualPosition] = useState(position)
+  const [tooltipStyles, setTooltipStyles] = useState<React.CSSProperties>({})
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLDivElement>(null)
@@ -49,20 +50,60 @@ export function EnhancedTooltip({
         height: window.innerHeight
       }
 
-      // Check if tooltip would go off screen and adjust position
+      const gap = 8 // Gap between trigger and tooltip
       let newPosition = position
-      
-      if (position === 'top' && tooltip.top < 0) {
+      let top = 0
+      let left = 0
+
+      // Calculate initial position based on preference
+      switch (position) {
+        case 'top':
+          top = trigger.top - tooltip.height - gap
+          left = trigger.left + trigger.width / 2 - tooltip.width / 2
+          break
+        case 'bottom':
+          top = trigger.bottom + gap
+          left = trigger.left + trigger.width / 2 - tooltip.width / 2
+          break
+        case 'left':
+          top = trigger.top + trigger.height / 2 - tooltip.height / 2
+          left = trigger.left - tooltip.width - gap
+          break
+        case 'right':
+          top = trigger.top + trigger.height / 2 - tooltip.height / 2
+          left = trigger.right + gap
+          break
+      }
+
+      // Check boundaries and adjust if needed
+      if (position === 'top' && top < 0) {
         newPosition = 'bottom'
-      } else if (position === 'bottom' && tooltip.bottom > viewport.height) {
+        top = trigger.bottom + gap
+      } else if (position === 'bottom' && top + tooltip.height > viewport.height) {
         newPosition = 'top'
-      } else if (position === 'left' && tooltip.left < 0) {
+        top = trigger.top - tooltip.height - gap
+      } else if (position === 'left' && left < 0) {
         newPosition = 'right'
-      } else if (position === 'right' && tooltip.right > viewport.width) {
+        left = trigger.right + gap
+      } else if (position === 'right' && left + tooltip.width > viewport.width) {
         newPosition = 'left'
+        left = trigger.left - tooltip.width - gap
+      }
+
+      // Ensure tooltip stays within viewport horizontally
+      if (left < gap) left = gap
+      if (left + tooltip.width > viewport.width - gap) {
+        left = viewport.width - tooltip.width - gap
+      }
+
+      // Ensure tooltip stays within viewport vertically
+      if (top < gap) top = gap
+      if (top + tooltip.height > viewport.height - gap) {
+        top = viewport.height - tooltip.height - gap
       }
 
       setActualPosition(newPosition)
+      setTooltipStyles({ top: `${top}px`, left: `${left}px` })
     }
   }, [isVisible, position])
 
@@ -78,20 +119,7 @@ export function EnhancedTooltip({
       clearTimeout(timeoutRef.current)
     }
     setIsVisible(false)
-  }
-
-  const positions = {
-    top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
-    bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
-    left: 'right-full top-1/2 -translate-y-1/2 mr-2',
-    right: 'left-full top-1/2 -translate-y-1/2 ml-2'
-  }
-
-  const arrowPositions = {
-    top: 'top-full left-1/2 -translate-x-1/2 -mt-1',
-    bottom: 'bottom-full left-1/2 -translate-x-1/2 -mb-1 rotate-180',
-    left: 'left-full top-1/2 -translate-y-1/2 -ml-1 -rotate-90',
-    right: 'right-full top-1/2 -translate-y-1/2 -mr-1 rotate-90'
+    setTooltipStyles({})
   }
 
   const IconComponent = icon ? iconMap[icon] : null
@@ -109,14 +137,11 @@ export function EnhancedTooltip({
         {isVisible && (
           <motion.div
             ref={tooltipRef}
-            className={cn(
-              'absolute z-[100] pointer-events-none',
-              positions[actualPosition]
-            )}
-            style={{ maxWidth }}
-            initial={{ opacity: 0, scale: 0.9, y: actualPosition === 'top' ? 5 : actualPosition === 'bottom' ? -5 : 0 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: actualPosition === 'top' ? 5 : actualPosition === 'bottom' ? -5 : 0 }}
+            className="fixed z-[9999] pointer-events-none"
+            style={{ maxWidth, ...tooltipStyles }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
             transition={{
               duration: 0.15,
               ease: [0.16, 1, 0.3, 1]
@@ -164,7 +189,13 @@ export function EnhancedTooltip({
             </div>
 
             {/* Arrow */}
-            <div className={cn('absolute', arrowPositions[actualPosition])}>
+            <div className={cn(
+              'absolute',
+              actualPosition === 'top' && 'bottom-0 left-1/2 -translate-x-1/2 translate-y-full',
+              actualPosition === 'bottom' && 'top-0 left-1/2 -translate-x-1/2 -translate-y-full rotate-180',
+              actualPosition === 'left' && 'right-0 top-1/2 -translate-y-1/2 translate-x-full -rotate-90',
+              actualPosition === 'right' && 'left-0 top-1/2 -translate-y-1/2 -translate-x-full rotate-90'
+            )}>
               <div className="w-3 h-3">
                 <svg viewBox="0 0 12 12" className="w-full h-full">
                   <path
