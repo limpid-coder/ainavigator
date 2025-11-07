@@ -24,6 +24,7 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
   const [showHint, setShowHint] = useState(true)
   const [showInterventions, setShowInterventions] = useState(false)
   const [interventionSize, setInterventionSize] = useState<'small' | 'large'>('small')
+  const [showTaboos, setShowTaboos] = useState(false)
 
   // Load category data on mount
   useEffect(() => {
@@ -94,6 +95,7 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
             </span>
           </button>
           <div className="flex items-center gap-2">
+            {/* Interventions Toggle */}
             <button
               onClick={() => setShowInterventions(!showInterventions)}
               className={cn(
@@ -134,6 +136,22 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                 </button>
               </div>
             )}
+
+            {/* Taboos Toggle */}
+            <button
+              onClick={() => setShowTaboos(!showTaboos)}
+              className={cn(
+                "inline-flex items-center gap-2 px-3 py-2 rounded-lg border transition-all",
+                showTaboos
+                  ? "bg-red-500/15 border-red-500/30 text-red-700 dark:text-red-300"
+                  : "bg-red-500/10 hover:bg-red-500/15 border-red-500/20 hover:border-red-500/30 text-red-700 dark:text-red-400"
+              )}
+            >
+              <AlertTriangle className="w-4 h-4" />
+              <span className="text-sm font-medium">
+                {showTaboos ? 'Hide' : 'Show'} Taboos
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -355,7 +373,7 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                               </div>
                             </div>
                             {/* Sparkle indicator for interactive cells with category data */}
-                            {categoryDataLoaded && CategoryDataService.getCategoryForCell(cellId) && !showInterventions && (
+                            {categoryDataLoaded && CategoryDataService.getCategoryForCell(cellId) && !showInterventions && !showTaboos && (
                               <motion.div
                                 initial={{ opacity: 0, scale: 0 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -384,6 +402,19 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
                                     "text-white",
                                     interventionSize === 'large' ? "w-4 h-4" : "w-2.5 h-2.5"
                                   )} />
+                                </div>
+                              </motion.div>
+                            )}
+                            {/* Taboo indicator */}
+                            {showTaboos && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 0.1 }}
+                                className="absolute top-1 left-1 w-5 h-5 flex items-center justify-center"
+                              >
+                                <div className="rounded-full bg-red-500 w-5 h-5 flex items-center justify-center shadow-lg">
+                                  <AlertTriangle className="w-3 h-3 text-white" />
                                 </div>
                               </motion.div>
                             )}
@@ -452,6 +483,8 @@ export default function SentimentHeatmapRevised({ data, filters, onAnalyzeProble
           <CategoryDetailModal
             cellData={selectedCellData}
             categoryData={CategoryDataService.getCategoryForCell(selectedCellData.cellId)}
+            interventionSize={interventionSize}
+            showInterventions={showInterventions}
             onClose={() => setSelectedCell(null)}
           />
         )}

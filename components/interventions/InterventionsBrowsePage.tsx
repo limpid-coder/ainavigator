@@ -81,6 +81,13 @@ export default function InterventionsBrowsePage() {
     return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
   }
 
+  const getLevelDescription = (levelKey: string) => {
+    if (levelKey.includes('A - Strategy')) return 'Direction, frameworks, alignment'
+    if (levelKey.includes('B - Adoption')) return 'Motivation, learning psychology, culture change'
+    if (levelKey.includes('C - Innovation')) return 'Experimentation, learning, ROI'
+    return ''
+  }
+
   // Group interventions by level
   const groupedInterventions = filteredInterventions.reduce((acc, intervention) => {
     const levelKey = intervention.level.split(' - ')[0]
@@ -199,15 +206,22 @@ export default function InterventionsBrowsePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: levelIndex * 0.1 }}
               >
-                {/* Level Header - Modern with gradient */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${getLevelColor(levelKey)}`} />
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-                    {levelKey}
-                  </h2>
-                  <span className="px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/5 text-xs font-bold text-gray-600 dark:text-gray-400">
-                    {groupedInterventions[levelKey].length}
-                  </span>
+                {/* Level Header - Modern with gradient and description */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`h-1 w-12 rounded-full bg-gradient-to-r ${getLevelColor(levelKey)}`} />
+                    <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                      {levelKey}
+                    </h2>
+                    <span className="px-3 py-1 rounded-lg bg-gray-100 dark:bg-white/5 text-xs font-bold text-gray-600 dark:text-gray-400">
+                      {groupedInterventions[levelKey].length}
+                    </span>
+                  </div>
+                  {getLevelDescription(levelKey) && (
+                    <p className="text-sm text-gray-600 dark:text-gray-400 italic ml-16">
+                      {getLevelDescription(levelKey)}
+                    </p>
+                  )}
                 </div>
 
                 {/* Beautiful Intervention Cards */}

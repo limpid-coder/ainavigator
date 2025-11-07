@@ -1,10 +1,11 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { TrendingUp, TrendingDown, Users, Target, Sparkles, ArrowRight, AlertCircle, CheckCircle, Zap, Brain, BarChart } from 'lucide-react'
-import { useMemo } from 'react'
+import { TrendingUp, TrendingDown, Users, Target, Sparkles, ArrowRight, AlertCircle, CheckCircle, Zap, Brain, BarChart, Lightbulb } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import { MotionWrapper, staggerContainer, fadeInUp } from '@/components/ui/motion-wrapper'
 import { Card } from '@/components/ui/Card'
+import { cn } from '@/lib/utils'
 
 interface OverviewDashboardProps {
   companyName: string
@@ -21,6 +22,8 @@ export default function OverviewDashboard({
   capabilityData,
   onNavigate
 }: OverviewDashboardProps) {
+  // Two-tier intervention display state
+  const [interventionTier, setInterventionTier] = useState<'small' | 'large'>('small')
 
   // Calculate key metrics
   const metrics = useMemo(() => {
@@ -293,6 +296,167 @@ export default function OverviewDashboard({
             </div>
           </div>
         </div>
+      </motion.div>
+
+      {/* Recommended Interventions */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="space-y-4"
+      >
+        <div className="text-center mb-6">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <Lightbulb className="w-6 h-6 text-amber-400" />
+            <h2 className="text-2xl font-bold">Recommended Interventions</h2>
+          </div>
+          <p className="text-gray-400 mb-4">Curated change programs designed for your situation</p>
+
+          {/* Tier Toggle */}
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-sm text-gray-400">View:</span>
+            <div className="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg bg-white/5 border border-white/10">
+              <button
+                onClick={() => setInterventionTier('small')}
+                className={cn(
+                  "px-4 py-1.5 rounded text-sm font-medium transition-all",
+                  interventionTier === 'small'
+                    ? "bg-amber-500 text-white shadow-lg"
+                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+                )}
+              >
+                Small Interventions
+              </button>
+              <button
+                onClick={() => setInterventionTier('large')}
+                className={cn(
+                  "px-4 py-1.5 rounded text-sm font-medium transition-all",
+                  interventionTier === 'large'
+                    ? "bg-amber-500 text-white shadow-lg"
+                    : "text-slate-600 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white"
+                )}
+              >
+                Strategic Catalogue
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {interventionTier === 'small' ? (
+            // Small Interventions View (75 cell-specific)
+            <motion.div
+              key="small"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+              className="glass-dark rounded-2xl p-8 border border-amber-500/20"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 flex-shrink-0">
+                  <Target className="w-6 h-6 text-amber-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-3">Targeted Cell-Specific Interventions</h3>
+                  <p className="text-gray-400 mb-4 leading-relaxed">
+                    Each of the 25 sentiment heatmap cells has been mapped to 3 precisely targeted interventions
+                    (75 total recommendations). These small, focused programs address specific emotional blockers
+                    and resistance patterns your employees are experiencing.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+                      <div className="text-2xl font-bold text-amber-400 mb-1">75</div>
+                      <div className="text-sm text-gray-400">Targeted Interventions</div>
+                    </div>
+                    <div className="p-4 rounded-lg bg-white/5 border border-white/10">
+                      <div className="text-2xl font-bold text-amber-400 mb-1">3 per cell</div>
+                      <div className="text-sm text-gray-400">Primary, Secondary, Tertiary</div>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-400 italic">
+                    💡 Tip: Click on any cell in the sentiment heatmap to see its specific intervention recommendations
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ) : (
+            // Large Interventions View (10 strategic)
+            <motion.div
+              key="large"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
+              {/* Strategic Levels */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Level A */}
+                <div className="glass-dark rounded-xl p-6 border border-purple-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-purple-700 flex items-center justify-center font-bold text-white">
+                      A
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white">Strategy & Governance</h3>
+                      <p className="text-xs text-gray-400">Direction & Frameworks</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="text-purple-400 font-semibold">A1: Roadmap Pressure Cooker</div>
+                    <div className="text-purple-400 font-semibold">A2: AI Dialectics Sessions</div>
+                    <div className="text-purple-400 font-semibold">A3: Adoption Playbook Co-Design</div>
+                  </div>
+                </div>
+
+                {/* Level B */}
+                <div className="glass-dark rounded-xl p-6 border border-blue-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center font-bold text-white">
+                      B
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white">Adoption & Behaviour</h3>
+                      <p className="text-xs text-gray-400">Culture & Learning</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="text-blue-400 font-semibold">B1: Adoption Challenge</div>
+                    <div className="text-blue-400 font-semibold">B2: AI Learning Week</div>
+                    <div className="text-blue-400 font-semibold">B3: Road to AI Adoption</div>
+                    <div className="text-blue-400 font-semibold">B4: AI Ambassadors Network</div>
+                    <div className="text-blue-400 font-semibold">B5: Playful Nudging Toolkit</div>
+                  </div>
+                </div>
+
+                {/* Level C */}
+                <div className="glass-dark rounded-xl p-6 border border-teal-500/30">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-600 to-teal-700 flex items-center justify-center font-bold text-white">
+                      C
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white">Innovation & Value</h3>
+                      <p className="text-xs text-gray-400">Experimentation & ROI</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="text-teal-400 font-semibold">C1: Kickstart with AI</div>
+                    <div className="text-teal-400 font-semibold">C2: ROI Retrospective Workshop</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="glass-dark rounded-xl p-6 border border-amber-500/20">
+                <p className="text-sm text-gray-400 text-center">
+                  💡 These 10 strategic interventions form the foundation of organizational AI transformation.
+                  Navigate to the Sentiment or Capability view for personalized recommendations.
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Analysis Paths */}

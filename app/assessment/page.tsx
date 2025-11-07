@@ -59,6 +59,7 @@ export default function AssessmentPage() {
   }, [activeView, setStoreActiveView])
   const [sentimentData, setSentimentData] = useState<any[]>([])
   const [capabilityData, setCapabilityData] = useState<any[]>([])
+  const [openEndedResponses, setOpenEndedResponses] = useState<string[]>([])
   const [filters, setFilters] = useState<FilterState>({})
   const [showFilters, setShowFilters] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
@@ -313,6 +314,21 @@ export default function AssessmentPage() {
       } else {
         console.warn('Failed to load capability data, using empty array')
         setCapabilityData([])
+      }
+
+      // Load open-ended responses for NLP analysis
+      const openEndedResponse = await fetch(`/api/data/open-ended${queryParams}`, {
+        headers: {
+          'x-company-id': company.id
+        }
+      })
+
+      if (openEndedResponse.ok) {
+        const openEndedResult = await openEndedResponse.json()
+        setOpenEndedResponses(openEndedResult.allResponses || [])
+      } else {
+        console.warn('Failed to load open-ended responses, using empty array')
+        setOpenEndedResponses([])
       }
     } catch (error) {
       console.error('Data load error:', error)
@@ -1171,7 +1187,7 @@ export default function AssessmentPage() {
                         className="h-full overflow-y-auto scrollbar-thin"
                       >
                         <OpenEndedSummary
-                          openEndedResponses={[]}
+                          openEndedResponses={openEndedResponses}
                           companyContext={companyProfile}
                           onBack={() => setCurrentView({ type: 'capability_overview' })}
                         />

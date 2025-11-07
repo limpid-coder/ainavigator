@@ -263,12 +263,25 @@ Company Context:
 - Size: ${companyContext.size}
 - AI Maturity: ${companyContext.aiMaturity}
 
-Generate 3-5 actionable insights about capability gaps. For each insight:
+AVAILABLE STRATEGIC INTERVENTIONS (reference these by code):
 
-1. Identify the root cause of the weakness
-2. Explain business impact
-3. Provide specific, actionable recommendations
-4. Suggest quick wins and long-term strategies
+LEVEL A - Strategy & Governance (direction, frameworks, alignment):
+- A1: AI Roadmap Pressure Cooker - Accelerated workshop defining strategic direction, priorities, and responsibilities
+- A2: AI Dialectics Sessions - Deep dialogues on AI dilemmas, values, and risks building shared understanding
+- A3: AI Adoption Playbook Co-Design - Co-creation of behavioural principles and governance structures
+
+LEVEL B - Adoption & Behaviour (motivation, learning psychology, culture change):
+- B1: Adoption Challenge - Playful team challenge activating desired AI behaviours
+- B2: AI Learning Week - Intensive hands-on learning program building AI skills and confidence
+- B3: The Road to AI Adoption - Guided trajectory where teams design their own adoption journey
+- B4: AI Ambassadors Network - Train-the-trainer program enabling peer support
+- B5: Playful Nudging Toolkit - Creative micro-interventions reinforcing AI behaviours
+
+LEVEL C - Innovation & Value Creation (experimentation, learning, ROI):
+- C1: Kickstart with AI - Hackathon-style innovation sprint for AI prototyping
+- C2: ROI Retrospective Workshop - Reflective evaluation of AI initiative outcomes
+
+Generate 3-5 actionable insights. For EACH insight, you MUST recommend 2-3 specific interventions from the list above (reference by code like "A1", "B2", etc).
 
 Return as JSON array with this structure:
 {
@@ -278,7 +291,8 @@ Return as JSON array with this structure:
       "priority": "critical|high|medium",
       "gap_analysis": "detailed explanation of the gap",
       "business_impact": "how this affects the organization",
-      "recommendations": ["recommendation 1", "recommendation 2"],
+      "recommended_interventions": ["A1", "B2"],
+      "intervention_rationale": "why these specific interventions address this gap",
       "quick_wins": ["quick win 1", "quick win 2"],
       "long_term_strategy": "strategic approach",
       "estimated_effort": "low|medium|high",

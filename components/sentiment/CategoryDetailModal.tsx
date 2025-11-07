@@ -24,6 +24,8 @@ interface CategoryDetailModalProps {
     description: string
   }
   categoryData: CategoryActionData | null
+  interventionSize: 'small' | 'large'
+  showInterventions: boolean
   onClose: () => void
 }
 
@@ -97,6 +99,8 @@ const FLAVOR_CONFIG = {
 export default function CategoryDetailModal({
   cellData,
   categoryData,
+  interventionSize,
+  showInterventions,
   onClose
 }: CategoryDetailModalProps) {
   const [selectedFlavor, setSelectedFlavor] = useState<SolutionFlavor | null>(null)
@@ -132,10 +136,18 @@ export default function CategoryDetailModal({
       }
 
       try {
-        // Fetch interventions
-        const interventionsResponse = await fetch(
-          `/api/interventions/sentiment?level=${cellInfo.level}&category=${cellInfo.category}`
-        )
+        // Fetch interventions based on size mode
+        let interventionsResponse
+
+        if (interventionSize === 'small') {
+          // Fetch 3 cell-specific interventions
+          interventionsResponse = await fetch(
+            `/api/interventions/sentiment?level=${cellInfo.level}&category=${cellInfo.category}`
+          )
+        } else {
+          // Fetch all 10 strategic interventions
+          interventionsResponse = await fetch('/api/interventions')
+        }
 
         if (interventionsResponse.ok) {
           const data = await interventionsResponse.json()
@@ -168,7 +180,7 @@ export default function CategoryDetailModal({
     setSelectedFlavor(null)
     setShowSolution(false)
     setIsRolling(false)
-  }, [cellData.cellId])
+  }, [cellData.cellId, interventionSize])
 
   const handleFlavorSelect = (flavor: SolutionFlavor) => {
     if (flavor === 'lucky') {
@@ -419,105 +431,187 @@ export default function CategoryDetailModal({
             </div>
           )}
 
-          {/* SOLUTION FLAVOR SELECTOR */}
+          {/* SOLUTION SELECTOR */}
           {!loading && !showSolution && interventions.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
-                  <Sparkles className="w-5 h-5 text-teal-400" />
-                  Choose Your Solution Style
-                </h3>
-                <p className="text-sm text-gray-400">
-                  Pick an approach that matches your organization's appetite for change
-                </p>
-              </div>
+              {interventionSize === 'small' ? (
+                // SMALL MODE: Flavor-based selection (3 interventions)
+                <>
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+                      <Sparkles className="w-5 h-5 text-teal-400" />
+                      Choose Your Solution Style
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      Pick an approach that matches your organization's appetite for change
+                    </p>
+                  </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {(Object.keys(FLAVOR_CONFIG) as SolutionFlavor[]).map((flavor, idx) => {
-                  const config = FLAVOR_CONFIG[flavor]
-                  const Icon = config.icon
-                  const isSelected = selectedFlavor === flavor && isRolling
-                  
-                  return (
-                    <motion.button
-                      key={flavor}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ 
-                        opacity: 1, 
-                        scale: isSelected ? 1.05 : 1,
-                      }}
-                      transition={{ delay: idx * 0.1 }}
-                      onClick={() => handleFlavorSelect(flavor)}
-                      disabled={isRolling}
-                      className={cn(
-                        "relative group overflow-hidden rounded-xl border-2 transition-all p-6",
-                        "hover:scale-105 hover:shadow-2xl",
-                        isSelected 
-                          ? `${config.borderColor} ring-4 ring-white/20`
-                          : "border-white/10 hover:border-white/30",
-                        isRolling && !isSelected && "opacity-40"
-                      )}
-                    >
-                      {/* Animated Background */}
-                      <div className={cn(
-                        "absolute inset-0 bg-gradient-to-br transition-opacity",
-                        config.bgGradient,
-                        isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                      )} />
-                      
-                      {/* Content */}
-                      <div className="relative">
-                        <div className="flex items-center justify-center mb-4">
-                          <motion.div
-                            animate={isSelected ? { rotate: 360 } : {}}
-                            transition={{ duration: 0.5, repeat: isSelected ? Infinity : 0 }}
-                            className={cn(
-                              "w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center",
-                              config.gradient
-                            )}
-                          >
-                            <Icon className="w-8 h-8 text-white" />
-                          </motion.div>
-                        </div>
-                        
-                        <h4 className="text-lg font-bold text-white mb-1">
-                          {config.label}
-                        </h4>
-                        <p className={cn("text-sm font-medium mb-2", config.textColor)}>
-                          {config.subtitle}
-                        </p>
-                        <p className="text-xs text-gray-400 leading-relaxed">
-                          {config.description}
-                        </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {(Object.keys(FLAVOR_CONFIG) as SolutionFlavor[]).map((flavor, idx) => {
+                      const config = FLAVOR_CONFIG[flavor]
+                      const Icon = config.icon
+                      const isSelected = selectedFlavor === flavor && isRolling
 
-                        {flavor === 'lucky' && (
-                          <div className="mt-4 flex items-center justify-center gap-1">
-                            {[0, 1, 2].map((i) => (
+                      return (
+                        <motion.button
+                          key={flavor}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          animate={{
+                            opacity: 1,
+                            scale: isSelected ? 1.05 : 1,
+                          }}
+                          transition={{ delay: idx * 0.1 }}
+                          onClick={() => handleFlavorSelect(flavor)}
+                          disabled={isRolling}
+                          className={cn(
+                            "relative group overflow-hidden rounded-xl border-2 transition-all p-6",
+                            "hover:scale-105 hover:shadow-2xl",
+                            isSelected
+                              ? `${config.borderColor} ring-4 ring-white/20`
+                              : "border-white/10 hover:border-white/30",
+                            isRolling && !isSelected && "opacity-40"
+                          )}
+                        >
+                          {/* Animated Background */}
+                          <div className={cn(
+                            "absolute inset-0 bg-gradient-to-br transition-opacity",
+                            config.bgGradient,
+                            isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                          )} />
+
+                          {/* Content */}
+                          <div className="relative">
+                            <div className="flex items-center justify-center mb-4">
                               <motion.div
-                                key={i}
-                                className="w-1.5 h-1.5 rounded-full bg-purple-400"
-                                animate={{
-                                  scale: [1, 1.5, 1],
-                                  opacity: [0.3, 1, 0.3]
-                                }}
-                                transition={{
-                                  duration: 1.5,
-                                  repeat: Infinity,
-                                  delay: i * 0.2
-                                }}
-                              />
-                            ))}
+                                animate={isSelected ? { rotate: 360 } : {}}
+                                transition={{ duration: 0.5, repeat: isSelected ? Infinity : 0 }}
+                                className={cn(
+                                  "w-16 h-16 rounded-xl bg-gradient-to-br flex items-center justify-center",
+                                  config.gradient
+                                )}
+                              >
+                                <Icon className="w-8 h-8 text-white" />
+                              </motion.div>
+                            </div>
+
+                            <h4 className="text-lg font-bold text-white mb-1">
+                              {config.label}
+                            </h4>
+                            <p className={cn("text-sm font-medium mb-2", config.textColor)}>
+                              {config.subtitle}
+                            </p>
+                            <p className="text-xs text-gray-400 leading-relaxed">
+                              {config.description}
+                            </p>
+
+                            {flavor === 'lucky' && (
+                              <div className="mt-4 flex items-center justify-center gap-1">
+                                {[0, 1, 2].map((i) => (
+                                  <motion.div
+                                    key={i}
+                                    className="w-1.5 h-1.5 rounded-full bg-purple-400"
+                                    animate={{
+                                      scale: [1, 1.5, 1],
+                                      opacity: [0.3, 1, 0.3]
+                                    }}
+                                    transition={{
+                                      duration: 1.5,
+                                      repeat: Infinity,
+                                      delay: i * 0.2
+                                    }}
+                                  />
+                                ))}
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    </motion.button>
-                  )
-                })}
-              </div>
+                        </motion.button>
+                      )
+                    })}
+                  </div>
+                </>
+              ) : (
+                // LARGE MODE: Show all 10 strategic interventions
+                <>
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl font-bold text-white mb-2 flex items-center justify-center gap-2">
+                      <Sparkles className="w-5 h-5 text-teal-400" />
+                      Strategic Intervention Catalogue
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      Choose from our complete collection of strategic interventions
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {interventions.map((intervention, idx) => {
+                      const level = intervention.code.charAt(0)
+                      const levelColors = {
+                        'A': {
+                          gradient: 'from-purple-600 to-purple-700',
+                          border: 'border-purple-500/50',
+                          text: 'text-purple-400',
+                          bg: 'bg-purple-500/10'
+                        },
+                        'B': {
+                          gradient: 'from-blue-600 to-blue-700',
+                          border: 'border-blue-500/50',
+                          text: 'text-blue-400',
+                          bg: 'bg-blue-500/10'
+                        },
+                        'C': {
+                          gradient: 'from-teal-600 to-teal-700',
+                          border: 'border-teal-500/50',
+                          text: 'text-teal-400',
+                          bg: 'bg-teal-500/10'
+                        }
+                      }
+                      const colors = levelColors[level as 'A' | 'B' | 'C'] || levelColors['A']
+
+                      return (
+                        <motion.button
+                          key={intervention.code}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.05 }}
+                          onClick={() => {
+                            // For large mode, show intervention detail directly
+                            setSelectedInterventionCode(intervention.code)
+                            setShowInterventionDetail(true)
+                          }}
+                          className={cn(
+                            "relative group overflow-hidden rounded-xl border-2 transition-all p-4 text-left",
+                            "hover:scale-102 hover:shadow-xl",
+                            colors.border,
+                            "border-white/10 hover:border-white/30"
+                          )}
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className={cn(
+                              "flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br flex items-center justify-center font-bold text-white",
+                              colors.gradient
+                            )}>
+                              {intervention.code}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-bold text-white mb-1 line-clamp-2">
+                                {intervention.name}
+                              </h4>
+                              <p className="text-xs text-gray-400 line-clamp-2">
+                                {intervention.description}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.button>
+                      )
+                    })}
+                  </div>
+                </>
+              )}
             </motion.div>
           )}
 

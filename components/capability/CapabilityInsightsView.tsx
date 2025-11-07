@@ -10,7 +10,8 @@ interface CapabilityInsight {
   priority: 'critical' | 'high' | 'medium'
   gap_analysis: string
   business_impact: string
-  recommendations: string[]
+  recommended_interventions: string[]  // Intervention codes (A1, B2, etc.)
+  intervention_rationale: string       // Why these interventions address the gap
   quick_wins: string[]
   long_term_strategy: string
   estimated_effort: 'low' | 'medium' | 'high'
@@ -46,11 +47,8 @@ export default function CapabilityInsightsView({
           priority: 'critical',
           gap_analysis: 'Limited strategic alignment between AI initiatives and business objectives. Lack of clear AI roadmap and executive sponsorship.',
           business_impact: 'Fragmented AI efforts, missed opportunities for strategic value creation, difficulty securing budget and resources for AI projects.',
-          recommendations: [
-            'Develop comprehensive AI strategy aligned with business goals',
-            'Establish executive AI steering committee',
-            'Create 3-year AI roadmap with measurable KPIs'
-          ],
+          recommended_interventions: ['A1', 'A2', 'A3'],
+          intervention_rationale: 'Strategy & Governance interventions (A1 Roadmap Workshop, A2 Dialectics, A3 Playbook) directly address the strategic alignment gap by building shared vision, clarifying direction, and establishing governance frameworks with executive buy-in.',
           quick_wins: [
             'Conduct AI opportunity assessment workshop',
             'Define top 3 strategic AI priorities'
@@ -64,11 +62,8 @@ export default function CapabilityInsightsView({
           priority: 'high',
           gap_analysis: 'Data quality and accessibility issues limiting AI model effectiveness. Siloed data across systems without centralized governance.',
           business_impact: 'Poor AI model performance, increased development time, compliance risks, inability to leverage data for insights.',
-          recommendations: [
-            'Implement data quality framework and monitoring',
-            'Establish data governance policies and ownership',
-            'Invest in data integration and centralization'
-          ],
+          recommended_interventions: ['A3', 'C1', 'C2'],
+          intervention_rationale: 'Data challenges require both governance (A3 Playbook for data policies) and experimentation (C1 Kickstart to prototype with existing data, C2 ROI Retrospective to evaluate what data delivers value).',
           quick_wins: [
             'Audit critical data sources for AI use cases',
             'Document data lineage for priority datasets'
@@ -82,11 +77,8 @@ export default function CapabilityInsightsView({
           priority: 'high',
           gap_analysis: 'Insufficient AI expertise across organization. Skills gap in both technical AI capabilities and business understanding of AI potential.',
           business_impact: 'Dependence on external consultants, slow AI adoption, missed innovation opportunities, competitive disadvantage.',
-          recommendations: [
-            'Launch AI upskilling program for existing staff',
-            'Recruit specialized AI talent for critical roles',
-            'Partner with universities for talent pipeline'
-          ],
+          recommended_interventions: ['B2', 'B4', 'B5'],
+          intervention_rationale: 'Adoption & Behaviour interventions (B2 Learning Week for intensive skill-building, B4 Ambassadors for peer support, B5 Nudging for reinforcement) systematically build AI literacy and create a learning culture.',
           quick_wins: [
             'Identify AI champions in each department',
             'Provide basic AI literacy training to leadership'
@@ -155,6 +147,20 @@ export default function CapabilityInsightsView({
         return { label: 'Medium Effort', color: 'text-yellow-400', bgColor: 'bg-yellow-500/10' }
       default:
         return { label: 'High Effort', color: 'text-red-400', bgColor: 'bg-red-500/10' }
+    }
+  }
+
+  const getInterventionLevelColor = (code: string) => {
+    const level = code.charAt(0)
+    switch (level) {
+      case 'A':
+        return 'from-purple-600 to-purple-700'
+      case 'B':
+        return 'from-blue-600 to-blue-700'
+      case 'C':
+        return 'from-teal-600 to-teal-700'
+      default:
+        return 'from-gray-600 to-gray-700'
     }
   }
 
@@ -263,20 +269,34 @@ export default function CapabilityInsightsView({
                   <p className="text-sm text-gray-400 leading-relaxed">{insight.business_impact}</p>
                 </div>
 
-                {/* Recommendations */}
+                {/* Recommended Strategic Interventions */}
                 <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                  <h4 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2">
                     <Target className="w-4 h-4 text-teal-400" />
-                    Recommendations
+                    Recommended Strategic Interventions
                   </h4>
-                  <ul className="space-y-1.5">
-                    {insight.recommendations.map((rec, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
-                        <CheckCircle className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
-                        <span>{rec}</span>
-                      </li>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {insight.recommended_interventions.map((code, idx) => (
+                      <motion.button
+                        key={idx}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={cn(
+                          "px-3 py-1.5 rounded-lg bg-gradient-to-r text-white font-bold text-sm shadow-md hover:shadow-lg transition-all",
+                          getInterventionLevelColor(code)
+                        )}
+                        onClick={() => {
+                          // TODO: Open intervention detail modal
+                          console.log('View intervention:', code)
+                        }}
+                      >
+                        {code}
+                      </motion.button>
                     ))}
-                  </ul>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed italic">
+                    {insight.intervention_rationale}
+                  </p>
                 </div>
 
                 {/* Quick Wins */}
